@@ -3,24 +3,24 @@ package com.mycompany.ltm;
 import java.awt.*;
 import javax.swing.JLabel;
 
-public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
+public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
 
     public static int dapAn = 0;
 
-    public ManHinhQuanLyNguoiDung() {
+    public ManHinhQuanLyCauHoi() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
     }
 
     private void cacChinhSuaGiaoDienBangCode() {
         // Chỉnh sửa về bảng danh sách người dùng
-        JLabel headerLabel = (JLabel) tableDanhSachNguoiDung.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) tableDanhSachCauHoi.getTableHeader().getDefaultRenderer();
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
-        tableDanhSachNguoiDung.getTableHeader().setPreferredSize(new Dimension(50, 50));
-        tableDanhSachNguoiDung.getTableHeader().setFont(new Font("Segoe UI", 18, 18));
-        tableDanhSachNguoiDung.getTableHeader().setBackground(Color.gray);
-        tableDanhSachNguoiDung.setBackground(new Color(255,255,255));
-        tableDanhSachNguoiDung.setFillsViewportHeight(true);
+        tableDanhSachCauHoi.getTableHeader().setPreferredSize(new Dimension(50, 50));
+        tableDanhSachCauHoi.getTableHeader().setFont(new Font("Segoe UI", 18, 18));
+        tableDanhSachCauHoi.getTableHeader().setBackground(Color.gray);
+        tableDanhSachCauHoi.setBackground(new Color(255,255,255));
+        tableDanhSachCauHoi.setFillsViewportHeight(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -28,7 +28,7 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
     private void initComponents() {
 
         panelManHinhQuanLyNguoiDung = new javax.swing.JPanel();
-        labelQuanLyNguoiChoi = new javax.swing.JLabel();
+        labelQuanLyCauHoi = new javax.swing.JLabel();
         buttonCapNhat = new javax.swing.JButton();
         buttonThem = new javax.swing.JButton();
         buttonXoa = new javax.swing.JButton();
@@ -36,17 +36,17 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
         labelKienThuc = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
-        scrollPaneDanhSachNguoiDung = new javax.swing.JScrollPane();
-        tableDanhSachNguoiDung = new javax.swing.JTable();
+        scrollPaneDanhSachCauHoi = new javax.swing.JScrollPane();
+        tableDanhSachCauHoi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         panelManHinhQuanLyNguoiDung.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelQuanLyNguoiChoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelQuanLyNguoiChoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelQuanLyNguoiChoi.setText("QUẢN LÝ NGƯỜI CHƠI");
+        labelQuanLyCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelQuanLyCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelQuanLyCauHoi.setText("QUẢN LÝ CÂU HỎI");
 
         buttonCapNhat.setBackground(new java.awt.Color(0, 102, 255));
         buttonCapNhat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -116,25 +116,25 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
-        tableDanhSachNguoiDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tableDanhSachNguoiDung.setModel(new javax.swing.table.DefaultTableModel(
+        tableDanhSachCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tableDanhSachCauHoi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã người chơi", "Tên người chơi", "Mật khẩu (đã băm)", "Tổng điểm", "Tình trạng", "Vai trò"
+                "Mã câu hỏi", "Nội dung câu hỏi", "Đáp án", "Loại câu hỏi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        tableDanhSachNguoiDung.setRowHeight(50);
-        scrollPaneDanhSachNguoiDung.setViewportView(tableDanhSachNguoiDung);
+        tableDanhSachCauHoi.setRowHeight(50);
+        scrollPaneDanhSachCauHoi.setViewportView(tableDanhSachCauHoi);
 
         javax.swing.GroupLayout panelManHinhQuanLyNguoiDungLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiDung);
         panelManHinhQuanLyNguoiDung.setLayout(panelManHinhQuanLyNguoiDungLayout);
@@ -144,7 +144,7 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
             .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneDanhSachNguoiDung)
+                    .addComponent(scrollPaneDanhSachCauHoi)
                     .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,7 +158,7 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelQuanLyCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelManHinhQuanLyNguoiDungLayout.setVerticalGroup(
@@ -174,9 +174,9 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
                         .addComponent(buttonThem)
                         .addComponent(buttonXoa)
                         .addComponent(buttonCapNhat))
-                    .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelQuanLyCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPaneDanhSachNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneDanhSachCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
@@ -250,14 +250,22 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -270,7 +278,7 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhQuanLyNguoiDung().setVisible(true);
+                new ManHinhQuanLyCauHoi().setVisible(true);
             }
         });
     }
@@ -282,10 +290,10 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelKienThuc;
-    private javax.swing.JLabel labelQuanLyNguoiChoi;
+    private javax.swing.JLabel labelQuanLyCauHoi;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhQuanLyNguoiDung;
-    private javax.swing.JScrollPane scrollPaneDanhSachNguoiDung;
-    private javax.swing.JTable tableDanhSachNguoiDung;
+    private javax.swing.JScrollPane scrollPaneDanhSachCauHoi;
+    private javax.swing.JTable tableDanhSachCauHoi;
     // End of variables declaration//GEN-END:variables
 }
