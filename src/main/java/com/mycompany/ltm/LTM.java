@@ -5,6 +5,8 @@
 
 package com.mycompany.ltm;
 
+import DAO.DBConnect;
+
 /**
  *
  * @author ADMIN
@@ -12,5 +14,11 @@ package com.mycompany.ltm;
 public class LTM {
 
     public static void main(String[] args) {
+        DBConnect conn = new DBConnect();
+        if (conn.connection() != null) {
+            System.out.println("Success");
+        }else{
+            System.out.println("Failed");
+        }
     }
 }
