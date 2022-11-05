@@ -12,6 +12,5 @@ package com.mycompany.ltm;
 public class LTM {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
     }
 }
