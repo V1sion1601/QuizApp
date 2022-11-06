@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
 
-package com.mycompany.ltm;
-
-import DAO.DBConnect;
+package GUI;
 
 /**
  *
@@ -14,11 +12,6 @@ import DAO.DBConnect;
 public class LTM {
 
     public static void main(String[] args) {
-        DBConnect conn = new DBConnect();
-        if (conn.connection() != null) {
-            System.out.println("Success");
-        }else{
-            System.out.println("Failed");
-        }
+        System.out.println("Hello World!");
     }
 }

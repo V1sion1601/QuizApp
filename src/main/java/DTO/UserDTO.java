@@ -16,10 +16,12 @@ public class UserDTO {
     private String password;
     private String role; //admin or simple user
 
-    public UserDTO(){
-        
+    public UserDTO(String name, String password)
+    {
+        this.name = name;
+        this.password = password;
     }
-
+    
     public UserDTO(int idUser, String name, int tongDiem, String status, String password, String role) {
         this.idUser = idUser;
         this.name = name;

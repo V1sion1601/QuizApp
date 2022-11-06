@@ -1,98 +1,159 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package DAO;
 
-import DTO.UserDTO;
+import java.net.PasswordAuthentication;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author admin
- */
 public class UserDAO {
-
-    DBConnect conn;
-
-    public ArrayList<UserDTO> readDB() {
-        conn = new DBConnect();
-        ArrayList<UserDTO> arrUser = new ArrayList<>();
-
+    public static List<DTO.UserDTO> getListUser() {
+        List<DTO.UserDTO> UserList = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
         try {
-            String query = "SELECT * FROM `user`";
-            ResultSet rs = conn.SQLQuery(query);
-            if (rs != null) {
-                while (rs.next()) {
-                    int idUser = rs.getInt("idUser");
-                    String name = rs.getString("name");
-                    int tongDiem = rs.getInt("tongDiem");
-                    String status = rs.getString("status");
-                    String password = rs.getString("password");
-                    String role = rs.getString("role");
-                    
-                    arrUser.add(new UserDTO(idUser, name, tongDiem, status, password, role));
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM user";
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                DTO.UserDTO user1 = new DTO.UserDTO(
+                        rs.getInt("ID_User"),
+                        rs.getString("Name"),
+                        rs.getInt("TotalScore"),
+                        rs.getString("Status"),
+                        rs.getString("Password"),
+                        rs.getString("Role")
+                );
+                UserList.add(user1);
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return UserList;
+    }
+    /* Tìm tài khoản */
+    public static void findtaikhoan(DTO.UserDTO user) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM user WHERE Name=? AND Password=?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getPassword());
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                GUI.ManHinhChaoMung.checktk = 1;
+            } else {
+                GUI.ManHinhChaoMung.checktk = 0;
+            }
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    /* Kiểm tra username để đăng kí */
+    public static void checkUserName(String username) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM user WHERE Name=?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                BUS.UserBUS.check = 0;
+            } else {
+                BUS.UserBUS.check = 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } catch(SQLException e)  {
-            System.out.println("Lỗi!!! Lỗi đọc dữ liệu bảng User");
-        }finally{
-            conn.closeConnection();
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         }
-        return arrUser;
+
     }
-    
-     public Boolean add(UserDTO user){
-        conn = new DBConnect();
-        Boolean check = conn.SQLUpdate("INSERT INTO `user`(`name`, `tongDiem`, `status`, `password`, `role`) "
-                + "VALUES ('"+user.getName()+"','"
-                +user.getStatus()+"','"
-                +user.getTongDiem()+"','"
-                +user.getPassword()+"','"
-                +user.getRole()+"')"); 
-        conn.closeConnection();
-        return check;
-    }
-     
-     public Boolean del(int idUser){
-        conn = new DBConnect();
-        Boolean check = conn.SQLUpdate("DELETE FROM `user` WHERE `idUser` = " + idUser);
-        conn.closeConnection();
-        return check;
-    }
-     
-     public Boolean upd(UserDTO user){
-        conn= new DBConnect();
-        Boolean check = conn.SQLUpdate("UPDATE `user` SET "
-                + "`name`='"+user.getName()
-                +"',`tongDiem`='"+user.getTongDiem()
-                +"',`status`='"+user.getStatus()
-                +"',`password`='"+user.getPassword()
-                +"',`role`='"+user.getRole()
-                +"' WHERE `idUser`='"+user.getIdUser()+"'");
-        conn.closeConnection();
-        return check;
-    }
-     
-     public Boolean hasUserID(int idUser) {
-        conn = new DBConnect();
-        boolean result = false;
+    /* Thêm tài khoản */
+    public static void insert(DTO.UserDTO user) {
+
+        Connection connection = null;
+        PreparedStatement statement = null;
         try {
-            String query = "SELECT * FROM `user` WHERE `idUser`='"+idUser+"'";
-            ResultSet rs = conn.SQLQuery(query);
-            result = rs.next();
-        } catch (SQLException e) {
-            System.out.println("User không tồn tại!!!");
-            System.err.print(e);
+            connection = DAO.Connection.connection();
+            String sql = "Insert into user value(?,?,?,?,?,?)";
+            statement = connection.prepareCall(sql);
+
+            statement.setInt(1, user.getIdUser());
+            statement.setString(2, user.getName());
+            statement.setInt(3, user.getTongDiem());
+            statement.setString(4, user.getStatus());
+            statement.setString(5, user.getPassword());
+            statement.setString(6, user.getRole());
+
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            conn.closeConnection();
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         }
-        return result;
+
     }
-    
 }

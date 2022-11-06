@@ -4,31 +4,30 @@
  * and open the template in the editor.
  */
 package DAO;
-
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.Connection;
-
 /**
  *
  * @author ADMIN
  */
-public class DBConnect {
-
-    public static int check = -1;
+public class Connection {
     private final static String JDBC = "com.mysql.cj.jdbc.Driver";
-    public Connection con = null;
-    public Connection connection() {
+    private final static String DATA = "jdbc:mysql://localhost:3306/ltm";
+    
+    public static java.sql.Connection connection() {
+        java.sql.Connection con = null;
+        java.beans.Statement sta = null;
         try {
-            Connection con = null;
-            String DATA = "jdbc:mysql://localhost:3306/ltm";
+            Class.forName(JDBC);
             con = DriverManager.getConnection(DATA, "root", "");
-            return con;
+        } catch (ClassNotFoundException ex) {
+            System.err.println("Không tìm thấy driver. Chi tiết:  " + ex.getMessage());
         } catch (SQLException ex) {
-            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+            System.err.println(ex);
         }
+        return con;
     }
+
 }
