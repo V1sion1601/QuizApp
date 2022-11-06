@@ -3,11 +3,11 @@ package com.mycompany.ltm;
 import java.awt.*;
 import javax.swing.JLabel;
 
-public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
+public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
 
     public static int dapAn = 0;
 
-    public ManHinhQuanLyNguoiDung() {
+    public ManHinhQuanLyNguoiChoi() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
     }
@@ -28,9 +28,9 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
     private void initComponents() {
 
         panelManHinhQuanLyNguoiDung = new javax.swing.JPanel();
+        buttonChan = new javax.swing.JButton();
         labelQuanLyNguoiChoi = new javax.swing.JLabel();
         buttonCapNhat = new javax.swing.JButton();
-        buttonThem = new javax.swing.JButton();
         buttonXoa = new javax.swing.JButton();
         labelTranhTai = new javax.swing.JLabel();
         labelKienThuc = new javax.swing.JLabel();
@@ -43,6 +43,19 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
         setUndecorated(true);
 
         panelManHinhQuanLyNguoiDung.setBackground(new java.awt.Color(255, 255, 255));
+
+        buttonChan.setBackground(new java.awt.Color(153, 153, 0));
+        buttonChan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        buttonChan.setForeground(new java.awt.Color(255, 255, 255));
+        buttonChan.setText("Chặn");
+        buttonChan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonChanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonChanMouseExited(evt);
+            }
+        });
 
         labelQuanLyNguoiChoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelQuanLyNguoiChoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -58,19 +71,6 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 buttonCapNhatMouseExited(evt);
-            }
-        });
-
-        buttonThem.setBackground(new java.awt.Color(34, 139, 34));
-        buttonThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        buttonThem.setForeground(new java.awt.Color(255, 255, 255));
-        buttonThem.setText("Thêm");
-        buttonThem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                buttonThemMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                buttonThemMouseExited(evt);
             }
         });
 
@@ -152,11 +152,11 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
-                        .addComponent(buttonThem, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonChan, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -169,12 +169,12 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc))
                 .addGap(18, 18, 18)
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonThem)
                         .addComponent(buttonXoa)
-                        .addComponent(buttonCapNhat))
-                    .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonCapNhat)
+                        .addComponent(buttonChan))
+                    .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneDanhSachNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
@@ -209,14 +209,6 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
         labelButtonKetThuc.setBackground(new Color(255, 0, 51));
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
-    private void buttonThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonThemMouseEntered
-        buttonThem.setBackground(new Color(0,128,0));
-    }//GEN-LAST:event_buttonThemMouseEntered
-
-    private void buttonThemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonThemMouseExited
-        buttonThem.setBackground(new Color(34,139,34));
-    }//GEN-LAST:event_buttonThemMouseExited
-
     private void buttonXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseEntered
         buttonXoa.setBackground(new Color(178,34,34));
     }//GEN-LAST:event_buttonXoaMouseEntered
@@ -232,6 +224,14 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
     private void buttonCapNhatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseExited
         buttonCapNhat.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_buttonCapNhatMouseExited
+
+    private void buttonChanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseEntered
+        buttonChan.setBackground(new Color(102,102,0));
+    }//GEN-LAST:event_buttonChanMouseEntered
+
+    private void buttonChanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseExited
+        buttonChan.setBackground(new Color(153,153,0));
+    }//GEN-LAST:event_buttonChanMouseExited
 
     /**
      * @param args the command line arguments
@@ -250,14 +250,70 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiDung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -270,14 +326,14 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhQuanLyNguoiDung().setVisible(true);
+                new ManHinhQuanLyNguoiChoi().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCapNhat;
-    private javax.swing.JButton buttonThem;
+    private javax.swing.JButton buttonChan;
     private javax.swing.JButton buttonXoa;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
