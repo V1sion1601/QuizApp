@@ -27,7 +27,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelManHinhQuanLyNguoiDung = new javax.swing.JPanel();
+        panelManHinhQuanLyCauHoi = new javax.swing.JPanel();
         labelQuanLyCauHoi = new javax.swing.JLabel();
         buttonCapNhat = new javax.swing.JButton();
         buttonThem = new javax.swing.JButton();
@@ -42,7 +42,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelManHinhQuanLyNguoiDung.setBackground(new java.awt.Color(255, 255, 255));
+        panelManHinhQuanLyCauHoi.setBackground(new java.awt.Color(255, 255, 255));
 
         labelQuanLyCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelQuanLyCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -65,6 +65,9 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         buttonThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonThem.setForeground(new java.awt.Color(255, 255, 255));
         buttonThem.setText("Thêm");
+        buttonThem.setMaximumSize(new java.awt.Dimension(107, 33));
+        buttonThem.setMinimumSize(new java.awt.Dimension(107, 33));
+        buttonThem.setPreferredSize(new java.awt.Dimension(107, 33));
         buttonThem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonThemMouseEntered(evt);
@@ -73,11 +76,19 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
                 buttonThemMouseExited(evt);
             }
         });
+        buttonThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonThemActionPerformed(evt);
+            }
+        });
 
         buttonXoa.setBackground(new java.awt.Color(220, 20, 60));
         buttonXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonXoa.setForeground(new java.awt.Color(255, 255, 255));
         buttonXoa.setText("Xoá");
+        buttonXoa.setMaximumSize(new java.awt.Dimension(107, 33));
+        buttonXoa.setMinimumSize(new java.awt.Dimension(107, 33));
+        buttonXoa.setPreferredSize(new java.awt.Dimension(107, 33));
         buttonXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonXoaMouseEntered(evt);
@@ -136,43 +147,43 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         tableDanhSachCauHoi.setRowHeight(50);
         scrollPaneDanhSachCauHoi.setViewportView(tableDanhSachCauHoi);
 
-        javax.swing.GroupLayout panelManHinhQuanLyNguoiDungLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiDung);
-        panelManHinhQuanLyNguoiDung.setLayout(panelManHinhQuanLyNguoiDungLayout);
-        panelManHinhQuanLyNguoiDungLayout.setHorizontalGroup(
-            panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelManHinhQuanLyCauHoiLayout = new javax.swing.GroupLayout(panelManHinhQuanLyCauHoi);
+        panelManHinhQuanLyCauHoi.setLayout(panelManHinhQuanLyCauHoiLayout);
+        panelManHinhQuanLyCauHoiLayout.setHorizontalGroup(
+            panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
+            .addGroup(panelManHinhQuanLyCauHoiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPaneDanhSachCauHoi)
-                    .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
+                    .addGroup(panelManHinhQuanLyCauHoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelKienThuc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
-                        .addComponent(buttonThem, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelManHinhQuanLyCauHoiLayout.createSequentialGroup()
+                        .addComponent(buttonThem, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelQuanLyCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        panelManHinhQuanLyNguoiDungLayout.setVerticalGroup(
-            panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        panelManHinhQuanLyCauHoiLayout.setVerticalGroup(
+            panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManHinhQuanLyCauHoiLayout.createSequentialGroup()
+                .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc))
                 .addGap(18, 18, 18)
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buttonThem)
-                        .addComponent(buttonXoa)
+                .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonCapNhat))
                     .addComponent(labelQuanLyCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -186,11 +197,11 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhQuanLyNguoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhQuanLyCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhQuanLyNguoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhQuanLyCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -232,6 +243,10 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
     private void buttonCapNhatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseExited
         buttonCapNhat.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_buttonCapNhatMouseExited
+
+    private void buttonThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonThemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,7 +307,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelQuanLyCauHoi;
     private javax.swing.JLabel labelTranhTai;
-    private javax.swing.JPanel panelManHinhQuanLyNguoiDung;
+    private javax.swing.JPanel panelManHinhQuanLyCauHoi;
     private javax.swing.JScrollPane scrollPaneDanhSachCauHoi;
     private javax.swing.JTable tableDanhSachCauHoi;
     // End of variables declaration//GEN-END:variables

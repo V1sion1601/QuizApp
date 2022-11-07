@@ -1,7 +1,7 @@
 package com.mycompany.ltm;
 
 import java.awt.*;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
 
@@ -14,20 +14,22 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
 
     private void cacChinhSuaGiaoDienBangCode() {
         // Chỉnh sửa về bảng danh sách người dùng
-        JLabel headerLabel = (JLabel) tableDanhSachNguoiDung.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) tableDanhSachNguoiChoi.getTableHeader().getDefaultRenderer();
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
-        tableDanhSachNguoiDung.getTableHeader().setPreferredSize(new Dimension(50, 50));
-        tableDanhSachNguoiDung.getTableHeader().setFont(new Font("Segoe UI", 18, 18));
-        tableDanhSachNguoiDung.getTableHeader().setBackground(Color.gray);
-        tableDanhSachNguoiDung.setBackground(new Color(255,255,255));
-        tableDanhSachNguoiDung.setFillsViewportHeight(true);
+        tableDanhSachNguoiChoi.getTableHeader().setPreferredSize(new Dimension(50, 50));
+        tableDanhSachNguoiChoi.getTableHeader().setFont(new Font("Segoe UI", 18, 18));
+        tableDanhSachNguoiChoi.getTableHeader().setBackground(Color.gray);
+        tableDanhSachNguoiChoi.setBackground(new Color(255, 255, 255));
+        tableDanhSachNguoiChoi.setFillsViewportHeight(true);
+        // Chiều dài cột theo tỉ lệ phần trăm
+        HamDungChung.setJTableColumnsWidth(tableDanhSachNguoiChoi, 600, 15, 32.5, 15, 15, 7.5, 5, 5, 5);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelManHinhQuanLyNguoiDung = new javax.swing.JPanel();
+        panelManHinhQuanLyNguoiChoi = new javax.swing.JPanel();
         buttonChan = new javax.swing.JButton();
         labelQuanLyNguoiChoi = new javax.swing.JLabel();
         buttonCapNhat = new javax.swing.JButton();
@@ -37,12 +39,12 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
         scrollPaneDanhSachNguoiDung = new javax.swing.JScrollPane();
-        tableDanhSachNguoiDung = new javax.swing.JTable();
+        tableDanhSachNguoiChoi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelManHinhQuanLyNguoiDung.setBackground(new java.awt.Color(255, 255, 255));
+        panelManHinhQuanLyNguoiChoi.setBackground(new java.awt.Color(255, 255, 255));
 
         buttonChan.setBackground(new java.awt.Color(153, 153, 0));
         buttonChan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -116,61 +118,61 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
-        tableDanhSachNguoiDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tableDanhSachNguoiDung.setModel(new javax.swing.table.DefaultTableModel(
+        tableDanhSachNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tableDanhSachNguoiChoi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã người chơi", "Tên người chơi", "Mật khẩu (đã băm)", "Tổng điểm", "Tình trạng", "Vai trò"
+                "Mã người chơi", "Tên người chơi", "Tình trạng", "Vai trò", "Tổng điểm", "Số lần chơi", "Số lần thắng", "Chuỗi thắng dài nhất"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        tableDanhSachNguoiDung.setRowHeight(50);
-        scrollPaneDanhSachNguoiDung.setViewportView(tableDanhSachNguoiDung);
+        tableDanhSachNguoiChoi.setRowHeight(50);
+        scrollPaneDanhSachNguoiDung.setViewportView(tableDanhSachNguoiChoi);
 
-        javax.swing.GroupLayout panelManHinhQuanLyNguoiDungLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiDung);
-        panelManHinhQuanLyNguoiDung.setLayout(panelManHinhQuanLyNguoiDungLayout);
-        panelManHinhQuanLyNguoiDungLayout.setHorizontalGroup(
-            panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelManHinhQuanLyNguoiChoiLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiChoi);
+        panelManHinhQuanLyNguoiChoi.setLayout(panelManHinhQuanLyNguoiChoiLayout);
+        panelManHinhQuanLyNguoiChoiLayout.setHorizontalGroup(
+            panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
+            .addGroup(panelManHinhQuanLyNguoiChoiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrollPaneDanhSachNguoiDung)
-                    .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
+                    .addGroup(panelManHinhQuanLyNguoiChoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelKienThuc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 495, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
-                        .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelManHinhQuanLyNguoiChoiLayout.createSequentialGroup()
+                        .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonChan, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonChan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        panelManHinhQuanLyNguoiDungLayout.setVerticalGroup(
-            panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        panelManHinhQuanLyNguoiChoiLayout.setVerticalGroup(
+            panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManHinhQuanLyNguoiChoiLayout.createSequentialGroup()
+                .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc))
                 .addGap(18, 18, 18)
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonXoa)
                         .addComponent(buttonCapNhat)
                         .addComponent(buttonChan))
@@ -186,11 +188,11 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhQuanLyNguoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhQuanLyNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhQuanLyNguoiDung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhQuanLyNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -210,11 +212,11 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
     private void buttonXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseEntered
-        buttonXoa.setBackground(new Color(178,34,34));
+        buttonXoa.setBackground(new Color(178, 34, 34));
     }//GEN-LAST:event_buttonXoaMouseEntered
 
     private void buttonXoaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseExited
-        buttonXoa.setBackground(new Color(220,20,60));
+        buttonXoa.setBackground(new Color(220, 20, 60));
     }//GEN-LAST:event_buttonXoaMouseExited
 
     private void buttonCapNhatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseEntered
@@ -226,11 +228,11 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCapNhatMouseExited
 
     private void buttonChanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseEntered
-        buttonChan.setBackground(new Color(102,102,0));
+        buttonChan.setBackground(new Color(102, 102, 0));
     }//GEN-LAST:event_buttonChanMouseEntered
 
     private void buttonChanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseExited
-        buttonChan.setBackground(new Color(153,153,0));
+        buttonChan.setBackground(new Color(153, 153, 0));
     }//GEN-LAST:event_buttonChanMouseExited
 
     /**
@@ -340,8 +342,8 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelQuanLyNguoiChoi;
     private javax.swing.JLabel labelTranhTai;
-    private javax.swing.JPanel panelManHinhQuanLyNguoiDung;
+    private javax.swing.JPanel panelManHinhQuanLyNguoiChoi;
     private javax.swing.JScrollPane scrollPaneDanhSachNguoiDung;
-    private javax.swing.JTable tableDanhSachNguoiDung;
+    private javax.swing.JTable tableDanhSachNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

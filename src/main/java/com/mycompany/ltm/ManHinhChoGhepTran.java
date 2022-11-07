@@ -21,8 +21,11 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     
     public ManHinhChoGhepTran() {
         initComponents();
+        cacChinhSuaGiaoDienBangCode();
+    }
+    private void cacChinhSuaGiaoDienBangCode() {
+        // Đồng hồ đếm ngược
         Timer timer = new Timer();
-        counter = 60;
         TimerTask task = new TimerTask() {
             public void run() {
                 labelDemNguoc.setText(Integer.toString(counter));
@@ -77,7 +80,7 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
             }
         });
 
-        labelDemNguoc.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        labelDemNguoc.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         labelDemNguoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDemNguoc.setText("60");
 
@@ -86,15 +89,15 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
         panelChoGhepTranLayout.setHorizontalGroup(
             panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChoGhepTranLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDemNguoc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelDangTai, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(panelChoGhepTranLayout.createSequentialGroup()
-                .addGap(134, 134, 134)
+                .addGap(133, 133, 133)
                 .addComponent(buttonHuyCho, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelChoGhepTranLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDemNguoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelDangTai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panelChoGhepTranLayout.setVerticalGroup(
             panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,10 +105,10 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(labelDangTai)
                 .addGap(18, 18, 18)
-                .addComponent(labelDemNguoc)
+                .addComponent(labelDemNguoc, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonHuyCho)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
