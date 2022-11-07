@@ -34,7 +34,10 @@ public class UserDAO {
                         rs.getInt("TotalScore"),
                         rs.getString("Status"),
                         rs.getString("Password"),
-                        rs.getString("Role")
+                        rs.getString("Role"),
+                        rs.getInt("TotalMatch"),
+                        rs.getInt("TotalMatchWin"),
+                        rs.getInt("WinStreak")
                 );
                 UserList.add(user1);
             }
@@ -124,7 +127,7 @@ public class UserDAO {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "Insert into user value(?,?,?,?,?,?)";
+            String sql = "Insert into user value(?,?,?,?,?,?,0,0,0)";
             statement = connection.prepareCall(sql);
 
             statement.setInt(1, user.getIdUser());

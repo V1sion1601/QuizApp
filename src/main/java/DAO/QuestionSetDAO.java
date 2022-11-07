@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
  * @author ADMIN
  */
 public class QuestionSetDAO {
-    public static List<DTO.QuestionSetDTO> getListQuestionSet() {
-        List<DTO.QuestionSetDTO> QuestionSetList = new ArrayList<>();
+    public static ArrayList<DTO.QuestionSetDTO> getListQuestionSet() {
+        ArrayList<DTO.QuestionSetDTO> QuestionSetList = new ArrayList<>();
 
         java.sql.Connection connection = null;
         Statement statement = null;

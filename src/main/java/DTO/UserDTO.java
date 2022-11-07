@@ -9,30 +9,56 @@ package DTO;
  * @author admin
  */
 public class UserDTO {
+
     private int idUser;
     private String name;
-    private int tongDiem;
+    private int tongDiem, totalMatch, totalMatchWin, winStreak;
     private String status;
     private String password;
     private String role; //admin or simple user
 
-    public UserDTO(String name, String password)
-    {
+    public UserDTO(String name, String password) {
         this.name = name;
         this.password = password;
     }
-    
-    public UserDTO(int idUser, String name, int tongDiem, String status, String password, String role) {
+
+    public UserDTO(int idUser, String name, int tongDiem, String status, String password, String role, int totalMatch,
+            int totalMatchWin, int winStreak) {
         this.idUser = idUser;
         this.name = name;
         this.tongDiem = tongDiem;
         this.status = status;
         this.password = password;
         this.role = role;
+        this.totalMatch = totalMatch;
+        this.totalMatchWin = totalMatch;
+        this.winStreak = totalMatch;
     }
-    
-    
-    
+
+    public int getTotalMatch() {
+        return totalMatch;
+    }
+
+    public void setTotalMatch(int totalMatch) {
+        this.totalMatch = totalMatch;
+    }
+
+    public int getTotalMatchWin() {
+        return totalMatchWin;
+    }
+
+    public void setTotalMatchWin(int totalMatchWin) {
+        this.totalMatchWin = totalMatchWin;
+    }
+
+    public int getWinStreak() {
+        return winStreak;
+    }
+
+    public void setWinStreak(int winStreak) {
+        this.winStreak = winStreak;
+    }
+
     /**
      * @return the idUser
      */
@@ -116,6 +142,5 @@ public class UserDTO {
     public void setRole(String role) {
         this.role = role;
     }
-    
-    
+
 }

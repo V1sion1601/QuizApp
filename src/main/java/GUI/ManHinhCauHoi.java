@@ -5,6 +5,11 @@
 package GUI;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import javax.swing.ButtonGroup;
 
 /**
  *
@@ -13,12 +18,57 @@ import java.awt.Color;
 public class ManHinhCauHoi extends javax.swing.JFrame {
 
     public static int dapAn = 0;
+    public List<DTO.QuestionDTO> QuestionList = DAO.QuestionDAO.getListQuestion();
+    public ButtonGroup group = new ButtonGroup();
+    public int getRandomNumberUsingNextInt(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
 
     /**
      * Creates new form ManHinhDangNhap
      */
+
     public ManHinhCauHoi() {
         initComponents();
+        
+
+        for (int i = 0; i < QuestionList.size(); i++) {
+            labelCauHoi.setText(QuestionList.get(0).getContent());
+            buttonDapAnA.setText(QuestionList.get(0).getOption1());
+
+            buttonDapAnB.setText(QuestionList.get(0).getOption2());
+
+            buttonDapAnC.setText(QuestionList.get(0).getOption3());
+
+            buttonDapAnD.setText(QuestionList.get(0).getOption4());
+           
+        }
+
+//        public void swapArrayCauHoi() {
+//        //Hàm này có chức năng tráo đổi thứ tự câu hỏi và thứ tự đáp án
+//        for (int i = 0; i < arrcauhoi.size(); i++) {
+//            Collections.swap(arrcauhoi, new Random().nextInt(arrcauhoi.size()), new Random().nextInt(arrcauhoi.size()));
+//        }
+//        for (ModelCauHoi x : arrcauhoi) {//tráo đổi đáp án của từng câu hỏi
+//            swapDapAn(x);
+//        }
+//    }
+//
+//    public void swapDapAn(ModelCauHoi cauHoi) {
+//        //hàm này có chức năng tráo đổi vị trí 4 đáp án
+//        ArrayList<String> arr = new ArrayList<>();
+//        //thêm 4 câu hỏi vào arr
+//        arr.add(cauHoi.getDapan1());
+//        arr.add(cauHoi.getDapan2());
+//        arr.add(cauHoi.getDapan3());
+//        arr.add(cauHoi.getDapan4());
+//        Collections.shuffle(arr);//tráo đáp án
+//        cauHoi.setDapan1(arr.get(0));
+//        cauHoi.setDapan2(arr.get(1));
+//        cauHoi.setDapan3(arr.get(2));
+//        cauHoi.setDapan4(arr.get(3));
+//    }
     }
 
     /**
@@ -265,7 +315,17 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnDMouseExited
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
-        dapAn = 1;
+        System.out.println(buttonDapAnA.getText());
+        String a = QuestionList.get(0).getOptionTrue().toString().toLowerCase();
+        System.out.println(a == buttonDapAnA.getText().toString().toLowerCase());
+         if(QuestionList.get(0).getOptionTrue() == buttonDapAnA.getText())
+            {
+                System.out.println("True");
+            }
+            else
+            {
+                System.out.println("false");
+            }
         buttonDapAnA.setBackground(new Color(255, 255, 0));
         buttonDapAnA.setForeground(new Color(0, 0, 0));
         buttonDapAnB.setEnabled(false);
@@ -274,7 +334,15 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
     private void buttonDapAnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnBActionPerformed
-        dapAn = 2;
+            System.out.println(buttonDapAnB.getText());
+         if(QuestionList.get(0).getOptionTrue() == buttonDapAnB.getText())
+            {
+                System.out.println("True");
+            }
+            else
+            {
+                System.out.println("false");
+            }
         buttonDapAnB.setBackground(new Color(255, 255, 0));
         buttonDapAnB.setForeground(new Color(0, 0, 0));
         buttonDapAnA.setEnabled(false);
@@ -283,7 +351,16 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnBActionPerformed
 
     private void buttonDapAnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnCActionPerformed
-        dapAn = 3;
+        System.out.println(buttonDapAnC.getText());
+        System.out.println(QuestionList.get(0).getOptionTrue());
+         if(QuestionList.get(0).getOptionTrue() == buttonDapAnC.getText())
+            {
+                System.out.println("True");
+            }
+            else
+            {
+                System.out.println("false");
+            }
         buttonDapAnC.setBackground(new Color(255, 255, 0));
         buttonDapAnC.setForeground(new Color(0, 0, 0));
         buttonDapAnA.setEnabled(false);
@@ -292,7 +369,15 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
-        dapAn = 4;
+        
+         if(QuestionList.get(0).getOptionTrue() == buttonDapAnD.getText())
+            {
+                System.out.println("True");
+            }
+            else
+            {
+                System.out.println("false");
+            }
         buttonDapAnD.setBackground(new Color(255, 255, 0));
         buttonDapAnD.setForeground(new Color(0, 0, 0));
         buttonDapAnA.setEnabled(false);

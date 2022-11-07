@@ -128,11 +128,11 @@ public class ManHinhQuanLyNguoiDung extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã người chơi", "Tên người chơi", "Mật khẩu (đã băm)", "Tổng điểm", "Tình trạng", "Vai trò"
+                "Mã người chơi", "Tên người chơi", "Mật khẩu (đã băm)", "Tổng điểm", "Tình trạng", "Vai trò", "TotalMatch", "TotalMatchWin", "WinStreak"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {

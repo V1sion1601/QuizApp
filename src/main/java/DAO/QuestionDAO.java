@@ -67,6 +67,56 @@ public class QuestionDAO {
         return QuestionList;
     }
     
+    public static List<DTO.QuestionDTO> getListQuestionbyQuestionSet(int random) {
+        List<DTO.QuestionDTO> getListQuestionbyQuestionSet = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM question WHERE ID_QuestionSet=?";
+            statement = connection.prepareStatement(sql);
+            
+            statement.setInt(1, random);
+            
+            ResultSet rs = statement.executeQuery(sql);
+
+            while (rs.next()) {
+                DTO.QuestionDTO Question = new DTO.QuestionDTO(
+                        rs.getInt("ID_Question"), 
+                        rs.getString("Content"), 
+                        rs.getString("Option1"),
+                        rs.getString("Option2"),
+                        rs.getString("Option3"),
+                        rs.getString("Option4"),
+                        rs.getString("OptionTrue"),
+                        rs.getInt("ID_QuestionSet")
+                );
+                getListQuestionbyQuestionSet.add(Question);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        return getListQuestionbyQuestionSet;
+    }
+    
+    
     /* Thêm câu hỏi */
     public static void insert(DTO.QuestionDTO qt) {
 

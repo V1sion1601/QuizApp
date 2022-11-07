@@ -39,7 +39,7 @@ public class UserBUS {
         UserList.forEach(User -> {
             GUI.ManHinhQuanLyNguoiDung.model2.addRow(new Object[]{User.getIdUser(),
                 User.getName(), User.getPassword(), User.getTongDiem(),User.getStatus(),
-                User.getRole()});
+                User.getRole(), User.getTotalMatch(), User.getTotalMatchWin(), User.getWinStreak()});
         });
         return UserList;
     }
@@ -57,6 +57,9 @@ public class UserBUS {
                     GUI.UserInsert.tf_status.setText(""),
                     GUI.UserInsert.tf_password.setText(""),
                     GUI.UserInsert.tf_role.setText(""),
+                    0,
+                    0,
+                    0
             );
             if (user != null) {
                 DAO.UserDAO.insert(user);
