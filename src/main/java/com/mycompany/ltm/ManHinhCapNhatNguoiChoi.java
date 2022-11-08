@@ -55,6 +55,7 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,25 +84,26 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
         labelTenNguoiChoi.setText("Tên người chơi :");
 
         textFieldTenNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldTenNguoiChoi.setToolTipText("");
+        textFieldTenNguoiChoi.setToolTipText("Tên người chơi");
 
         labelDiaChiEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDiaChiEmail.setText("Địa chỉ Email :");
 
         textFieldDiaChiEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldDiaChiEmail.setToolTipText("Tên người chơi");
+        textFieldDiaChiEmail.setToolTipText("Địa chỉ Email");
 
         labelGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelGioiTinh.setText("Giới tính :");
 
         comboBoxGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboBoxGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        comboBoxGioiTinh.setToolTipText("Giới tính");
 
         labelNgaySinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNgaySinh.setText("Ngày sinh :");
 
         textFieldNgaySinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldNgaySinh.setToolTipText("Tên người chơi");
+        textFieldNgaySinh.setToolTipText("Ngày sinh");
 
         labelTinhTrang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelTinhTrang.setText("Tình trạng :");
@@ -113,6 +115,7 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
         buttonLuuThayDoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonLuuThayDoi.setForeground(new java.awt.Color(255, 255, 255));
         buttonLuuThayDoi.setText("Lưu thay đổi");
+        buttonLuuThayDoi.setToolTipText("Lưu thay đổi");
         buttonLuuThayDoi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonLuuThayDoiMouseEntered(evt);

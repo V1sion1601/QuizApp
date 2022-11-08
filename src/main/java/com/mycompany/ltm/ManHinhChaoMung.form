@@ -111,6 +111,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng nh&#x1ead;p"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x103;ng nh&#x1ead;p"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -128,6 +129,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng k&#xfd;"/>
+            <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x103;ng k&#xfd;"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -148,6 +150,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="x"/>
+            <Property name="toolTipText" type="java.lang.String" value="Tho&#xe1;t"/>
             <Property name="verticalAlignment" type="int" value="3"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>

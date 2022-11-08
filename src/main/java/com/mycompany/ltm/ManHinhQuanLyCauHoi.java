@@ -52,6 +52,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         buttonCapNhat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonCapNhat.setForeground(new java.awt.Color(255, 255, 255));
         buttonCapNhat.setText("Cập nhật");
+        buttonCapNhat.setToolTipText("Cập nhật / Sửa");
         buttonCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonCapNhatMouseEntered(evt);
@@ -65,6 +66,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         buttonThem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonThem.setForeground(new java.awt.Color(255, 255, 255));
         buttonThem.setText("Thêm");
+        buttonThem.setToolTipText("Thêm");
         buttonThem.setMaximumSize(new java.awt.Dimension(107, 33));
         buttonThem.setMinimumSize(new java.awt.Dimension(107, 33));
         buttonThem.setPreferredSize(new java.awt.Dimension(107, 33));
@@ -86,6 +88,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         buttonXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonXoa.setForeground(new java.awt.Color(255, 255, 255));
         buttonXoa.setText("Xoá");
+        buttonXoa.setToolTipText("Xoá");
         buttonXoa.setMaximumSize(new java.awt.Dimension(107, 33));
         buttonXoa.setMinimumSize(new java.awt.Dimension(107, 33));
         buttonXoa.setPreferredSize(new java.awt.Dimension(107, 33));
@@ -109,6 +112,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,11 +137,11 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã câu hỏi", "Nội dung câu hỏi", "Đáp án", "Loại câu hỏi"
+                "Mã câu hỏi", "Nội dung câu hỏi", "Loại câu hỏi", "Phương án 1", "Phương án 2", "Phương án 3", "Phương án 4", "Đáp án"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

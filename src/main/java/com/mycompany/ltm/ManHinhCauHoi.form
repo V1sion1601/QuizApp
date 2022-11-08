@@ -146,6 +146,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="x"/>
+            <Property name="toolTipText" type="java.lang.String" value="Tho&#xe1;t"/>
             <Property name="verticalAlignment" type="int" value="3"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
@@ -184,6 +185,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="[&#x110;&#xe1;p &#xe1;n A]"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonDapAnAMouseEntered"/>

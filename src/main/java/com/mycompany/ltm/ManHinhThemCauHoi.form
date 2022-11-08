@@ -24,17 +24,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelManHinhQuanLyNguoiDung" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelManHinhCapNhatCauHoi" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelManHinhQuanLyNguoiDung" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelManHinhCapNhatCauHoi" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="panelManHinhQuanLyNguoiDung">
+    <Container class="javax.swing.JPanel" name="panelManHinhCapNhatCauHoi">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -50,7 +50,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="labelDangKyNguoiChoiMoi" min="-2" pref="242" max="-2" attributes="0"/>
+                          <Component id="labelQuanLyNguoiChoi" min="-2" pref="242" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="labelTranhTai" min="-2" max="-2" attributes="0"/>
@@ -60,32 +60,39 @@
                           <Component id="labelButtonKetThuc" min="-2" pref="83" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="labelTenNguoiChoi" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                          <Component id="textFieldTenNguoiChoi" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelXacNhanMatKhau" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelDiaChiEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNoiDungCauHoi" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelPhuongAn1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelMaCauHoi" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="labelGioiTinh" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelNgaySinh" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelMatKhau" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelPhuongAn2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelPhuongAn3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelPhuongAn4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textFieldNgaySinh" alignment="1" max="32767" attributes="0"/>
-                              <Component id="textFieldDiaChiEmail" alignment="1" max="32767" attributes="0"/>
-                              <Component id="passwordFieldXacNhanMatKhau" alignment="1" max="32767" attributes="0"/>
-                              <Component id="passwordFieldMatKhau" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
+                              <Component id="textFieldPhuongAn4" max="32767" attributes="0"/>
+                              <Component id="textFieldPhuongAn3" max="32767" attributes="0"/>
+                              <Component id="textFieldPhuongAn2" max="32767" attributes="0"/>
+                              <Component id="textFieldPhuongAn1" max="32767" attributes="0"/>
+                              <Component id="textFieldTenNguoiChoi" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="buttonDangKy" min="-2" pref="232" max="-2" attributes="0"/>
-                                      <Component id="comboBoxGioiTinh" min="-2" pref="164" max="-2" attributes="0"/>
+                                      <Component id="comboBoxPhuongAnDung" min="-2" pref="164" max="-2" attributes="0"/>
+                                      <Component id="labelMaCauHoiTuCSDL" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="labelGioiTinh1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="buttonLuu" min="-2" pref="232" max="-2" attributes="0"/>
+                              <Component id="comboBoxPhuongAnDung1" min="-2" pref="164" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -101,40 +108,50 @@
                       <Component id="labelKienThuc" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="labelDangKyNguoiChoiMoi" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="labelQuanLyNguoiChoi" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelTenNguoiChoi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelMaCauHoi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelMaCauHoiTuCSDL" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelNoiDungCauHoi" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textFieldTenNguoiChoi" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="passwordFieldMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPhuongAn1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldPhuongAn1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelXacNhanMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="passwordFieldXacNhanMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPhuongAn2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldPhuongAn2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelDiaChiEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textFieldDiaChiEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPhuongAn3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldPhuongAn3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="comboBoxGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPhuongAn4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldPhuongAn4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="comboBoxPhuongAnDung" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelNgaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textFieldNgaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboBoxPhuongAnDung1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelGioiTinh1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="buttonDangKy" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="125" max="32767" attributes="0"/>
+                  <Component id="buttonLuu" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="labelBanQuyenThuocVe" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -142,13 +159,13 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelDangKyNguoiChoiMoi">
+        <Component class="javax.swing.JLabel" name="labelQuanLyNguoiChoi">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x102;NG K&#xdd; NG&#x1af;&#x1edc;I CH&#x1a0;I M&#x1eda;I"/>
+            <Property name="text" type="java.lang.String" value="C&#x1eac;P NH&#x1eac;T C&#xc2;U H&#x1ece;I"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelTranhTai">
@@ -199,28 +216,52 @@
             <Property name="text" type="java.lang.String" value="B&#x1ea3;n quy&#x1ec1;n thu&#x1ed9;c v&#x1ec1; Tr&#x1b0;&#x1edd;ng &#x110;&#x1ea1;i h&#x1ecd;c S&#xe0;i G&#xf2;n - 2022"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelXacNhanMatKhau">
+        <Component class="javax.swing.JLabel" name="labelMaCauHoi">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n m&#x1ead;t kh&#x1ea9;u :"/>
+            <Property name="text" type="java.lang.String" value="M&#xe3; c&#xe2;u h&#x1ecf;i :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelDiaChiEmail">
+        <Component class="javax.swing.JLabel" name="labelMaCauHoiTuCSDL">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
+              <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9; Email :"/>
+            <Property name="text" type="java.lang.String" value="[S&#x1ebd; t&#x1ef1; &#x111;&#x1ed9;ng sinh ra sau khi nh&#x1ea5;n L&#x1b0;u]"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldDiaChiEmail">
+        <Component class="javax.swing.JLabel" name="labelNoiDungCauHoi">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9; Email"/>
+            <Property name="text" type="java.lang.String" value="N&#x1ed9;i dung c&#xe2;u h&#x1ecf;i :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldTenNguoiChoi">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="N&#x1ed9;i dung c&#xe2;u h&#x1ecf;i"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelPhuongAn1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 1 :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldPhuongAn1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 1"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelGioiTinh">
@@ -228,43 +269,29 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh :"/>
+            <Property name="text" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n &#x111;&#xfa;ng :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="comboBoxGioiTinh">
+        <Component class="javax.swing.JComboBox" name="comboBoxPhuongAnDung">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Nam"/>
-                <StringItem index="1" value="N&#x1eef;"/>
+              <StringArray count="4">
+                <StringItem index="0" value="1"/>
+                <StringItem index="1" value="2"/>
+                <StringItem index="2" value="3"/>
+                <StringItem index="3" value="4"/>
               </StringArray>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Gi&#x1edb;i t&#xed;nh"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n &#x111;&#xfa;ng"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelNgaySinh">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="textFieldNgaySinh">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Ng&#xe0;y sinh"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="buttonDangKy">
+        <Component class="javax.swing.JButton" name="buttonLuu">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="22" green="8b" red="22" type="rgb"/>
@@ -275,52 +302,86 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng k&#xfd;"/>
-            <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x103;ng k&#xfd;"/>
+            <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
+            <Property name="toolTipText" type="java.lang.String" value="L&#x1b0;u"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonDangKyMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonDangKyMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonLuuMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonLuuMouseExited"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldTenNguoiChoi">
+        <Component class="javax.swing.JLabel" name="labelPhuongAn2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="T&#xea;n ng&#x1b0;&#x1edd;i ch&#x1a1;i"/>
+            <Property name="text" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 2 :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelTenNguoiChoi">
+        <Component class="javax.swing.JTextField" name="textFieldPhuongAn2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n ng&#x1b0;&#x1edd;i ch&#x1a1;i :"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="passwordFieldXacNhanMatKhau">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n m&#x1ead;t kh&#x1ea9;u"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelMatKhau">
+        <Component class="javax.swing.JLabel" name="labelPhuongAn3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u :"/>
+            <Property name="text" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 3 :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="passwordFieldMatKhau">
+        <Component class="javax.swing.JTextField" name="textFieldPhuongAn3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
+              <Font name="Segoe UI" size="18" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelPhuongAn4">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 4 :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldPhuongAn4">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="comboBoxPhuongAnDung1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="A"/>
+                <StringItem index="1" value="B"/>
+                <StringItem index="2" value="C"/>
+              </StringArray>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Lo&#x1ea1;i c&#xe2;u h&#x1ecf;i"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelGioiTinh1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i c&#xe2;u h&#x1ecf;i :"/>
           </Properties>
         </Component>
       </SubComponents>

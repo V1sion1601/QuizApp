@@ -46,6 +46,7 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
         buttonHuyXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonHuyXoa.setForeground(new java.awt.Color(255, 255, 255));
         buttonHuyXoa.setText("Huỷ");
+        buttonHuyXoa.setToolTipText("Huỷ");
         buttonHuyXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonHuyXoaMouseClicked(evt);
@@ -62,6 +63,7 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
         buttonXacNhanXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonXacNhanXoa.setForeground(new java.awt.Color(255, 255, 255));
         buttonXacNhanXoa.setText("Xác nhận");
+        buttonXacNhanXoa.setToolTipText("Xác nhận");
         buttonXacNhanXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonXacNhanXoaMouseClicked(evt);

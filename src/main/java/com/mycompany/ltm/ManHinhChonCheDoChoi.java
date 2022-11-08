@@ -53,6 +53,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelButtonTimDoiThuOnline.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonTimDoiThuOnline.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonTimDoiThuOnline.setText("Tìm đối thủ Online");
+        labelButtonTimDoiThuOnline.setToolTipText("Tìm đối thủ Online");
         labelButtonTimDoiThuOnline.setOpaque(true);
         labelButtonTimDoiThuOnline.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -91,6 +92,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelButtonChoiVoiMay.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonChoiVoiMay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonChoiVoiMay.setText("Chơi với máy");
+        labelButtonChoiVoiMay.setToolTipText("Chơi với máy");
         labelButtonChoiVoiMay.setOpaque(true);
         labelButtonChoiVoiMay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

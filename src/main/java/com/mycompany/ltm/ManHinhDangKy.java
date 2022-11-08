@@ -55,6 +55,7 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,24 +81,26 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         labelDiaChiEmail.setText("Địa chỉ Email :");
 
         textFieldDiaChiEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldDiaChiEmail.setToolTipText("Tên người chơi");
+        textFieldDiaChiEmail.setToolTipText("Địa chỉ Email");
 
         labelGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelGioiTinh.setText("Giới tính :");
 
         comboBoxGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboBoxGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        comboBoxGioiTinh.setToolTipText("Giới tính");
 
         labelNgaySinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNgaySinh.setText("Ngày sinh :");
 
         textFieldNgaySinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldNgaySinh.setToolTipText("Tên người chơi");
+        textFieldNgaySinh.setToolTipText("Ngày sinh");
 
         buttonDangKy.setBackground(new java.awt.Color(34, 139, 34));
         buttonDangKy.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonDangKy.setForeground(new java.awt.Color(255, 255, 255));
         buttonDangKy.setText("Đăng ký");
+        buttonDangKy.setToolTipText("Đăng ký");
         buttonDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonDangKyMouseEntered(evt);
@@ -108,17 +111,19 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         });
 
         textFieldTenNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldTenNguoiChoi.setToolTipText("");
+        textFieldTenNguoiChoi.setToolTipText("Tên người chơi");
 
         labelTenNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelTenNguoiChoi.setText("Tên người chơi :");
 
         passwordFieldXacNhanMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        passwordFieldXacNhanMatKhau.setToolTipText("Xác nhận mật khẩu");
 
         labelMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMatKhau.setText("Mật khẩu :");
 
         passwordFieldMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        passwordFieldMatKhau.setToolTipText("Mật khẩu");
 
         javax.swing.GroupLayout panelManHinhQuanLyNguoiDungLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiDung);
         panelManHinhQuanLyNguoiDung.setLayout(panelManHinhQuanLyNguoiDungLayout);

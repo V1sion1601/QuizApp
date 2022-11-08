@@ -97,6 +97,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Hu&#x1ef7;"/>
+            <Property name="toolTipText" type="java.lang.String" value="Hu&#x1ef7;"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonHuyXoaMouseClicked"/>
@@ -116,6 +117,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n"/>
+            <Property name="toolTipText" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonXacNhanXoaMouseClicked"/>

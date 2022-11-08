@@ -118,6 +118,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
+            <Property name="toolTipText" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t / S&#x1eed;a"/>
           </Properties>
           <Events>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonCapNhatMouseEntered"/>
@@ -136,6 +137,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+            <Property name="toolTipText" type="java.lang.String" value="Th&#xea;m"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[107, 33]"/>
             </Property>
@@ -164,6 +166,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
+            <Property name="toolTipText" type="java.lang.String" value="Xo&#xe1;"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[107, 33]"/>
             </Property>
@@ -208,6 +211,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="x"/>
+            <Property name="toolTipText" type="java.lang.String" value="Tho&#xe1;t"/>
             <Property name="verticalAlignment" type="int" value="3"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
@@ -239,15 +243,39 @@
                   <Font name="Segoe UI" size="18" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
+                  <Table columnCount="8" rowCount="0">
                     <Column editable="true" title="M&#xe3; c&#xe2;u h&#x1ecf;i" type="java.lang.String"/>
                     <Column editable="true" title="N&#x1ed9;i dung c&#xe2;u h&#x1ecf;i" type="java.lang.String"/>
-                    <Column editable="true" title="&#x110;&#xe1;p &#xe1;n" type="java.lang.String"/>
                     <Column editable="true" title="Lo&#x1ea1;i c&#xe2;u h&#x1ecf;i" type="java.lang.String"/>
+                    <Column editable="true" title="Ph&#x1b0;&#x1a1;ng &#xe1;n 1" type="java.lang.String"/>
+                    <Column editable="true" title="Ph&#x1b0;&#x1a1;ng &#xe1;n 2" type="java.lang.String"/>
+                    <Column editable="true" title="Ph&#x1b0;&#x1a1;ng &#xe1;n 3" type="java.lang.String"/>
+                    <Column editable="true" title="Ph&#x1b0;&#x1a1;ng &#xe1;n 4" type="java.lang.String"/>
+                    <Column editable="true" title="&#x110;&#xe1;p &#xe1;n" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>

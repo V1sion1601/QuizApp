@@ -68,6 +68,7 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
         buttonHuyCho.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonHuyCho.setForeground(new java.awt.Color(255, 255, 255));
         buttonHuyCho.setText("Huỷ chờ");
+        buttonHuyCho.setToolTipText("Huỷ chờ");
         buttonHuyCho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonHuyChoMouseClicked(evt);

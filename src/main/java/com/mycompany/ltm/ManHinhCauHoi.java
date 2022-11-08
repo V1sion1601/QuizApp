@@ -83,6 +83,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,6 +109,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnA.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         buttonDapAnA.setForeground(new java.awt.Color(255, 255, 255));
         buttonDapAnA.setText("[Đáp án A]");
+        buttonDapAnA.setToolTipText("");
         buttonDapAnA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonDapAnAMouseEntered(evt);

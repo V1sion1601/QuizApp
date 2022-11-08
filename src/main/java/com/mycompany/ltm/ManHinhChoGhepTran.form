@@ -95,6 +95,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Hu&#x1ef7; ch&#x1edd;"/>
+            <Property name="toolTipText" type="java.lang.String" value="Hu&#x1ef7; ch&#x1edd;"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonHuyChoMouseClicked"/>

@@ -38,7 +38,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         labelKienThuc = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
-        scrollPaneDanhSachNguoiDung = new javax.swing.JScrollPane();
+        scrollPaneDanhSachNguoiChoi = new javax.swing.JScrollPane();
         tableDanhSachNguoiChoi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,6 +50,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonChan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonChan.setForeground(new java.awt.Color(255, 255, 255));
         buttonChan.setText("Chặn");
+        buttonChan.setToolTipText("Chặn");
         buttonChan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonChanMouseEntered(evt);
@@ -67,6 +68,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonCapNhat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonCapNhat.setForeground(new java.awt.Color(255, 255, 255));
         buttonCapNhat.setText("Cập nhật");
+        buttonCapNhat.setToolTipText("Cập nhật");
         buttonCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonCapNhatMouseEntered(evt);
@@ -80,6 +82,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonXoa.setForeground(new java.awt.Color(255, 255, 255));
         buttonXoa.setText("Xoá");
+        buttonXoa.setToolTipText("Xoá");
         buttonXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonXoaMouseEntered(evt);
@@ -100,6 +103,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,7 +140,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
             }
         });
         tableDanhSachNguoiChoi.setRowHeight(50);
-        scrollPaneDanhSachNguoiDung.setViewportView(tableDanhSachNguoiChoi);
+        scrollPaneDanhSachNguoiChoi.setViewportView(tableDanhSachNguoiChoi);
 
         javax.swing.GroupLayout panelManHinhQuanLyNguoiChoiLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiChoi);
         panelManHinhQuanLyNguoiChoi.setLayout(panelManHinhQuanLyNguoiChoiLayout);
@@ -146,7 +150,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
             .addGroup(panelManHinhQuanLyNguoiChoiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollPaneDanhSachNguoiDung)
+                    .addComponent(scrollPaneDanhSachNguoiChoi)
                     .addGroup(panelManHinhQuanLyNguoiChoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,7 +182,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
                         .addComponent(buttonChan))
                     .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPaneDanhSachNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPaneDanhSachNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
@@ -343,7 +347,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelQuanLyNguoiChoi;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhQuanLyNguoiChoi;
-    private javax.swing.JScrollPane scrollPaneDanhSachNguoiDung;
+    private javax.swing.JScrollPane scrollPaneDanhSachNguoiChoi;
     private javax.swing.JTable tableDanhSachNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

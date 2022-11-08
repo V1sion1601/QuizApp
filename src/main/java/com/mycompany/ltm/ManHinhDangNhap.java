@@ -55,6 +55,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         labelButtonDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonDangNhap.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonDangNhap.setText("Đăng nhập");
+        labelButtonDangNhap.setToolTipText("Đăng nhập");
         labelButtonDangNhap.setOpaque(true);
         labelButtonDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -70,6 +71,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -92,11 +94,13 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         labelTenDangNhap.setText("Tên đăng nhập :");
 
         textFieldTenDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textFieldTenDangNhap.setToolTipText("Tên đăng nhập");
 
         labelMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelMatKhau.setText("Mật khẩu :");
 
         passwordFieldMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        passwordFieldMatKhau.setToolTipText("Mật khẩu");
 
         javax.swing.GroupLayout panelManHinhChaoMungLayout = new javax.swing.GroupLayout(panelManHinhChaoMung);
         panelManHinhChaoMung.setLayout(panelManHinhChaoMungLayout);
