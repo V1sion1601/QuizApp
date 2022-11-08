@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ public class QuestionSetDAO {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 DTO.QuestionSetDTO QuestionSet = new DTO.QuestionSetDTO(
-                        rs.getInt("ID_Question"), 
+                        rs.getInt("ID_QuestionSet"), 
                         rs.getInt("Time"), 
                         rs.getInt("Point")           
                 );
@@ -165,4 +166,78 @@ public class QuestionSetDAO {
         }
 
     }
+    
+    public static ArrayList<DTO.QuestionDTO> getAllQuestion(int ID_1) { // co ton tai mang
+        java.sql.Connection connection = null;
+        PreparedStatement statement = null;
+        ArrayList<DTO.QuestionDTO> arr = new ArrayList<>();
+            try {
+                connection = DAO.Connection.connection();
+                String sql = " select * from question where ID_QuestionSet=?;";
+                statement = connection.prepareCall(sql);
+                statement.setInt(1, ID_1);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    DTO.QuestionDTO question = new DTO.QuestionDTO();
+                    question.setContent(rs.getString("Content"));
+                    question.setOption1(rs.getString("Option1"));
+                    question.setOption2(rs.getString("Option2"));
+                    question.setOption3(rs.getString("Option3"));
+                    question.setOption4(rs.getString("Option4"));
+                    question.setOptionTrue(rs.getString("OptionTrue"));
+                    arr.add(question);
+                };
+                    
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return arr;
+    }
+
+    
+    public static DTO.QuestionSetDTO getQuestionSet(int ID) {
+
+        java.sql.Connection connection = null;
+        PreparedStatement statement = null;
+        DTO.QuestionSetDTO newQuestionSet = new DTO.QuestionSetDTO();
+        try {
+            
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM questionset WHERE ID_QuestionSet=?";
+            statement = connection.prepareCall(sql);
+            
+            statement.setInt(1, ID);
+            System.out.println("hello");
+            ResultSet rs = statement.executeQuery();
+            
+             while (rs.next()) {
+                    newQuestionSet.setID_QuestionSet(rs.getInt("ID_QuestionSet"));
+                    newQuestionSet.setPoint(rs.getInt("Point"));
+                    newQuestionSet.setTime(rs.getInt("Time"));
+                    newQuestionSet.setQuestionArrayList(getAllQuestion(rs.getInt("ID_QuestionSet")));
+                }
+             
+        } catch (SQLException ex) {
+        } finally {
+            if (statement != null) {
+                try {
+                    
+                   statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionSetDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionSetDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        System.out.println(newQuestionSet.getQuestionArrayList().get(0).getContent());
+        return newQuestionSet;
+    }
+    
 }

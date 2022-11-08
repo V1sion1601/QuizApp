@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import DTO.QuestionSetDTO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,32 +19,47 @@ import javax.swing.ButtonGroup;
 public class ManHinhCauHoi extends javax.swing.JFrame {
 
     public static int dapAn = 0;
-    public List<DTO.QuestionDTO> QuestionList = DAO.QuestionDAO.getListQuestion();
     public ButtonGroup group = new ButtonGroup();
+    public static DTO.QuestionSetDTO QuestionSet = new QuestionSetDTO();
+    public static int i=0;
     public int getRandomNumberUsingNextInt(int min, int max) {
         Random random = new Random();
         return random.nextInt(max - min) + min;
     }
+    
 
+    
+    public void showQuestionToGUI(int i){
+            int j=1;
+            QuestionSet = DAO.QuestionSetDAO.getQuestionSet(j);
+//            System.out.println(QuestionSet.getQuestionArrayList());
+            labelCauHoi.setText(QuestionSet.getQuestionArrayList().get(i).getContent());
+            buttonDapAnA.setText(QuestionSet.getQuestionArrayList().get(i).getOption1());
+            buttonDapAnB.setText(QuestionSet.getQuestionArrayList().get(i).getOption2());
+            buttonDapAnC.setText(QuestionSet.getQuestionArrayList().get(i).getOption3());
+            buttonDapAnD.setText(QuestionSet.getQuestionArrayList().get(i).getOption4());
+        
+    }
+    
+        public static void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
     /**
      * Creates new form ManHinhDangNhap
      */
 
     public ManHinhCauHoi() {
         initComponents();
+        showQuestionToGUI(i);
         
-
-        for (int i = 0; i < QuestionList.size(); i++) {
-            labelCauHoi.setText(QuestionList.get(0).getContent());
-            buttonDapAnA.setText(QuestionList.get(0).getOption1());
-
-            buttonDapAnB.setText(QuestionList.get(0).getOption2());
-
-            buttonDapAnC.setText(QuestionList.get(0).getOption3());
-
-            buttonDapAnD.setText(QuestionList.get(0).getOption4());
-           
-        }
 
 //        public void swapArrayCauHoi() {
 //        //Hàm này có chức năng tráo đổi thứ tự câu hỏi và thứ tự đáp án
@@ -316,73 +332,101 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
         System.out.println(buttonDapAnA.getText());
-        String a = QuestionList.get(0).getOptionTrue().toString().toLowerCase();
-        System.out.println(a == buttonDapAnA.getText().toString().toLowerCase());
-         if(QuestionList.get(0).getOptionTrue() == buttonDapAnA.getText())
+         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnA.getText()))
             {
-                System.out.println("True");
+                System.out.println("True");               
+                buttonDapAnA.setBackground(new Color(255, 255, 0));
+                buttonDapAnA.setForeground(new Color(0, 0, 0));
+                buttonDapAnB.setEnabled(false);
+                buttonDapAnC.setEnabled(false);
+                buttonDapAnD.setEnabled(false);
             }
             else
             {
                 System.out.println("false");
+                showQuestionToGUI(++i);
             }
-        buttonDapAnA.setBackground(new Color(255, 255, 0));
-        buttonDapAnA.setForeground(new Color(0, 0, 0));
-        buttonDapAnB.setEnabled(false);
-        buttonDapAnC.setEnabled(false);
-        buttonDapAnD.setEnabled(false);
+        buttonDapAnA.setBackground(new Color(0, 0, 204));
+        buttonDapAnB.setEnabled(true);
+        buttonDapAnA.setEnabled(true);
+        buttonDapAnC.setEnabled(true);
+        buttonDapAnD.setEnabled(true);
+        
+        showQuestionToGUI(++i);
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
     private void buttonDapAnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnBActionPerformed
             System.out.println(buttonDapAnB.getText());
-         if(QuestionList.get(0).getOptionTrue() == buttonDapAnB.getText())
+         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnB.getText()))
             {
-                System.out.println("True");
+                System.out.println("True"); 
+                buttonDapAnB.setBackground(new Color(255, 255, 0));
+                buttonDapAnB.setForeground(new Color(0, 0, 0));
+                buttonDapAnA.setEnabled(false);
+                buttonDapAnC.setEnabled(false);
+                buttonDapAnD.setEnabled(false);
             }
             else
             {
                 System.out.println("false");
+                showQuestionToGUI(++i);
             }
-        buttonDapAnB.setBackground(new Color(255, 255, 0));
-        buttonDapAnB.setForeground(new Color(0, 0, 0));
-        buttonDapAnA.setEnabled(false);
-        buttonDapAnC.setEnabled(false);
-        buttonDapAnD.setEnabled(false);
+        buttonDapAnB.setBackground(new Color(0, 0, 204));
+        buttonDapAnB.setEnabled(true);
+        buttonDapAnA.setEnabled(true);
+        buttonDapAnC.setEnabled(true);
+        buttonDapAnD.setEnabled(true);
+        showQuestionToGUI(++i);
     }//GEN-LAST:event_buttonDapAnBActionPerformed
 
     private void buttonDapAnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnCActionPerformed
         System.out.println(buttonDapAnC.getText());
-        System.out.println(QuestionList.get(0).getOptionTrue());
-         if(QuestionList.get(0).getOptionTrue() == buttonDapAnC.getText())
+         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnC.getText()))
             {
                 System.out.println("True");
+                
+                
+                buttonDapAnC.setBackground(new Color(255, 255, 0));
+                buttonDapAnC.setForeground(new Color(0, 0, 0));
+                buttonDapAnA.setEnabled(false);
+                buttonDapAnB.setEnabled(false);
+                buttonDapAnD.setEnabled(false);
             }
             else
             {
                 System.out.println("false");
             }
-        buttonDapAnC.setBackground(new Color(255, 255, 0));
-        buttonDapAnC.setForeground(new Color(0, 0, 0));
-        buttonDapAnA.setEnabled(false);
-        buttonDapAnB.setEnabled(false);
-        buttonDapAnD.setEnabled(false);
+        buttonDapAnC.setBackground(new Color(0, 0, 204));
+        buttonDapAnB.setEnabled(true);
+        buttonDapAnA.setEnabled(true);
+        buttonDapAnC.setEnabled(true);
+        buttonDapAnD.setEnabled(true);
+        
+        showQuestionToGUI(++i);
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
         
-         if(QuestionList.get(0).getOptionTrue() == buttonDapAnD.getText())
+         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnD.getText()))
             {
                 System.out.println("True");
+                buttonDapAnD.setBackground(new Color(255, 255, 0));
+                buttonDapAnD.setForeground(new Color(0, 0, 0));
+                buttonDapAnA.setEnabled(false);
+                buttonDapAnB.setEnabled(false);
+                buttonDapAnC.setEnabled(false);
+                
             }
             else
             {
                 System.out.println("false");
             }
-        buttonDapAnD.setBackground(new Color(255, 255, 0));
-        buttonDapAnD.setForeground(new Color(0, 0, 0));
-        buttonDapAnA.setEnabled(false);
-        buttonDapAnB.setEnabled(false);
-        buttonDapAnC.setEnabled(false);
+        buttonDapAnD.setBackground(new Color(0, 0, 204));
+        buttonDapAnB.setEnabled(true);
+        buttonDapAnA.setEnabled(true);
+        buttonDapAnC.setEnabled(true);
+        buttonDapAnD.setEnabled(true);
+        showQuestionToGUI(++i);
     }//GEN-LAST:event_buttonDapAnDActionPerformed
 
     /**

@@ -16,6 +16,15 @@ public class QuestionDTO {
 
     public QuestionDTO() {
     }
+    
+    public QuestionDTO(String Content, String Option1, String Option2, String Option3, String Option4, String OptionTrue) {
+        this.Content = Content;
+        this.Option1 = Option1;
+        this.Option2 = Option2;
+        this.Option3 = Option3;
+        this.Option4 = Option4;
+        this.OptionTrue = OptionTrue;
+    }
 
     public QuestionDTO(Integer ID_Question, String Content, String Option1, String Option2, String Option3, String Option4, String OptionTrue, Integer ID_QuestionSet) {
         this.ID_Question = ID_Question;

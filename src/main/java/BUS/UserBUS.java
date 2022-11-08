@@ -51,12 +51,12 @@ public class UserBUS {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin");
         } else {
             DTO.UserDTO user = new DTO.UserDTO(
-                    GUI.UserInsert.tf_idUser.setText(""),
-                    GUI.UserInsert.tf_name.setText(""),
-                    GUI.UserInsert.tf_tongdiem.setText(""),
-                    GUI.UserInsert.tf_status.setText(""),
-                    GUI.UserInsert.tf_password.setText(""),
-                    GUI.UserInsert.tf_role.setText(""),
+                    GUI.UserInsert.tf_idUser.getText(),
+                    GUI.UserInsert.tf_name.getText(),
+                    GUI.UserInsert.tf_tongdiem.getText(),
+                    GUI.UserInsert.tf_status.getText(),
+                    DAO.MD5.MD5(GUI.UserInsert.tf_password.getText()),
+                    GUI.UserInsert.tf_role.getText(),
                     0,
                     0,
                     0
@@ -132,4 +132,6 @@ public class UserBUS {
 //        }
 //        selectedRow = -1;
 //    }
+    
+      
 }

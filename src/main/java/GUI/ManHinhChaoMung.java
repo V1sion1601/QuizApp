@@ -221,7 +221,7 @@ public static int checktk = 0;
     }//GEN-LAST:event_tf_taikhoanActionPerformed
 
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
-        String b = String.valueOf(tf_matkhau.getPassword());
+        String b = DAO.MD5.MD5(String.valueOf(tf_matkhau.getPassword()));
         String a = tf_taikhoan.getText();
         BUS.UserBUS.findtaikhoan(a, b);
         if (checktk == 1) {
