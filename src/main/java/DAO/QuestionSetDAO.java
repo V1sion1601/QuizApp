@@ -208,6 +208,7 @@ public class QuestionSetDAO {
             
             statement.setInt(1, ID);
             System.out.println("hello");
+            System.out.println(statement);
             ResultSet rs = statement.executeQuery();
             
              while (rs.next()) {

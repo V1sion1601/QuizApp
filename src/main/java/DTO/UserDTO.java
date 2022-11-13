@@ -10,20 +10,64 @@ package DTO;
  */
 public class UserDTO {
 
-    private int idUser;
-    private String name;
-    private int tongDiem, totalMatch, totalMatchWin, winStreak;
-    private String status;
-    private String password;
-    private String role; //admin or simple user
+     int idUser;
+     String name;
+     int tongDiem, totalMatch, totalMatchWin, winStreak, HighestWinStreak,totalMatchLose, loseStreak, HighestLoseStreak;
+     String status;
+     String password;
+     String role; //admin or simple users
+    
+    public UserDTO() {
+    }
+    
 
     public UserDTO(String name, String password) {
         this.name = name;
         this.password = password;
     }
+    
+    public UserDTO(int idUser, String name, String status, String role) {
+        this.name = name;
+        this.idUser = idUser;
+        this.status = status;
+        this.role = role;
+    }
+    
 
-    public UserDTO(int idUser, String name, int tongDiem, String status, String password, String role, int totalMatch,
-            int totalMatchWin, int winStreak) {
+    public UserDTO(String name,String password, int tongDiem, String status,  String role, int totalMatch,
+            int totalMatchWin, int winStreak, int HighestWinStreak,int totalMatchLose , int loseStreak, int HighestLoseStreak) {
+        this.name = name;
+        this.tongDiem = tongDiem;
+        this.status = status;
+        this.password = password;
+        this.role = role;
+        this.totalMatch = totalMatch;
+        this.totalMatchWin = totalMatchWin;
+        this.winStreak = winStreak;
+        this.HighestWinStreak = HighestWinStreak;
+        this.loseStreak = loseStreak;
+        this.HighestLoseStreak = HighestLoseStreak;
+        this.totalMatchLose = totalMatchLose;
+    }
+    
+    public UserDTO(int idUser, String name, String status, String role, int tongDiem, int totalMatch,
+            int totalMatchWin, int winStreak, int HighestWinStreak,int totalMatchLose, int loseStreak, int HighestLoseStreak) {
+        this.idUser = idUser;
+        this.name = name;
+        this.tongDiem = tongDiem;
+        this.status = status;
+        this.role = role;
+        this.totalMatch = totalMatch;
+        this.totalMatchWin = totalMatchWin;
+        this.winStreak = winStreak;
+        this.HighestWinStreak = HighestWinStreak;
+        this.loseStreak = loseStreak;
+        this.HighestLoseStreak = HighestLoseStreak;
+        this.totalMatchLose = totalMatchLose;
+    }
+    
+    public UserDTO(int idUser, String name, String password, int tongDiem, String status, String role, int totalMatch,
+            int totalMatchWin, int winStreak, int HighestWinStreak,int totalMatchLose , int loseStreak, int HighestLoseStreak) {
         this.idUser = idUser;
         this.name = name;
         this.tongDiem = tongDiem;
@@ -31,8 +75,46 @@ public class UserDTO {
         this.password = password;
         this.role = role;
         this.totalMatch = totalMatch;
-        this.totalMatchWin = totalMatch;
-        this.winStreak = totalMatch;
+        this.totalMatchWin = totalMatchWin;
+        this.winStreak = winStreak;
+        this.HighestWinStreak = HighestWinStreak;
+        this.loseStreak = loseStreak;
+        this.HighestLoseStreak = HighestLoseStreak;
+        this.totalMatchLose = totalMatchLose;
+    }
+
+    public int getTotalMatchLose() {
+        return totalMatchLose;
+    }
+
+    public void setTotalMatchLose(int totalMatchLose) {
+        this.totalMatchLose = totalMatchLose;
+    }
+
+    
+    
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getTongDiem() {
+        return tongDiem;
+    }
+
+    public void setTongDiem(int tongDiem) {
+        this.tongDiem = tongDiem;
     }
 
     public int getTotalMatch() {
@@ -59,88 +141,54 @@ public class UserDTO {
         this.winStreak = winStreak;
     }
 
-    /**
-     * @return the idUser
-     */
-    public int getIdUser() {
-        return idUser;
+    public int getHighestWinStreak() {
+        return HighestWinStreak;
     }
 
-    /**
-     * @param idUser the idUser to set
-     */
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setHighestWinStreak(int HighestWinStreak) {
+        this.HighestWinStreak = HighestWinStreak;
     }
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the tongDiem
-     */
-    public int getTongDiem() {
-        return tongDiem;
-    }
-
-    /**
-     * @param tongDiem the tongDiem to set
-     */
-    public void setTongDiem(int tongDiem) {
-        this.tongDiem = tongDiem;
-    }
-
-    /**
-     * @return the status
-     */
     public String getStatus() {
         return status;
     }
 
-    /**
-     * @param status the status to set
-     */
     public void setStatus(String status) {
         this.status = status;
     }
 
-    /**
-     * @return the password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * @param password the password to set
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * @return the role
-     */
     public String getRole() {
         return role;
     }
 
-    /**
-     * @param role the role to set
-     */
     public void setRole(String role) {
         this.role = role;
     }
+
+    public int getLoseStreak() {
+        return loseStreak;
+    }
+
+    public void setLoseStreak(int loseStreak) {
+        this.loseStreak = loseStreak;
+    }
+
+    public int getHighestLoseStreak() {
+        return HighestLoseStreak;
+    }
+
+    public void setHighestLoseStreak(int HighestLoseStreak) {
+        this.HighestLoseStreak = HighestLoseStreak;
+    }
+
+    
 
 }

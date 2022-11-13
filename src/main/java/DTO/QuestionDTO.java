@@ -11,22 +11,23 @@ package DTO;
  */
 public class QuestionDTO {
 
-    String Content, Option1, Option2, Option3, Option4, OptionTrue;
-    Integer ID_Question, ID_QuestionSet;
+    String Content, Option1, Option2, Option3, Option4, OptionTrue, Type;
+    int ID_Question;
 
     public QuestionDTO() {
     }
     
-    public QuestionDTO(String Content, String Option1, String Option2, String Option3, String Option4, String OptionTrue) {
+    public QuestionDTO(String Content, String Option1, String Option2, String Option3, String Option4, String OptionTrue, String Type) {
         this.Content = Content;
         this.Option1 = Option1;
         this.Option2 = Option2;
         this.Option3 = Option3;
         this.Option4 = Option4;
         this.OptionTrue = OptionTrue;
+        this.Type = Type;
     }
 
-    public QuestionDTO(Integer ID_Question, String Content, String Option1, String Option2, String Option3, String Option4, String OptionTrue, Integer ID_QuestionSet) {
+    public QuestionDTO(int ID_Question, String Content, String Option1, String Option2, String Option3, String Option4, String OptionTrue, String Type) {
         this.ID_Question = ID_Question;
         this.Content = Content;
         this.Option1 = Option1;
@@ -34,7 +35,15 @@ public class QuestionDTO {
         this.Option3 = Option3;
         this.Option4 = Option4;
         this.OptionTrue = OptionTrue;
-        this.ID_QuestionSet = ID_QuestionSet;
+        this.Type = Type;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String Type) {
+        this.Type = Type;
     }
 
     public String getContent() {
@@ -85,22 +94,13 @@ public class QuestionDTO {
         this.OptionTrue = OptionTrue;
     }
 
-    public Integer getID_Question() {
+    public int getID_Question() {
         return ID_Question;
     }
 
-    public void setID_Question(Integer ID_Question) {
+    public void setID_Question(int ID_Question) {
         this.ID_Question = ID_Question;
     }
-
-    public Integer getID_QuestionSet() {
-        return ID_QuestionSet;
-    }
-
-    public void setID_QuestionSet(Integer ID_QuestionSet) {
-        this.ID_QuestionSet = ID_QuestionSet;
-    }
-
    
 
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Main;
-
+//import SocketController.ThreadSocket;
 import DAO.QuestionDAO;
 import DTO.QuestionDTO;
 import DTO.QuestionSetDTO;
@@ -17,13 +17,20 @@ import java.util.ArrayList;
  * @author ADMIN
  */
 public class Main {
-    private static ArrayList<DTO.QuestionDTO> arrcauhoi = new ArrayList<>();
-    private static DTO.QuestionSetDTO object = new QuestionSetDTO();
     public static void main(String[] args) {
-        arrcauhoi = DAO.QuestionSetDAO.getAllQuestion(1);
-        System.out.println(arrcauhoi.get(0).getContent());
-        System.out.println(DAO.QuestionSetDAO.getQuestionSet(0));
-        object = DAO.QuestionSetDAO.getQuestionSet(0);
-        System.out.println(object.getQuestionArrayList().get(0).getContent());
+//        int port = 4949;//port mà server chạy phải khớp với client
+//        ServerSocket serverSocket = null;
+//        try {
+//            serverSocket = new ServerSocket(port);
+//            System.out.println("server starting...");
+//            while (true) {
+//                // Su dung multithread
+//                // khi có 1 client kết nối tới thì server tạo ra 1 luồng mới cho việc kết nối đến client
+//                new ThreadSocket(serverSocket.accept()).start();
+//            }
+//        } catch (IOException e) {
+//            System.out.println("port da duoc su dung, chon port khac hoac tat port " + port + " o tien trinh khac");
+//        }
     }
 }
+ 

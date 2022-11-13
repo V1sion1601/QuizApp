@@ -3,88 +3,76 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-
-import DTO.QuestionSetDTO;
+import DTO.*;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import javax.swing.ButtonGroup;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
  * @author TUF
  */
 public class ManHinhCauHoi extends javax.swing.JFrame {
-
+    public static ArrayList<QuestionDTO> questionlist;
+    public static int i;
     public static int dapAn = 0;
-    public ButtonGroup group = new ButtonGroup();
-    public static DTO.QuestionSetDTO QuestionSet = new QuestionSetDTO();
-    public static int i=0;
-    public int getRandomNumberUsingNextInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min) + min;
-    }
-    
+    Timer timer = new Timer();
 
-    
-    public void showQuestionToGUI(int i){
-            int j=1;
-            QuestionSet = DAO.QuestionSetDAO.getQuestionSet(j);
-//            System.out.println(QuestionSet.getQuestionArrayList());
-            labelCauHoi.setText(QuestionSet.getQuestionArrayList().get(i).getContent());
-            buttonDapAnA.setText(QuestionSet.getQuestionArrayList().get(i).getOption1());
-            buttonDapAnB.setText(QuestionSet.getQuestionArrayList().get(i).getOption2());
-            buttonDapAnC.setText(QuestionSet.getQuestionArrayList().get(i).getOption3());
-            buttonDapAnD.setText(QuestionSet.getQuestionArrayList().get(i).getOption4());
-        
-    }
-    
-        public static void wait(int ms)
-    {
-        try
-        {
-            Thread.sleep(ms);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
-    }
     /**
      * Creates new form ManHinhDangNhap
      */
-
+    public static ArrayList<QuestionDTO> questionlist()
+    {
+        questionlist = new ArrayList<>();
+        questionlist = DAO.QuestionDAO.getListQuestionByQuantity(DAO.QuestionDAO.quantityQuestion);
+        return questionlist;
+    }
+    
+    public void showQuestionToGUI(int i)
+        {
+            if(i<DAO.QuestionDAO.quantityQuestion){
+            labelCauHoi.setText(questionlist.get(i).getContent());
+            buttonDapAnA.setText(questionlist.get(i).getOption1());
+            buttonDapAnB.setText(questionlist.get(i).getOption2());
+            buttonDapAnC.setText(questionlist.get(i).getOption3());
+            buttonDapAnD.setText(questionlist.get(i).getOption4());
+            }
+            else
+            {
+                    this.setVisible(false);
+                    GUI.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
+                    frame.setVisible(true);
+                    
+            }
+        }
+    
+    
     public ManHinhCauHoi() {
         initComponents();
+        cacChinhSuaGiaoDienBangCode();
+        questionlist = questionlist();
         showQuestionToGUI(i);
+    }
+    
+    public void cacChinhSuaGiaoDienBangCode() {
+        // Đồng hồ đếm ngược
         
-
-//        public void swapArrayCauHoi() {
-//        //Hàm này có chức năng tráo đổi thứ tự câu hỏi và thứ tự đáp án
-//        for (int i = 0; i < arrcauhoi.size(); i++) {
-//            Collections.swap(arrcauhoi, new Random().nextInt(arrcauhoi.size()), new Random().nextInt(arrcauhoi.size()));
-//        }
-//        for (ModelCauHoi x : arrcauhoi) {//tráo đổi đáp án của từng câu hỏi
-//            swapDapAn(x);
-//        }
-//    }
-//
-//    public void swapDapAn(ModelCauHoi cauHoi) {
-//        //hàm này có chức năng tráo đổi vị trí 4 đáp án
-//        ArrayList<String> arr = new ArrayList<>();
-//        //thêm 4 câu hỏi vào arr
-//        arr.add(cauHoi.getDapan1());
-//        arr.add(cauHoi.getDapan2());
-//        arr.add(cauHoi.getDapan3());
-//        arr.add(cauHoi.getDapan4());
-//        Collections.shuffle(arr);//tráo đáp án
-//        cauHoi.setDapan1(arr.get(0));
-//        cauHoi.setDapan2(arr.get(1));
-//        cauHoi.setDapan3(arr.get(2));
-//        cauHoi.setDapan4(arr.get(3));
-//    }
+        TimerTask task = new TimerTask() {
+            int counter = 10;
+            boolean isIt = false;
+            public void run() {
+                labelDemNguocCauHoi.setText(Integer.toString(counter));
+                counter = counter - 1;
+                if (counter == -1) {
+                    timer.cancel();
+                } else if (isIt) {
+                    timer.cancel();
+                    isIt = false;
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 1000, 1000);
     }
 
     /**
@@ -96,7 +84,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelManHinhChaoMung = new javax.swing.JPanel();
+        panelManHinhCauHoi = new javax.swing.JPanel();
         labelTranhTai = new javax.swing.JLabel();
         labelKienThuc = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
@@ -106,11 +94,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnB = new javax.swing.JButton();
         buttonDapAnC = new javax.swing.JButton();
         buttonDapAnD = new javax.swing.JButton();
+        labelDemNguocCauHoi = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        labelDiem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelManHinhChaoMung.setBackground(new java.awt.Color(255, 255, 255));
+        panelManHinhCauHoi.setBackground(new java.awt.Color(255, 255, 255));
 
         labelTranhTai.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelTranhTai.setText("TRANH TÀI");
@@ -123,6 +114,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,6 +140,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnA.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         buttonDapAnA.setForeground(new java.awt.Color(255, 255, 255));
         buttonDapAnA.setText("[Đáp án A]");
+        buttonDapAnA.setToolTipText("");
         buttonDapAnA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonDapAnAMouseEntered(evt);
@@ -216,49 +209,75 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelManHinhChaoMungLayout = new javax.swing.GroupLayout(panelManHinhChaoMung);
-        panelManHinhChaoMung.setLayout(panelManHinhChaoMungLayout);
-        panelManHinhChaoMungLayout.setHorizontalGroup(
-            panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        labelDemNguocCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        labelDemNguocCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDemNguocCauHoi.setText("10");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setText("Điểm hiện tại :");
+
+        labelDiem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelDiem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiem.setText("0");
+
+        javax.swing.GroupLayout panelManHinhCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCauHoi);
+        panelManHinhCauHoi.setLayout(panelManHinhCauHoiLayout);
+        panelManHinhCauHoiLayout.setHorizontalGroup(
+            panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-            .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
+            .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
+                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelKienThuc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
+                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                         .addComponent(buttonDapAnA, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonDapAnB, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
+                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                         .addComponent(buttonDapAnC, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonDapAnD, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonDapAnD, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
+                        .addComponent(labelCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelDemNguocCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
+                        .addGap(552, 552, 552)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        panelManHinhChaoMungLayout.setVerticalGroup(
-            panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
-                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        panelManHinhCauHoiLayout.setVerticalGroup(
+            panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
+                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc))
-                .addGap(64, 64, 64)
-                .addComponent(labelCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(labelDiem))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(labelDemNguocCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDapAnA, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDapAnB, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDapAnC, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDapAnD, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -267,11 +286,11 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhChaoMung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhChaoMung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -331,8 +350,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnDMouseExited
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
-        System.out.println(buttonDapAnA.getText());
-         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnA.getText()))
+        dapAn = 1;
+        if(questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText()))
             {
                 System.out.println("True");               
                 buttonDapAnA.setBackground(new Color(255, 255, 0));
@@ -347,17 +366,32 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 showQuestionToGUI(++i);
             }
         buttonDapAnA.setBackground(new Color(0, 0, 204));
+        buttonDapAnA.setForeground(new Color(255, 255, 255));
         buttonDapAnB.setEnabled(true);
         buttonDapAnA.setEnabled(true);
         buttonDapAnC.setEnabled(true);
         buttonDapAnD.setEnabled(true);
-        
         showQuestionToGUI(++i);
+        TimerTask task = new TimerTask() {
+            int counter = 10;
+            boolean isIt = false;
+            public void run() {
+                labelDemNguocCauHoi.setText(Integer.toString(counter));
+                counter = counter - 1;
+                if (counter == -1) {
+                    timer.cancel();
+                } else if (isIt) {
+                    timer.cancel();
+                    isIt = false;
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 1000, 1000);
+        
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
     private void buttonDapAnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnBActionPerformed
-            System.out.println(buttonDapAnB.getText());
-         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnB.getText()))
+        if(questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText()))
             {
                 System.out.println("True"); 
                 buttonDapAnB.setBackground(new Color(255, 255, 0));
@@ -372,16 +406,19 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 showQuestionToGUI(++i);
             }
         buttonDapAnB.setBackground(new Color(0, 0, 204));
+        buttonDapAnB.setForeground(new Color(255, 255, 255));
         buttonDapAnB.setEnabled(true);
         buttonDapAnA.setEnabled(true);
         buttonDapAnC.setEnabled(true);
         buttonDapAnD.setEnabled(true);
+        
         showQuestionToGUI(++i);
+        
     }//GEN-LAST:event_buttonDapAnBActionPerformed
 
     private void buttonDapAnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnCActionPerformed
         System.out.println(buttonDapAnC.getText());
-         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnC.getText()))
+         if(questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText()))
             {
                 System.out.println("True");
                 
@@ -397,17 +434,18 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 System.out.println("false");
             }
         buttonDapAnC.setBackground(new Color(0, 0, 204));
+        buttonDapAnC.setForeground(new Color(255, 255, 255));
         buttonDapAnB.setEnabled(true);
         buttonDapAnA.setEnabled(true);
         buttonDapAnC.setEnabled(true);
         buttonDapAnD.setEnabled(true);
-        
+        timer.cancel();
         showQuestionToGUI(++i);
+        
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
-        
-         if(QuestionSet.getQuestionArrayList().get(i).getOptionTrue().equals(buttonDapAnD.getText()))
+        if(questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText()))
             {
                 System.out.println("True");
                 buttonDapAnD.setBackground(new Color(255, 255, 0));
@@ -422,10 +460,12 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 System.out.println("false");
             }
         buttonDapAnD.setBackground(new Color(0, 0, 204));
+        buttonDapAnD.setForeground(new Color(255, 255, 255));
         buttonDapAnB.setEnabled(true);
         buttonDapAnA.setEnabled(true);
         buttonDapAnC.setEnabled(true);
         buttonDapAnD.setEnabled(true);
+        timer.cancel();
         showQuestionToGUI(++i);
     }//GEN-LAST:event_buttonDapAnDActionPerformed
 
@@ -472,11 +512,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     private javax.swing.JButton buttonDapAnB;
     private javax.swing.JButton buttonDapAnC;
     private javax.swing.JButton buttonDapAnD;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelCauHoi;
+    private javax.swing.JLabel labelDemNguocCauHoi;
+    private javax.swing.JLabel labelDiem;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelTranhTai;
-    private javax.swing.JPanel panelManHinhChaoMung;
+    private javax.swing.JPanel panelManHinhCauHoi;
     // End of variables declaration//GEN-END:variables
 }

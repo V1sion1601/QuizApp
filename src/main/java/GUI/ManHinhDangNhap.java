@@ -3,19 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-
 import java.awt.Color;
 
 /**
  *
  * @author TUF
  */
-public class ManHinhChaoMung extends javax.swing.JFrame {
+public class ManHinhDangNhap extends javax.swing.JFrame {
 
     /**
      * Creates new form ManHinhDangNhap
      */
-    public ManHinhChaoMung() {
+    public static int checktk;
+    public ManHinhDangNhap() {
         initComponents();
     }
 
@@ -32,9 +32,13 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
         labelTranhTai = new javax.swing.JLabel();
         labelKienThuc = new javax.swing.JLabel();
         labelButtonDangNhap = new javax.swing.JLabel();
-        labelButtonDangKy = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
+        labelTenDangNhap = new javax.swing.JLabel();
+        textFieldTenDangNhap = new javax.swing.JTextField();
+        labelMatKhau = new javax.swing.JLabel();
+        passwordFieldMatKhau = new javax.swing.JPasswordField();
+        labelButtonDangKy = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -55,26 +59,14 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
         labelButtonDangNhap.setToolTipText("Đăng nhập");
         labelButtonDangNhap.setOpaque(true);
         labelButtonDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonDangNhapMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonDangNhapMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 labelButtonDangNhapMouseExited(evt);
-            }
-        });
-
-        labelButtonDangKy.setBackground(new java.awt.Color(220, 220, 220));
-        labelButtonDangKy.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        labelButtonDangKy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelButtonDangKy.setText("Đăng ký");
-        labelButtonDangKy.setToolTipText("Đăng ký");
-        labelButtonDangKy.setOpaque(true);
-        labelButtonDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelButtonDangKyMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelButtonDangKyMouseExited(evt);
             }
         });
 
@@ -102,23 +94,71 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
+        labelTenDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelTenDangNhap.setText("Tên đăng nhập :");
+
+        textFieldTenDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textFieldTenDangNhap.setToolTipText("Tên đăng nhập");
+
+        labelMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelMatKhau.setText("Mật khẩu :");
+
+        passwordFieldMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        passwordFieldMatKhau.setToolTipText("Mật khẩu");
+
+        labelButtonDangKy.setBackground(new java.awt.Color(0, 102, 255));
+        labelButtonDangKy.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        labelButtonDangKy.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonDangKy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonDangKy.setText("Đăng Ký");
+        labelButtonDangKy.setToolTipText("Đăng nhập");
+        labelButtonDangKy.setOpaque(true);
+        labelButtonDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonDangKyMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonDangKyMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonDangKyMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhChaoMungLayout = new javax.swing.GroupLayout(panelManHinhChaoMung);
         panelManHinhChaoMung.setLayout(panelManHinhChaoMungLayout);
         panelManHinhChaoMungLayout.setHorizontalGroup(
             panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
-                .addGap(272, 272, 272)
+                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChaoMungLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
+                        .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
+                                .addGap(272, 272, 272)
+                                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelKienThuc)
+                                    .addComponent(labelTranhTai)))
+                            .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
+                                .addGap(160, 160, 160)
+                                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelMatKhau)
+                                    .addComponent(labelTenDangNhap))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textFieldTenDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                                    .addComponent(passwordFieldMatKhau))))
+                        .addGap(0, 177, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChaoMungLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelButtonDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelKienThuc)
-                    .addComponent(labelTranhTai))
-                .addContainerGap(272, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChaoMungLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelButtonDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(267, 267, 267))
         );
         panelManHinhChaoMungLayout.setVerticalGroup(
             panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,11 +168,19 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
                 .addComponent(labelTranhTai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelKienThuc)
-                .addGap(71, 71, 71)
+                .addGap(49, 49, 49)
+                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTenDangNhap)
+                    .addComponent(textFieldTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelMatKhau)
+                    .addComponent(passwordFieldMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
                 .addComponent(labelButtonDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(labelButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -173,13 +221,26 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonDangNhapMouseExited
 
     private void labelButtonDangKyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseEntered
-        labelButtonDangKy.setBackground(new Color(192, 192, 192));
+        // TODO add your handling code here:
     }//GEN-LAST:event_labelButtonDangKyMouseEntered
 
     private void labelButtonDangKyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseExited
-        labelButtonDangKy.setBackground(new Color(220, 220, 220));
-       
+        // TODO add your handling code here:
     }//GEN-LAST:event_labelButtonDangKyMouseExited
+
+    private void labelButtonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseClicked
+        GUI.ManHinhDangKy frame = new ManHinhDangKy();
+        this.setVisible(false);
+        frame.setVisible(true);
+    }//GEN-LAST:event_labelButtonDangKyMouseClicked
+
+    private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
+        String a = textFieldTenDangNhap.getText();
+        String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
+        System.out.println(b);
+        BUS.UserBUS.findtaikhoan(a, b);
+        
+    }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,21 +259,23 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChaoMung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChaoMung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChaoMung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChaoMung.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhChaoMung().setVisible(true);
+                new ManHinhDangNhap().setVisible(true);
             }
         });
     }
@@ -223,7 +286,11 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
     private javax.swing.JLabel labelButtonDangNhap;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelKienThuc;
+    private javax.swing.JLabel labelMatKhau;
+    private javax.swing.JLabel labelTenDangNhap;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhChaoMung;
+    private javax.swing.JPasswordField passwordFieldMatKhau;
+    private javax.swing.JTextField textFieldTenDangNhap;
     // End of variables declaration//GEN-END:variables
 }

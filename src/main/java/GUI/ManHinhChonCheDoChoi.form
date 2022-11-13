@@ -114,9 +114,11 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="T&#xec;m &#x111;&#x1ed1;i th&#x1ee7; Online"/>
+            <Property name="toolTipText" type="java.lang.String" value="T&#xec;m &#x111;&#x1ed1;i th&#x1ee7; Online"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTimDoiThuOnlineMouseClicked"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTimDoiThuOnlineMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTimDoiThuOnlineMouseExited"/>
           </Events>
@@ -165,6 +167,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Ch&#x1a1;i v&#x1edb;i m&#xe1;y"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ch&#x1a1;i v&#x1edb;i m&#xe1;y"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
