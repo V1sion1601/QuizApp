@@ -73,6 +73,7 @@ public class QuestionBUS {
     }
     
     public static void insert1() {
+        
         if (GUI.ManHinhThemCauHoi.textFieldNoiDungCauHoi.equals("")||
             GUI.ManHinhThemCauHoi.textFieldPhuongAn1.equals("")||
             GUI.ManHinhThemCauHoi.textFieldPhuongAn2.equals("")||
