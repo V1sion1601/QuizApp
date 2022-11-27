@@ -22,7 +22,9 @@ import javax.swing.JOptionPane;
  * @author ADMIN
  */
 public class QuestionDAO {
+
     public static int quantityQuestion = 4;
+
     public static ArrayList<DTO.QuestionDTO> getListQuestion() {
         ArrayList<DTO.QuestionDTO> QuestionList = new ArrayList<>();
         Connection connection = null;
@@ -34,8 +36,8 @@ public class QuestionDAO {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 DTO.QuestionDTO Question = new DTO.QuestionDTO(
-                        rs.getInt("ID_Question"), 
-                        rs.getString("Content"), 
+                        rs.getInt("ID_Question"),
+                        rs.getString("Content"),
                         rs.getString("Option1"),
                         rs.getString("Option2"),
                         rs.getString("Option3"),
@@ -67,7 +69,7 @@ public class QuestionDAO {
         }
         return QuestionList;
     }
-    
+
     public static ArrayList<DTO.QuestionDTO> getListQuestionByQuantity(int quantityQuestion) {
         ArrayList<DTO.QuestionDTO> QuestionListByQuantity = new ArrayList<>();
         Connection connection = null;
@@ -76,12 +78,12 @@ public class QuestionDAO {
             connection = DAO.Connection.connection();
             String sql = "SELECT * FROM question ORDER BY RAND() LIMIT ?;";
             statement = connection.prepareCall(sql);
-                statement.setInt(1, quantityQuestion);
+            statement.setInt(1, quantityQuestion);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 DTO.QuestionDTO Question = new DTO.QuestionDTO(
-                        rs.getInt("ID_Question"), 
-                        rs.getString("Content"), 
+                        rs.getInt("ID_Question"),
+                        rs.getString("Content"),
                         rs.getString("Option1"),
                         rs.getString("Option2"),
                         rs.getString("Option3"),
@@ -113,8 +115,7 @@ public class QuestionDAO {
         }
         return QuestionListByQuantity;
     }
-    
-    
+
     /* Thêm câu hỏi */
     public static void insert(DTO.QuestionDTO qt) {
 
@@ -133,7 +134,7 @@ public class QuestionDAO {
             statement.setString(7, qt.getOptionTrue());
             statement.setString(8, qt.getType());
             statement.execute();
-            
+
         } catch (SQLException ex) {
 //            Logger.getLogger(SinhvienDAO.class.getName()).log(Level.SEVERE, null, ex);         
         } finally {
@@ -155,6 +156,7 @@ public class QuestionDAO {
         }
         JOptionPane.showMessageDialog(null, "Thêm thành công");
     }
+
     /* Sửa câu hỏi */
     public static DTO.QuestionDTO update(DTO.QuestionDTO qt) {
 
@@ -196,6 +198,7 @@ public class QuestionDAO {
         JOptionPane.showMessageDialog(null, "Cập nhật thành công");
         return qt;
     }
+
     /* Xoá câu hỏi */
     public static void delete(int ID_Question) {
 

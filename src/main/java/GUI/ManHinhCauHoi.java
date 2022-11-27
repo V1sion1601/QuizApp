@@ -6,6 +6,11 @@ package GUI;
 
 import DTO.*;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.color.ColorSpace;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,9 +19,14 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.Timer;
+
+import javax.swing.Timer;
+
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.text.html.CSS;
 
 /**
  *
@@ -25,13 +35,83 @@ import javax.swing.JOptionPane;
 public class ManHinhCauHoi extends javax.swing.JFrame {
 
     public static ArrayList<QuestionDTO> questionlist;
-    public static int i;
+    public static int i = 0;
     public static int dapAn = 0;
-    Timer timer = new Timer();
+    public int counter = 10;
 
     /**
      * Creates new form ManHinhDangNhap
      */
+    Timer timer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //Delay 3 giây sau mỗi câu hỏi
+            if (counter > -3) {
+                labelDemNguocCauHoi.setText(Integer.toString(counter));
+                counter--;
+                if (counter < 0) {
+                    labelDemNguocCauHoi.setText(Integer.toString(0));
+                    //Trong trường hợp nếu người dùng nhập đáp án A đúng
+                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
+
+                        System.out.println("Test");
+                        buttonDapAnA.setEnabled(true);
+                        buttonDapAnA.setBackground(Color.green);
+                        buttonDapAnA.setForeground(new Color(0, 0, 0));
+
+                    } else {
+                        buttonDapAnA.setEnabled(true);
+                        buttonDapAnA.setBackground(Color.RED);
+                        buttonDapAnA.setForeground(new Color(0, 0, 0));
+                    }
+                    //Trong trường hợp nếu người dùng nhập đáp án B đúng
+                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
+
+                        buttonDapAnB.setEnabled(true);
+                        buttonDapAnB.setBackground(Color.green);
+                        buttonDapAnB.setForeground(new Color(0, 0, 0));
+
+                    } else {
+                        buttonDapAnB.setEnabled(true);
+
+                        buttonDapAnB.setBackground(Color.RED);
+                        buttonDapAnB.setForeground(new Color(0, 0, 0));
+                    }
+                    //Trong trường hợp nếu người dùng nhập đáp án C đúng
+                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
+
+                        buttonDapAnC.setEnabled(true);
+                        buttonDapAnC.setBackground(Color.green);
+                        buttonDapAnC.setForeground(new Color(0, 0, 0));
+
+                    } else {
+                        buttonDapAnC.setEnabled(true);
+                        buttonDapAnC.setBackground(Color.RED);
+                        buttonDapAnC.setForeground(new Color(0, 0, 0));
+                    }
+                    //Trong trường hợp nếu người dùng nhập đáp án D đúng
+                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
+                        ;
+                        buttonDapAnD.setEnabled(true);
+
+                        buttonDapAnD.setBackground(Color.green);
+                        buttonDapAnD.setForeground(new Color(0, 0, 0));
+
+                    } else {
+                        buttonDapAnD.setEnabled(true);
+
+                        buttonDapAnD.setBackground(Color.RED);
+                        buttonDapAnD.setForeground(new Color(0, 0, 0));
+                    }
+                }
+            } else {
+                showQuestionToGUI(++i);
+
+            }
+
+        }
+    });
+
     public static ArrayList<QuestionDTO> questionlist() {
         //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
         questionlist = new ArrayList<>(DAO.QuestionDAO.quantityQuestion);
@@ -53,7 +133,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     public void showQuestionToGUI(int i) {
         List<Integer> arr = createRandom();
-
+        counter = 10;
+        timer.start();
         if (i < questionlist.size()) {
             String[] rq = {questionlist.get(i).getOption1(),
                 questionlist.get(i).getOption2(),
@@ -71,6 +152,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             buttonDapAnC.setBackground(new Color(0, 102, 255));
             buttonDapAnC.setForeground(new Color(255, 255, 255));
             buttonDapAnC.setEnabled(true);
+            buttonDapAnD.setBackground(new Color(0, 102, 255));
 
             buttonDapAnD.setBackground(new Color(0, 102, 255));
             buttonDapAnD.setForeground(new Color(255, 255, 255));
@@ -87,34 +169,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             GUI.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
             frame.setVisible(true);
         }
+
     }
 
     public ManHinhCauHoi() {
         initComponents();
-        cacChinhSuaGiaoDienBangCode();
         questionlist = questionlist();
         showQuestionToGUI(i);
-    }
 
-    public void cacChinhSuaGiaoDienBangCode() {
-        // Đồng hồ đếm ngược
-
-        TimerTask task = new TimerTask() {
-            int counter = 10;
-            boolean isIt = false;
-
-            public void run() {
-                labelDemNguocCauHoi.setText(Integer.toString(counter));
-                counter = counter - 1;
-                if (counter == -1) {
-                    timer.cancel();
-                } else if (isIt) {
-                    timer.cancel();
-                    isIt = false;
-                }
-            }
-        };
-        timer.scheduleAtFixedRate(task, 1000, 1000);
     }
 
     /**
@@ -184,9 +246,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnA.setText("[Đáp án A]");
         buttonDapAnA.setToolTipText("");
         buttonDapAnA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonDapAnAMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonDapAnAMouseEntered(evt);
             }
@@ -205,9 +264,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnB.setForeground(new java.awt.Color(255, 255, 255));
         buttonDapAnB.setText("[Đáp án B]");
         buttonDapAnB.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonDapAnBMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonDapAnBMouseEntered(evt);
             }
@@ -226,9 +282,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnC.setForeground(new java.awt.Color(255, 255, 255));
         buttonDapAnC.setText("[Đáp án C]");
         buttonDapAnC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonDapAnCMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonDapAnCMouseEntered(evt);
             }
@@ -247,9 +300,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnD.setForeground(new java.awt.Color(255, 255, 255));
         buttonDapAnD.setText("[Đáp án D]");
         buttonDapAnD.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonDapAnDMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonDapAnDMouseEntered(evt);
             }
@@ -356,10 +406,12 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered
+
         labelButtonKetThuc.setBackground(new Color(204, 0, 51));
     }//GEN-LAST:event_labelButtonKetThucMouseEntered
 
     private void labelButtonKetThucMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseExited
+
         labelButtonKetThuc.setBackground(new Color(255, 0, 51));
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
@@ -404,163 +456,54 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnDMouseExited
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
-        dapAn = 1;
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
-            System.out.println("True");
-            buttonDapAnA.setBackground(new Color(0, 255, 0));
-            buttonDapAnA.setForeground(new Color(0, 0, 0));
-            buttonDapAnB.setEnabled(false);
-            buttonDapAnC.setEnabled(false);
-            buttonDapAnD.setEnabled(false);
-            showQuestionToGUI(++i);
+        // TODO add your handling code here:
 
-        } else {
-            System.out.println("false");
-            showQuestionToGUI(++i);
+        buttonDapAnA.setForeground(Color.red);
+        buttonDapAnA.setEnabled(false);
 
-        }
+        buttonDapAnB.setEnabled(false);
 
-        TimerTask task = new TimerTask() {
-            int counter = 10;
-            boolean isIt = false;
+        buttonDapAnC.setEnabled(false);
 
-            public void run() {
-                labelDemNguocCauHoi.setText(Integer.toString(counter));
-                counter = counter - 1;
-                if (counter == -1) {
-                    timer.cancel();
-                } else if (isIt) {
-                    timer.cancel();
-                    isIt = false;
-                }
-            }
-        };
-
-//        timer.scheduleAtFixedRate(task,1000, 1000);
+        buttonDapAnD.setEnabled(false);
 
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
     private void buttonDapAnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnBActionPerformed
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
-            System.out.println("True");
-            buttonDapAnB.setBackground(new Color(0, 255, 0));
-            buttonDapAnB.setForeground(new Color(0, 0, 0));
-            buttonDapAnA.setEnabled(false);
-            buttonDapAnC.setEnabled(false);
-            buttonDapAnD.setEnabled(false);
-            showQuestionToGUI(++i);
+        // TODO add your handling code here:
+        buttonDapAnB.setForeground(Color.red);
+        buttonDapAnB.setEnabled(false);
 
-        } else {
-            System.out.println("false");
-            showQuestionToGUI(++i);
+        buttonDapAnA.setEnabled(false);
 
-        }
-        
-        TimerTask task = new TimerTask() {
-            int counter = 10;
-            boolean isIt = false;
+        buttonDapAnC.setEnabled(false);
 
-            public void run() {
-                labelDemNguocCauHoi.setText(Integer.toString(counter));
-                counter = counter - 1;
-                if (counter == -1) {
-                    timer.cancel();
-                } else if (isIt) {
-                    timer.cancel();
-                    isIt = false;
-                }
-            }
-        };
-
-//        timer.scheduleAtFixedRate(task,1000, 1000);
-
+        buttonDapAnD.setEnabled(false);
     }//GEN-LAST:event_buttonDapAnBActionPerformed
 
     private void buttonDapAnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnCActionPerformed
-        System.out.println(buttonDapAnC.getText());
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
-            System.out.println("True");
-            buttonDapAnC.setBackground(new Color(0, 255, 0));
-            buttonDapAnC.setForeground(new Color(0, 0, 0));
-            buttonDapAnB.setEnabled(false);
-            buttonDapAnC.setEnabled(false);
-            buttonDapAnD.setEnabled(false);
-            showQuestionToGUI(++i);
-        } else {
-            System.out.println("false");
-            showQuestionToGUI(++i);
-        }
-        TimerTask task = new TimerTask() {
-            int counter = 10;
-            boolean isIt = false;
+        // TODO add your handling code here:
+        buttonDapAnC.setForeground(Color.red);
+        buttonDapAnC.setEnabled(false);
 
-            public void run() {
-                labelDemNguocCauHoi.setText(Integer.toString(counter));
-                counter = counter - 1;
-                if (counter == -1) {
-                    timer.cancel();
-                } else if (isIt) {
-                    timer.cancel();
-                    isIt = false;
-                }
-            }
-        };
+        buttonDapAnB.setEnabled(false);
 
-//        timer.scheduleAtFixedRate(task,1000, 1000);
+        buttonDapAnA.setEnabled(false);
 
+        buttonDapAnD.setEnabled(false);
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
-            System.out.println("True");
-            buttonDapAnD.setBackground(new Color(0, 255, 0));
-            buttonDapAnD.setForeground(new Color(0, 0, 0));
-            buttonDapAnA.setEnabled(false);
-            buttonDapAnB.setEnabled(false);
-            buttonDapAnC.setEnabled(false);
-            showQuestionToGUI(++i);
-        } else {
-            System.out.println("false");
-            showQuestionToGUI(++i);
-        }
-        TimerTask task = new TimerTask() {
-            int counter = 10;
-            boolean isIt = false;
+        // TODO add your handling code here:
+        buttonDapAnD.setForeground(Color.red);
+        buttonDapAnD.setEnabled(false);
 
-            public void run() {
-                labelDemNguocCauHoi.setText(Integer.toString(counter));
-                counter = counter - 1;
-                if (counter == -1) {
-                    timer.cancel();
-                } else if (isIt) {
-                    timer.cancel();
-                    isIt = false;
-                }
-            }
-        };
+        buttonDapAnB.setEnabled(false);
 
-//        timer.scheduleAtFixedRate(task,1000, 1000);
+        buttonDapAnC.setEnabled(false);
+
+        buttonDapAnA.setEnabled(false);
     }//GEN-LAST:event_buttonDapAnDActionPerformed
-
-    private void buttonDapAnAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnAMouseClicked
-        // TODO add your handling code here:
-        buttonDapAnA.setBackground(new Color(0, 255, 0));
-    }//GEN-LAST:event_buttonDapAnAMouseClicked
-
-    private void buttonDapAnBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnBMouseClicked
-        // TODO add your handling code here:
-        buttonDapAnB.setBackground(new Color(0, 255, 0));
-    }//GEN-LAST:event_buttonDapAnBMouseClicked
-
-    private void buttonDapAnCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnCMouseClicked
-        // TODO add your handling code here:
-        buttonDapAnC.setBackground(new Color(0, 255, 0));
-    }//GEN-LAST:event_buttonDapAnCMouseClicked
-
-    private void buttonDapAnDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnDMouseClicked
-        // TODO add your handling code here:
-        buttonDapAnD.setBackground(new Color(0, 255, 0));
-    }//GEN-LAST:event_buttonDapAnDMouseClicked
 
     /**
      * @param args the command line arguments
