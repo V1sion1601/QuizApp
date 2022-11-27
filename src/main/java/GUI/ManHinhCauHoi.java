@@ -39,7 +39,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     public static int dapAn = 0;
     public int counter = 10;
     public int tongDiem = 0;
-    public int dt = 0;
+//    public int dt = 0;
 
     /**
      * Creates new form ManHinhDangNhap
@@ -55,82 +55,62 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                     labelDemNguocCauHoi.setText(Integer.toString(0));
                     //Trong trường hợp nếu người dùng nhập đáp án A đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
-                        System.out.println("Test");
-                        tongDiem += dt;
-                        labelDiem.setText(Integer.toString(tongDiem));
-                        
+
                         buttonDapAnA.setEnabled(true);
                         buttonDapAnA.setBackground(Color.green);
                         buttonDapAnA.setForeground(new Color(0, 0, 0));
 
-//                        tongDiem += dt;
-//                        labelDiem.setText(Integer.toString(tongDiem));
                     } else {
-                        tongDiem+=0;
-                        
+
                         buttonDapAnA.setEnabled(true);
                         buttonDapAnA.setBackground(Color.RED);
                         buttonDapAnA.setForeground(new Color(0, 0, 0));
-                        
-                        
-//                        labelDiem.setText(Integer.toString(tongDiem));
+
                     }
                     //Trong trường hợp nếu người dùng nhập đáp án B đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
-                        tongDiem += dt;
-                        labelDiem.setText(Integer.toString(tongDiem));
-                        
+
                         buttonDapAnB.setEnabled(true);
                         buttonDapAnB.setBackground(Color.green);
                         buttonDapAnB.setForeground(new Color(0, 0, 0));
-
-                        tongDiem += dt;
-                        labelDiem.setText(Integer.toString(tongDiem));
                     } else {
-                        tongDiem+=0;
+
                         buttonDapAnB.setEnabled(true);
                         buttonDapAnB.setBackground(Color.RED);
                         buttonDapAnB.setForeground(new Color(0, 0, 0));
-                        
-//                        tongDiem+=0;
-//                        labelDiem.setText(Integer.toString(tongDiem));
+
                     }
                     //Trong trường hợp nếu người dùng nhập đáp án C đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
-                        tongDiem += dt;
-                        labelDiem.setText(Integer.toString(tongDiem));
-                        
+//                   
+
                         buttonDapAnC.setEnabled(true);
                         buttonDapAnC.setBackground(Color.green);
                         buttonDapAnC.setForeground(new Color(0, 0, 0));
 
-                        
                     } else {
-                        tongDiem+=0;
+
                         buttonDapAnC.setEnabled(true);
                         buttonDapAnC.setBackground(Color.RED);
                         buttonDapAnC.setForeground(new Color(0, 0, 0));
-//                        tongDiem+=0;
-//                        labelDiem.setText(Integer.toString(tongDiem));
+
                     }
                     //Trong trường hợp nếu người dùng nhập đáp án D đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
-                         tongDiem += dt;
-                        labelDiem.setText(Integer.toString(tongDiem));
-                        
+//               
                         buttonDapAnD.setEnabled(true);
                         buttonDapAnD.setBackground(Color.green);
                         buttonDapAnD.setForeground(new Color(0, 0, 0));
 
-                       
                     } else {
-                         tongDiem+=0;
+
                         buttonDapAnD.setEnabled(true);
                         buttonDapAnD.setBackground(Color.RED);
                         buttonDapAnD.setForeground(new Color(0, 0, 0));
-                       
-//                        labelDiem.setText(Integer.toString(tongDiem));
+
                     }
+
+                    labelDiem.setText(Integer.toString(tongDiem));
                 }
             } else {
                 showQuestionToGUI(++i);
@@ -485,9 +465,13 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
         // TODO add your handling code here:
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText()))
-        dt = Integer.parseInt(labelDemNguocCauHoi.getText());
-        System.out.println(dt); 
+        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
+            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+            tongDiem += dt;
+        } else {
+            tongDiem += 0;
+        }
+
         buttonDapAnA.setForeground(Color.black);
         buttonDapAnA.setEnabled(false);
 
@@ -499,13 +483,20 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
 //        dt = Integer.parseInt(labelDemNguocCauHoi.getText());
 //        System.out.println(dt);
-        
+
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
     private void buttonDapAnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnBActionPerformed
         // TODO add your handling code here:
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText()))
+        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
+            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+            tongDiem += dt;
+
+        } else {
+            tongDiem += 0;
+        }
         buttonDapAnB.setForeground(Color.black);
+
         buttonDapAnB.setEnabled(false);
 
         buttonDapAnA.setEnabled(false);
@@ -513,14 +504,21 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnC.setEnabled(false);
 
         buttonDapAnD.setEnabled(false);
-        
-        dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+
+
     }//GEN-LAST:event_buttonDapAnBActionPerformed
 
     private void buttonDapAnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnCActionPerformed
         // TODO add your handling code here:
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText()))
+        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
+            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+            tongDiem += dt;
+
+        } else {
+            tongDiem += 0;
+        }
         buttonDapAnC.setForeground(Color.black);
+
         buttonDapAnC.setEnabled(false);
 
         buttonDapAnB.setEnabled(false);
@@ -528,14 +526,20 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnA.setEnabled(false);
 
         buttonDapAnD.setEnabled(false);
-        
-        dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+
+
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
         // TODO add your handling code here:
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText()))
+        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
+            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+            tongDiem += dt;
+        } else {
+            tongDiem += 0;
+        }
         buttonDapAnD.setForeground(Color.black);
+
         buttonDapAnD.setEnabled(false);
 
         buttonDapAnB.setEnabled(false);
@@ -543,13 +547,13 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         buttonDapAnC.setEnabled(false);
 
         buttonDapAnA.setEnabled(false);
-        
-        dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+
+
     }//GEN-LAST:event_buttonDapAnDActionPerformed
 
     private void buttonDapAnAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnAMouseClicked
         // TODO add your handling code here:
-     
+
     }//GEN-LAST:event_buttonDapAnAMouseClicked
 
     /**
