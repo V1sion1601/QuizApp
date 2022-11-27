@@ -1,7 +1,8 @@
-package com.mycompany.ltm;
+package com.mycompany.ltm.admin;
 
 import java.awt.*;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class ManHinhThemCauHoi extends javax.swing.JFrame {
 
@@ -109,6 +110,9 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
         buttonLuu.setText("Lưu");
         buttonLuu.setToolTipText("Lưu");
         buttonLuu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonLuuMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonLuuMouseEntered(evt);
             }
@@ -271,6 +275,11 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
     private void buttonLuuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseExited
         buttonLuu.setBackground(new Color(34,139,34));
     }//GEN-LAST:event_buttonLuuMouseExited
+
+    private void buttonLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseClicked
+        String noiDungThongBao = "Thêm thành công";
+        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_buttonLuuMouseClicked
 
     /**
      * @param args the command line arguments

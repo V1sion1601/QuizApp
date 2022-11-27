@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.ltm;
+package com.mycompany.ltm.user;
 
 import java.awt.Color;
 import java.util.Timer;
@@ -14,7 +14,7 @@ import java.util.TimerTask;
  */
 public class ManHinhCauHoi extends javax.swing.JFrame {
 
-    public static int dapAn = 0;
+    public static int dapAnCauHoiThuong = 0;
     int counter = 10;
     boolean isIt = false;
     Timer timer = new Timer();
@@ -279,47 +279,47 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
     private void buttonDapAnAMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnAMouseEntered
-        if (dapAn != 1)
+        if (dapAnCauHoiThuong != 1)
             buttonDapAnA.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_buttonDapAnAMouseEntered
 
     private void buttonDapAnAMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnAMouseExited
-        if (dapAn != 1)
+        if (dapAnCauHoiThuong != 1)
             buttonDapAnA.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_buttonDapAnAMouseExited
 
     private void buttonDapAnBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnBMouseEntered
-        if (dapAn != 2)
+        if (dapAnCauHoiThuong != 2)
             buttonDapAnB.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_buttonDapAnBMouseEntered
 
     private void buttonDapAnBMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnBMouseExited
-        if (dapAn != 2)
+        if (dapAnCauHoiThuong != 2)
             buttonDapAnB.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_buttonDapAnBMouseExited
 
     private void buttonDapAnCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnCMouseEntered
-        if (dapAn != 3)
+        if (dapAnCauHoiThuong != 3)
             buttonDapAnC.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_buttonDapAnCMouseEntered
 
     private void buttonDapAnCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnCMouseExited
-        if (dapAn != 3)
+        if (dapAnCauHoiThuong != 3)
             buttonDapAnC.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_buttonDapAnCMouseExited
 
     private void buttonDapAnDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnDMouseEntered
-        if (dapAn != 4)
+        if (dapAnCauHoiThuong != 4)
             buttonDapAnD.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_buttonDapAnDMouseEntered
 
     private void buttonDapAnDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnDMouseExited
-        if (dapAn != 4)
+        if (dapAnCauHoiThuong != 4)
             buttonDapAnD.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_buttonDapAnDMouseExited
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
-        dapAn = 1;
+        dapAnCauHoiThuong = 1;
         buttonDapAnA.setBackground(new Color(255, 255, 0));
         buttonDapAnA.setForeground(new Color(0, 0, 0));
         buttonDapAnB.setEnabled(false);
@@ -329,7 +329,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
     private void buttonDapAnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnBActionPerformed
-        dapAn = 2;
+        dapAnCauHoiThuong = 2;
         buttonDapAnB.setBackground(new Color(255, 255, 0));
         buttonDapAnB.setForeground(new Color(0, 0, 0));
         buttonDapAnA.setEnabled(false);
@@ -339,7 +339,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnBActionPerformed
 
     private void buttonDapAnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnCActionPerformed
-        dapAn = 3;
+        dapAnCauHoiThuong = 3;
         buttonDapAnC.setBackground(new Color(255, 255, 0));
         buttonDapAnC.setForeground(new Color(0, 0, 0));
         buttonDapAnA.setEnabled(false);
@@ -349,7 +349,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
-        dapAn = 4;
+        dapAnCauHoiThuong = 4;
         buttonDapAnD.setBackground(new Color(255, 255, 0));
         buttonDapAnD.setForeground(new Color(0, 0, 0));
         buttonDapAnA.setEnabled(false);

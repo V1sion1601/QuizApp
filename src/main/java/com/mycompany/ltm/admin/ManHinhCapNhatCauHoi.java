@@ -1,7 +1,8 @@
-package com.mycompany.ltm;
+package com.mycompany.ltm.admin;
 
 import java.awt.*;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
 
@@ -109,6 +110,9 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
         buttonLuuThayDoi.setText("Lưu thay đổi");
         buttonLuuThayDoi.setToolTipText("Lưu thay đổi");
         buttonLuuThayDoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonLuuThayDoiMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonLuuThayDoiMouseEntered(evt);
             }
@@ -271,6 +275,11 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
     private void buttonLuuThayDoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseExited
         buttonLuuThayDoi.setBackground(new Color(34,139,34));
     }//GEN-LAST:event_buttonLuuThayDoiMouseExited
+
+    private void buttonLuuThayDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseClicked
+        String noiDungThongBao = "Cập nhật thành công";
+        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_buttonLuuThayDoiMouseClicked
 
     /**
      * @param args the command line arguments

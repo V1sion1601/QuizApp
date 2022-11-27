@@ -1,4 +1,4 @@
-package com.mycompany.ltm;
+package com.mycompany.ltm.admin;
 
 import java.awt.*;
 import javax.swing.*;

@@ -316,6 +316,7 @@
             <Property name="toolTipText" type="java.lang.String" value="L&#x1b0;u thay &#x111;&#x1ed5;i"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonLuuThayDoiMouseClicked"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonLuuThayDoiMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonLuuThayDoiMouseExited"/>
           </Events>

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.ltm;
+package com.mycompany.ltm.admin;
 
 import java.awt.Color;
 
@@ -10,12 +10,12 @@ import java.awt.Color;
  *
  * @author TUF
  */
-public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
+public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form ManHinhDangNhap
      */
-    public ManHinhChonCheDoChoi() {
+    public ManHinhChonCheDoQuanLyAdmin() {
         initComponents();
     }
 
@@ -28,7 +28,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelManHInhChonCheDoChoi = new javax.swing.JPanel();
+        panelManHinhChonCheDoQuanLyAdmin = new javax.swing.JPanel();
         labelTranhTai = new javax.swing.JLabel();
         labelKienThuc = new javax.swing.JLabel();
         labelButtonTimDoiThuOnline = new javax.swing.JLabel();
@@ -40,7 +40,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelManHInhChonCheDoChoi.setBackground(new java.awt.Color(255, 255, 255));
+        panelManHinhChonCheDoQuanLyAdmin.setBackground(new java.awt.Color(255, 255, 255));
 
         labelTranhTai.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelTranhTai.setText("TRANH TÀI");
@@ -52,7 +52,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelButtonTimDoiThuOnline.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelButtonTimDoiThuOnline.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonTimDoiThuOnline.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelButtonTimDoiThuOnline.setText("Tìm đối thủ Online");
+        labelButtonTimDoiThuOnline.setText("Quản lý người chơi");
         labelButtonTimDoiThuOnline.setToolTipText("Tìm đối thủ Online");
         labelButtonTimDoiThuOnline.setOpaque(true);
         labelButtonTimDoiThuOnline.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,7 +91,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelButtonChoiVoiMay.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelButtonChoiVoiMay.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonChoiVoiMay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelButtonChoiVoiMay.setText("Chơi với máy");
+        labelButtonChoiVoiMay.setText("Quản lý câu hỏi");
         labelButtonChoiVoiMay.setToolTipText("Chơi với máy");
         labelButtonChoiVoiMay.setOpaque(true);
         labelButtonChoiVoiMay.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -105,30 +105,35 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
         labelVuiLongChonCheDoChoi.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelVuiLongChonCheDoChoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelVuiLongChonCheDoChoi.setText("Vui lòng chọn Chế độ chơi");
+        labelVuiLongChonCheDoChoi.setText("Vui lòng chọn chế độ cần quản lý");
 
-        javax.swing.GroupLayout panelManHInhChonCheDoChoiLayout = new javax.swing.GroupLayout(panelManHInhChonCheDoChoi);
-        panelManHInhChonCheDoChoi.setLayout(panelManHInhChonCheDoChoiLayout);
-        panelManHInhChonCheDoChoiLayout.setHorizontalGroup(
-            panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHInhChonCheDoChoiLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        javax.swing.GroupLayout panelManHinhChonCheDoQuanLyAdminLayout = new javax.swing.GroupLayout(panelManHinhChonCheDoQuanLyAdmin);
+        panelManHinhChonCheDoQuanLyAdmin.setLayout(panelManHinhChonCheDoQuanLyAdminLayout);
+        panelManHinhChonCheDoQuanLyAdminLayout.setHorizontalGroup(
+            panelManHinhChonCheDoQuanLyAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelManHInhChonCheDoChoiLayout.createSequentialGroup()
-                .addGap(272, 272, 272)
-                .addGroup(panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelButtonChoiVoiMay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKienThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTranhTai)
-                    .addComponent(labelVuiLongChonCheDoChoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(272, Short.MAX_VALUE))
+            .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
+                .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelButtonChoiVoiMay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelKienThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelTranhTai))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
+                .addGap(0, 228, Short.MAX_VALUE)
+                .addComponent(labelVuiLongChonCheDoChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(222, 222, 222))
         );
-        panelManHInhChonCheDoChoiLayout.setVerticalGroup(
-            panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelManHInhChonCheDoChoiLayout.createSequentialGroup()
+        panelManHinhChonCheDoQuanLyAdminLayout.setVerticalGroup(
+            panelManHinhChonCheDoQuanLyAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
                 .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113)
                 .addComponent(labelTranhTai)
@@ -149,11 +154,11 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHInhChonCheDoChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhChonCheDoQuanLyAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHInhChonCheDoChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhChonCheDoQuanLyAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -205,14 +210,18 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChonCheDoQuanLyAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChonCheDoQuanLyAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChonCheDoQuanLyAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChonCheDoQuanLyAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -221,7 +230,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhChonCheDoChoi().setVisible(true);
+                new ManHinhChonCheDoQuanLyAdmin().setVisible(true);
             }
         });
     }
@@ -234,6 +243,6 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JLabel labelVuiLongChonCheDoChoi;
-    private javax.swing.JPanel panelManHInhChonCheDoChoi;
+    private javax.swing.JPanel panelManHinhChonCheDoQuanLyAdmin;
     // End of variables declaration//GEN-END:variables
 }
