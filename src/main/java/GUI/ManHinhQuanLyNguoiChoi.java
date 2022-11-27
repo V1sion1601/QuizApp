@@ -65,7 +65,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         tableDanhSachNguoiChoi.setBackground(new Color(255, 255, 255));
         tableDanhSachNguoiChoi.setFillsViewportHeight(true);
         // Chiều dài cột theo tỉ lệ phần trăm
-        HamDungChung.setJTableColumnsWidth(tableDanhSachNguoiChoi, 600, 15, 32.5, 15, 15, 7.5, 5, 5, 5);
+        
     }
 
     @SuppressWarnings("unchecked")
