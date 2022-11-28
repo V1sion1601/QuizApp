@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author TUF
  */
-public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
+public class ManHinhXacNhanXoaCauHoiIQ extends javax.swing.JFrame {
 
     /**
      * Creates new form ManHinhChoGhepTran
      */
-    public ManHinhXacNhanXoaCauHoi() {
+    public ManHinhXacNhanXoaCauHoiIQ() {
         initComponents();
     }
 
@@ -41,7 +41,7 @@ public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
 
         labelXacNhanXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelXacNhanXoa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelXacNhanXoa.setText("Xác nhận chắc chắn xoá câu hỏi này?");
+        labelXacNhanXoa.setText("Xác nhận chắc chắn xoá câu hỏi IQ này?");
 
         buttonHuyXoa.setBackground(new java.awt.Color(220, 20, 60));
         buttonHuyXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -162,14 +162,18 @@ public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -178,7 +182,7 @@ public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhXacNhanXoaCauHoi().setVisible(true);
+                new ManHinhXacNhanXoaCauHoiIQ().setVisible(true);
             }
         });
     }
