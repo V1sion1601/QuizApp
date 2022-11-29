@@ -1,6 +1,6 @@
-package com.mycompany.ltm.admin;
+package GUI.admin;
 
-
+import com.mycompany.ltm.HamDungChung;
 import java.awt.*;
 import javax.swing.*;
 
@@ -23,7 +23,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         tableDanhSachNguoiChoi.setBackground(new Color(255, 255, 255));
         tableDanhSachNguoiChoi.setFillsViewportHeight(true);
         // Chiều dài cột theo tỉ lệ phần trăm
-        
+        HamDungChung.setJTableColumnsWidth(tableDanhSachNguoiChoi, 600, 15, 32.5, 15, 15, 7.5, 5, 5, 5);
     }
 
     @SuppressWarnings("unchecked")
@@ -266,7 +266,69 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManHinhQuanLyNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-       
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

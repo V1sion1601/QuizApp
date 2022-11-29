@@ -2,8 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.ltm.user;
-
+package GUI.user;
 import java.awt.Color;
 
 /**
@@ -15,6 +14,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     /**
      * Creates new form ManHinhDangNhap
      */
+    public static int checktk;
     public ManHinhDangNhap() {
         initComponents();
     }
@@ -38,6 +38,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         textFieldTenDangNhap = new javax.swing.JTextField();
         labelMatKhau = new javax.swing.JLabel();
         passwordFieldMatKhau = new javax.swing.JPasswordField();
+        labelButtonDangKy = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -58,6 +59,9 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         labelButtonDangNhap.setToolTipText("Đăng nhập");
         labelButtonDangNhap.setOpaque(true);
         labelButtonDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonDangNhapMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonDangNhapMouseEntered(evt);
             }
@@ -102,6 +106,25 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         passwordFieldMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         passwordFieldMatKhau.setToolTipText("Mật khẩu");
 
+        labelButtonDangKy.setBackground(new java.awt.Color(0, 102, 255));
+        labelButtonDangKy.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        labelButtonDangKy.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonDangKy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonDangKy.setText("Đăng Ký");
+        labelButtonDangKy.setToolTipText("Đăng nhập");
+        labelButtonDangKy.setOpaque(true);
+        labelButtonDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonDangKyMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonDangKyMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonDangKyMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhChaoMungLayout = new javax.swing.GroupLayout(panelManHinhChaoMung);
         panelManHinhChaoMung.setLayout(panelManHinhChaoMungLayout);
         panelManHinhChaoMungLayout.setHorizontalGroup(
@@ -132,7 +155,9 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChaoMungLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(labelButtonDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(267, 267, 267))
         );
         panelManHinhChaoMungLayout.setVerticalGroup(
@@ -153,7 +178,9 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
                     .addComponent(passwordFieldMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(labelButtonDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(labelButtonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -193,35 +220,33 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         labelButtonDangNhap.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelButtonDangNhapMouseExited
 
+    private void labelButtonDangKyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonDangKyMouseEntered
+
+    private void labelButtonDangKyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonDangKyMouseExited
+
+    private void labelButtonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseClicked
+        GUI.user.ManHinhDangKy frame = new ManHinhDangKy();
+        this.setVisible(false);
+        frame.setVisible(true);
+    }//GEN-LAST:event_labelButtonDangKyMouseClicked
+
+    private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
+        String a = textFieldTenDangNhap.getText();
+        String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
+        System.out.println(b);
+        BUS.UserBUS.findtaikhoan(a, b);
+        
+    }//GEN-LAST:event_labelButtonDangNhapMouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangNhap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+      
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -233,6 +258,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelBanQuyenThuocVe;
+    private javax.swing.JLabel labelButtonDangKy;
     private javax.swing.JLabel labelButtonDangNhap;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelKienThuc;

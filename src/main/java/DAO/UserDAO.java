@@ -19,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+
+
 public class UserDAO {
     // Lấy hết danh sách User
     public static ArrayList<DTO.UserDTO> getListUser() {
@@ -370,9 +372,9 @@ public class UserDAO {
                 user1.setPassword(rs.getString("Password"));
                 user1.setRole(rs.getString("Role"));
                 user1.setStatus(rs.getString("Status"));
-                GUI.ManHinhDangNhap.checktk = 1;
+                GUI.user.ManHinhDangNhap.checktk = 1;
             } else {
-                GUI.ManHinhDangNhap.checktk = 0;
+                GUI.user.ManHinhDangNhap.checktk = 0;
             }
             statement.execute();
         } catch (SQLException ex) {

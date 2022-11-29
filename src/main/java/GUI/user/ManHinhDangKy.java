@@ -1,4 +1,4 @@
-package com.mycompany.ltm.user;
+package GUI.user;
 
 import java.awt.*;
 import javax.swing.JLabel;
@@ -23,12 +23,6 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
         labelXacNhanMatKhau = new javax.swing.JLabel();
-        labelDiaChiEmail = new javax.swing.JLabel();
-        textFieldDiaChiEmail = new javax.swing.JTextField();
-        labelGioiTinh = new javax.swing.JLabel();
-        comboBoxGioiTinh = new javax.swing.JComboBox<>();
-        labelNgaySinh = new javax.swing.JLabel();
-        textFieldNgaySinh = new javax.swing.JTextField();
         buttonDangKy = new javax.swing.JButton();
         textFieldTenNguoiChoi = new javax.swing.JTextField();
         labelTenNguoiChoi = new javax.swing.JLabel();
@@ -78,25 +72,6 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         labelXacNhanMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelXacNhanMatKhau.setText("Xác nhận mật khẩu :");
 
-        labelDiaChiEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelDiaChiEmail.setText("Địa chỉ Email :");
-
-        textFieldDiaChiEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldDiaChiEmail.setToolTipText("Địa chỉ Email");
-
-        labelGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelGioiTinh.setText("Giới tính :");
-
-        comboBoxGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboBoxGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        comboBoxGioiTinh.setToolTipText("Giới tính");
-
-        labelNgaySinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelNgaySinh.setText("Ngày sinh :");
-
-        textFieldNgaySinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldNgaySinh.setToolTipText("Ngày sinh");
-
         buttonDangKy.setBackground(new java.awt.Color(34, 139, 34));
         buttonDangKy.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonDangKy.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,6 +103,11 @@ public class ManHinhDangKy extends javax.swing.JFrame {
 
         passwordFieldMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         passwordFieldMatKhau.setToolTipText("Mật khẩu");
+        passwordFieldMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldMatKhauActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelManHinhQuanLyNguoiDungLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiDung);
         panelManHinhQuanLyNguoiDung.setLayout(panelManHinhQuanLyNguoiDungLayout);
@@ -153,20 +133,13 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                     .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
                         .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelXacNhanMatKhau)
-                            .addComponent(labelDiaChiEmail)
-                            .addComponent(labelGioiTinh)
-                            .addComponent(labelNgaySinh)
                             .addComponent(labelMatKhau))
                         .addGap(115, 115, 115)
                         .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldNgaySinh, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(textFieldDiaChiEmail, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(passwordFieldXacNhanMatKhau, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(passwordFieldMatKhau)
                             .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
-                                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buttonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBoxGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buttonDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -191,21 +164,9 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                 .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelXacNhanMatKhau)
                     .addComponent(passwordFieldXacNhanMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDiaChiEmail)
-                    .addComponent(textFieldDiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelGioiTinh))
-                .addGap(18, 18, 18)
-                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNgaySinh)
-                    .addComponent(textFieldNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(62, 62, 62)
                 .addComponent(buttonDangKy)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -238,17 +199,30 @@ public class ManHinhDangKy extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
     private void buttonDangKyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDangKyMouseEntered
-        buttonDangKy.setBackground(new Color(0,128,0));
+        buttonDangKy.setBackground(new Color(0, 128, 0));
     }//GEN-LAST:event_buttonDangKyMouseEntered
 
     private void buttonDangKyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDangKyMouseExited
-        buttonDangKy.setBackground(new Color(34,139,34));
+        buttonDangKy.setBackground(new Color(34, 139, 34));
     }//GEN-LAST:event_buttonDangKyMouseExited
 
     private void buttonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDangKyMouseClicked
-        String noiDungThongBao = "Đăng ký thành công. Vui lòng trở về để đăng nhập vào tài khoản mới tạo.";
-        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        String a = textFieldTenNguoiChoi.getText();
+        String b = String.valueOf(passwordFieldMatKhau.getPassword());
+        String c = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
+        if (b.equals(c)) {
+            BUS.UserBUS.insert1();
+            this.setVisible(false);
+            GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
+            frame.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
+        }
     }//GEN-LAST:event_buttonDangKyMouseClicked
+
+    private void passwordFieldMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldMatKhauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordFieldMatKhauActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,23 +388,17 @@ public class ManHinhDangKy extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDangKy;
-    private javax.swing.JComboBox<String> comboBoxGioiTinh;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelDangKyNguoiChoiMoi;
-    private javax.swing.JLabel labelDiaChiEmail;
-    private javax.swing.JLabel labelGioiTinh;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMatKhau;
-    private javax.swing.JLabel labelNgaySinh;
     private javax.swing.JLabel labelTenNguoiChoi;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JLabel labelXacNhanMatKhau;
     private javax.swing.JPanel panelManHinhQuanLyNguoiDung;
-    private javax.swing.JPasswordField passwordFieldMatKhau;
-    private javax.swing.JPasswordField passwordFieldXacNhanMatKhau;
-    private javax.swing.JTextField textFieldDiaChiEmail;
-    private javax.swing.JTextField textFieldNgaySinh;
-    private javax.swing.JTextField textFieldTenNguoiChoi;
+    public static javax.swing.JPasswordField passwordFieldMatKhau;
+    public static javax.swing.JPasswordField passwordFieldXacNhanMatKhau;
+    public static javax.swing.JTextField textFieldTenNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

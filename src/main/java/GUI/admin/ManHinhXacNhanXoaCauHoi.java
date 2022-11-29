@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.ltm.admin;
+package GUI.admin;
+
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -41,7 +42,7 @@ public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
 
         labelXacNhanXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelXacNhanXoa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelXacNhanXoa.setText("Xác nhận chắc chắn xoá người chơi này?");
+        labelXacNhanXoa.setText("Xác nhận chắc chắn xoá câu hỏi này?");
 
         buttonHuyXoa.setBackground(new java.awt.Color(220, 20, 60));
         buttonHuyXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

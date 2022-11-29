@@ -1,4 +1,5 @@
-package com.mycompany.ltm.admin;
+package GUI.admin;
+
 
 import java.awt.*;
 import javax.swing.JLabel;

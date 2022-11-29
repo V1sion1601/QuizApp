@@ -1,56 +1,15 @@
-package GUI;
+package GUI.admin;
 
 import java.awt.*;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
-public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
+public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
 
-    public static DefaultTableModel model;
-    public static int selectedRow = -1;
     public static int dapAn = 0;
-    public static DTO.QuestionDTO qt = new DTO.QuestionDTO();
 
-    public ManHinhQuanLyCauHoi() {
+    public ManHinhQuanLyCauHoiIQ() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
-        
-        model = (DefaultTableModel) tableDanhSachCauHoi.getModel();
-        tableDanhSachCauHoi.setModel(model);
-        BUS.QuestionBUS.showQuestion();
-        tableDanhSachCauHoi.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                selectedRow = tableDanhSachCauHoi.getSelectedRow();
-                ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionDAO.getListQuestion();
-                qt = questionList.get(selectedRow);
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
     }
 
     private void cacChinhSuaGiaoDienBangCode() {
@@ -69,7 +28,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
     private void initComponents() {
 
         panelManHinhQuanLyCauHoi = new javax.swing.JPanel();
-        labelQuanLyCauHoi = new javax.swing.JLabel();
+        labelQuanLyCauHoiIQ = new javax.swing.JLabel();
         buttonCapNhat = new javax.swing.JButton();
         buttonThem = new javax.swing.JButton();
         buttonXoa = new javax.swing.JButton();
@@ -85,9 +44,9 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
 
         panelManHinhQuanLyCauHoi.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelQuanLyCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelQuanLyCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelQuanLyCauHoi.setText("QUẢN LÝ CÂU HỎI");
+        labelQuanLyCauHoiIQ.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelQuanLyCauHoiIQ.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelQuanLyCauHoiIQ.setText("QUẢN LÝ CÂU HỎI IQ");
 
         buttonCapNhat.setBackground(new java.awt.Color(0, 102, 255));
         buttonCapNhat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -95,9 +54,6 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         buttonCapNhat.setText("Cập nhật");
         buttonCapNhat.setToolTipText("Cập nhật / Sửa");
         buttonCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonCapNhatMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonCapNhatMouseEntered(evt);
             }
@@ -115,9 +71,6 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         buttonThem.setMinimumSize(new java.awt.Dimension(107, 33));
         buttonThem.setPreferredSize(new java.awt.Dimension(107, 33));
         buttonThem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonThemMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonThemMouseEntered(evt);
             }
@@ -140,9 +93,6 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         buttonXoa.setMinimumSize(new java.awt.Dimension(107, 33));
         buttonXoa.setPreferredSize(new java.awt.Dimension(107, 33));
         buttonXoa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonXoaMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonXoaMouseEntered(evt);
             }
@@ -187,30 +137,18 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã câu hỏi", "Nội dung câu hỏi", "Phương án 1", "Phương án 2", "Phương án 3", "Phương án 4", "Đáp án", "Loại câu hỏi"
+                "Mã câu hỏi", "Nội dung câu hỏi", "Phương án 1", "Phương án 2", "Phương án 3", "Phương án 4", "Đáp án"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
         tableDanhSachCauHoi.setRowHeight(50);
-        tableDanhSachCauHoi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableDanhSachCauHoiMouseClicked(evt);
-            }
-        });
         scrollPaneDanhSachCauHoi.setViewportView(tableDanhSachCauHoi);
 
         javax.swing.GroupLayout panelManHinhQuanLyCauHoiLayout = new javax.swing.GroupLayout(panelManHinhQuanLyCauHoi);
@@ -235,7 +173,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelQuanLyCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelQuanLyCauHoiIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelManHinhQuanLyCauHoiLayout.setVerticalGroup(
@@ -251,7 +189,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
                         .addComponent(buttonThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonCapNhat))
-                    .addComponent(labelQuanLyCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelQuanLyCauHoiIQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneDanhSachCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
@@ -314,42 +252,10 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonThemActionPerformed
 
-    private void tableDanhSachCauHoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDanhSachCauHoiMouseClicked
-
-    }//GEN-LAST:event_tableDanhSachCauHoiMouseClicked
-
-    private void buttonXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseClicked
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
-        } else {
-            GUI.ManHinhXacNhanXoaCauHoi frame = new ManHinhXacNhanXoaCauHoi();
-            frame.setVisible(true);
-        }
-
-    }//GEN-LAST:event_buttonXoaMouseClicked
-
-    private void buttonCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseClicked
-        // TODO add your handling code here:
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
-         } else {
-            BUS.QuestionBUS.showInfoQuestion(qt);
-        }
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    
-    }//GEN-LAST:event_buttonCapNhatMouseClicked
-
-    private void buttonThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonThemMouseClicked
-        // TODO add your handling code here:
-        GUI.ManHinhThemCauHoi frame = new ManHinhThemCauHoi();
-        frame.setVisible(true);
-    }//GEN-LAST:event_buttonThemMouseClicked
-
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -363,26 +269,30 @@ public static void main(String args[]) {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoi
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhQuanLyCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -403,7 +313,7 @@ public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhQuanLyCauHoi().setVisible(true);
+                new ManHinhQuanLyCauHoiIQ().setVisible(true);
             }
         });
     }
@@ -415,10 +325,10 @@ public static void main(String args[]) {
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelKienThuc;
-    private javax.swing.JLabel labelQuanLyCauHoi;
+    private javax.swing.JLabel labelQuanLyCauHoiIQ;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhQuanLyCauHoi;
     private javax.swing.JScrollPane scrollPaneDanhSachCauHoi;
-    public static javax.swing.JTable tableDanhSachCauHoi;
+    private javax.swing.JTable tableDanhSachCauHoi;
     // End of variables declaration//GEN-END:variables
 }

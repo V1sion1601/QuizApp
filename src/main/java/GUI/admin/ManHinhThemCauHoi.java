@@ -1,4 +1,4 @@
-package com.mycompany.ltm.admin;
+package GUI.admin;
 
 import java.awt.*;
 import javax.swing.JLabel;
@@ -17,7 +17,7 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
     private void initComponents() {
 
         panelManHinhCapNhatCauHoi = new javax.swing.JPanel();
-        labelQuanLyNguoiChoi = new javax.swing.JLabel();
+        labelThemCauHoi = new javax.swing.JLabel();
         labelTranhTai = new javax.swing.JLabel();
         labelKienThuc = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
@@ -45,9 +45,9 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
 
         panelManHinhCapNhatCauHoi.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelQuanLyNguoiChoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelQuanLyNguoiChoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelQuanLyNguoiChoi.setText("CẬP NHẬT CÂU HỎI");
+        labelThemCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelThemCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelThemCauHoi.setText("THÊM CÂU HỎI");
 
         labelTranhTai.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelTranhTai.setText("TRANH TÀI");
@@ -156,7 +156,7 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelThemCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -201,7 +201,7 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc))
                 .addGap(18, 18, 18)
-                .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelThemCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMaCauHoi)
@@ -269,11 +269,11 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
     private void buttonLuuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseEntered
-        buttonLuu.setBackground(new Color(0,128,0));
+        buttonLuu.setBackground(new Color(0, 128, 0));
     }//GEN-LAST:event_buttonLuuMouseEntered
 
     private void buttonLuuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseExited
-        buttonLuu.setBackground(new Color(34,139,34));
+        buttonLuu.setBackground(new Color(34, 139, 34));
     }//GEN-LAST:event_buttonLuuMouseExited
 
     private void buttonLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseClicked
@@ -587,7 +587,7 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelPhuongAn2;
     private javax.swing.JLabel labelPhuongAn3;
     private javax.swing.JLabel labelPhuongAn4;
-    private javax.swing.JLabel labelQuanLyNguoiChoi;
+    private javax.swing.JLabel labelThemCauHoi;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCapNhatCauHoi;
     private javax.swing.JTextField textFieldPhuongAn1;

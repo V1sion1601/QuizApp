@@ -54,10 +54,11 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="272" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="labelButtonChoiVoiMay" alignment="1" max="32767" attributes="0"/>
-                              <Component id="labelButtonTimDoiThuOnline" alignment="1" max="32767" attributes="0"/>
+                              <Component id="labelButtonQuanLyCauHoi" alignment="1" max="32767" attributes="0"/>
+                              <Component id="labelButtonQuanLyNguoiChoi" alignment="1" max="32767" attributes="0"/>
                               <Component id="labelKienThuc" alignment="1" max="32767" attributes="0"/>
                               <Component id="labelTranhTai" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelButtonQuanLyCauHoiIQ" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -66,7 +67,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="228" max="32767" attributes="0"/>
-                  <Component id="labelVuiLongChonCheDoChoi" min="-2" pref="350" max="-2" attributes="0"/>
+                  <Component id="labelChonCheDoQuanLy" min="-2" pref="350" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -80,12 +81,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelKienThuc" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="48" max="32767" attributes="0"/>
-                  <Component id="labelVuiLongChonCheDoChoi" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelChonCheDoQuanLy" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="labelButtonTimDoiThuOnline" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="labelButtonQuanLyNguoiChoi" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="labelButtonChoiVoiMay" min="-2" pref="41" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                  <Component id="labelButtonQuanLyCauHoi" min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="labelButtonQuanLyCauHoiIQ" min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   <Component id="labelBanQuyenThuocVe" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -109,7 +112,7 @@
             <Property name="text" type="java.lang.String" value="KI&#x1ebe;N TH&#x1ee8;C"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelButtonTimDoiThuOnline">
+        <Component class="javax.swing.JLabel" name="labelButtonQuanLyNguoiChoi">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="66" red="0" type="rgb"/>
@@ -126,8 +129,8 @@
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTimDoiThuOnlineMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTimDoiThuOnlineMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonQuanLyNguoiChoiMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonQuanLyNguoiChoiMouseExited"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelButtonKetThuc">
@@ -161,7 +164,7 @@
             <Property name="text" type="java.lang.String" value="B&#x1ea3;n quy&#x1ec1;n thu&#x1ed9;c v&#x1ec1; Tr&#x1b0;&#x1edd;ng &#x110;&#x1ea1;i h&#x1ecd;c S&#xe0;i G&#xf2;n - 2022"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelButtonChoiVoiMay">
+        <Component class="javax.swing.JLabel" name="labelButtonQuanLyCauHoi">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="66" red="0" type="rgb"/>
@@ -178,11 +181,11 @@
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonChoiVoiMayMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonChoiVoiMayMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonQuanLyCauHoiMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonQuanLyCauHoiMouseExited"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelVuiLongChonCheDoChoi">
+        <Component class="javax.swing.JLabel" name="labelChonCheDoQuanLy">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="20" style="0"/>
@@ -190,6 +193,27 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Vui l&#xf2;ng ch&#x1ecd;n ch&#x1ebf; &#x111;&#x1ed9; c&#x1ea7;n qu&#x1ea3;n l&#xfd;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelButtonQuanLyCauHoiIQ">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="66" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="20" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; c&#xe2;u h&#x1ecf;i IQ"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ch&#x1a1;i v&#x1edb;i m&#xe1;y"/>
+            <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonQuanLyCauHoiIQMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonQuanLyCauHoiIQMouseExited"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

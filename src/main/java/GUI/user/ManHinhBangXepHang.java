@@ -1,9 +1,6 @@
-package GUI;
+package GUI.user;
 
-import static GUI.ManHinhQuanLyNguoiChoi.model;
-import static GUI.ManHinhQuanLyNguoiChoi.selectedRow;
-import static GUI.ManHinhQuanLyNguoiChoi.tableDanhSachNguoiChoi;
-import static GUI.ManHinhQuanLyNguoiChoi.user;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +18,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
     public ManHinhBangXepHang() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
-        
+
         model = (DefaultTableModel) tableBangXepHang.getModel();
         tableBangXepHang.setModel(model);
         BUS.UserBUS.showUserByTotalMatch();
@@ -31,7 +28,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
                 selectedRow = tableBangXepHang.getSelectedRow();
                 ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
                 user = userList.get(selectedRow);
-                
+
             }
 
             @Override
@@ -46,7 +43,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
@@ -237,31 +234,28 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
 
     private void comboBoxTieuChiSapXepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxTieuChiSapXepMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_comboBoxTieuChiSapXepMouseClicked
 
     private void comboBoxTieuChiSapXepMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxTieuChiSapXepMousePressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_comboBoxTieuChiSapXepMousePressed
 
     private void comboBoxTieuChiSapXepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboBoxTieuChiSapXepKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_comboBoxTieuChiSapXepKeyPressed
 
     private void comboBoxTieuChiSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTieuChiSapXepActionPerformed
 //         TODO add your handling code here:
-        if(this.comboBoxTieuChiSapXep.getSelectedItem().equals("Số lần thắng"))
-        {
+        if (comboBoxTieuChiSapXep.getSelectedItem().equals("Số lần thắng")) {
             BUS.UserBUS.showUserByTotalMatchWin();
         }
-        if(this.comboBoxTieuChiSapXep.getSelectedItem().equals("Số lần chơi"))
-        {
+        if (comboBoxTieuChiSapXep.getSelectedItem().equals("Số lần chơi")) {
             BUS.UserBUS.showUserByTotalMatch();
         }
-        if(this.comboBoxTieuChiSapXep.getSelectedItem().equals("Chuỗi thắng dài nhất"))
-        {
+        if (comboBoxTieuChiSapXep.getSelectedItem().equals("Chuỗi thắng dài nhất")) {
             BUS.UserBUS.showUserByWinStreak();
         }
     }//GEN-LAST:event_comboBoxTieuChiSapXepActionPerformed
@@ -292,133 +286,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManHinhBangXepHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+       
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

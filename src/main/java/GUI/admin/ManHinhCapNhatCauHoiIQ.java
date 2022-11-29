@@ -1,14 +1,15 @@
-package GUI;
+package GUI.admin;
 
-import DTO.QuestionDTO;
+
 import java.awt.*;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
+public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
 
     public static int dapAn = 0;
 
-    public ManHinhCapNhatCauHoi() {
+    public ManHinhCapNhatCauHoiIQ() {
         initComponents();
     }
 
@@ -17,15 +18,15 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
     private void initComponents() {
 
         panelManHinhCapNhatCauHoi = new javax.swing.JPanel();
-        labelQuanLyNguoiChoi = new javax.swing.JLabel();
+        labelCapNhatCauHoiIQ = new javax.swing.JLabel();
         labelTranhTai = new javax.swing.JLabel();
         labelKienThuc = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
         labelMaCauHoi = new javax.swing.JLabel();
-        labelMaCauHoiTuCSDL = new javax.swing.JLabel();
+        labelMaCauHoiIQTuCSDL = new javax.swing.JLabel();
         labelNoiDungCauHoi = new javax.swing.JLabel();
-        textFieldNoiDungCauHoi = new javax.swing.JTextField();
+        textFieldTenNguoiChoi = new javax.swing.JTextField();
         labelPhuongAn1 = new javax.swing.JLabel();
         textFieldPhuongAn1 = new javax.swing.JTextField();
         labelGioiTinh = new javax.swing.JLabel();
@@ -37,17 +38,15 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
         textFieldPhuongAn3 = new javax.swing.JTextField();
         labelPhuongAn4 = new javax.swing.JLabel();
         textFieldPhuongAn4 = new javax.swing.JTextField();
-        comboBoxLoai = new javax.swing.JComboBox<>();
-        labelGioiTinh1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         panelManHinhCapNhatCauHoi.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelQuanLyNguoiChoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelQuanLyNguoiChoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelQuanLyNguoiChoi.setText("CẬP NHẬT CÂU HỎI");
+        labelCapNhatCauHoiIQ.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelCapNhatCauHoiIQ.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelCapNhatCauHoiIQ.setText("CẬP NHẬT CÂU HỎI IQ");
 
         labelTranhTai.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelTranhTai.setText("TRANH TÀI");
@@ -80,16 +79,16 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
         labelMaCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelMaCauHoi.setText("Mã câu hỏi :");
+        labelMaCauHoi.setText("Mã câu hỏi IQ :");
 
-        labelMaCauHoiTuCSDL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelMaCauHoiTuCSDL.setText("QUESTION1");
+        labelMaCauHoiIQTuCSDL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelMaCauHoiIQTuCSDL.setText("QUESTIONIQ1");
 
         labelNoiDungCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNoiDungCauHoi.setText("Nội dung câu hỏi :");
 
-        textFieldNoiDungCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldNoiDungCauHoi.setToolTipText("Nội dung câu hỏi");
+        textFieldTenNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textFieldTenNguoiChoi.setToolTipText("Nội dung câu hỏi");
 
         labelPhuongAn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelPhuongAn1.setText("Phương án 1 :");
@@ -101,18 +100,8 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
         labelGioiTinh.setText("Phương án đúng :");
 
         comboBoxPhuongAnDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         comboBoxPhuongAnDung.setToolTipText("Phương án đúng");
-        comboBoxPhuongAnDung.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                comboBoxPhuongAnDungComponentAdded(evt);
-            }
-        });
-        comboBoxPhuongAnDung.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxPhuongAnDungActionPerformed(evt);
-            }
-        });
 
         buttonLuuThayDoi.setBackground(new java.awt.Color(34, 139, 34));
         buttonLuuThayDoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -128,11 +117,6 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 buttonLuuThayDoiMouseExited(evt);
-            }
-        });
-        buttonLuuThayDoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLuuThayDoiActionPerformed(evt);
             }
         });
 
@@ -154,13 +138,6 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
         textFieldPhuongAn4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textFieldPhuongAn4.setToolTipText("Phương án 4");
 
-        comboBoxLoai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboBoxLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IQ", "Normal" }));
-        comboBoxLoai.setToolTipText("Loại câu hỏi");
-
-        labelGioiTinh1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelGioiTinh1.setText("Loại câu hỏi :");
-
         javax.swing.GroupLayout panelManHinhCapNhatCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCapNhatCauHoi);
         panelManHinhCapNhatCauHoi.setLayout(panelManHinhCapNhatCauHoiLayout);
         panelManHinhCapNhatCauHoiLayout.setHorizontalGroup(
@@ -171,7 +148,7 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelCapNhatCauHoiIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,19 +170,13 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
                             .addComponent(textFieldPhuongAn3)
                             .addComponent(textFieldPhuongAn2)
                             .addComponent(textFieldPhuongAn1)
-                            .addComponent(textFieldNoiDungCauHoi)
+                            .addComponent(textFieldTenNguoiChoi)
                             .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
                                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelMaCauHoiTuCSDL)
-                                    .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
-                        .addComponent(labelGioiTinh1)
-                        .addGap(173, 173, 173)
-                        .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonLuuThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelMaCauHoiIQTuCSDL)
+                                    .addComponent(buttonLuuThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         panelManHinhCapNhatCauHoiLayout.setVerticalGroup(
@@ -216,15 +187,15 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc))
                 .addGap(18, 18, 18)
-                .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelCapNhatCauHoiIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMaCauHoi)
-                    .addComponent(labelMaCauHoiTuCSDL))
+                    .addComponent(labelMaCauHoiIQTuCSDL))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNoiDungCauHoi)
-                    .addComponent(textFieldNoiDungCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldTenNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn1)
@@ -241,17 +212,13 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn4)
                     .addComponent(textFieldPhuongAn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelGioiTinh))
                 .addGap(18, 18, 18)
-                .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelGioiTinh1))
-                .addGap(18, 18, 18)
                 .addComponent(buttonLuuThayDoi)
-                .addGap(41, 41, 41)
+                .addGap(92, 92, 92)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -291,23 +258,9 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
         buttonLuuThayDoi.setBackground(new Color(34,139,34));
     }//GEN-LAST:event_buttonLuuThayDoiMouseExited
 
-    private void comboBoxPhuongAnDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxPhuongAnDungActionPerformed
-
-    private void comboBoxPhuongAnDungComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxPhuongAnDungComponentAdded
-
-    private void buttonLuuThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonLuuThayDoiActionPerformed
-
     private void buttonLuuThayDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseClicked
-          BUS.QuestionBUS.updateToGui();
-        this.setVisible(false);
-        GUI.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
-        frame.setVisible(true);
+        String noiDungThongBao = "Cập nhật thành công";
+        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonLuuThayDoiMouseClicked
 
     /**
@@ -327,14 +280,142 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCapNhatCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -467,34 +548,32 @@ public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhCapNhatCauHoi().setVisible(true);
+                new ManHinhCapNhatCauHoiIQ().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton buttonLuuThayDoi;
-    public static javax.swing.JComboBox<String> comboBoxLoai;
-    public static javax.swing.JComboBox<String> comboBoxPhuongAnDung;
+    private javax.swing.JButton buttonLuuThayDoi;
+    private javax.swing.JComboBox<String> comboBoxPhuongAnDung;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
+    private javax.swing.JLabel labelCapNhatCauHoiIQ;
     private javax.swing.JLabel labelGioiTinh;
-    private javax.swing.JLabel labelGioiTinh1;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMaCauHoi;
-    public static javax.swing.JLabel labelMaCauHoiTuCSDL;
+    private javax.swing.JLabel labelMaCauHoiIQTuCSDL;
     private javax.swing.JLabel labelNoiDungCauHoi;
     private javax.swing.JLabel labelPhuongAn1;
     private javax.swing.JLabel labelPhuongAn2;
     private javax.swing.JLabel labelPhuongAn3;
     private javax.swing.JLabel labelPhuongAn4;
-    private javax.swing.JLabel labelQuanLyNguoiChoi;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCapNhatCauHoi;
-    public static javax.swing.JTextField textFieldNoiDungCauHoi;
-    public static javax.swing.JTextField textFieldPhuongAn1;
-    public static javax.swing.JTextField textFieldPhuongAn2;
-    public static javax.swing.JTextField textFieldPhuongAn3;
-    public static javax.swing.JTextField textFieldPhuongAn4;
+    private javax.swing.JTextField textFieldPhuongAn1;
+    private javax.swing.JTextField textFieldPhuongAn2;
+    private javax.swing.JTextField textFieldPhuongAn3;
+    private javax.swing.JTextField textFieldPhuongAn4;
+    private javax.swing.JTextField textFieldTenNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

@@ -50,7 +50,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="labelQuanLyNguoiChoi" min="-2" pref="242" max="-2" attributes="0"/>
+                          <Component id="labelThemCauHoi" min="-2" pref="242" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="labelTranhTai" min="-2" max="-2" attributes="0"/>
@@ -108,7 +108,7 @@
                       <Component id="labelKienThuc" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="labelQuanLyNguoiChoi" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="labelThemCauHoi" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelMaCauHoi" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -159,13 +159,13 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelQuanLyNguoiChoi">
+        <Component class="javax.swing.JLabel" name="labelThemCauHoi">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="C&#x1eac;P NH&#x1eac;T C&#xc2;U H&#x1ece;I"/>
+            <Property name="text" type="java.lang.String" value="TH&#xca;M C&#xc2;U H&#x1ece;I"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelTranhTai">

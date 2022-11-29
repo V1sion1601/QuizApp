@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.ltm.user;
+package GUI.user;
+
 
 import java.awt.Color;
 import java.util.*;
@@ -54,6 +55,7 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
         labelDangTai = new javax.swing.JLabel();
         buttonHuyCho = new javax.swing.JButton();
         labelDemNguoc = new javax.swing.JLabel();
+        buttonKiemTraIQ = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -85,20 +87,39 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
         labelDemNguoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDemNguoc.setText("60");
 
+        buttonKiemTraIQ.setBackground(new java.awt.Color(0, 102, 255));
+        buttonKiemTraIQ.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        buttonKiemTraIQ.setForeground(new java.awt.Color(255, 255, 255));
+        buttonKiemTraIQ.setText("Kiểm tra IQ");
+        buttonKiemTraIQ.setToolTipText("Huỷ chờ");
+        buttonKiemTraIQ.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonKiemTraIQMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonKiemTraIQMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonKiemTraIQMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelChoGhepTranLayout = new javax.swing.GroupLayout(panelChoGhepTran);
         panelChoGhepTran.setLayout(panelChoGhepTranLayout);
         panelChoGhepTranLayout.setHorizontalGroup(
             panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelChoGhepTranLayout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(buttonHuyCho, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelChoGhepTranLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelDemNguoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelDangTai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(panelChoGhepTranLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(buttonKiemTraIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonHuyCho, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelChoGhepTranLayout.setVerticalGroup(
             panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +129,9 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(labelDemNguoc, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(buttonHuyCho)
+                .addGroup(panelChoGhepTranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonHuyCho)
+                    .addComponent(buttonKiemTraIQ))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -138,6 +161,18 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     private void buttonHuyChoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHuyChoMouseClicked
         System.exit(0);
     }//GEN-LAST:event_buttonHuyChoMouseClicked
+
+    private void buttonKiemTraIQMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonKiemTraIQMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonKiemTraIQMouseClicked
+
+    private void buttonKiemTraIQMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonKiemTraIQMouseEntered
+        buttonKiemTraIQ.setBackground(new Color(0,0,204));
+    }//GEN-LAST:event_buttonKiemTraIQMouseEntered
+
+    private void buttonKiemTraIQMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonKiemTraIQMouseExited
+        buttonKiemTraIQ.setBackground(new Color(0,102,255));
+    }//GEN-LAST:event_buttonKiemTraIQMouseExited
 
     /**
      * @param args the command line arguments
@@ -176,6 +211,7 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHuyCho;
+    private javax.swing.JButton buttonKiemTraIQ;
     private javax.swing.JLabel labelDangTai;
     private javax.swing.JLabel labelDemNguoc;
     private javax.swing.JPanel panelChoGhepTran;

@@ -2,20 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI;
+package GUI.admin;
+
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author TUF
  */
-public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
+public class ManHinhXacNhanXoaCauHoiIQ extends javax.swing.JFrame {
 
     /**
      * Creates new form ManHinhChoGhepTran
      */
-    public ManHinhXacNhanXoaNguoiChoi() {
+    public ManHinhXacNhanXoaCauHoiIQ() {
         initComponents();
     }
 
@@ -28,7 +30,7 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelXacNhanXoaNguoiChoi = new javax.swing.JPanel();
+        panelXacNhanXoaCauHoi = new javax.swing.JPanel();
         labelXacNhanXoa = new javax.swing.JLabel();
         buttonHuyXoa = new javax.swing.JButton();
         buttonXacNhanXoa = new javax.swing.JButton();
@@ -36,11 +38,11 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelXacNhanXoaNguoiChoi.setBackground(new java.awt.Color(255, 255, 255));
+        panelXacNhanXoaCauHoi.setBackground(new java.awt.Color(255, 255, 255));
 
         labelXacNhanXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelXacNhanXoa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelXacNhanXoa.setText("Xác nhận chắc chắn xoá người chơi này?");
+        labelXacNhanXoa.setText("Xác nhận chắc chắn xoá câu hỏi IQ này?");
 
         buttonHuyXoa.setBackground(new java.awt.Color(220, 20, 60));
         buttonHuyXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -76,15 +78,15 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelXacNhanXoaNguoiChoiLayout = new javax.swing.GroupLayout(panelXacNhanXoaNguoiChoi);
-        panelXacNhanXoaNguoiChoi.setLayout(panelXacNhanXoaNguoiChoiLayout);
-        panelXacNhanXoaNguoiChoiLayout.setHorizontalGroup(
-            panelXacNhanXoaNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelXacNhanXoaNguoiChoiLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelXacNhanXoaCauHoiLayout = new javax.swing.GroupLayout(panelXacNhanXoaCauHoi);
+        panelXacNhanXoaCauHoi.setLayout(panelXacNhanXoaCauHoiLayout);
+        panelXacNhanXoaCauHoiLayout.setHorizontalGroup(
+            panelXacNhanXoaCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXacNhanXoaCauHoiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelXacNhanXoaNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelXacNhanXoaCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelXacNhanXoa, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                    .addGroup(panelXacNhanXoaNguoiChoiLayout.createSequentialGroup()
+                    .addGroup(panelXacNhanXoaCauHoiLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(buttonXacNhanXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -92,13 +94,13 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        panelXacNhanXoaNguoiChoiLayout.setVerticalGroup(
-            panelXacNhanXoaNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelXacNhanXoaNguoiChoiLayout.createSequentialGroup()
+        panelXacNhanXoaCauHoiLayout.setVerticalGroup(
+            panelXacNhanXoaCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXacNhanXoaCauHoiLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(labelXacNhanXoa)
                 .addGap(18, 18, 18)
-                .addGroup(panelXacNhanXoaNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelXacNhanXoaCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonHuyXoa)
                     .addComponent(buttonXacNhanXoa))
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -108,11 +110,11 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelXacNhanXoaNguoiChoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelXacNhanXoaCauHoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelXacNhanXoaNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelXacNhanXoaCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -128,13 +130,12 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHuyXoaMouseExited
 
     private void buttonHuyXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHuyXoaMouseClicked
-        this.setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_buttonHuyXoaMouseClicked
 
     private void buttonXacNhanXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseClicked
-        // TODO add your handling code here:
-        BUS.UserBUS.delete1();
-        this.setVisible(false);
+        String noiDungThongBao = "Xoá thành công";
+        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonXacNhanXoaMouseClicked
 
     private void buttonXacNhanXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseEntered
@@ -162,21 +163,27 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaNguoiChoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhXacNhanXoaCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhXacNhanXoaNguoiChoi().setVisible(true);
+                new ManHinhXacNhanXoaCauHoiIQ().setVisible(true);
             }
         });
     }
@@ -185,6 +192,6 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
     private javax.swing.JButton buttonHuyXoa;
     private javax.swing.JButton buttonXacNhanXoa;
     private javax.swing.JLabel labelXacNhanXoa;
-    private javax.swing.JPanel panelXacNhanXoaNguoiChoi;
+    private javax.swing.JPanel panelXacNhanXoaCauHoi;
     // End of variables declaration//GEN-END:variables
 }
