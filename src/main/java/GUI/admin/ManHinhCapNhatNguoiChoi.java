@@ -349,23 +349,23 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLuuThayDoi;
-    private javax.swing.JComboBox<String> comboBoxGioiTinh;
+    public static javax.swing.JComboBox<String> comboBoxGioiTinh;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelDiaChiEmail;
     private javax.swing.JLabel labelGioiTinh;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMaNguoiChoi;
-    private javax.swing.JLabel labelMaNguoiChoiTuCSDL;
+    public static javax.swing.JLabel labelMaNguoiChoiTuCSDL;
     private javax.swing.JLabel labelNgaySinh;
     private javax.swing.JLabel labelQuanLyNguoiChoi;
     private javax.swing.JLabel labelTenNguoiChoi;
     private javax.swing.JLabel labelTinhTrang;
-    private javax.swing.JLabel labelTinhTrangTuCSDL;
+    public static javax.swing.JLabel labelTinhTrangTuCSDL;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCapNhatNguoiChoi;
     private javax.swing.JTextField textFieldDiaChiEmail;
     private javax.swing.JTextField textFieldNgaySinh;
-    private javax.swing.JTextField textFieldTenNguoiChoi;
+    public static javax.swing.JTextField textFieldTenNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

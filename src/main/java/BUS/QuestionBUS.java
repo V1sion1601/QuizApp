@@ -146,7 +146,7 @@ public class QuestionBUS {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin câu hỏi");
         } else {
             DTO.QuestionDTO question = new DTO.QuestionDTO(
-                    Integer.parseInt((GUI.ManHinhCapNhatCauHoi.labelMaCauHoiTuCSDL.getText())),
+                    Integer.parseInt((GUI.admin.ManHinhCapNhatCauHoi.labelMaCauHoiTuCSDL.getText())),
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldNoiDungCauHoi.getText(),
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn1.getText(),
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn2.getText(),

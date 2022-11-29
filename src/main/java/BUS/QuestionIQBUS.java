@@ -7,6 +7,7 @@ package BUS;
 import static BUS.QuestionIQBUS.showQuestion;
 import DTO.QuestionDTO;
 import GUI.admin.*;
+import static GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;

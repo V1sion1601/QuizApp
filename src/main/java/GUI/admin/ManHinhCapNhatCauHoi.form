@@ -75,7 +75,7 @@
                               <Component id="textFieldPhuongAn3" max="32767" attributes="0"/>
                               <Component id="textFieldPhuongAn2" max="32767" attributes="0"/>
                               <Component id="textFieldPhuongAn1" max="32767" attributes="0"/>
-                              <Component id="textFieldTenNguoiChoi" max="32767" attributes="0"/>
+                              <Component id="textFieldNoiDungCauHoi" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="comboBoxPhuongAnDung" min="-2" pref="164" max="-2" attributes="0"/>
@@ -90,7 +90,7 @@
                           <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="buttonLuuThayDoi" min="-2" pref="232" max="-2" attributes="0"/>
-                              <Component id="comboBoxPhuongAnDung1" min="-2" pref="164" max="-2" attributes="0"/>
+                              <Component id="comboBoxLoai" min="-2" pref="164" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -117,7 +117,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelNoiDungCauHoi" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textFieldTenNguoiChoi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldNoiDungCauHoi" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -146,7 +146,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="comboBoxPhuongAnDung1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboBoxLoai" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelGioiTinh1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -231,6 +231,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="QUESTION1"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNoiDungCauHoi">
           <Properties>
@@ -240,13 +243,16 @@
             <Property name="text" type="java.lang.String" value="N&#x1ed9;i dung c&#xe2;u h&#x1ecf;i :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldTenNguoiChoi">
+        <Component class="javax.swing.JTextField" name="textFieldNoiDungCauHoi">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="N&#x1ed9;i dung c&#xe2;u h&#x1ecf;i"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPhuongAn1">
           <Properties>
@@ -263,6 +269,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 1"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelGioiTinh">
           <Properties>
@@ -289,6 +298,7 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonLuuThayDoi">
@@ -310,6 +320,9 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonLuuThayDoiMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonLuuThayDoiMouseExited"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPhuongAn2">
           <Properties>
@@ -326,6 +339,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 2"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPhuongAn3">
           <Properties>
@@ -342,6 +358,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 3"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelPhuongAn4">
           <Properties>
@@ -358,8 +377,11 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n 4"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="comboBoxPhuongAnDung1">
+        <Component class="javax.swing.JComboBox" name="comboBoxLoai">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -375,6 +397,7 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelGioiTinh1">

@@ -69,20 +69,20 @@ public class UserBUS {
         GUI.admin.ManHinhCapNhatNguoiChoi frame = new GUI.admin.ManHinhCapNhatNguoiChoi();
         frame.setVisible(true);
 
-        frame.labelMaNguoiChoiCSDL.setText(String.valueOf(user.getIdUser()));
+        frame.labelMaNguoiChoiTuCSDL.setText(String.valueOf(user.getIdUser()));
         frame.textFieldTenNguoiChoi.setText(user.getName());
         frame.labelTinhTrangTuCSDL.setText(user.getStatus());
-        if (user.getRole().toLowerCase().equals("admin")) {
-            frame.comboBoxQuyenHan.addItem("admin");
-            frame.comboBoxQuyenHan.setSelectedItem("admin");
+        if (user.getRole().toLowerCase().equals("Nam")) {
+            frame.comboBoxGioiTinh.addItem("Nam");
+            frame.comboBoxGioiTinh.setSelectedItem("Nam");
         } else {
-            frame.comboBoxQuyenHan.addItem("admin");
+            frame.comboBoxGioiTinh.addItem("Nam");
         }
-        if (user.getRole().toLowerCase().equals("user")) {
-            frame.comboBoxQuyenHan.addItem("user");
-            frame.comboBoxQuyenHan.setSelectedItem("user");
+        if (user.getRole().toLowerCase().equals("Nữ")) {
+            frame.comboBoxGioiTinh.addItem("Nữ");
+            frame.comboBoxGioiTinh.setSelectedItem("Nữ");
         } else {
-            frame.comboBoxQuyenHan.addItem("user");
+            frame.comboBoxGioiTinh.addItem("Nữ");
         }
     }
 
@@ -104,23 +104,23 @@ public class UserBUS {
         return UserList;
     }
 
-    public static ArrayList showUserByStatus() {
-        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByStatus(GUI.admin.ManHinhQuanLyNguoiChoi.comboBoxTieuChiSapXep.getSelectedItem().toString());
-        System.out.println(UserList);
-        GUI.admin.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
-        UserList.forEach(User -> {
-            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
-                User.getIdUser(),
-                User.getName(),
-                User.getStatus(),
-                User.getRole(),
-                User.getTongDiem(),
-                User.getTotalMatch(),
-                User.getTotalMatchWin(),
-                User.getWinStreak()});
-        });
-        return UserList;
-    }
+//    public static ArrayList showUserByStatus() {
+//        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByStatus(GUI.admin.ManHinhQuanLyNguoiChoi.comboBoxTieuChiSapXep.getSelectedItem().toString());
+//        System.out.println(UserList);
+//        GUI.admin.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
+//        UserList.forEach(User -> {
+//            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
+//                User.getIdUser(),
+//                User.getName(),
+//                User.getStatus(),
+//                User.getRole(),
+//                User.getTongDiem(),
+//                User.getTotalMatch(),
+//                User.getTotalMatchWin(),
+//                User.getWinStreak()});
+//        });
+//        return UserList;
+//    }
 
     public static ArrayList showUserByPoint() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByPoint();
@@ -221,10 +221,10 @@ public class UserBUS {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin");
         } else {
             user = new DTO.UserDTO(
-                    Integer.parseInt(GUI.admin.ManHinhCapNhatNguoiChoi.labelMaNguoiChoiCSDL.getText()),
+                    Integer.parseInt(GUI.admin.ManHinhCapNhatNguoiChoi.labelMaNguoiChoiTuCSDL.getText()),
                     GUI.admin.ManHinhCapNhatNguoiChoi.textFieldTenNguoiChoi.getText(),
                     GUI.admin.ManHinhCapNhatNguoiChoi.labelTinhTrangTuCSDL.getText(),
-                    GUI.admin.ManHinhCapNhatNguoiChoi.comboBoxQuyenHan.getSelectedItem().toString()
+                    GUI.admin.ManHinhCapNhatNguoiChoi.comboBoxGioiTinh.getSelectedItem().toString()
             );
             if (user != null) {
                 DAO.UserDAO.Update(user);

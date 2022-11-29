@@ -389,6 +389,6 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhQuanLyNguoiChoi;
     private javax.swing.JScrollPane scrollPaneDanhSachNguoiChoi;
-    private javax.swing.JTable tableDanhSachNguoiChoi;
+    public static javax.swing.JTable tableDanhSachNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

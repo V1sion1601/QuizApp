@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
         labelMaCauHoi = new javax.swing.JLabel();
         labelMaCauHoiTuCSDL = new javax.swing.JLabel();
         labelNoiDungCauHoi = new javax.swing.JLabel();
-        textFieldTenNguoiChoi = new javax.swing.JTextField();
+        textFieldNoiDungCauHoi = new javax.swing.JTextField();
         labelPhuongAn1 = new javax.swing.JLabel();
         textFieldPhuongAn1 = new javax.swing.JTextField();
         labelGioiTinh = new javax.swing.JLabel();
@@ -38,7 +38,7 @@ import javax.swing.JOptionPane;
         textFieldPhuongAn3 = new javax.swing.JTextField();
         labelPhuongAn4 = new javax.swing.JLabel();
         textFieldPhuongAn4 = new javax.swing.JTextField();
-        comboBoxPhuongAnDung1 = new javax.swing.JComboBox<>();
+        comboBoxLoai = new javax.swing.JComboBox<>();
         labelGioiTinh1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,8 +89,8 @@ import javax.swing.JOptionPane;
         labelNoiDungCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNoiDungCauHoi.setText("Nội dung câu hỏi :");
 
-        textFieldTenNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldTenNguoiChoi.setToolTipText("Nội dung câu hỏi");
+        textFieldNoiDungCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textFieldNoiDungCauHoi.setToolTipText("Nội dung câu hỏi");
 
         labelPhuongAn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelPhuongAn1.setText("Phương án 1 :");
@@ -140,9 +140,9 @@ import javax.swing.JOptionPane;
         textFieldPhuongAn4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textFieldPhuongAn4.setToolTipText("Phương án 4");
 
-        comboBoxPhuongAnDung1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboBoxPhuongAnDung1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
-        comboBoxPhuongAnDung1.setToolTipText("Loại câu hỏi");
+        comboBoxLoai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        comboBoxLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
+        comboBoxLoai.setToolTipText("Loại câu hỏi");
 
         labelGioiTinh1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelGioiTinh1.setText("Loại câu hỏi :");
@@ -179,7 +179,7 @@ import javax.swing.JOptionPane;
                             .addComponent(textFieldPhuongAn3)
                             .addComponent(textFieldPhuongAn2)
                             .addComponent(textFieldPhuongAn1)
-                            .addComponent(textFieldTenNguoiChoi)
+                            .addComponent(textFieldNoiDungCauHoi)
                             .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
                                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +190,7 @@ import javax.swing.JOptionPane;
                         .addGap(173, 173, 173)
                         .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(buttonLuuThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxPhuongAnDung1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboBoxLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -210,7 +210,7 @@ import javax.swing.JOptionPane;
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNoiDungCauHoi)
-                    .addComponent(textFieldTenNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldNoiDungCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn1)
@@ -233,7 +233,7 @@ import javax.swing.JOptionPane;
                     .addComponent(labelGioiTinh))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxPhuongAnDung1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelGioiTinh1))
                 .addGap(18, 18, 18)
                 .addComponent(buttonLuuThayDoi)
@@ -445,16 +445,16 @@ import javax.swing.JOptionPane;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonLuuThayDoi;
-    private javax.swing.JComboBox<String> comboBoxPhuongAnDung;
-    private javax.swing.JComboBox<String> comboBoxPhuongAnDung1;
+    public static javax.swing.JButton buttonLuuThayDoi;
+    public static javax.swing.JComboBox<String> comboBoxLoai;
+    public static javax.swing.JComboBox<String> comboBoxPhuongAnDung;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelGioiTinh;
     private javax.swing.JLabel labelGioiTinh1;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMaCauHoi;
-    private javax.swing.JLabel labelMaCauHoiTuCSDL;
+    public static javax.swing.JLabel labelMaCauHoiTuCSDL;
     private javax.swing.JLabel labelNoiDungCauHoi;
     private javax.swing.JLabel labelPhuongAn1;
     private javax.swing.JLabel labelPhuongAn2;
@@ -463,10 +463,10 @@ import javax.swing.JOptionPane;
     private javax.swing.JLabel labelQuanLyNguoiChoi;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCapNhatCauHoi;
-    private javax.swing.JTextField textFieldPhuongAn1;
-    private javax.swing.JTextField textFieldPhuongAn2;
-    private javax.swing.JTextField textFieldPhuongAn3;
-    private javax.swing.JTextField textFieldPhuongAn4;
-    private javax.swing.JTextField textFieldTenNguoiChoi;
+    public static javax.swing.JTextField textFieldNoiDungCauHoi;
+    public static javax.swing.JTextField textFieldPhuongAn1;
+    public static javax.swing.JTextField textFieldPhuongAn2;
+    public static javax.swing.JTextField textFieldPhuongAn3;
+    public static javax.swing.JTextField textFieldPhuongAn4;
     // End of variables declaration//GEN-END:variables
 }
