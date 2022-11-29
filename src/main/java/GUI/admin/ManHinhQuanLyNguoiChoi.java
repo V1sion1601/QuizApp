@@ -1,16 +1,56 @@
 package GUI.admin;
 
-import com.mycompany.ltm.HamDungChung;
+import GUI.HamDungChung;
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
 
+    public static DefaultTableModel model;
+    public static int selectedRow = -1;
     public static int dapAn = 0;
+    public static DTO.UserDTO user = new DTO.UserDTO();
 
     public ManHinhQuanLyNguoiChoi() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
+        
+        model = (DefaultTableModel) tableDanhSachNguoiChoi.getModel();
+        tableDanhSachNguoiChoi.setModel(model);
+        BUS.UserBUS.showUserByID();
+        tableDanhSachNguoiChoi.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                selectedRow = tableDanhSachNguoiChoi.getSelectedRow();
+                ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
+                user = userList.get(selectedRow);
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     private void cacChinhSuaGiaoDienBangCode() {

@@ -5,6 +5,8 @@
  */
 package BUS;
 
+import GUI.admin.*;
+import GUI.user.*;
 import DTO.UserDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +15,16 @@ import javax.swing.JOptionPane;
 public class UserBUS {
 
     public static int checktk;
-    public static GUI.ManHinhChonCheDoChoi ManHinhChonCheDoChoi = new GUI.ManHinhChonCheDoChoi();
-    public static GUI.ManHinhDangNhap ManHinhDangNhap = new GUI.ManHinhDangNhap();
-    public static GUI.ManHinhQuanLyCauHoi ManHinhQuanLyCauHoi = new GUI.ManHinhQuanLyCauHoi();
+    public static GUI.user.ManHinhChonCheDoChoi ManHinhChonCheDoChoi = new GUI.user.ManHinhChonCheDoChoi();
+    public static GUI.user.ManHinhDangNhap ManHinhDangNhap = new GUI.user.ManHinhDangNhap();
+    public static GUI.admin.ManHinhQuanLyCauHoi ManHinhQuanLyCauHoi = new GUI.admin.ManHinhQuanLyCauHoi();
     public static DTO.UserDTO user;
     public static DTO.UserDTO usersavelogin;
 
     public static void findtaikhoan(String a, String b) {
         user = new DTO.UserDTO(a, b);
         user = DAO.UserDAO.findtaikhoan(user);
-        if (GUI.ManHinhDangNhap.checktk == 1) {
+        if (GUI.user.ManHinhDangNhap.checktk == 1) {
             if (user.getRole().toLowerCase().equals("admin") && !user.getStatus().toLowerCase().equals("block")) {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công với quyền Admin");
                 usersavelogin = user;
@@ -39,7 +41,7 @@ public class UserBUS {
                 ManHinhDangNhap.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
-                GUI.ManHinhDangNhap.checktk = 0;
+                GUI.user.ManHinhDangNhap.checktk = 0;
             }
 //            {
 //                JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
@@ -64,7 +66,7 @@ public class UserBUS {
     }
 
     public static void showInfoUser(DTO.UserDTO user) {
-        GUI.ManHinhCapNhatNguoiChoi frame = new GUI.ManHinhCapNhatNguoiChoi();
+        GUI.admin.ManHinhCapNhatNguoiChoi frame = new GUI.admin.ManHinhCapNhatNguoiChoi();
         frame.setVisible(true);
 
         frame.labelMaNguoiChoiCSDL.setText(String.valueOf(user.getIdUser()));
@@ -87,9 +89,9 @@ public class UserBUS {
     public static ArrayList showUserByID() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUser();
         System.out.println(UserList);
-        GUI.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
+        GUI.admin.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
         UserList.forEach(User -> {
-            GUI.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
+            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
                 User.getIdUser(),
                 User.getName(),
                 User.getStatus(),
@@ -103,11 +105,11 @@ public class UserBUS {
     }
 
     public static ArrayList showUserByStatus() {
-        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByStatus(GUI.ManHinhQuanLyNguoiChoi.comboBoxTieuChiSapXep.getSelectedItem().toString());
+        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByStatus(GUI.admin.ManHinhQuanLyNguoiChoi.comboBoxTieuChiSapXep.getSelectedItem().toString());
         System.out.println(UserList);
-        GUI.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
+        GUI.admin.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
         UserList.forEach(User -> {
-            GUI.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
+            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
                 User.getIdUser(),
                 User.getName(),
                 User.getStatus(),
@@ -123,9 +125,9 @@ public class UserBUS {
     public static ArrayList showUserByPoint() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByPoint();
         System.out.println(UserList);
-        GUI.ManHinhBangXepHang.model.setRowCount(0);
+        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
         UserList.forEach(User -> {
-            GUI.ManHinhBangXepHang.model.addRow(new Object[]{
+            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
                 User.getName(),
                 User.getTongDiem(),
                 User.getTotalMatch(),
@@ -138,9 +140,9 @@ public class UserBUS {
     public static ArrayList showUserByTotalMatchWin() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatchWin();
         System.out.println(UserList);
-        GUI.ManHinhBangXepHang.model.setRowCount(0);
+        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
         UserList.forEach(User -> {
-            GUI.ManHinhBangXepHang.model.addRow(new Object[]{
+            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
                 User.getName(),
                 User.getTongDiem(),
                 User.getTotalMatch(),
@@ -153,9 +155,9 @@ public class UserBUS {
     public static ArrayList showUserByTotalMatch() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatch();
         System.out.println(UserList);
-        GUI.ManHinhBangXepHang.model.setRowCount(0);
+        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
         UserList.forEach(User -> {
-            GUI.ManHinhBangXepHang.model.addRow(new Object[]{
+            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
                 User.getName(),
                 User.getTongDiem(),
                 User.getTotalMatch(),
@@ -168,9 +170,9 @@ public class UserBUS {
     public static ArrayList showUserByWinStreak() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByWinStreak();
         System.out.println(UserList);
-        GUI.ManHinhBangXepHang.model.setRowCount(0);
+        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
         UserList.forEach(User -> {
-            GUI.ManHinhBangXepHang.model.addRow(new Object[]{
+            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
                 User.getName(),
                 User.getTongDiem(),
                 User.getTotalMatch(),
@@ -181,16 +183,16 @@ public class UserBUS {
     }
 
     public static void insert1() {
-        DAO.UserDAO.checkUserName(GUI.ManHinhDangKy.textFieldTenNguoiChoi.getText());
+        DAO.UserDAO.checkUserName(GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText());
         if (checktk == 1) {
-            if (GUI.ManHinhDangKy.textFieldTenNguoiChoi.getText().equals("")
-                    || GUI.ManHinhDangKy.passwordFieldMatKhau.getPassword().equals("")
-                    || GUI.ManHinhDangKy.passwordFieldXacNhanMatKhau.getPassword().equals("")) {
+            if (GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText().equals("")
+                    || GUI.user.ManHinhDangKy.passwordFieldMatKhau.getPassword().equals("")
+                    || GUI.user.ManHinhDangKy.passwordFieldXacNhanMatKhau.getPassword().equals("")) {
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin");
             } else {
                 DTO.UserDTO user = new DTO.UserDTO(
-                        GUI.ManHinhDangKy.textFieldTenNguoiChoi.getText(),
-                        DAO.MD5.MD5(String.valueOf(GUI.ManHinhDangKy.passwordFieldMatKhau.getPassword())),
+                        GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText(),
+                        DAO.MD5.MD5(String.valueOf(GUI.user.ManHinhDangKy.passwordFieldMatKhau.getPassword())),
                         0,
                         "Offline",
                         "user",
@@ -215,14 +217,14 @@ public class UserBUS {
 
     public static DTO.UserDTO update1() {
         DTO.UserDTO user = new DTO.UserDTO();
-        if (GUI.ManHinhCapNhatNguoiChoi.textFieldTenNguoiChoi.equals("")) {
+        if (GUI.admin.ManHinhCapNhatNguoiChoi.textFieldTenNguoiChoi.equals("")) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin");
         } else {
             user = new DTO.UserDTO(
-                    Integer.parseInt(GUI.ManHinhCapNhatNguoiChoi.labelMaNguoiChoiCSDL.getText()),
-                    GUI.ManHinhCapNhatNguoiChoi.textFieldTenNguoiChoi.getText(),
-                    GUI.ManHinhCapNhatNguoiChoi.labelTinhTrangTuCSDL.getText(),
-                    GUI.ManHinhCapNhatNguoiChoi.comboBoxQuyenHan.getSelectedItem().toString()
+                    Integer.parseInt(GUI.admin.ManHinhCapNhatNguoiChoi.labelMaNguoiChoiCSDL.getText()),
+                    GUI.admin.ManHinhCapNhatNguoiChoi.textFieldTenNguoiChoi.getText(),
+                    GUI.admin.ManHinhCapNhatNguoiChoi.labelTinhTrangTuCSDL.getText(),
+                    GUI.admin.ManHinhCapNhatNguoiChoi.comboBoxQuyenHan.getSelectedItem().toString()
             );
             if (user != null) {
                 DAO.UserDAO.Update(user);
@@ -236,7 +238,7 @@ public class UserBUS {
     }
 
     public static void delete1() {
-        int selectedRow = GUI.ManHinhQuanLyNguoiChoi.tableDanhSachNguoiChoi.getSelectedRow();
+        int selectedRow = GUI.admin.ManHinhQuanLyNguoiChoi.tableDanhSachNguoiChoi.getSelectedRow();
         if (selectedRow >= 0) {
             ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
             //lấy dữ liệu của câu hỏi cần xoá ra 1 obj

@@ -1,15 +1,55 @@
-package com.mycompany.ltm.admin;
+package GUI.admin;
 
 import java.awt.*;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
-
+    public static DefaultTableModel model;
+    public static int selectedRow = -1;
     public static int dapAn = 0;
+    public static DTO.QuestionDTO qt = new DTO.QuestionDTO();
 
     public ManHinhQuanLyCauHoi() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
+        
+        model = (DefaultTableModel) tableDanhSachCauHoi.getModel();
+        tableDanhSachCauHoi.setModel(model);
+        BUS.QuestionBUS.showQuestion();
+        tableDanhSachCauHoi.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                selectedRow = tableDanhSachCauHoi.getSelectedRow();
+                ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionDAO.getListQuestion();
+                qt = questionList.get(selectedRow);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     private void cacChinhSuaGiaoDienBangCode() {
@@ -252,9 +292,41 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonThemActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void tableDanhSachCauHoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDanhSachCauHoiMouseClicked
+
+    }//GEN-LAST:event_tableDanhSachCauHoiMouseClicked
+
+    private void buttonXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseClicked
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
+        } else {
+            GUI.admin.ManHinhXacNhanXoaCauHoi frame = new ManHinhXacNhanXoaCauHoi();
+            frame.setVisible(true);
+        }
+
+    }//GEN-LAST:event_buttonXoaMouseClicked
+
+    private void buttonCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseClicked
+        // TODO add your handling code here:
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
+         } else {
+            BUS.QuestionBUS.showInfoQuestion(qt);
+        }
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    }//GEN-LAST:event_buttonCapNhatMouseClicked
+
+    private void buttonThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonThemMouseClicked
+        // TODO add your handling code here:
+        GUI.admin.ManHinhThemCauHoi frame = new ManHinhThemCauHoi();
+        frame.setVisible(true);
+    }//GEN-LAST:event_buttonThemMouseClicked
+
+/**
+ * @param args the command line arguments
+ */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

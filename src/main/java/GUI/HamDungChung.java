@@ -1,4 +1,4 @@
-package com.mycompany.ltm;
+package GUI;
 
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;

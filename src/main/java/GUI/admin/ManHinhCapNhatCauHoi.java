@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
+    public class ManHinhCapNhatCauHoi extends javax.swing.JFrame {
 
     public static int dapAn = 0;
 

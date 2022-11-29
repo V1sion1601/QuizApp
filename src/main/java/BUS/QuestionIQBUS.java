@@ -1,13 +1,11 @@
 /*
- * To change GUI.ManHinhCapNhatCauHoi license header, choose License Headers in Project Properties.
- * To change GUI.ManHinhCapNhatCauHoi template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package BUS;
 
+import static BUS.QuestionIQBUS.showQuestion;
 import DTO.QuestionDTO;
-import static GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung;
-import static GUI.admin.ManHinhQuanLyCauHoi.qt;
 import GUI.admin.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +13,11 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ADMIN
+ * @author admin
  */
-public class QuestionBUS {
-
-    public static List showQuestion() {
-        List<DTO.QuestionDTO> QuestionList = DAO.QuestionDAO.getListQuestion();
+public class QuestionIQBUS {
+     public static List showQuestion() {
+        List<DTO.QuestionDTO> QuestionList = DAO.QuestionIQDAO.getListQuestion();
         System.out.println(QuestionList);
         GUI.admin.ManHinhQuanLyCauHoi.model.setRowCount(0);
         QuestionList.forEach(Question -> {
@@ -31,7 +28,7 @@ public class QuestionBUS {
         return QuestionList;
     }
 
-    public static void showInfoQuestion(DTO.QuestionDTO qt) {
+     public static void showInfoQuestion(DTO.QuestionDTO qt) {
         GUI.admin.ManHinhCapNhatCauHoi frame = new GUI.admin.ManHinhCapNhatCauHoi();
         frame.setVisible(true);
         frame.labelMaCauHoiTuCSDL.setText(String.valueOf(qt.getID_Question()));
@@ -71,8 +68,8 @@ public class QuestionBUS {
             frame.comboBoxLoai.setSelectedItem("IQ");
         }
     }
-
-    public static void insert1() {
+     
+     public static void insert1() {
 
         if (GUI.admin.ManHinhThemCauHoi.textFieldNoiDungCauHoi.equals("")
                 || GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn1.equals("")
@@ -91,25 +88,22 @@ public class QuestionBUS {
                     GUI.admin.ManHinhThemCauHoi.comboBoxLoai.getSelectedItem().toString()
             );
             if (qt != null) {
-                DAO.QuestionDAO.insert(qt);
+                DAO.QuestionIQDAO.insert(qt);
             } else {
                 JOptionPane.showMessageDialog(null, "");
             }
         }
     }
-
-//    public static void updatecombobox(StringDTO.QuestionDTO question){
-//        
-//    }
-    public static void updateToGui() {
+     
+     public static void updateToGui() {
         DTO.QuestionDTO question = new QuestionDTO();
-        question = BUS.QuestionBUS.update1();
+        question = BUS.QuestionIQBUS.update1();
         comboBoxPhuongAnDung.removeAllItems();
         if (question.getOption1().equals(question.getOptionTrue())) {
             GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
             GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.setSelectedItem(question.getOptionTrue());
         } else {
-           GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOption1());
+            GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOption1());
         }
         if (question.getOption2().equals(question.getOptionTrue())) {
             GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
@@ -146,7 +140,7 @@ public class QuestionBUS {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin câu hỏi");
         } else {
             DTO.QuestionDTO question = new DTO.QuestionDTO(
-                    Integer.parseInt((GUI.ManHinhCapNhatCauHoi.labelMaCauHoiTuCSDL.getText())),
+                    Integer.parseInt((GUI.admin.ManHinhCapNhatCauHoi.labelMaCauHoiTuCSDL.getText())),
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldNoiDungCauHoi.getText(),
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn1.getText(),
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn2.getText(),
@@ -156,7 +150,7 @@ public class QuestionBUS {
                     GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.getSelectedItem().toString()
             );
             if (question != null) {
-                question1 = DAO.QuestionDAO.update(question);
+                question1 = DAO.QuestionIQDAO.update(question);
                 showQuestion();
                 return question1;
             } else {
@@ -167,12 +161,12 @@ public class QuestionBUS {
     }
 
     public static void delete1() {
-        int selectedRow = GUI.admin.ManHinhQuanLyCauHoi.tableDanhSachCauHoi.getSelectedRow();
+        int selectedRow = GUI.admin.ManHinhQuanLyCauHoiIQ.tableDanhSachCauHoi.getSelectedRow();
         if (selectedRow >= 0) {
-            ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionDAO.getListQuestion();
+            ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionIQDAO.getListQuestion();
             //lấy dữ liệu của câu hỏi cần xoá ra 1 obj
             DTO.QuestionDTO qt = questionList.get(selectedRow);
-            DAO.QuestionDAO.delete(qt.getID_Question());
+            DAO.QuestionIQDAO.delete(qt.getID_Question());
             showQuestion();
         }
         selectedRow = -1;
