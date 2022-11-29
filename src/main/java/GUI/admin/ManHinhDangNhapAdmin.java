@@ -17,6 +17,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
      */
     public ManHinhDangNhapAdmin() {
         initComponents();
+        ServerConfig.Server.createServer();
     }
 
     /**
@@ -135,7 +136,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
                                     .addComponent(labelKienThuc)
                                     .addComponent(labelTranhTai)))
                             .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
-                                .addContainerGap(188, Short.MAX_VALUE)
+                                .addContainerGap(192, Short.MAX_VALUE)
                                 .addComponent(labelDangNhapAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -229,6 +230,14 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ManHinhDangNhapAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

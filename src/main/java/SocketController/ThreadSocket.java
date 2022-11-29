@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class ThreadSocket extends Thread {
+
     private Socket socket = null;
     private ObjectOutputStream sendToClient = null;
     private ObjectInputStream fromClient = null;
@@ -24,9 +25,11 @@ public class ThreadSocket extends Thread {
     private AES aes = new AES();//mã hóa dữ liệu ở Server gửi về client
     private String dataJson;
     private UserDTO user;
+    private String n;
 
-    public ThreadSocket(Socket socket) {
+    public ThreadSocket(Socket socket, String n) {
         this.socket = socket;
+        this.n = n;
     }
 
     public void run() {
@@ -48,7 +51,7 @@ public class ThreadSocket extends Thread {
                 dataJson = aes.decrypt(dataClient.getData(), key);//data gui tu client
                 String function = aes.decrypt(dataClient.getFunction(), key);//chức năng client muốn thực hiện
                 //thực hiện chức năng yêu cầu của client
-                
+
             }
             sendToClient.close();
             fromClient.close();
@@ -58,8 +61,8 @@ public class ThreadSocket extends Thread {
             e.printStackTrace();
         }
     }
-    
-private void guiPublicKeyVaNhanSecretKey() {
+
+    private void guiPublicKeyVaNhanSecretKey() {
         try {
             //gui publickey cho client
             sendToClient.writeObject(rsa.getPublicKey());
@@ -75,4 +78,3 @@ private void guiPublicKeyVaNhanSecretKey() {
         }
     }
 }
-    

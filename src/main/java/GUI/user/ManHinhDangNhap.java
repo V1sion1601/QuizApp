@@ -3,7 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI.user;
+
+import ServerConfig.DataTransfer;
 import java.awt.Color;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import ServerConfig.DataTransfer.Send;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import org.json.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 /**
  *
@@ -15,8 +31,22 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
      * Creates new form ManHinhDangNhap
      */
     public static int checktk;
-    public ManHinhDangNhap() {
+    Socket socket = null;
+    private DataTransfer transfer = new DataTransfer();
+
+    public ManHinhDangNhap() throws IOException {
         initComponents();
+
+        String api = "https://retoolapi.dev/wItTy8/data/1";
+        Document doc = Jsoup.connect(api)
+                .ignoreContentType(true).ignoreHttpErrors(true)
+                .header("Content-type", "application/json")
+                .method(Connection.Method.GET).execute().parse();
+        JSONObject jsonObject = new JSONObject(doc.text());
+        System.out.println(jsonObject.get("ip").toString());
+        socket = new Socket(jsonObject.get("ip").toString(), 4949);
+
+        System.out.println("Succeed");
     }
 
     /**
@@ -201,7 +231,18 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
-        System.exit(0);
+        try {
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            transfer.setSend(socket, out, "bye");
+            transfer.send.run();
+            socket.close();
+            ExecutorService excutor = Executors.newFixedThreadPool(2);
+            excutor.execute(transfer.send);
+            System.exit(0);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered
@@ -239,19 +280,24 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
         System.out.println(b);
         BUS.UserBUS.findtaikhoan(a, b);
-        
+
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-      
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new ManHinhDangNhap().setVisible(true);
+                try {
+                    new ManHinhDangNhap().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

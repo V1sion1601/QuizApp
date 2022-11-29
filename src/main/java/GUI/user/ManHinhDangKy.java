@@ -1,6 +1,9 @@
 package GUI.user;
 
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -211,10 +214,14 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         String b = String.valueOf(passwordFieldMatKhau.getPassword());
         String c = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
         if (b.equals(c)) {
-            BUS.UserBUS.insert1();
-            this.setVisible(false);
-            GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
-            frame.setVisible(true);
+            try {
+                BUS.UserBUS.insert1();
+                this.setVisible(false);
+                GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
+                frame.setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ManHinhDangKy.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
         }
