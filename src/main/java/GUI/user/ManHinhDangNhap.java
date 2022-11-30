@@ -12,7 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import ServerConfig.DataTransfer.Send;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -45,8 +47,14 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         JSONObject jsonObject = new JSONObject(doc.text());
         System.out.println(jsonObject.get("ip").toString());
         socket = new Socket(jsonObject.get("ip").toString(), 4949);
+       
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        System.out.println(transfer);
 
-        System.out.println("Succeed");
+        transfer.setReceive(socket, in);
+        transfer.receive.run();
+
+//        System.out.println("Public key of this server " + );
     }
 
     /**
@@ -235,9 +243,10 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             transfer.setSend(socket, out, "bye");
             transfer.send.run();
-            socket.close();
+
             ExecutorService excutor = Executors.newFixedThreadPool(2);
             excutor.execute(transfer.send);
+            socket.close();
             System.exit(0);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);

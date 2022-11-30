@@ -13,7 +13,13 @@ import SocketController.ThreadSocket;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -31,8 +37,13 @@ public class Server {
     public static Vector<ClientHandler> clientList = new Vector<>();
     public static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThread);
 
-    public static void createServer() {
-
+    public static void createServer() throws NoSuchAlgorithmException {
+        KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+        generator.initialize(2048);
+        KeyPair pair = generator.generateKeyPair();
+        PrivateKey privateKey = pair.getPrivate();
+        PublicKey publicKey = pair.getPublic();
+        String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
         SwingWorker sw = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {
@@ -50,18 +61,17 @@ public class Server {
                 try {
                     serverSocket = new ServerSocket(port);
                     System.out.println("server starting...");
+                    
                     int i = 1;
                     while (true) {
-                        // Su dung multithread
-                        // khi có 1 client kết nối tới thì server tạo ra 1 luồng mới cho việc kết nối đến client
 
-                        ClientHandler client = new ClientHandler(serverSocket.accept(), Integer.toString(i++));
+                        ClientHandler client = new ClientHandler(serverSocket.accept(), Integer.toString(i++), publicKeyString);
                         clientList.add(client);
                         executor.execute(client);
                     }
                 } catch (IOException e) {
                     System.out.println("port da duoc su dung, chon port khac hoac tat port " + port + " o tien trinh khac");
-                }// Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                }
                 return "Finished";
             }
         };

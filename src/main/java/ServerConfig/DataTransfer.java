@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import javax.swing.SwingWorker;
 
 /**
  *
@@ -24,13 +25,14 @@ public class DataTransfer {
         send = new Send(s, o, input);
     }
 
-    public void setReceive(Socket s, BufferedWriter o, String input) {
-        send = new Send(s, o, input);
+    public void setReceive(Socket s, BufferedReader r) {
+
+        receive = new Receive(s, r);
     }
 
     public class Send implements Runnable {
 
-        private Socket socket;
+        private Socket socket = null;
         private BufferedWriter out;
         private String input;
 
@@ -41,9 +43,11 @@ public class DataTransfer {
         }
 
         public void run() {
-           
+//            SwingWorker sw = new SwingWorker() {
+//                @Override
+//                protected Object doInBackground() throws Exception {
             try {
-                
+
                 while (true) {
 
                     out.write(input + "\n");
@@ -52,10 +56,16 @@ public class DataTransfer {
                         break;
                     }
                 }
-                this.socket.close();
+                socket.close();
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
+//                    return "Send Finished";
+//
+//                }
+//            };
+//            sw.execute();
+
         }
     }
 
@@ -70,14 +80,26 @@ public class DataTransfer {
         }
 
         public void run() {
-            try {
-                while (true) {
-                    String data = in.readLine();
-                    System.out.println("Received: " + data);
+            SwingWorker sw = new SwingWorker() {
+                @Override
+                protected Object doInBackground() throws Exception {
+
+                    try {
+                        while (true) {
+                            System.out.println(in.readLine());
+                            String data = in.readLine();
+                            System.out.println("Received: " + data);
+                        }
+
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    return "Receive Finished";
                 }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            };
+            sw.execute();
+
         }
     }
 }

@@ -5,6 +5,9 @@
 package GUI.admin;
 
 import java.awt.Color;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,7 +18,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
     /**
      * Creates new form ManHinhDangNhap
      */
-    public ManHinhDangNhapAdmin() {
+    public ManHinhDangNhapAdmin() throws NoSuchAlgorithmException {
         initComponents();
         ServerConfig.Server.createServer();
     }
@@ -250,7 +253,11 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhDangNhapAdmin().setVisible(true);
+                try {
+                    new ManHinhDangNhapAdmin().setVisible(true);
+                } catch (NoSuchAlgorithmException ex) {
+                    Logger.getLogger(ManHinhDangNhapAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
