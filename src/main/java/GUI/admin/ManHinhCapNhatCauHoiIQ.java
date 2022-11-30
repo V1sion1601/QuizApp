@@ -100,8 +100,18 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelGioiTinh.setText("Phương án đúng :");
 
         comboBoxPhuongAnDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxPhuongAnDung.setToolTipText("Phương án đúng");
+        comboBoxPhuongAnDung.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                comboBoxPhuongAnDungMouseMoved(evt);
+            }
+        });
+        comboBoxPhuongAnDung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboBoxPhuongAnDungMouseClicked(evt);
+            }
+        });
 
         buttonLuuThayDoi.setBackground(new java.awt.Color(34, 139, 34));
         buttonLuuThayDoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -212,7 +222,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn4)
                     .addComponent(textFieldPhuongAn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelGioiTinh))
@@ -259,9 +269,22 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonLuuThayDoiMouseExited
 
     private void buttonLuuThayDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseClicked
+        BUS.QuestionIQBUS.updateToGui();
         String noiDungThongBao = "Cập nhật thành công";
         JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonLuuThayDoiMouseClicked
+
+    private void comboBoxPhuongAnDungMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseMoved
+        comboBoxPhuongAnDung.removeAllItems();
+        GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.addItem(textFieldPhuongAn1.getText());
+        GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.addItem(textFieldPhuongAn2.getText());
+        GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.addItem(textFieldPhuongAn3.getText());
+        GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.addItem(textFieldPhuongAn4.getText());
+    }//GEN-LAST:event_comboBoxPhuongAnDungMouseMoved
+
+    private void comboBoxPhuongAnDungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseClicked
+        
+    }//GEN-LAST:event_comboBoxPhuongAnDungMouseClicked
 
     /**
      * @param args the command line arguments

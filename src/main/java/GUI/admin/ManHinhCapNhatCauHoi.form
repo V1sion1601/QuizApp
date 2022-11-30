@@ -291,6 +291,10 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ph&#x1b0;&#x1a1;ng &#xe1;n &#x111;&#xfa;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="comboBoxPhuongAnDungMouseMoved"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxPhuongAnDungActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

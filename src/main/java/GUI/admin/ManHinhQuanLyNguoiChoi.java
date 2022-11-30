@@ -254,8 +254,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
-        GUI.admin.ManHinhXacNhanXoaNguoiChoi frame = new ManHinhXacNhanXoaNguoiChoi();
-            frame.setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered

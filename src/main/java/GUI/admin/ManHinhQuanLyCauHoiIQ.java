@@ -1,9 +1,5 @@
 package GUI.admin;
 
-import static GUI.admin.ManHinhQuanLyCauHoi.model;
-import static GUI.admin.ManHinhQuanLyCauHoi.qt;
-import static GUI.admin.ManHinhQuanLyCauHoi.selectedRow;
-import static GUI.admin.ManHinhQuanLyCauHoi.tableDanhSachCauHoi;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -14,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
 
-    public static DefaultTableModel model;
+    public static DefaultTableModel model2;
     public static int selectedRow = -1;
     public static int dapAn = 0;
     public static DTO.QuestionDTO qt = new DTO.QuestionDTO();
@@ -23,14 +19,14 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
 
-        model = (DefaultTableModel) tableDanhSachCauHoi.getModel();
-        tableDanhSachCauHoi.setModel(model);
-        BUS.QuestionBUS.showQuestion();
-        tableDanhSachCauHoi.addMouseListener(new MouseListener() {
+        model2 = (DefaultTableModel) tableDanhSachCauHoiIQ.getModel();
+        tableDanhSachCauHoiIQ.setModel(model2);
+        BUS.QuestionIQBUS.showQuestionIQ();
+        tableDanhSachCauHoiIQ.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                selectedRow = tableDanhSachCauHoi.getSelectedRow();
-                ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionDAO.getListQuestion();
+                selectedRow = tableDanhSachCauHoiIQ.getSelectedRow();
+                ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionIQDAO.getListQuestion();
                 qt = questionList.get(selectedRow);
             }
 
@@ -58,13 +54,13 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
 
     private void cacChinhSuaGiaoDienBangCode() {
         // Chỉnh sửa về bảng danh sách người dùng
-        JLabel headerLabel = (JLabel) tableDanhSachCauHoi.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) tableDanhSachCauHoiIQ.getTableHeader().getDefaultRenderer();
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
-        tableDanhSachCauHoi.getTableHeader().setPreferredSize(new Dimension(50, 50));
-        tableDanhSachCauHoi.getTableHeader().setFont(new Font("Segoe UI", 18, 18));
-        tableDanhSachCauHoi.getTableHeader().setBackground(Color.gray);
-        tableDanhSachCauHoi.setBackground(new Color(255, 255, 255));
-        tableDanhSachCauHoi.setFillsViewportHeight(true);
+        tableDanhSachCauHoiIQ.getTableHeader().setPreferredSize(new Dimension(50, 50));
+        tableDanhSachCauHoiIQ.getTableHeader().setFont(new Font("Segoe UI", 18, 18));
+        tableDanhSachCauHoiIQ.getTableHeader().setBackground(Color.gray);
+        tableDanhSachCauHoiIQ.setBackground(new Color(255, 255, 255));
+        tableDanhSachCauHoiIQ.setFillsViewportHeight(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,7 +77,7 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
         scrollPaneDanhSachCauHoi = new javax.swing.JScrollPane();
-        tableDanhSachCauHoi = new javax.swing.JTable();
+        tableDanhSachCauHoiIQ = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -184,8 +180,8 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
-        tableDanhSachCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tableDanhSachCauHoi.setModel(new javax.swing.table.DefaultTableModel(
+        tableDanhSachCauHoiIQ.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tableDanhSachCauHoiIQ.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -201,8 +197,8 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tableDanhSachCauHoi.setRowHeight(50);
-        scrollPaneDanhSachCauHoi.setViewportView(tableDanhSachCauHoi);
+        tableDanhSachCauHoiIQ.setRowHeight(50);
+        scrollPaneDanhSachCauHoi.setViewportView(tableDanhSachCauHoiIQ);
 
         javax.swing.GroupLayout panelManHinhQuanLyCauHoiLayout = new javax.swing.GroupLayout(panelManHinhQuanLyCauHoi);
         panelManHinhQuanLyCauHoi.setLayout(panelManHinhQuanLyCauHoiLayout);
@@ -325,8 +321,9 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
-        } else {
-            BUS.QuestionBUS.showInfoQuestion(qt);
+         } else {
+            this.setVisible(false);
+            BUS.QuestionIQBUS.showInfoQuestionIQ(qt);
         }
     }//GEN-LAST:event_buttonCapNhatMouseClicked
 
@@ -407,6 +404,6 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhQuanLyCauHoi;
     private javax.swing.JScrollPane scrollPaneDanhSachCauHoi;
-    public static javax.swing.JTable tableDanhSachCauHoi;
+    public static javax.swing.JTable tableDanhSachCauHoiIQ;
     // End of variables declaration//GEN-END:variables
 }

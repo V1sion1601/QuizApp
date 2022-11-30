@@ -4,7 +4,6 @@
  */
 package BUS;
 
-import static BUS.QuestionIQBUS.showQuestion;
 import DTO.QuestionDTO;
 import GUI.admin.*;
 import static GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung;
@@ -17,20 +16,26 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class QuestionIQBUS {
-
-    public static List showQuestion() {
-        List<DTO.QuestionDTO> QuestionList = DAO.QuestionIQDAO.getListQuestion();
-        System.out.println(QuestionList);
-        GUI.admin.ManHinhQuanLyCauHoiIQ.model.setRowCount(0);
-        QuestionList.forEach(Question -> {
-            GUI.admin.ManHinhQuanLyCauHoiIQ.model.addRow(new Object[]{Question.getID_Question(),
+    public static String tempdapan="";
+    public static List showQuestionIQ() {
+        List<DTO.QuestionDTO> QuestionIQList = DAO.QuestionIQDAO.getListQuestion();
+        System.out.println(QuestionIQList);
+        GUI.admin.ManHinhQuanLyCauHoiIQ.model2.setRowCount(0);
+        QuestionIQList.forEach(Question -> {
+            GUI.admin.ManHinhQuanLyCauHoiIQ.model2.addRow(new Object[]{Question.getID_Question(),
                 Question.getContent(), Question.getOption1(), Question.getOption2(), Question.getOption3(),
                 Question.getOption4(), Question.getOptionTrue(), Question.getType()});
         });
-        return QuestionList;
+        return QuestionIQList;
     }
 
-    public static void showInfoQuestion(DTO.QuestionDTO qt) {
+    public static DTO.QuestionDTO selectQuestionIQByID(int ID) {
+        DTO.QuestionDTO question = new QuestionDTO();
+        question = DAO.QuestionIQDAO.getQuestionIQByID(ID);
+        return question;
+    }
+    
+    public static void showInfoQuestionIQ(DTO.QuestionDTO qt) {
         GUI.admin.ManHinhCapNhatCauHoiIQ frame = new GUI.admin.ManHinhCapNhatCauHoiIQ();
         frame.setVisible(true);
         frame.labelMaCauHoiIQTuCSDL.setText(String.valueOf(qt.getID_Question()));
@@ -39,6 +44,7 @@ public class QuestionIQBUS {
         frame.textFieldPhuongAn2.setText(qt.getOption2());
         frame.textFieldPhuongAn3.setText(qt.getOption3());
         frame.textFieldPhuongAn4.setText(qt.getOption4());
+        tempdapan = qt.getOptionTrue();
         if (qt.getOption1().equals(qt.getOptionTrue())) {
             frame.comboBoxPhuongAnDung.addItem(qt.getOptionTrue());
             frame.comboBoxPhuongAnDung.setSelectedItem(qt.getOptionTrue());
@@ -87,7 +93,7 @@ public class QuestionIQBUS {
                     GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn3.getText(),
                     GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn4.getText(),
                     GUI.admin.ManHinhThemCauHoiIQ.comboBoxPhuongAnDung.getSelectedItem().toString(),
-                    GUI.admin.ManHinhThemCauHoiIQ.comboBoxLoai.getSelectedItem().toString()
+                    "IQ"
             );
             if (qt != null) {
                 DAO.QuestionIQDAO.insert(qt);
@@ -100,7 +106,7 @@ public class QuestionIQBUS {
     public static void updateToGui() {
         DTO.QuestionDTO question = new QuestionDTO();
         question = BUS.QuestionIQBUS.update1();
-        comboBoxPhuongAnDung.removeAllItems();
+        ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.removeAllItems();
         if (question.getOption1().equals(question.getOptionTrue())) {
             GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
             GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.setSelectedItem(question.getOptionTrue());
@@ -125,11 +131,6 @@ public class QuestionIQBUS {
         } else {
             GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.addItem(question.getOption4());
         }
-//        if (question.getType().toLowerCase().equals("normal")) {
-//            GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxLoai.setSelectedItem("Normal");
-//        } else {
-//            GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxLoai.setSelectedItem("IQ");
-//        }
     }
 
     public static DTO.QuestionDTO update1() {
@@ -149,11 +150,11 @@ public class QuestionIQBUS {
                     GUI.admin.ManHinhCapNhatCauHoiIQ.textFieldPhuongAn3.getText(),
                     GUI.admin.ManHinhCapNhatCauHoiIQ.textFieldPhuongAn4.getText(),
                     GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxPhuongAnDung.getSelectedItem().toString(),
-                    GUI.admin.ManHinhCapNhatCauHoiIQ.comboBoxLoai.getSelectedItem().toString()
+                    "IQ"
             );
             if (question != null) {
                 question1 = DAO.QuestionIQDAO.update(question);
-                showQuestion();
+                showQuestionIQ();
                 return question1;
             } else {
                 JOptionPane.showMessageDialog(null, "");
@@ -163,13 +164,13 @@ public class QuestionIQBUS {
     }
 
     public static void delete1() {
-        int selectedRow = GUI.admin.ManHinhQuanLyCauHoiIQ.tableDanhSachCauHoi.getSelectedRow();
+        int selectedRow = GUI.admin.ManHinhQuanLyCauHoiIQ.tableDanhSachCauHoiIQ.getSelectedRow();
         if (selectedRow >= 0) {
             ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionIQDAO.getListQuestion();
             //lấy dữ liệu của câu hỏi cần xoá ra 1 obj
             DTO.QuestionDTO qt = questionList.get(selectedRow);
             DAO.QuestionIQDAO.delete(qt.getID_Question());
-            showQuestion();
+            showQuestionIQ();
         }
         selectedRow = -1;
     }

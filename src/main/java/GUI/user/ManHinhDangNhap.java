@@ -296,7 +296,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
         System.out.println(b);
         BUS.UserBUS.findtaikhoan(a, b);
-
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 
     /**

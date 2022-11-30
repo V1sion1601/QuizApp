@@ -4,11 +4,15 @@
  */
 package DAO;
 
+import DTO.QuestionDTO;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,12 +27,13 @@ public class QuestionIQDAO {
     public static ArrayList<DTO.QuestionDTO> getListQuestion() {
         ArrayList<DTO.QuestionDTO> QuestionList = new ArrayList<>();
         java.sql.Connection connection = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM question WHERE Type=IQ";
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
+            String sql = "SELECT * FROM question WHERE Type=?";
+            statement = connection.prepareCall(sql);
+            statement.setString(1, "IQ");
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 DTO.QuestionDTO Question = new DTO.QuestionDTO(
                         rs.getInt("ID_Question"),
@@ -109,6 +114,52 @@ public class QuestionIQDAO {
 
         }
         return QuestionListByQuantity;
+    }
+    
+    public static DTO.QuestionDTO getQuestionIQByID(int ID) {
+        DTO.QuestionDTO Question = new QuestionDTO();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM question WHERE ID_Question = ?";
+            statement = connection.prepareCall(sql);
+            statement.setInt(1, ID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Question = new DTO.QuestionDTO(
+                        rs.getInt("ID_Question"),
+                        rs.getString("Content"),
+                        rs.getString("Option1"),
+                        rs.getString("Option2"),
+                        rs.getString("Option3"),
+                        rs.getString("Option4"),
+                        rs.getString("OptionTrue"),
+                        rs.getString("Type")
+                );
+                
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        return Question;
     }
     
      /* Thêm câu hỏi */

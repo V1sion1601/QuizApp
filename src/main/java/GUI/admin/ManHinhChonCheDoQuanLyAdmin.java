@@ -123,6 +123,9 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         labelButtonQuanLyCauHoiIQ.setToolTipText("Chơi với máy");
         labelButtonQuanLyCauHoiIQ.setOpaque(true);
         labelButtonQuanLyCauHoiIQ.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonQuanLyCauHoiIQMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonQuanLyCauHoiIQMouseEntered(evt);
             }
@@ -230,18 +233,22 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
 
     private void labelButtonQuanLyNguoiChoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyNguoiChoiMouseClicked
         GUI.admin.ManHinhQuanLyNguoiChoi ManHinhQuanLyNguoiChoi = new ManHinhQuanLyNguoiChoi();
-        GUI.admin.ManHinhChonCheDoQuanLyAdmin ManHinhChonCheDoQuanLyAdmin = new ManHinhChonCheDoQuanLyAdmin();
-        ManHinhChonCheDoQuanLyAdmin.setVisible(false);
         ManHinhQuanLyNguoiChoi.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonQuanLyNguoiChoiMouseClicked
 
     private void labelButtonQuanLyCauHoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyCauHoiMouseClicked
         // TODO add your handling code here:
         GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
         frame.setVisible(true);
-        GUI.admin.ManHinhChonCheDoQuanLyAdmin frame1 = new ManHinhChonCheDoQuanLyAdmin();
-        frame1.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonQuanLyCauHoiMouseClicked
+
+    private void labelButtonQuanLyCauHoiIQMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyCauHoiIQMouseClicked
+        GUI.admin.ManHinhQuanLyCauHoiIQ frame = new ManHinhQuanLyCauHoiIQ();
+        frame.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseClicked
 
     /**
      * @param args the command line arguments
