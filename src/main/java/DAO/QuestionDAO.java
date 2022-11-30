@@ -123,7 +123,7 @@ public class QuestionDAO {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "INSERT INTO question VALUE(?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO question VALUE(?,?,?,?,?,?,?,Normal)";
             statement = connection.prepareCall(sql);
             statement.setInt(1, qt.getID_Question());
             statement.setString(2, qt.getContent());
@@ -233,4 +233,16 @@ public class QuestionDAO {
         }
 
     }
+    
+//    public Boolean hasQuestionID(int id) {
+//        Connection connection = DAO.Connection.connection();
+//        boolean result = false;
+//        String query = "SELECT * FROM `book` WHERE `id`='"+id+"'";
+//        ResultSet rs = connection.SQLQuery(query);
+//        if (rs != null){
+//            result = true;
+//        }
+//        connection.closeConnection();
+//        return result;
+//    }
 }

@@ -1,15 +1,59 @@
 package GUI.admin;
 
+import static GUI.admin.ManHinhQuanLyCauHoi.model;
+import static GUI.admin.ManHinhQuanLyCauHoi.qt;
+import static GUI.admin.ManHinhQuanLyCauHoi.selectedRow;
+import static GUI.admin.ManHinhQuanLyCauHoi.tableDanhSachCauHoi;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
 
+    public static DefaultTableModel model;
+    public static int selectedRow = -1;
     public static int dapAn = 0;
+    public static DTO.QuestionDTO qt = new DTO.QuestionDTO();
 
     public ManHinhQuanLyCauHoiIQ() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
+
+        model = (DefaultTableModel) tableDanhSachCauHoi.getModel();
+        tableDanhSachCauHoi.setModel(model);
+        BUS.QuestionBUS.showQuestion();
+        tableDanhSachCauHoi.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                selectedRow = tableDanhSachCauHoi.getSelectedRow();
+                ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionDAO.getListQuestion();
+                qt = questionList.get(selectedRow);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     private void cacChinhSuaGiaoDienBangCode() {
@@ -54,6 +98,9 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         buttonCapNhat.setText("Cập nhật");
         buttonCapNhat.setToolTipText("Cập nhật / Sửa");
         buttonCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonCapNhatMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonCapNhatMouseEntered(evt);
             }
@@ -71,6 +118,9 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         buttonThem.setMinimumSize(new java.awt.Dimension(107, 33));
         buttonThem.setPreferredSize(new java.awt.Dimension(107, 33));
         buttonThem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonThemMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonThemMouseEntered(evt);
             }
@@ -93,6 +143,9 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         buttonXoa.setMinimumSize(new java.awt.Dimension(107, 33));
         buttonXoa.setPreferredSize(new java.awt.Dimension(107, 33));
         buttonXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonXoaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonXoaMouseEntered(evt);
             }
@@ -251,6 +304,31 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
     private void buttonThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonThemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonThemActionPerformed
+
+    private void buttonXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseClicked
+        // TODO add your handling code here:
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
+        } else {
+            GUI.admin.ManHinhXacNhanXoaCauHoi frame = new ManHinhXacNhanXoaCauHoi();
+            frame.setVisible(true);
+        }
+    }//GEN-LAST:event_buttonXoaMouseClicked
+
+    private void buttonThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonThemMouseClicked
+        // TODO add your handling code here:
+        GUI.admin.ManHinhThemCauHoiIQ frame = new ManHinhThemCauHoiIQ();
+        frame.setVisible(true);
+    }//GEN-LAST:event_buttonThemMouseClicked
+
+    private void buttonCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseClicked
+        // TODO add your handling code here:
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
+        } else {
+            BUS.QuestionBUS.showInfoQuestion(qt);
+        }
+    }//GEN-LAST:event_buttonCapNhatMouseClicked
 
     /**
      * @param args the command line arguments

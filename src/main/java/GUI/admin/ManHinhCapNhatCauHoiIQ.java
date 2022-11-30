@@ -26,7 +26,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelMaCauHoi = new javax.swing.JLabel();
         labelMaCauHoiIQTuCSDL = new javax.swing.JLabel();
         labelNoiDungCauHoi = new javax.swing.JLabel();
-        textFieldTenNguoiChoi = new javax.swing.JTextField();
+        textFieldNoiDungCauHoi = new javax.swing.JTextField();
         labelPhuongAn1 = new javax.swing.JLabel();
         textFieldPhuongAn1 = new javax.swing.JTextField();
         labelGioiTinh = new javax.swing.JLabel();
@@ -87,8 +87,8 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelNoiDungCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelNoiDungCauHoi.setText("Nội dung câu hỏi :");
 
-        textFieldTenNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textFieldTenNguoiChoi.setToolTipText("Nội dung câu hỏi");
+        textFieldNoiDungCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textFieldNoiDungCauHoi.setToolTipText("Nội dung câu hỏi");
 
         labelPhuongAn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelPhuongAn1.setText("Phương án 1 :");
@@ -170,7 +170,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
                             .addComponent(textFieldPhuongAn3)
                             .addComponent(textFieldPhuongAn2)
                             .addComponent(textFieldPhuongAn1)
-                            .addComponent(textFieldTenNguoiChoi)
+                            .addComponent(textFieldNoiDungCauHoi)
                             .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
                                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +195,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNoiDungCauHoi)
-                    .addComponent(textFieldTenNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldNoiDungCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn1)
@@ -555,14 +555,14 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLuuThayDoi;
-    private javax.swing.JComboBox<String> comboBoxPhuongAnDung;
+    public static javax.swing.JComboBox<String> comboBoxPhuongAnDung;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelCapNhatCauHoiIQ;
     private javax.swing.JLabel labelGioiTinh;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMaCauHoi;
-    private javax.swing.JLabel labelMaCauHoiIQTuCSDL;
+    public static javax.swing.JLabel labelMaCauHoiIQTuCSDL;
     private javax.swing.JLabel labelNoiDungCauHoi;
     private javax.swing.JLabel labelPhuongAn1;
     private javax.swing.JLabel labelPhuongAn2;
@@ -570,10 +570,10 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     private javax.swing.JLabel labelPhuongAn4;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCapNhatCauHoi;
-    private javax.swing.JTextField textFieldPhuongAn1;
-    private javax.swing.JTextField textFieldPhuongAn2;
-    private javax.swing.JTextField textFieldPhuongAn3;
-    private javax.swing.JTextField textFieldPhuongAn4;
-    private javax.swing.JTextField textFieldTenNguoiChoi;
+    public static javax.swing.JTextField textFieldNoiDungCauHoi;
+    public static javax.swing.JTextField textFieldPhuongAn1;
+    public static javax.swing.JTextField textFieldPhuongAn2;
+    public static javax.swing.JTextField textFieldPhuongAn3;
+    public static javax.swing.JTextField textFieldPhuongAn4;
     // End of variables declaration//GEN-END:variables
 }

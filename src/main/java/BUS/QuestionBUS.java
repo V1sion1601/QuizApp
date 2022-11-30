@@ -177,4 +177,8 @@ public class QuestionBUS {
         }
         selectedRow = -1;
     }
+    
+//    public boolean checkIDQuestion(int id_question) {
+//        return QuestionDAO.has(isbn);
+//    }
 }

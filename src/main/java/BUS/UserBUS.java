@@ -11,17 +11,18 @@ import DTO.UserDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.io.IOException;
 
-public class UserBUS {
+public class UserBUS  {
 
     public static int checktk;
     public static GUI.user.ManHinhChonCheDoChoi ManHinhChonCheDoChoi = new GUI.user.ManHinhChonCheDoChoi();
     public static GUI.user.ManHinhDangNhap ManHinhDangNhap = new GUI.user.ManHinhDangNhap();
-    public static GUI.admin.ManHinhQuanLyCauHoi ManHinhQuanLyCauHoi = new GUI.admin.ManHinhQuanLyCauHoi();
+    public static GUI.admin.ManHinhChonCheDoQuanLyAdmin ManHinhChonCheDoQuanLyAdmin = new GUI.admin.ManHinhChonCheDoQuanLyAdmin();
     public static DTO.UserDTO user;
     public static DTO.UserDTO usersavelogin;
 
-    public static void findtaikhoan(String a, String b) {
+    public static void findtaikhoan (String a, String b) {
         user = new DTO.UserDTO(a, b);
         user = DAO.UserDAO.findtaikhoan(user);
         if (GUI.user.ManHinhDangNhap.checktk == 1) {
@@ -29,15 +30,15 @@ public class UserBUS {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công với quyền Admin");
                 usersavelogin = user;
                 UserBUS.BlockUser(usersavelogin.getName(), "Online");
-                ManHinhQuanLyCauHoi.setVisible(true);
-                ManHinhQuanLyCauHoi.setLocationRelativeTo(null);
+                ManHinhChonCheDoQuanLyAdmin.setVisible(true);
+                ManHinhChonCheDoQuanLyAdmin.setLocationRelativeTo(null);
                 ManHinhDangNhap.setVisible(false);
             } else if (user.getRole().toLowerCase().equals("user") && !user.getStatus().toLowerCase().equals("block")) {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 usersavelogin = user;
                 UserBUS.BlockUser(usersavelogin.getName(), "Online");
-                ManHinhQuanLyCauHoi.setVisible(true);
-                ManHinhQuanLyCauHoi.setLocationRelativeTo(null);
+                ManHinhChonCheDoChoi.setVisible(true);
+                ManHinhChonCheDoChoi.setLocationRelativeTo(null);
                 ManHinhDangNhap.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");

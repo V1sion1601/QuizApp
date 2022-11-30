@@ -1,5 +1,6 @@
 package GUI.admin;
 
+import BUS.QuestionBUS;
 import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -118,6 +119,11 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 buttonLuuMouseExited(evt);
+            }
+        });
+        buttonLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLuuActionPerformed(evt);
             }
         });
 
@@ -280,6 +286,12 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
         String noiDungThongBao = "Thêm thành công";
         JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonLuuMouseClicked
+
+    private void buttonLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLuuActionPerformed
+        //add Question
+        QuestionBUS question =new QuestionBUS();
+        question.insert1();
+    }//GEN-LAST:event_buttonLuuActionPerformed
 
     /**
      * @param args the command line arguments

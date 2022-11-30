@@ -58,6 +58,9 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         labelButtonQuanLyNguoiChoi.setToolTipText("Tìm đối thủ Online");
         labelButtonQuanLyNguoiChoi.setOpaque(true);
         labelButtonQuanLyNguoiChoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonQuanLyNguoiChoiMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonQuanLyNguoiChoiMouseEntered(evt);
             }
@@ -221,6 +224,11 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
     private void labelButtonQuanLyCauHoiIQMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyCauHoiIQMouseExited
         labelButtonQuanLyCauHoiIQ.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseExited
+
+    private void labelButtonQuanLyNguoiChoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyNguoiChoiMouseClicked
+        GUI.admin.ManHinhQuanLyNguoiChoi ManHinhQuanLyNguoiChoi = new ManHinhQuanLyNguoiChoi();
+        ManHinhQuanLyNguoiChoi.setVisible(true);
+    }//GEN-LAST:event_labelButtonQuanLyNguoiChoiMouseClicked
 
     /**
      * @param args the command line arguments

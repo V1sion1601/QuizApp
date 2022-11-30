@@ -36,23 +36,25 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     Socket socket = null;
     private DataTransfer transfer = new DataTransfer();
 
-    public ManHinhDangNhap() throws IOException {
+    public ManHinhDangNhap() {
         initComponents();
+        try {
+            String api = "https://retoolapi.dev/wItTy8/data/1";
+            Document doc = Jsoup.connect(api)
+                    .ignoreContentType(true).ignoreHttpErrors(true)
+                    .header("Content-type", "application/json")
+                    .method(Connection.Method.GET).execute().parse();
+            JSONObject jsonObject = new JSONObject(doc.text());
+            System.out.println(jsonObject.get("ip").toString());
+            socket = new Socket(jsonObject.get("ip").toString(), 4949);
 
-        String api = "https://retoolapi.dev/wItTy8/data/1";
-        Document doc = Jsoup.connect(api)
-                .ignoreContentType(true).ignoreHttpErrors(true)
-                .header("Content-type", "application/json")
-                .method(Connection.Method.GET).execute().parse();
-        JSONObject jsonObject = new JSONObject(doc.text());
-        System.out.println(jsonObject.get("ip").toString());
-        socket = new Socket(jsonObject.get("ip").toString(), 4949);
-       
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        System.out.println(transfer);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            System.out.println(transfer);
 
-        transfer.setReceive(socket, in);
-        transfer.receive.run();
+            transfer.setReceive(socket, in);
+            transfer.receive.run();
+        } catch (Exception e) {
+        }
 
 //        System.out.println("Public key of this server " + );
     }
@@ -302,11 +304,9 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                try {
-                    new ManHinhDangNhap().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
+                new ManHinhDangNhap().setVisible(true);
+
             }
         });
     }
