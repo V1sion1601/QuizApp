@@ -93,6 +93,9 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonChan.setText("Chặn");
         buttonChan.setToolTipText("Chặn");
         buttonChan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonChanMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonChanMouseEntered(evt);
             }
@@ -111,6 +114,9 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonCapNhat.setText("Cập nhật");
         buttonCapNhat.setToolTipText("Cập nhật");
         buttonCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonCapNhatMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonCapNhatMouseEntered(evt);
             }
@@ -125,6 +131,9 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonXoa.setText("Xoá");
         buttonXoa.setToolTipText("Xoá");
         buttonXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonXoaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonXoaMouseEntered(evt);
             }
@@ -245,7 +254,8 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
-        System.exit(0);
+        GUI.admin.ManHinhXacNhanXoaNguoiChoi frame = new ManHinhXacNhanXoaNguoiChoi();
+            frame.setVisible(false);
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered
@@ -279,6 +289,39 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     private void buttonChanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseExited
         buttonChan.setBackground(new Color(153, 153, 0));
     }//GEN-LAST:event_buttonChanMouseExited
+
+    private void buttonXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseClicked
+        // TODO add your handling code here:
+       if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 user trong bảng");
+        } else {
+            GUI.admin.ManHinhXacNhanXoaNguoiChoi frame = new ManHinhXacNhanXoaNguoiChoi();
+            frame.setVisible(true);
+        }
+    }//GEN-LAST:event_buttonXoaMouseClicked
+
+    private void buttonCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseClicked
+        // TODO add your handling code here:
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 user trong bảng");
+         } else {
+            BUS.UserBUS.showInfoUser(user);
+        }
+    }//GEN-LAST:event_buttonCapNhatMouseClicked
+
+    private void buttonChanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseClicked
+        // TODO add your handling code here:
+        if(user.getStatus().toLowerCase().equals("offline") || user.getStatus().toLowerCase().equals("online"))
+        {
+            BUS.UserBUS.BlockUser(user.getName(), "Block");
+            BUS.UserBUS.showUserByID();
+        }    
+        if(user.getStatus().toLowerCase().equals("block"))
+        {
+            BUS.UserBUS.BlockUser(user.getName(), "Offline");
+            BUS.UserBUS.showUserByID();
+        } 
+    }//GEN-LAST:event_buttonChanMouseClicked
 
     /**
      * @param args the command line arguments

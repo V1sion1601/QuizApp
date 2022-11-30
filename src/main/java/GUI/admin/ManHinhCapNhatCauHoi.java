@@ -102,7 +102,7 @@ import javax.swing.JOptionPane;
         labelGioiTinh.setText("Phương án đúng :");
 
         comboBoxPhuongAnDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxPhuongAnDung.setToolTipText("Phương án đúng");
 
         buttonLuuThayDoi.setBackground(new java.awt.Color(34, 139, 34));
@@ -119,6 +119,11 @@ import javax.swing.JOptionPane;
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 buttonLuuThayDoiMouseExited(evt);
+            }
+        });
+        buttonLuuThayDoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLuuThayDoiActionPerformed(evt);
             }
         });
 
@@ -281,6 +286,13 @@ import javax.swing.JOptionPane;
         String noiDungThongBao = "Cập nhật thành công";
         JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonLuuThayDoiMouseClicked
+
+    private void buttonLuuThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiActionPerformed
+        BUS.QuestionBUS.updateToGui();
+//        this.setVisible(false);
+//        GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
+//        frame.setVisible(true);
+    }//GEN-LAST:event_buttonLuuThayDoiActionPerformed
 
     /**
      * @param args the command line arguments

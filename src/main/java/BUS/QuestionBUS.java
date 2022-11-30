@@ -129,11 +129,11 @@ public class QuestionBUS {
         } else {
             GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOption4());
         }
-        if (question.getType().toLowerCase().equals("normal")) {
-            GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.setSelectedItem("Normal");
-        } else {
-            GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.setSelectedItem("IQ");
-        }
+//        if (question.getType().toLowerCase().equals("normal")) {
+//            GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.setSelectedItem("Normal");
+//        } else {
+//            GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.setSelectedItem("IQ");
+//        }
     }
 
     public static DTO.QuestionDTO update1() {

@@ -426,7 +426,7 @@ public class UserDAO {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "Insert into user value(?,?,?,?,?,?,?,?,?,?)";
+            String sql = "Insert into user value(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             statement = connection.prepareCall(sql);
             statement.setInt(1, user.getIdUser());
             statement.setString(2, user.getName());
@@ -438,6 +438,9 @@ public class UserDAO {
             statement.setInt(8, user.getTotalMatchWin());
             statement.setInt(9, user.getWinStreak());
             statement.setInt(10, user.getHighestWinStreak());
+            statement.setInt(11, user.getTotalMatchLose());
+            statement.setInt(12, user.getLoseStreak());
+            statement.setInt(13, user.getHighestLoseStreak());
 
             statement.execute();
         } catch (SQLException ex) {
