@@ -133,6 +133,8 @@ public class ManHinhXacNhanXoaNguoiChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHuyXoaMouseClicked
 
     private void buttonXacNhanXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseClicked
+        BUS.UserBUS.delete1();
+        this.setVisible(false);
         String noiDungThongBao = "Xoá thành công";
         JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonXacNhanXoaMouseClicked
