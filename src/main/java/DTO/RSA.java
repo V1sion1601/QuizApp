@@ -19,16 +19,15 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class RSA {
+
     private PrivateKey privateKey;
     private PublicKey publicKey;
-    public RSA(){
-        try{
-            SecureRandom sr = new SecureRandom();
-            // Thuật toán phát sinh khóa - RSA
-            // Độ dài khóa 1024(bits), độ dài khóa này quyết định đến độ an toàn của khóa, càng lớn thì càng an toàn
-            // Demo chỉ sử dụng 1024 bit. Nhưng theo khuyến cáo thì độ dài khóa nên tối thiểu là 2048
+
+    public RSA() {
+        try {
+
             KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
-            kpg.initialize(1024, sr);
+            kpg.initialize(1024);
             // Khởi tạo cặp khóa
             KeyPair kp = kpg.genKeyPair();
             // PublicKey
@@ -41,6 +40,7 @@ public class RSA {
             e.printStackTrace();
         }
     }
+
     public PublicKey getPublicKey() {
         return publicKey;
     }
@@ -49,10 +49,20 @@ public class RSA {
         return privateKey;
     }
 
-    public String Encrpytion(String message, PublicKey publicKey){
+    public String getPublicKeyString(PublicKey publicKey) {
+        return Base64.getEncoder().encodeToString(publicKey.getEncoded());
+
+    }
+
+    public String getPrivateKeyString(PrivateKey privateKey) {
+        return Base64.getEncoder().encodeToString(privateKey.getEncoded());
+
+    }
+
+    public String Encrpytion(String message, PublicKey publicKey) {
         // Mã hoá dữ liệu
         String strEncrypt = "";
-        try{
+        try {
             Cipher c = Cipher.getInstance("RSA");
             c.init(Cipher.ENCRYPT_MODE, publicKey);
             byte encryptOut[] = c.doFinal(message.getBytes());
@@ -70,12 +80,13 @@ public class RSA {
         }
         return strEncrypt;
     }
-    public String Descrpytion(String ciphertext,PrivateKey privateKey){
-        try{
+
+    public String Descrpytion(String ciphertext, PrivateKey privateKey) {
+        try {
             Cipher c = Cipher.getInstance("RSA");
             c.init(Cipher.DECRYPT_MODE, privateKey);
             byte decryptOut[] = c.doFinal(Base64.getDecoder().decode(ciphertext));
-            return  new String(decryptOut);
+            return new String(decryptOut);
         } catch (NoSuchPaddingException e) {
             e.printStackTrace();
         } catch (IllegalBlockSizeException e) {
@@ -90,4 +101,3 @@ public class RSA {
         return "";
     }
 }
-

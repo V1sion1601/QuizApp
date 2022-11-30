@@ -5,6 +5,7 @@
  */
 package DTO;
 
+import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -13,15 +14,37 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 
 public class AES {
-    public AES(){
+
+    private SecretKey key;
+
+    public AES() {
+        try {
+            KeyGenerator kpg = KeyGenerator.getInstance("AES");
+            kpg.init(128);
+            this.key = kpg.generateKey();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
-    public SecretKey StringtoSecretKey(String key){//chuyển chuỗi khóa về dạng object SecretKey(khóa bí mật của AES)
+
+    public SecretKey getKey() {
+        return key;
+    }
+    
+    
+    
+    public void setKey(SecretKey key) {
+        this.key = key;
+    }
+
+    public SecretKey StringtoSecretKey(String key) {//chuyển chuỗi khóa về dạng object SecretKey(khóa bí mật của AES)
         byte[] decodedKey = Base64.getDecoder().decode(key);
 // rebuild key using SecretKeySpec
         SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
         return originalKey;// trả về đối tượng là SecretKey
     }
-    public String encrypt(String strToEncrypt,SecretKey key1) {
+
+    public String encrypt(String strToEncrypt, SecretKey key1) {
         try {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, key1);
@@ -31,6 +54,7 @@ public class AES {
         }
         return null;
     }
+
     public String decrypt(String strToDecrypt, SecretKey secretKey) {
         try {
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");

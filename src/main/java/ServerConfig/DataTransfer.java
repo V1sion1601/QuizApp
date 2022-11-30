@@ -83,11 +83,11 @@ public class DataTransfer {
             SwingWorker sw = new SwingWorker() {
                 @Override
                 protected Object doInBackground() throws Exception {
-
+                    String data = null;
                     try {
                         while (true) {
-                            System.out.println(in.readLine());
-                            String data = in.readLine();
+                          
+                            data = in.readLine();
                             System.out.println("Received: " + data);
                         }
 
@@ -95,7 +95,7 @@ public class DataTransfer {
                         System.out.println(e.getMessage());
                     }
 
-                    return "Receive Finished";
+                    return data;
                 }
             };
             sw.execute();

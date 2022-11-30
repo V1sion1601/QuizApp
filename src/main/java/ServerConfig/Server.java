@@ -9,6 +9,7 @@ package ServerConfig;
 import DAO.QuestionDAO;
 import DTO.QuestionDTO;
 import DTO.QuestionSetDTO;
+import DTO.RSA;
 import SocketController.ThreadSocket;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -38,12 +39,14 @@ public class Server {
     public static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThread);
 
     public static void createServer() throws NoSuchAlgorithmException {
-        KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-        generator.initialize(2048);
-        KeyPair pair = generator.generateKeyPair();
-        PrivateKey privateKey = pair.getPrivate();
-        PublicKey publicKey = pair.getPublic();
-        String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
+        RSA rsa = new RSA();
+        PublicKey publicKey = rsa.getPublicKey();
+//        KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+//        generator.initialize(2048);
+//        KeyPair pair = generator.generateKeyPair();
+//        PrivateKey privateKey = pair.getPrivate();
+//        PublicKey publicKey = pair.getPublic();
+//        String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
         SwingWorker sw = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {
@@ -65,7 +68,7 @@ public class Server {
                     int i = 1;
                     while (true) {
 
-                        ClientHandler client = new ClientHandler(serverSocket.accept(), Integer.toString(i++), publicKeyString);
+                        ClientHandler client = new ClientHandler(serverSocket.accept(), Integer.toString(i++), rsa.getPublicKeyString(publicKey));
                         clientList.add(client);
                         executor.execute(client);
                     }

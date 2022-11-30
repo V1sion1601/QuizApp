@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import javax.crypto.SecretKey;
 import org.json.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -35,9 +36,12 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     public static int checktk;
     Socket socket = null;
     private DataTransfer transfer = new DataTransfer();
+    private SecretKey clientKey = null;
+    private String publicKey = null;
 
     public ManHinhDangNhap() {
         initComponents();
+
         try {
             String api = "https://retoolapi.dev/wItTy8/data/1";
             Document doc = Jsoup.connect(api)
@@ -49,14 +53,15 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             socket = new Socket(jsonObject.get("ip").toString(), 4949);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            System.out.println(transfer);
-
             transfer.setReceive(socket, in);
             transfer.receive.run();
+            
+            publicKey = in.readLine();
+            System.out.println("Server key: " + publicKey);
+            System.out.println("Client key: " + clientKey);
         } catch (Exception e) {
         }
 
-//        System.out.println("Public key of this server " + );
     }
 
     /**

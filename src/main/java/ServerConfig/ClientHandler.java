@@ -35,6 +35,7 @@ public class ClientHandler implements Runnable {
         System.out.println(threadSet);
         try {
             String input = null;
+            //Gui key truoc khi vao` input
             for (ClientHandler client : Server.clientList) {
                 if (name.equals(client.name)) {
                     client.out.write(key + "\n");
@@ -42,13 +43,14 @@ public class ClientHandler implements Runnable {
                     System.out.println("Server sent '" + key + "' to Client " + name);
                 }
             }
+            //Xu li dau vao
             while (true) {
-                //Handle if user's input is bye
+               
                 input = in.readLine();
 
                 System.out.println("Server received '" + input + "' from Client " + name);
                 if (input.equals("bye")) {
-//                    handleSendDataMain.clientList, "", "");
+
                     System.out.println("Name " + name);
                     Server.clientList.remove(this);
                     Server.executor.remove(this);
