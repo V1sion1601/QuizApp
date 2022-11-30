@@ -64,6 +64,9 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
         labelButtonDangNhap.setToolTipText("Đăng nhập");
         labelButtonDangNhap.setOpaque(true);
         labelButtonDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonDangNhapMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonDangNhapMouseEntered(evt);
             }
@@ -207,6 +210,10 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
     private void labelButtonDangNhapMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseExited
         labelButtonDangNhap.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelButtonDangNhapMouseExited
+
+    private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 
     /**
      * @param args the command line arguments

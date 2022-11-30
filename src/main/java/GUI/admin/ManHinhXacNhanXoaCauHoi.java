@@ -130,12 +130,12 @@ public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHuyXoaMouseExited
 
     private void buttonHuyXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHuyXoaMouseClicked
-        System.exit(0);
+        this.setVisible(false);
     }//GEN-LAST:event_buttonHuyXoaMouseClicked
 
     private void buttonXacNhanXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseClicked
-        String noiDungThongBao = "Xoá thành công";
-        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        BUS.QuestionBUS.delete1();
+        this.setVisible(false);
     }//GEN-LAST:event_buttonXacNhanXoaMouseClicked
 
     private void buttonXacNhanXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseEntered

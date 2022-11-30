@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import DTO.QuestionDTO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -115,6 +116,52 @@ public class QuestionDAO {
         }
         return QuestionListByQuantity;
     }
+    
+    public static DTO.QuestionDTO getQuestionByID(int ID) {
+        DTO.QuestionDTO Question = new QuestionDTO();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM question WHERE ID_Question = ?";
+            statement = connection.prepareCall(sql);
+            statement.setInt(1, ID);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Question = new DTO.QuestionDTO(
+                        rs.getInt("ID_Question"),
+                        rs.getString("Content"),
+                        rs.getString("Option1"),
+                        rs.getString("Option2"),
+                        rs.getString("Option3"),
+                        rs.getString("Option4"),
+                        rs.getString("OptionTrue"),
+                        rs.getString("Type")
+                );
+                
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        return Question;
+    }
 
     /* Thêm câu hỏi */
     public static void insert(DTO.QuestionDTO qt) {
@@ -123,7 +170,7 @@ public class QuestionDAO {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "INSERT INTO question VALUE(?,?,?,?,?,?,?,Normal)";
+            String sql = "INSERT INTO question VALUE(?,?,?,?,?,?,?,?)";
             statement = connection.prepareCall(sql);
             statement.setInt(1, qt.getID_Question());
             statement.setString(2, qt.getContent());
@@ -132,7 +179,7 @@ public class QuestionDAO {
             statement.setString(5, qt.getOption3());
             statement.setString(6, qt.getOption4());
             statement.setString(7, qt.getOptionTrue());
-            statement.setString(8, qt.getType());
+            statement.setString(8, "Normal");
             statement.execute();
 
         } catch (SQLException ex) {

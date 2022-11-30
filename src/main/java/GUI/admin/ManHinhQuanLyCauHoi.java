@@ -320,6 +320,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
          } else {
+            this.setVisible(false);
             BUS.QuestionBUS.showInfoQuestion(qt);
         }
 
@@ -331,6 +332,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
         // TODO add your handling code here:
         GUI.admin.ManHinhThemCauHoi frame = new ManHinhThemCauHoi();
         frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_buttonThemMouseClicked
 
 /**

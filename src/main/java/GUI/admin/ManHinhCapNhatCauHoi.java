@@ -1,6 +1,7 @@
 package GUI.admin;
 
 
+import DTO.QuestionDTO;
 import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -104,6 +105,16 @@ import javax.swing.JOptionPane;
         comboBoxPhuongAnDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         comboBoxPhuongAnDung.setToolTipText("Phương án đúng");
+        comboBoxPhuongAnDung.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                comboBoxPhuongAnDungMouseMoved(evt);
+            }
+        });
+        comboBoxPhuongAnDung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxPhuongAnDungActionPerformed(evt);
+            }
+        });
 
         buttonLuuThayDoi.setBackground(new java.awt.Color(34, 139, 34));
         buttonLuuThayDoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -293,6 +304,19 @@ import javax.swing.JOptionPane;
 //        GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
 //        frame.setVisible(true);
     }//GEN-LAST:event_buttonLuuThayDoiActionPerformed
+
+    private void comboBoxPhuongAnDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxPhuongAnDungActionPerformed
+
+    private void comboBoxPhuongAnDungMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseMoved
+        comboBoxPhuongAnDung.removeAllItems();
+        GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(textFieldPhuongAn1.getText());
+        GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(textFieldPhuongAn2.getText());
+        GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(textFieldPhuongAn3.getText());
+        GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(textFieldPhuongAn4.getText());
+        
+    }//GEN-LAST:event_comboBoxPhuongAnDungMouseMoved
 
     /**
      * @param args the command line arguments

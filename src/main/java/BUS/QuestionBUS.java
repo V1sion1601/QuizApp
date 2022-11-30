@@ -31,6 +31,12 @@ public class QuestionBUS {
         return QuestionList;
     }
 
+    
+    public static DTO.QuestionDTO selectQuestionByID(int ID) {
+        DTO.QuestionDTO question = new QuestionDTO();
+        question = DAO.QuestionDAO.getQuestionByID(ID);
+        return question;
+    }
     public static void showInfoQuestion(DTO.QuestionDTO qt) {
         GUI.admin.ManHinhCapNhatCauHoi frame = new GUI.admin.ManHinhCapNhatCauHoi();
         frame.setVisible(true);
