@@ -34,7 +34,7 @@ public class DataTransfer {
 
         private Socket socket = null;
         private BufferedWriter out;
-        private String input;
+        private String input = null;
 
         public Send(Socket s, BufferedWriter o, String input) {
             this.socket = s;
@@ -43,28 +43,16 @@ public class DataTransfer {
         }
 
         public void run() {
-//            SwingWorker sw = new SwingWorker() {
-//                @Override
-//                protected Object doInBackground() throws Exception {
             try {
-
-                while (true) {
-
-                    out.write(input + "\n");
-                    out.flush();
-                    if (input.equals("bye")) {
-                        break;
-                    }
+                out.write(input + "\n");
+                out.flush();
+                if (input.equals("bye")) {
+                    socket.close();
                 }
-                socket.close();
+
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-//                    return "Send Finished";
-//
-//                }
-//            };
-//            sw.execute();
 
         }
     }
@@ -86,7 +74,7 @@ public class DataTransfer {
                     String data = null;
                     try {
                         while (true) {
-                          
+
                             data = in.readLine();
                             System.out.println("Received: " + data);
                         }

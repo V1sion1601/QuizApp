@@ -23,6 +23,9 @@ import org.json.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import DTO.AES;
+import DTO.RSA;
+import java.security.PublicKey;
 
 /**
  *
@@ -38,6 +41,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     private DataTransfer transfer = new DataTransfer();
     private SecretKey clientKey = null;
     private String publicKey = null;
+    private PublicKey serverKey = null;
 
     public ManHinhDangNhap() {
         initComponents();
@@ -51,14 +55,24 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             JSONObject jsonObject = new JSONObject(doc.text());
             System.out.println(jsonObject.get("ip").toString());
             socket = new Socket(jsonObject.get("ip").toString(), 4949);
-
+            AES aes = new AES();
+            RSA rsa = new RSA();
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            //Client tự phát sinh AES
+            clientKey = aes.getKey();
+            publicKey = in.readLine();
+            //Đổi định dạng public key của server
+            serverKey = rsa.convertPublicKey(publicKey);
+            //Mã hóa key AES của client theo key của server key (RSA)
+            String encryptedKey = rsa.Encrpytion(aes.getKeyString(clientKey), serverKey);
             transfer.setReceive(socket, in);
             transfer.receive.run();
-            
-            publicKey = in.readLine();
+            transfer.setSend(socket, out, encryptedKey);
+            transfer.send.run();
+
             System.out.println("Server key: " + publicKey);
-            System.out.println("Client key: " + clientKey);
+            System.out.println("Client key: " + encryptedKey);
         } catch (Exception e) {
         }
 

@@ -30,9 +30,11 @@ public class AES {
     public SecretKey getKey() {
         return key;
     }
-    
-    
-    
+
+    public String getKeyString(SecretKey key) {
+        return Base64.getEncoder().encodeToString(key.getEncoded());
+    }
+
     public void setKey(SecretKey key) {
         this.key = key;
     }

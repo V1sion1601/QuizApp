@@ -41,12 +41,6 @@ public class Server {
     public static void createServer() throws NoSuchAlgorithmException {
         RSA rsa = new RSA();
         PublicKey publicKey = rsa.getPublicKey();
-//        KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-//        generator.initialize(2048);
-//        KeyPair pair = generator.generateKeyPair();
-//        PrivateKey privateKey = pair.getPrivate();
-//        PublicKey publicKey = pair.getPublic();
-//        String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
         SwingWorker sw = new SwingWorker() {
             @Override
             protected Object doInBackground() throws Exception {

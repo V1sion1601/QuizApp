@@ -59,6 +59,14 @@ public class RSA {
 
     }
 
+    public PublicKey convertPublicKey(String publicKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        byte[] publicBytes = Base64.getDecoder().decode(publicKey);
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PublicKey pubKey = keyFactory.generatePublic(keySpec);
+        return pubKey;
+    }
+
     public String Encrpytion(String message, PublicKey publicKey) {
         // Mã hoá dữ liệu
         String strEncrypt = "";

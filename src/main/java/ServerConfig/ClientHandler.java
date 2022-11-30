@@ -43,14 +43,11 @@ public class ClientHandler implements Runnable {
                     System.out.println("Server sent '" + key + "' to Client " + name);
                 }
             }
-            //Xu li dau vao
+            //Xử lí đầu vào
             while (true) {
-               
                 input = in.readLine();
-
                 System.out.println("Server received '" + input + "' from Client " + name);
                 if (input.equals("bye")) {
-
                     System.out.println("Name " + name);
                     Server.clientList.remove(this);
                     Server.executor.remove(this);
