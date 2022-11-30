@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author ADMIN
  */
 public class QuestionBUS {
-
+    public static String tempdapan="";
     public static List showQuestion() {
         List<DTO.QuestionDTO> QuestionList = DAO.QuestionDAO.getListQuestion();
         System.out.println(QuestionList);
@@ -46,6 +46,7 @@ public class QuestionBUS {
         frame.textFieldPhuongAn2.setText(qt.getOption2());
         frame.textFieldPhuongAn3.setText(qt.getOption3());
         frame.textFieldPhuongAn4.setText(qt.getOption4());
+        tempdapan = qt.getOptionTrue();
         if (qt.getOption1().equals(qt.getOptionTrue())) {
             frame.comboBoxPhuongAnDung.addItem(qt.getOptionTrue());
             frame.comboBoxPhuongAnDung.setSelectedItem(qt.getOptionTrue());
@@ -94,7 +95,7 @@ public class QuestionBUS {
                     GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn3.getText(),
                     GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn4.getText(),
                     GUI.admin.ManHinhThemCauHoi.comboBoxPhuongAnDung.getSelectedItem().toString(),
-                    GUI.admin.ManHinhThemCauHoi.comboBoxLoai.getSelectedItem().toString()
+                    "Normal"
             );
             if (qt != null) {
                 DAO.QuestionDAO.insert(qt);
@@ -183,6 +184,8 @@ public class QuestionBUS {
         }
         selectedRow = -1;
     }
+    
+    
     
 //    public boolean checkIDQuestion(int id_question) {
 //        return QuestionDAO.has(isbn);

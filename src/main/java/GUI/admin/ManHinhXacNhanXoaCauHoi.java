@@ -134,7 +134,7 @@ public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHuyXoaMouseClicked
 
     private void buttonXacNhanXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseClicked
-        BUS.QuestionBUS.delete1();
+        BUS.QuestionIQBUS.delete1();
         this.setVisible(false);
     }//GEN-LAST:event_buttonXacNhanXoaMouseClicked
 

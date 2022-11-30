@@ -294,15 +294,11 @@ import javax.swing.JOptionPane;
     }//GEN-LAST:event_buttonLuuThayDoiMouseExited
 
     private void buttonLuuThayDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseClicked
-        String noiDungThongBao = "Cập nhật thành công";
-        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_buttonLuuThayDoiMouseClicked
 
     private void buttonLuuThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiActionPerformed
         BUS.QuestionBUS.updateToGui();
-//        this.setVisible(false);
-//        GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
-//        frame.setVisible(true);
     }//GEN-LAST:event_buttonLuuThayDoiActionPerformed
 
     private void comboBoxPhuongAnDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungActionPerformed
@@ -315,7 +311,6 @@ import javax.swing.JOptionPane;
         GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(textFieldPhuongAn2.getText());
         GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(textFieldPhuongAn3.getText());
         GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(textFieldPhuongAn4.getText());
-        
     }//GEN-LAST:event_comboBoxPhuongAnDungMouseMoved
 
     /**
