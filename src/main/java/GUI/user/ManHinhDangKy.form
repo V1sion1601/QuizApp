@@ -70,9 +70,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelXacNhanMatKhau" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="labelMatKhau" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDiaChiEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="textFieldDiaChiEmail" max="32767" attributes="0"/>
                               <Component id="passwordFieldXacNhanMatKhau" alignment="1" max="32767" attributes="0"/>
                               <Component id="passwordFieldMatKhau" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
@@ -97,10 +99,15 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="labelDangKyNguoiChoiMoi" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelTenNguoiChoi" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textFieldTenNguoiChoi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelDiaChiEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldDiaChiEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -112,7 +119,7 @@
                       <Component id="labelXacNhanMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="passwordFieldXacNhanMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonDangKy" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="228" max="32767" attributes="0"/>
                   <Component id="labelBanQuyenThuocVe" min="-2" max="-2" attributes="0"/>
@@ -281,6 +288,25 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTroVeMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTroVeMouseExited"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldDiaChiEmail">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="&#x110;&#x1ecb;a ch&#x1ec9; Email"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelDiaChiEmail">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Email :"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

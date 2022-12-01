@@ -73,7 +73,10 @@
                           <Component id="labelDemNguocCauHoi" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="552" max="-2" attributes="0"/>
+                          <Component id="labelDiemHienTai1" min="-2" pref="147" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelDiem1" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
                           <Component id="labelDiemHienTai" min="-2" pref="147" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="labelDiem" max="32767" attributes="0"/>
@@ -96,6 +99,10 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelDiemHienTai" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelDiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Component id="labelDiemHienTai1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelDiem1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -303,6 +310,24 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTroVeMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonTroVeMouseExited"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelDiemHienTai1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="text" type="java.lang.String" value="&#x110;i&#x1ec3;m &#x111;&#x1ed1;i th&#x1ee7; :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelDiem1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

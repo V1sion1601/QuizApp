@@ -33,6 +33,8 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         labelMatKhau = new javax.swing.JLabel();
         passwordFieldMatKhau = new javax.swing.JPasswordField();
         labelButtonTroVe = new javax.swing.JLabel();
+        textFieldDiaChiEmail = new javax.swing.JTextField();
+        labelDiaChiEmail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -133,6 +135,12 @@ public class ManHinhDangKy extends javax.swing.JFrame {
             }
         });
 
+        textFieldDiaChiEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textFieldDiaChiEmail.setToolTipText("Địa chỉ Email");
+
+        labelDiaChiEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDiaChiEmail.setText("Email :");
+
         javax.swing.GroupLayout panelManHinhQuanLyNguoiDungLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiDung);
         panelManHinhQuanLyNguoiDung.setLayout(panelManHinhQuanLyNguoiDungLayout);
         panelManHinhQuanLyNguoiDungLayout.setHorizontalGroup(
@@ -159,9 +167,11 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                     .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
                         .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelXacNhanMatKhau)
-                            .addComponent(labelMatKhau))
+                            .addComponent(labelMatKhau)
+                            .addComponent(labelDiaChiEmail))
                         .addGap(115, 115, 115)
                         .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldDiaChiEmail)
                             .addComponent(passwordFieldXacNhanMatKhau, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(passwordFieldMatKhau)
                             .addGroup(panelManHinhQuanLyNguoiDungLayout.createSequentialGroup()
@@ -179,10 +189,14 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                     .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(labelDangKyNguoiChoiMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTenNguoiChoi)
                     .addComponent(textFieldTenNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDiaChiEmail)
+                    .addComponent(textFieldDiaChiEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMatKhau)
@@ -191,7 +205,7 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                 .addGroup(panelManHinhQuanLyNguoiDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelXacNhanMatKhau)
                     .addComponent(passwordFieldXacNhanMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addGap(18, 18, 18)
                 .addComponent(buttonDangKy)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
@@ -246,6 +260,7 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
         }
+        JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");
     }//GEN-LAST:event_buttonDangKyMouseClicked
 
     private void passwordFieldMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldMatKhauActionPerformed
@@ -432,6 +447,7 @@ public class ManHinhDangKy extends javax.swing.JFrame {
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelDangKyNguoiChoiMoi;
+    private javax.swing.JLabel labelDiaChiEmail;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMatKhau;
     private javax.swing.JLabel labelTenNguoiChoi;
@@ -440,6 +456,7 @@ public class ManHinhDangKy extends javax.swing.JFrame {
     private javax.swing.JPanel panelManHinhQuanLyNguoiDung;
     public static javax.swing.JPasswordField passwordFieldMatKhau;
     public static javax.swing.JPasswordField passwordFieldXacNhanMatKhau;
+    public static javax.swing.JTextField textFieldDiaChiEmail;
     public static javax.swing.JTextField textFieldTenNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

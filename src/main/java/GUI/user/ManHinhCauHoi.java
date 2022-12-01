@@ -200,6 +200,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelDiemHienTai = new javax.swing.JLabel();
         labelDiem = new javax.swing.JLabel();
         labelButtonTroVe = new javax.swing.JLabel();
+        labelDiemHienTai1 = new javax.swing.JLabel();
+        labelDiem1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -347,6 +349,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             }
         });
 
+        labelDiemHienTai1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDiemHienTai1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        labelDiemHienTai1.setText("Điểm đối thủ :");
+
+        labelDiem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelDiem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiem1.setText("0");
+
         javax.swing.GroupLayout panelManHinhCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCauHoi);
         panelManHinhCauHoi.setLayout(panelManHinhCauHoiLayout);
         panelManHinhCauHoiLayout.setHorizontalGroup(
@@ -376,7 +386,10 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelDemNguocCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
-                        .addGap(552, 552, 552)
+                        .addComponent(labelDiemHienTai1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelDiem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(320, 320, 320)
                         .addComponent(labelDiemHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -393,7 +406,10 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDiemHienTai)
-                    .addComponent(labelDiem))
+                    .addComponent(labelDiem)
+                    .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelDiemHienTai1)
+                        .addComponent(labelDiem1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
@@ -642,7 +658,9 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelCauHoi;
     private javax.swing.JLabel labelDemNguocCauHoi;
     private javax.swing.JLabel labelDiem;
+    private javax.swing.JLabel labelDiem1;
     private javax.swing.JLabel labelDiemHienTai;
+    private javax.swing.JLabel labelDiemHienTai1;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCauHoi;
