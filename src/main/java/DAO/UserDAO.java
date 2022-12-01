@@ -19,9 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
-
 public class UserDAO {
+
     // Lấy hết danh sách User
     public static ArrayList<DTO.UserDTO> getListUser() {
         ArrayList<DTO.UserDTO> UserList = new ArrayList<>();
@@ -71,6 +70,7 @@ public class UserDAO {
         }
         return UserList;
     }
+
     // Lấy hết danh sách User theo Status
     public static ArrayList<DTO.UserDTO> getListUserByStatus(String Status) {
         ArrayList<DTO.UserDTO> UserList = new ArrayList<>();
@@ -80,9 +80,9 @@ public class UserDAO {
             connection = DAO.Connection.connection();
             String sql = "SELECT * FROM user WHERE Status=?";
             statement = connection.prepareCall(sql);
-            
+
             statement.setString(1, Status);
-            
+
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 DTO.UserDTO user1 = new DTO.UserDTO(
@@ -123,7 +123,7 @@ public class UserDAO {
         }
         return UserList;
     }
-    
+
     public static void UpdateStatus(String Name, String Status) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -132,11 +132,11 @@ public class UserDAO {
             connection = DAO.Connection.connection();
             String sql = "UPDATE user SET Status = ? WHERE Name = ?";
             statement = connection.prepareCall(sql);
-            
+
             statement.setString(1, Status);
             statement.setString(2, Name);
-            
-            statement.executeQuery();          
+
+            statement.executeQuery();
         } catch (SQLException ex) {
 
         }
@@ -158,6 +158,7 @@ public class UserDAO {
         }
         JOptionPane.showMessageDialog(null, "Status Updated");
     }
+
     // Lấy hết danh sách User theo Point
     public static ArrayList<DTO.UserDTO> getListUserByPoint() {
         ArrayList<DTO.UserDTO> UserList = new ArrayList<>();
@@ -207,6 +208,7 @@ public class UserDAO {
         }
         return UserList;
     }
+
     // Lấy hết danh sách User theo TotalMatchWin
     public static ArrayList<DTO.UserDTO> getListUserByTotalMatchWin() {
         ArrayList<DTO.UserDTO> UserList = new ArrayList<>();
@@ -256,6 +258,7 @@ public class UserDAO {
         }
         return UserList;
     }
+
     // Lấy hết danh sách User theo WinStreak
     public static ArrayList<DTO.UserDTO> getListUserByWinStreak() {
         ArrayList<DTO.UserDTO> UserList = new ArrayList<>();
@@ -305,6 +308,7 @@ public class UserDAO {
         }
         return UserList;
     }
+
     // Lấy hết danh sách User theo TotalMatch
     public static ArrayList<DTO.UserDTO> getListUserByTotalMatch() {
         ArrayList<DTO.UserDTO> UserList = new ArrayList<>();
@@ -354,6 +358,61 @@ public class UserDAO {
         }
         return UserList;
     }
+
+    //get User Online
+    public static ArrayList<DTO.UserDTO> getListUserOnline(String status) {
+        System.out.println("Status: " + status);
+        String sql = "";
+
+        ArrayList<DTO.UserDTO> UserList = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            if (status.equals("All")) {
+                sql = "SELECT * FROM user ";
+                statement = connection.prepareStatement(sql);
+            } else {
+                sql = "SELECT * FROM user Where Status=?";
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, status);
+            }
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                DTO.UserDTO user1 = new DTO.UserDTO(
+                        rs.getInt("ID_User"),
+                        rs.getString("Name"),
+                        rs.getString("Status"),
+                        rs.getString("Role"),
+                        rs.getInt("TotalScore"),
+                        rs.getInt("TotalMatch"),
+                        rs.getInt("TotalMatchWin"),
+                        rs.getInt("HighestWinStreak")
+                );
+                UserList.add(user1);
+            }
+        } catch (SQLException ex) {
+
+        }
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return UserList;
+    }
+
     /* Tìm tài khoản */
     public static UserDTO findtaikhoan(DTO.UserDTO user) {
         Connection connection = null;
@@ -382,6 +441,7 @@ public class UserDAO {
         }
         return user1;
     }
+
     /* Kiểm tra username để đăng kí */
     public static void checkUserName(String username) {
         Connection connection = null;
@@ -419,6 +479,7 @@ public class UserDAO {
         }
 
     }
+
     /* Thêm tài khoản */
     public static void insert(DTO.UserDTO user) {
 
@@ -464,6 +525,7 @@ public class UserDAO {
         }
         JOptionPane.showMessageDialog(null, "Đăng kí thành công");
     }
+
     // Lấy ra 1 user trong bảng
     public static DTO.UserDTO getUserByName(String Name) {
         DTO.UserDTO user = new UserDTO();
@@ -512,6 +574,7 @@ public class UserDAO {
         }
         return user;
     }
+
     // Update tổng trận
     public static void UpdateToTalMatch(DTO.UserDTO user) {
 
@@ -547,6 +610,7 @@ public class UserDAO {
         }
 
     }
+
     // Update tổng trận thắng
     public static void UpdateTotalMatchWin(DTO.UserDTO user) {
 
@@ -557,7 +621,7 @@ public class UserDAO {
             String sql = "UPDATE user SET TotalMatchWin = ? WHERE Name = ?";
             statement = connection.prepareCall(sql);
 
-            statement.setInt(1, user.getTotalMatchWin()+ 1);
+            statement.setInt(1, user.getTotalMatchWin() + 1);
             statement.setString(2, user.getName());
 
             statement.execute();
@@ -581,6 +645,7 @@ public class UserDAO {
 
         }
     }
+
     // Update người chơi   
     public static void Update(DTO.UserDTO user) {
 
@@ -617,6 +682,7 @@ public class UserDAO {
 
         }
     }
+
     // Update chuỗi thắng
     public static void UpdateWinStreak(DTO.UserDTO user) {
 
@@ -651,6 +717,7 @@ public class UserDAO {
 
         }
     }
+
     // Save chuỗi thắng cao nhất
     public static void UpdateHighestWinStreak(DTO.UserDTO user) {
 
@@ -685,6 +752,7 @@ public class UserDAO {
 
         }
     }
+
     // Update chuỗi thua
     public static void UpdateLoseStreak(DTO.UserDTO user) {
 
@@ -719,6 +787,7 @@ public class UserDAO {
 
         }
     }
+
     // Save chuỗi thua cao nhất
     public static void UpdateHighestLoseStreak(DTO.UserDTO user) {
 
@@ -753,6 +822,7 @@ public class UserDAO {
 
         }
     }
+
     // Update điểm
     public static void UpdateScore(DTO.UserDTO user, int diem) {
 
@@ -786,7 +856,8 @@ public class UserDAO {
             }
 
         }
-  }
+    }
+
     // Update Role
     public static void UpdateRole(DTO.UserDTO user, int role) {
 
@@ -821,6 +892,7 @@ public class UserDAO {
 
         }
     }
+
     // Khoá tài khoản
 //    public static void blockandunblokUser(String Name, int Status) {
 //
@@ -889,6 +961,7 @@ public class UserDAO {
 
         }
     }
+
     // Xoá tài khoản
     public static void delete(int ID_User) {
 
@@ -923,5 +996,5 @@ public class UserDAO {
         }
 
     }
-        
+
 }

@@ -83,6 +83,18 @@ public class UserDTO {
         this.totalMatchLose = totalMatchLose;
     }
 
+    public UserDTO(int idUser, String name, String status, String role, int tongDiem, int totalMatch,
+            int totalMatchWin, int HighestWinStreak) {
+        this.idUser = idUser;
+        this.name = name;
+        this.tongDiem = tongDiem;
+        this.status = status;
+        this.role = role;
+        this.totalMatch = totalMatch;
+        this.totalMatchWin = totalMatchWin;
+        this.HighestWinStreak = HighestWinStreak;
+    }
+    
     public int getTotalMatchLose() {
         return totalMatchLose;
     }

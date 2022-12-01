@@ -18,7 +18,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     public ManHinhQuanLyNguoiChoi() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
-        
+
         model = (DefaultTableModel) tableDanhSachNguoiChoi.getModel();
         tableDanhSachNguoiChoi.setModel(model);
         BUS.UserBUS.showUserByID();
@@ -43,7 +43,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-               // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
@@ -81,6 +81,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         labelBanQuyenThuocVe = new javax.swing.JLabel();
         scrollPaneDanhSachNguoiChoi = new javax.swing.JScrollPane();
         tableDanhSachNguoiChoi = new javax.swing.JTable();
+        ComboBoxFilterStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -192,6 +193,22 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         tableDanhSachNguoiChoi.setRowHeight(50);
         scrollPaneDanhSachNguoiChoi.setViewportView(tableDanhSachNguoiChoi);
 
+        ComboBoxFilterStatus.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ComboBoxFilterStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Online", "Offline", "In game" }));
+        ComboBoxFilterStatus.setMaximumSize(new java.awt.Dimension(72, 32));
+        ComboBoxFilterStatus.setMinimumSize(new java.awt.Dimension(72, 32));
+        ComboBoxFilterStatus.setPreferredSize(new java.awt.Dimension(72, 32));
+        ComboBoxFilterStatus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ComboBoxFilterStatusMouseClicked(evt);
+            }
+        });
+        ComboBoxFilterStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBoxFilterStatusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhQuanLyNguoiChoiLayout = new javax.swing.GroupLayout(panelManHinhQuanLyNguoiChoi);
         panelManHinhQuanLyNguoiChoi.setLayout(panelManHinhQuanLyNguoiChoiLayout);
         panelManHinhQuanLyNguoiChoiLayout.setHorizontalGroup(
@@ -213,6 +230,8 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
                         .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonChan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ComboBoxFilterStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -225,15 +244,16 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc))
                 .addGap(18, 18, 18)
-                .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonXoa)
                         .addComponent(buttonCapNhat)
                         .addComponent(buttonChan))
-                    .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboBoxFilterStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneDanhSachNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -291,7 +311,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
 
     private void buttonXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXoaMouseClicked
         // TODO add your handling code here:
-       if (selectedRow == -1) {
+        if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 user trong bảng");
         } else {
             GUI.admin.ManHinhXacNhanXoaNguoiChoi frame = new ManHinhXacNhanXoaNguoiChoi();
@@ -303,24 +323,34 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 user trong bảng");
-         } else {
+        } else {
             BUS.UserBUS.showInfoUser(user);
         }
     }//GEN-LAST:event_buttonCapNhatMouseClicked
 
     private void buttonChanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseClicked
         // TODO add your handling code here:
-        if(user.getStatus().toLowerCase().equals("offline") || user.getStatus().toLowerCase().equals("online"))
-        {
+        if (user.getStatus().toLowerCase().equals("offline") || user.getStatus().toLowerCase().equals("online")) {
             BUS.UserBUS.BlockUser(user.getName(), "Block");
             BUS.UserBUS.showUserByID();
-        }    
-        if(user.getStatus().toLowerCase().equals("block"))
-        {
+        }
+        if (user.getStatus().toLowerCase().equals("block")) {
             BUS.UserBUS.BlockUser(user.getName(), "Offline");
             BUS.UserBUS.showUserByID();
-        } 
+        }
     }//GEN-LAST:event_buttonChanMouseClicked
+
+    private void ComboBoxFilterStatusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboBoxFilterStatusMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_ComboBoxFilterStatusMouseClicked
+
+    private void ComboBoxFilterStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxFilterStatusActionPerformed
+        // TODO add your handling code here:
+
+        BUS.UserBUS.showUserOnline(ComboBoxFilterStatus.getSelectedItem().toString());
+
+    }//GEN-LAST:event_ComboBoxFilterStatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,6 +451,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBoxFilterStatus;
     private javax.swing.JButton buttonCapNhat;
     private javax.swing.JButton buttonChan;
     private javax.swing.JButton buttonXoa;

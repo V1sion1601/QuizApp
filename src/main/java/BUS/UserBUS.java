@@ -183,6 +183,25 @@ public class UserBUS  {
         return UserList;
     }
 
+    
+    public static ArrayList showUserOnline(String status) {
+        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserOnline(status);
+        System.out.println(UserList);
+        GUI.admin.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
+        UserList.forEach(User -> {
+            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
+                User.getIdUser(),
+                User.getName(),
+                User.getStatus(),
+                User.getRole(),
+                User.getTongDiem(),
+                User.getTotalMatch(),
+                User.getTotalMatchWin(),
+                User.getHighestWinStreak()});
+        });
+        return UserList;
+    }
+    
     public static void insert1() {
         DAO.UserDAO.checkUserName(GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText());
         if (checktk == 1) {

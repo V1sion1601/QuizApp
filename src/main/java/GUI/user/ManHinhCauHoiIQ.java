@@ -4,7 +4,9 @@
  */
 package GUI.user;
 
+import DTO.QuestionDTO;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,9 +15,10 @@ import java.util.TimerTask;
  * @author TUF
  */
 public class ManHinhCauHoiIQ extends javax.swing.JFrame {
-
+    public static ArrayList<QuestionDTO> questionList;
     public static int dapAnCauHoiIQ = 0;
-
+    public static int i = 0;
+    public int tongIQ = 50;
     /**
      * Creates new form ManHinhDangNhap
      */
