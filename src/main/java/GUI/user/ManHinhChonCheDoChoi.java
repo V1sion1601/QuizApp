@@ -5,6 +5,7 @@
 package GUI.user;
 
 import java.awt.Color;
+import java.util.Vector;
 
 /**
  *
@@ -15,12 +16,10 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     /**
      * Creates new form ManHinhDangNhap
      */
-//    System.out.println("Test");
-//        System.out.println(ManHinhDangNhap.playerList);
     public ManHinhChonCheDoChoi() {
         initComponents();
-
-        
+       
+        System.out.println(ManHinhDangNhap.playerList);
     }
 
     /**
@@ -225,11 +224,11 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153,153,153));
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonTroVeMouseEntered
 
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204,204,204));
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     private void labelButtonTimDoiThuOnlineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTimDoiThuOnlineMouseClicked

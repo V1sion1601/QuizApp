@@ -347,11 +347,9 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
         switch (userBus.findtaikhoan(a, b)) {
             case 1:
-                ManHinhChonCheDoChoi frameCheDoChoi = new ManHinhChonCheDoChoi();
-
-                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 playerList.add(nameClient);
-                System.out.println(playerList);
+                ManHinhChonCheDoChoi frameCheDoChoi = new ManHinhChonCheDoChoi();
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 this.setVisible(false);
                 frameCheDoChoi.setVisible(true);
                 frameCheDoChoi.setLocationRelativeTo(null);
@@ -370,11 +368,11 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153,153,153));
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonTroVeMouseEntered
 
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204,204,204));
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
