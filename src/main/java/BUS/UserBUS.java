@@ -17,15 +17,15 @@ public class UserBUS {
 
     public static int checktk;
     public static GUI.user.ManHinhChonCheDoChoi ManHinhChonCheDoChoi = new GUI.user.ManHinhChonCheDoChoi();
-    public static GUI.user.ManHinhDangNhap ManHinhDangNhap = new GUI.user.ManHinhDangNhap();
+//    public static GUI.user.ManHinhDangNhap ManHinhDangNhap = new GUI.user.ManHinhDangNhap();
     public static GUI.admin.ManHinhChonCheDoQuanLyAdmin ManHinhChonCheDoQuanLyAdmin = new GUI.admin.ManHinhChonCheDoQuanLyAdmin();
     public static DTO.UserDTO user;
     public static DTO.UserDTO usersavelogin;
-    
+
     public UserBUS() {
-        
+
     }
-    
+
     public int findtaikhoan(String a, String b) {
         user = new DTO.UserDTO(a, b);
         user = DAO.UserDAO.findtaikhoan(user);
@@ -42,15 +42,17 @@ public class UserBUS {
 //                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 usersavelogin = user;
                 UserBUS.BlockUser(usersavelogin.getName(), "Online");
+            
+
                 return 1;
 
             } else {
-//                GUI.user.ManHinhDangNhap.checktk = 0;
+                GUI.user.ManHinhDangNhap.checktk = 0;
                 return 2;
             }
 
         } else {
-        
+
             return 3;
         }
 
