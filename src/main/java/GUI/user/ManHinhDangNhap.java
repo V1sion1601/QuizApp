@@ -336,30 +336,37 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonDangKyMouseExited
 
     private void labelButtonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseClicked
-//        GUI.user.ManHinhDangKy frame = new ManHinhDangKy();
-//        this.setVisible(false);
-//        frame.setVisible(true);
+        GUI.user.ManHinhDangKy frame = new ManHinhDangKy();
+        this.setVisible(false);
+        frame.setVisible(true);
 
     }//GEN-LAST:event_labelButtonDangKyMouseClicked
 
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
         String a = textFieldTenDangNhap.getText();
         String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
-        switch (userBus.findtaikhoan(a, b)) {
-            case 1:
-                playerList.add(nameClient);
-                ManHinhChonCheDoChoi frameCheDoChoi = new ManHinhChonCheDoChoi();
-                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
-                this.setVisible(false);
-                frameCheDoChoi.setVisible(true);
-                frameCheDoChoi.setLocationRelativeTo(null);
-                break;
-            case 2:
-                JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
-                break;
+        if(a.length()!=0 && b.length()!=0)
+        {
+            switch (userBus.findtaikhoan(a, b)) {
+                case 1:
+                    playerList.add(nameClient);
+                    ManHinhChonCheDoChoi frameCheDoChoi = new ManHinhChonCheDoChoi();
+                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+                    this.setVisible(false);
+                    frameCheDoChoi.setVisible(true);
+//                    frameCheDoChoi.setLocationRelativeTo(null);
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
+                    break;
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin đăng nhập");
         }
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 

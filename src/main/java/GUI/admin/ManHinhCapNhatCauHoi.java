@@ -339,6 +339,9 @@ import javax.swing.JOptionPane;
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
         // TODO add your handling code here:
+        GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
+        frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered

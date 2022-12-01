@@ -4,6 +4,7 @@
  */
 package GUI.admin;
 
+import BUS.UserBUS;
 import DTO.RSA;
 import ServerConfig.ClientHandler;
 
@@ -20,6 +21,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -29,7 +31,7 @@ import org.jsoup.Jsoup;
  * @author TUF
  */
 public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
-
+    UserBUS userBus = new UserBUS();
     /**
      * Creates new form ManHinhDangNhap
      *
@@ -37,9 +39,13 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
      */
 
 
-    public ManHinhDangNhapAdmin() throws NoSuchAlgorithmException {
+    public ManHinhDangNhapAdmin() {
         initComponents();
-        ServerConfig.Server.createServer();
+        try {
+            ServerConfig.Server.createServer();
+        } catch (Exception e) {
+        }
+        
 
 //        System.out.println("Private key: " + ServerConfig.Server.privateKeyString);
     }
@@ -233,7 +239,30 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonDangNhapMouseExited
 
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
-        // TODO add your handling code here:
+        String a = textFieldTenDangNhap.getText();
+        String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
+        if(a.length()!=0 && b.length()!=0)
+        {
+            switch (userBus.findtaikhoan(a, b)) {
+                case 0:
+                    GUI.admin.ManHinhChonCheDoQuanLyAdmin frameCheDoChoi = new ManHinhChonCheDoQuanLyAdmin();
+                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+                    this.setVisible(false);
+                    frameCheDoChoi.setVisible(true);
+//                    frameCheDoChoi.setLocationRelativeTo(null);
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
+                    break;
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin đăng nhập");
+        }
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 
     /**
@@ -267,11 +296,11 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
+//                try {
                     new ManHinhDangNhapAdmin().setVisible(true);
-                } catch (NoSuchAlgorithmException ex) {
-                    Logger.getLogger(ManHinhDangNhapAdmin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                } catch (NoSuchAlgorithmException ex) {
+//                    Logger.getLogger(ManHinhDangNhapAdmin.class.getName()).log(Level.SEVERE, null, ex);
+//                }
             }
         });
     }

@@ -311,7 +311,9 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxPhuongAnDungMouseClicked
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
-        // TODO add your handling code here:
+        GUI.admin.ManHinhQuanLyCauHoiIQ frame = new ManHinhQuanLyCauHoiIQ();
+        frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered

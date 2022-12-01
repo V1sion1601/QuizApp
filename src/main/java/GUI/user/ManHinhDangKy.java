@@ -251,16 +251,18 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         String a = textFieldTenNguoiChoi.getText();
         String b = String.valueOf(passwordFieldMatKhau.getPassword());
         String c = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
-        if (b.equals(c)) {        
+        if(a.length()==0 && b.length()==0 && c.length()==0)
+        {
+            if (b.equals(c)) {        
                 BUS.UserBUS.insert1();
-                this.setVisible(false);
-                GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
-                frame.setVisible(true);
-            
+//                this.setVisible(false);
+//                GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
+//                frame.setVisible(true);           
         } else {
             JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
         }
         JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");
+        }  
     }//GEN-LAST:event_buttonDangKyMouseClicked
 
     private void passwordFieldMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldMatKhauActionPerformed
@@ -269,6 +271,9 @@ public class ManHinhDangKy extends javax.swing.JFrame {
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
         // TODO add your handling code here:
+        GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
+        frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered

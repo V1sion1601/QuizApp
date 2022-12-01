@@ -276,7 +276,9 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseClicked
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
-        // TODO add your handling code here:
+        GUI.admin.ManHinhDangNhapAdmin frame = new ManHinhDangNhapAdmin();
+        frame.setVisible(true);
+        this.setVisible(false);   
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
