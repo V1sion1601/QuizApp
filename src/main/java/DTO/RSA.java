@@ -15,6 +15,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
@@ -66,7 +67,13 @@ public class RSA {
         PublicKey pubKey = keyFactory.generatePublic(keySpec);
         return pubKey;
     }
-
+    public PrivateKey convertPrivateKey(String publicKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        byte[] publicBytes = Base64.getDecoder().decode(publicKey);
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(publicBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PrivateKey priKey = keyFactory.generatePrivate(keySpec);
+        return priKey;
+    }
     public String Encrpytion(String message, PublicKey publicKey) {
         // Mã hoá dữ liệu
         String strEncrypt = "";

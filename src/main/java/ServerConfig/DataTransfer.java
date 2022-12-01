@@ -76,8 +76,11 @@ public class DataTransfer {
                         while (true) {
 
                             data = in.readLine();
-                            System.out.println("Received: " + data);
+                            if (data.equals("bye")) {
+                                break;
+                            }
                         }
+                        System.out.println("Received: " + data);
 
                     } catch (IOException e) {
                         System.out.println(e.getMessage());

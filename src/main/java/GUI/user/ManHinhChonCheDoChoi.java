@@ -15,8 +15,12 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     /**
      * Creates new form ManHinhDangNhap
      */
+//    System.out.println("Test");
+//        System.out.println(ManHinhDangNhap.playerList);
     public ManHinhChonCheDoChoi() {
         initComponents();
+
+        
     }
 
     /**
@@ -57,6 +61,9 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelButtonTimDoiThuOnline.setToolTipText("Tìm đối thủ Online");
         labelButtonTimDoiThuOnline.setOpaque(true);
         labelButtonTimDoiThuOnline.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonTimDoiThuOnlineMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonTimDoiThuOnlineMouseEntered(evt);
             }
@@ -224,6 +231,11 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
         labelButtonTroVe.setBackground(new Color(204,204,204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
+
+    private void labelButtonTimDoiThuOnlineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTimDoiThuOnlineMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_labelButtonTimDoiThuOnlineMouseClicked
 
     /**
      * @param args the command line arguments

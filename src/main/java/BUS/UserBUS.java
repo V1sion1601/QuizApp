@@ -13,7 +13,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.io.IOException;
 
-public class UserBUS  {
+public class UserBUS {
 
     public static int checktk;
     public static GUI.user.ManHinhChonCheDoChoi ManHinhChonCheDoChoi = new GUI.user.ManHinhChonCheDoChoi();
@@ -21,8 +21,12 @@ public class UserBUS  {
     public static GUI.admin.ManHinhChonCheDoQuanLyAdmin ManHinhChonCheDoQuanLyAdmin = new GUI.admin.ManHinhChonCheDoQuanLyAdmin();
     public static DTO.UserDTO user;
     public static DTO.UserDTO usersavelogin;
-
-    public static void findtaikhoan (String a, String b) {
+    
+    public UserBUS() {
+        
+    }
+    
+    public int findtaikhoan(String a, String b) {
         user = new DTO.UserDTO(a, b);
         user = DAO.UserDAO.findtaikhoan(user);
         if (GUI.user.ManHinhDangNhap.checktk == 1) {
@@ -30,27 +34,24 @@ public class UserBUS  {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công với quyền Admin");
                 usersavelogin = user;
                 UserBUS.BlockUser(usersavelogin.getName(), "Online");
-                ManHinhChonCheDoQuanLyAdmin.setVisible(true);
-                ManHinhChonCheDoQuanLyAdmin.setLocationRelativeTo(null);
-                ManHinhDangNhap.setVisible(false);
+                return 0;
+//                ManHinhChonCheDoQuanLyAdmin.setVisible(true);
+//                ManHinhChonCheDoQuanLyAdmin.setLocationRelativeTo(null);
+//                ManHinhDangNhap.setVisible(false);
             } else if (user.getRole().toLowerCase().equals("user") && !user.getStatus().toLowerCase().equals("block")) {
-                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+//                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 usersavelogin = user;
                 UserBUS.BlockUser(usersavelogin.getName(), "Online");
-                ManHinhChonCheDoChoi.setVisible(true);
-                ManHinhChonCheDoChoi.setLocationRelativeTo(null);
-                ManHinhDangNhap.setVisible(false);
+                return 1;
+
             } else {
-                JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
-                GUI.user.ManHinhDangNhap.checktk = 0;
+//                GUI.user.ManHinhDangNhap.checktk = 0;
+                return 2;
             }
-//            {
-//                JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
-//                GUI.ManHinhDangNhap.checktk=0;
-//            }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
+        
+            return 3;
         }
 
     }
@@ -122,7 +123,6 @@ public class UserBUS  {
 //        });
 //        return UserList;
 //    }
-
     public static ArrayList showUserByPoint() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByPoint();
         System.out.println(UserList);
@@ -183,7 +183,6 @@ public class UserBUS  {
         return UserList;
     }
 
-    
     public static ArrayList showUserOnline(String status) {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserOnline(status);
         System.out.println(UserList);
@@ -201,7 +200,7 @@ public class UserBUS  {
         });
         return UserList;
     }
-    
+
     public static void insert1() {
         DAO.UserDAO.checkUserName(GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText());
         if (checktk == 1) {

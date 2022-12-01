@@ -4,6 +4,7 @@
  */
 package GUI.user;
 
+import BUS.UserBUS;
 import ServerConfig.DataTransfer;
 import java.awt.Color;
 import java.io.IOException;
@@ -26,6 +27,9 @@ import org.jsoup.nodes.Document;
 import DTO.AES;
 import DTO.RSA;
 import java.security.PublicKey;
+import java.util.Vector;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,10 +42,13 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
      */
     public static int checktk;
     Socket socket = null;
+    public static Vector<String> playerList = new Vector<>();
     private DataTransfer transfer = new DataTransfer();
     private SecretKey clientKey = null;
-    private String publicKey = null;
-    private PublicKey serverKey = null;
+    public String publicKey = null, nameClient = null;
+    public PublicKey serverKey = null;
+    UserBUS userBus = new UserBUS();
+    ManHinhChonCheDoChoi frameCheDoChoi = null;
 
     public ManHinhDangNhap() {
         initComponents();
@@ -62,6 +69,8 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             //Client tự phát sinh AES
             clientKey = aes.getKey();
             publicKey = in.readLine();
+            nameClient = in.readLine();
+            System.out.println("Client name: " + nameClient);
             //Đổi định dạng public key của server
             serverKey = rsa.convertPublicKey(publicKey);
             //Mã hóa key AES của client theo key của server key (RSA)
@@ -72,10 +81,12 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             transfer.send.run();
 
             System.out.println("Server key: " + publicKey);
-            System.out.println("Client key: " + encryptedKey);
+            System.out.println("Encrypted key: " + encryptedKey);
+
+            System.out.println("Client key: " + aes.getKeyString(clientKey));
+
         } catch (Exception e) {
         }
-
     }
 
     /**
@@ -325,17 +336,33 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonDangKyMouseExited
 
     private void labelButtonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseClicked
-        GUI.user.ManHinhDangKy frame = new ManHinhDangKy();
-        this.setVisible(false);
-        frame.setVisible(true);
+//        GUI.user.ManHinhDangKy frame = new ManHinhDangKy();
+//        this.setVisible(false);
+//        frame.setVisible(true);
+
     }//GEN-LAST:event_labelButtonDangKyMouseClicked
 
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
         String a = textFieldTenDangNhap.getText();
         String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
-        System.out.println(b);
-        BUS.UserBUS.findtaikhoan(a, b);
-        this.setVisible(false);
+        switch (userBus.findtaikhoan(a, b)) {
+            case 1:
+                ManHinhChonCheDoChoi frameCheDoChoi = new ManHinhChonCheDoChoi();
+
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+                playerList.add(nameClient);
+                System.out.println(playerList);
+                this.setVisible(false);
+                frameCheDoChoi.setVisible(true);
+                frameCheDoChoi.setLocationRelativeTo(null);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
+                break;
+        }
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked

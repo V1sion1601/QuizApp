@@ -4,10 +4,25 @@
  */
 package GUI.admin;
 
+import DTO.RSA;
+import ServerConfig.ClientHandler;
+
 import java.awt.Color;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingWorker;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
 
 /**
  *
@@ -17,10 +32,16 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form ManHinhDangNhap
+     *
+     * @throws java.security.NoSuchAlgorithmException
      */
+
+
     public ManHinhDangNhapAdmin() throws NoSuchAlgorithmException {
         initComponents();
         ServerConfig.Server.createServer();
+
+//        System.out.println("Private key: " + ServerConfig.Server.privateKeyString);
     }
 
     /**
@@ -241,7 +262,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManHinhDangNhapAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-      
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
