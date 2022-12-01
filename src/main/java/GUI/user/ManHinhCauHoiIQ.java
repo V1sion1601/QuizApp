@@ -42,12 +42,13 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
         labelHinhAnhCauHoi = new javax.swing.JLabel();
-        labelCauHoi = new javax.swing.JLabel();
+        labelDiemIQHienTai = new javax.swing.JLabel();
         labelIQ = new javax.swing.JLabel();
         labelDapAnA = new javax.swing.JLabel();
         labelDapAnB = new javax.swing.JLabel();
         labelDapAnC = new javax.swing.JLabel();
         labelDapAnD = new javax.swing.JLabel();
+        labelButtonTroVe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -87,13 +88,13 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         labelHinhAnhCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelHinhAnhCauHoi.setText("[Vị trí đặt câu hỏi]");
 
-        labelCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        labelCauHoi.setText("CÂU HỎI");
+        labelDiemIQHienTai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelDiemIQHienTai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelDiemIQHienTai.setText("Điểm IQ hiện tại :");
 
         labelIQ.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        labelIQ.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelIQ.setText("IQ");
+        labelIQ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelIQ.setText("0");
 
         labelDapAnA.setBackground(new java.awt.Color(0, 102, 255));
         labelDapAnA.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -167,6 +168,26 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             }
         });
 
+        labelButtonTroVe.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonTroVe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelButtonTroVe.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonTroVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonTroVe.setText("<---");
+        labelButtonTroVe.setToolTipText("Thoát");
+        labelButtonTroVe.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        labelButtonTroVe.setOpaque(true);
+        labelButtonTroVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCauHoi);
         panelManHinhCauHoi.setLayout(panelManHinhCauHoiLayout);
         panelManHinhCauHoiLayout.setHorizontalGroup(
@@ -175,29 +196,27 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhCauHoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelKienThuc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhCauHoiLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(labelCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                         .addComponent(labelHinhAnhCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(labelDapAnA, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhCauHoiLayout.createSequentialGroup()
+                                .addComponent(labelDiemIQHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelDapAnB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelDapAnC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelDapAnD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(labelIQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelDapAnB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelDapAnC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelDapAnD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelDapAnA, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         panelManHinhCauHoiLayout.setVerticalGroup(
@@ -206,10 +225,11 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTranhTai)
-                    .addComponent(labelKienThuc))
+                    .addComponent(labelKienThuc)
+                    .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCauHoi)
+                    .addComponent(labelDiemIQHienTai)
                     .addComponent(labelIQ))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,6 +363,18 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_labelDapAnDMouseClicked
 
+    private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonTroVeMouseClicked
+
+    private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
+        labelButtonTroVe.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_labelButtonTroVeMouseEntered
+
+    private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
+        labelButtonTroVe.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_labelButtonTroVeMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -388,11 +420,12 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
-    private javax.swing.JLabel labelCauHoi;
+    private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelDapAnA;
     private javax.swing.JLabel labelDapAnB;
     private javax.swing.JLabel labelDapAnC;
     private javax.swing.JLabel labelDapAnD;
+    private javax.swing.JLabel labelDiemIQHienTai;
     private javax.swing.JLabel labelHinhAnhCauHoi;
     private javax.swing.JLabel labelIQ;
     private javax.swing.JLabel labelKienThuc;

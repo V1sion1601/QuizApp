@@ -1,6 +1,5 @@
 package GUI.admin;
 
-
 import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,6 +35,7 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
         labelTinhTrang = new javax.swing.JLabel();
         labelTinhTrangTuCSDL = new javax.swing.JLabel();
         buttonLuuThayDoi = new javax.swing.JButton();
+        labelButtonTroVe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -130,6 +130,26 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
             }
         });
 
+        labelButtonTroVe.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonTroVe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelButtonTroVe.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonTroVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonTroVe.setText("<---");
+        labelButtonTroVe.setToolTipText("Trở về");
+        labelButtonTroVe.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        labelButtonTroVe.setOpaque(true);
+        labelButtonTroVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhCapNhatNguoiChoiLayout = new javax.swing.GroupLayout(panelManHinhCapNhatNguoiChoi);
         panelManHinhCapNhatNguoiChoi.setLayout(panelManHinhCapNhatNguoiChoiLayout);
         panelManHinhCapNhatNguoiChoiLayout.setHorizontalGroup(
@@ -145,6 +165,8 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelKienThuc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhCapNhatNguoiChoiLayout.createSequentialGroup()
@@ -175,7 +197,8 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
                 .addGroup(panelManHinhCapNhatNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTranhTai)
-                    .addComponent(labelKienThuc))
+                    .addComponent(labelKienThuc)
+                    .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
@@ -237,17 +260,29 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
     private void buttonLuuThayDoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseEntered
-        buttonLuuThayDoi.setBackground(new Color(0,128,0));
+        buttonLuuThayDoi.setBackground(new Color(0, 128, 0));
     }//GEN-LAST:event_buttonLuuThayDoiMouseEntered
 
     private void buttonLuuThayDoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseExited
-        buttonLuuThayDoi.setBackground(new Color(34,139,34));
+        buttonLuuThayDoi.setBackground(new Color(34, 139, 34));
     }//GEN-LAST:event_buttonLuuThayDoiMouseExited
 
     private void buttonLuuThayDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseClicked
         String noiDungThongBao = "Cập nhật thành công";
         JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonLuuThayDoiMouseClicked
+
+    private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonTroVeMouseClicked
+
+    private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
+    }//GEN-LAST:event_labelButtonTroVeMouseEntered
+
+    private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
+    }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
      * @param args the command line arguments
@@ -276,68 +311,7 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -352,6 +326,7 @@ public class ManHinhCapNhatNguoiChoi extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> comboBoxGioiTinh;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
+    private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelDiaChiEmail;
     private javax.swing.JLabel labelGioiTinh;
     private javax.swing.JLabel labelKienThuc;

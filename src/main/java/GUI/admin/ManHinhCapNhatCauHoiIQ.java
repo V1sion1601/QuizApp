@@ -29,7 +29,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         textFieldNoiDungCauHoi = new javax.swing.JTextField();
         labelPhuongAn1 = new javax.swing.JLabel();
         textFieldPhuongAn1 = new javax.swing.JTextField();
-        labelGioiTinh = new javax.swing.JLabel();
+        labelPhuongAnDung = new javax.swing.JLabel();
         comboBoxPhuongAnDung = new javax.swing.JComboBox<>();
         buttonLuuThayDoi = new javax.swing.JButton();
         labelPhuongAn2 = new javax.swing.JLabel();
@@ -38,6 +38,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         textFieldPhuongAn3 = new javax.swing.JTextField();
         labelPhuongAn4 = new javax.swing.JLabel();
         textFieldPhuongAn4 = new javax.swing.JTextField();
+        labelButtonTroVe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -96,8 +97,8 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         textFieldPhuongAn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textFieldPhuongAn1.setToolTipText("Phương án 1");
 
-        labelGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelGioiTinh.setText("Phương án đúng :");
+        labelPhuongAnDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelPhuongAnDung.setText("Phương án đúng :");
 
         comboBoxPhuongAnDung.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboBoxPhuongAnDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
@@ -148,6 +149,26 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         textFieldPhuongAn4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textFieldPhuongAn4.setToolTipText("Phương án 4");
 
+        labelButtonTroVe.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonTroVe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelButtonTroVe.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonTroVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonTroVe.setText("<---");
+        labelButtonTroVe.setToolTipText("Trở về");
+        labelButtonTroVe.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        labelButtonTroVe.setOpaque(true);
+        labelButtonTroVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhCapNhatCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCapNhatCauHoi);
         panelManHinhCapNhatCauHoi.setLayout(panelManHinhCapNhatCauHoiLayout);
         panelManHinhCapNhatCauHoiLayout.setHorizontalGroup(
@@ -163,6 +184,8 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelKienThuc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
@@ -170,7 +193,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
                             .addComponent(labelNoiDungCauHoi)
                             .addComponent(labelPhuongAn1)
                             .addComponent(labelMaCauHoi)
-                            .addComponent(labelGioiTinh)
+                            .addComponent(labelPhuongAnDung)
                             .addComponent(labelPhuongAn2)
                             .addComponent(labelPhuongAn3)
                             .addComponent(labelPhuongAn4))
@@ -195,7 +218,8 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTranhTai)
-                    .addComponent(labelKienThuc))
+                    .addComponent(labelKienThuc)
+                    .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(labelCapNhatCauHoiIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -225,7 +249,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelGioiTinh))
+                    .addComponent(labelPhuongAnDung))
                 .addGap(18, 18, 18)
                 .addComponent(buttonLuuThayDoi)
                 .addGap(92, 92, 92)
@@ -285,6 +309,18 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     private void comboBoxPhuongAnDungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseClicked
         
     }//GEN-LAST:event_comboBoxPhuongAnDungMouseClicked
+
+    private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonTroVeMouseClicked
+
+    private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
+        labelButtonTroVe.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_labelButtonTroVeMouseEntered
+
+    private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
+        labelButtonTroVe.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
      * @param args the command line arguments
@@ -581,8 +617,8 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> comboBoxPhuongAnDung;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
+    private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelCapNhatCauHoiIQ;
-    private javax.swing.JLabel labelGioiTinh;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMaCauHoi;
     public static javax.swing.JLabel labelMaCauHoiIQTuCSDL;
@@ -591,6 +627,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     private javax.swing.JLabel labelPhuongAn2;
     private javax.swing.JLabel labelPhuongAn3;
     private javax.swing.JLabel labelPhuongAn4;
+    private javax.swing.JLabel labelPhuongAnDung;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCapNhatCauHoi;
     public static javax.swing.JTextField textFieldNoiDungCauHoi;

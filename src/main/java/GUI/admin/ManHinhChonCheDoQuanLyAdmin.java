@@ -4,7 +4,6 @@
  */
 package GUI.admin;
 
-
 import java.awt.Color;
 
 /**
@@ -38,6 +37,7 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         labelButtonQuanLyCauHoi = new javax.swing.JLabel();
         labelChonCheDoQuanLy = new javax.swing.JLabel();
         labelButtonQuanLyCauHoiIQ = new javax.swing.JLabel();
+        labelButtonTroVe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -74,6 +74,7 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         labelButtonKetThuc.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonKetThuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonKetThuc.setText("x");
+        labelButtonKetThuc.setToolTipText("Thoát");
         labelButtonKetThuc.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         labelButtonKetThuc.setOpaque(true);
         labelButtonKetThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,6 +135,26 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
             }
         });
 
+        labelButtonTroVe.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonTroVe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelButtonTroVe.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonTroVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonTroVe.setText("<---");
+        labelButtonTroVe.setToolTipText("Trở về");
+        labelButtonTroVe.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        labelButtonTroVe.setOpaque(true);
+        labelButtonTroVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonTroVeMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhChonCheDoQuanLyAdminLayout = new javax.swing.GroupLayout(panelManHinhChonCheDoQuanLyAdmin);
         panelManHinhChonCheDoQuanLyAdmin.setLayout(panelManHinhChonCheDoQuanLyAdminLayout);
         panelManHinhChonCheDoQuanLyAdminLayout.setHorizontalGroup(
@@ -142,7 +163,9 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
             .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
                 .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
                         .addGap(272, 272, 272)
@@ -162,7 +185,9 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         panelManHinhChonCheDoQuanLyAdminLayout.setVerticalGroup(
             panelManHinhChonCheDoQuanLyAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createSequentialGroup()
-                .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelManHinhChonCheDoQuanLyAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(113, 113, 113)
                 .addComponent(labelTranhTai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,6 +275,18 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseClicked
 
+    private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonTroVeMouseClicked
+
+    private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
+    }//GEN-LAST:event_labelButtonTroVeMouseEntered
+
+    private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
+    }//GEN-LAST:event_labelButtonTroVeMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -276,13 +313,7 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManHinhChonCheDoQuanLyAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -298,6 +329,7 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel labelButtonQuanLyCauHoi;
     private javax.swing.JLabel labelButtonQuanLyCauHoiIQ;
     private javax.swing.JLabel labelButtonQuanLyNguoiChoi;
+    private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelChonCheDoQuanLy;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelTranhTai;
