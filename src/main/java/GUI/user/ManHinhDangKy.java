@@ -1,7 +1,10 @@
 package GUI.user;
 
+import DTO.Manager;
 import java.awt.*;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -251,17 +254,54 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         String a = textFieldTenNguoiChoi.getText();
         String b = String.valueOf(passwordFieldMatKhau.getPassword());
         String c = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
-        if (a.length() != 0 && b.length() != 0 && c.length() != 0) {
-            if (b.equals(c)) {
-                BUS.UserBUS.insert1();
-//                this.setVisible(false);
-//                GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
-//                frame.setVisible(true);           
-            } else {
-                JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
+        String gmail = textFieldDiaChiEmail.getText();
+        String otp = "";
+        while (true) {
+            otp = new DecimalFormat("000000").format(new Random().nextInt(999999));//sinh ra mã otp ngẫu nhiên
+            if (Manager.OTP_TIME.get(otp) == null) {
+                break;
             }
-            JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");
         }
+        if (a.length() != 0 && b.length() != 0 && c.length() != 0 && gmail.length() != 0) {
+            if (BUS.UserBUS.isValidEmail(gmail) == true) {
+                if (BUS.UserBUS.isValidPassword(b) == true && BUS.UserBUS.isValidPassword(c) == true) {
+                    if (b.equals(c)) {
+                        if (DAO.UserDAO.CheckEmailUsed(gmail)) {
+                            if (DAO.UserDAO.checkUserName(a) == true) {
+                            BUS.SendMaiController.sendEmail(gmail, otp);
+                            Manager.OTP.put(gmail, otp);
+                            String input = JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");
+                            if (Manager.OTP.get(gmail).equals(input)) {
+                                BUS.UserBUS.insert1();
+                                Manager.OTP.remove(gmail);
+                                this.setVisible(false);
+                                GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
+                                frame.setVisible(true);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Mã xác thực không hợp lệ, Vui lòng bấm Đăng Ký để gửi lại mã mới");
+                                Manager.OTP.remove(gmail);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Email đã tồn tại");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Mật khẩu phải có chứa chữ và số và độ dài >= 6");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Email không hợp lệ");
+        }
+    }
+
+    
+        else {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+    }
     }//GEN-LAST:event_buttonDangKyMouseClicked
 
     private void passwordFieldMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldMatKhauActionPerformed
@@ -300,13 +340,25 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy
+
+.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

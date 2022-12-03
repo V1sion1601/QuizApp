@@ -203,7 +203,19 @@ public class UserBUS {
         return UserList;
     }
 
-    public static void insert1() {
+    public static boolean isValidEmail(String email){//kiểm tra tính hợp lệ của email
+        String regex = "^([A-Za-z0-9._])+([@])+([A-Za-z0-9.-])+([\\.])+([A-Za-z]{2,6})$";//ten_email @ tên miền ex:email@gmail.com
+        if(email.matches(regex))return true;//nếu đúng trả về true
+        return false;
+    }
+    
+    public static boolean isValidPassword(String password){//kiểm tra tính hợp lệ của password
+        String regex = "^([a-zA-z0-9!@#$%^&*]{6,})+$";//chữ và số, độ dài >=6
+        if(password.matches(regex))return true;//nếu khớp trả về true
+        return false;
+    }
+    
+    public static boolean insert1() {
         DAO.UserDAO.checkUserName(GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText());
         if (checktk == 1) {
             if (GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText().equals("")
@@ -223,17 +235,23 @@ public class UserBUS {
                         0,
                         0,
                         0,
-                        0
+                        0,
+                        GUI.user.ManHinhDangKy.textFieldDiaChiEmail.getText()
                 );
                 if (user != null) {
                     DAO.UserDAO.insert(user);
+                    return true;
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Đăng kí thất bại");
+                    return false;
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Tên người chơi đã tồn tại");
+            return false;
         }
+        return false;
     }
 
     public static DTO.UserDTO update1() {

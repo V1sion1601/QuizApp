@@ -16,6 +16,7 @@ public class UserDTO {
      String status;
      String password;
      String role; //admin or simple users
+     String email;
     
     public UserDTO() {
     }
@@ -24,6 +25,7 @@ public class UserDTO {
     public UserDTO(String name, String password) {
         this.name = name;
         this.password = password;
+        this.email = email;
     }
     
     public UserDTO(int idUser, String name, String status, String role) {
@@ -35,7 +37,8 @@ public class UserDTO {
     
 
     public UserDTO(String name,String password, int tongDiem, String status,  String role, int totalMatch,
-            int totalMatchWin, int winStreak, int HighestWinStreak,int totalMatchLose , int loseStreak, int HighestLoseStreak) {
+            int totalMatchWin, int winStreak, int HighestWinStreak,int totalMatchLose , int loseStreak, int HighestLoseStreak,
+            String email) {
         this.name = name;
         this.tongDiem = tongDiem;
         this.status = status;
@@ -48,6 +51,7 @@ public class UserDTO {
         this.loseStreak = loseStreak;
         this.HighestLoseStreak = HighestLoseStreak;
         this.totalMatchLose = totalMatchLose;
+        this.email = email;
     }
     
     public UserDTO(int idUser, String name, String status, String role, int tongDiem, int totalMatch,
@@ -199,6 +203,14 @@ public class UserDTO {
 
     public void setHighestLoseStreak(int HighestLoseStreak) {
         this.HighestLoseStreak = HighestLoseStreak;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     
