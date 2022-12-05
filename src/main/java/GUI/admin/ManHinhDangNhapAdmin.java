@@ -31,13 +31,14 @@ import org.jsoup.Jsoup;
  * @author TUF
  */
 public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
+
     UserBUS userBus = new UserBUS();
+
     /**
      * Creates new form ManHinhDangNhap
      *
      * @throws java.security.NoSuchAlgorithmException
      */
-
 
     public ManHinhDangNhapAdmin() {
         initComponents();
@@ -45,7 +46,6 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
             ServerConfig.Server.createServer();
         } catch (Exception e) {
         }
-        
 
 //        System.out.println("Private key: " + ServerConfig.Server.privateKeyString);
     }
@@ -241,8 +241,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
         String a = textFieldTenDangNhap.getText();
         String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
-        if(a.length()!=0 && b.length()!=0)
-        {
+        if (a.length() != 0 && b.length() != 0) {
             switch (userBus.findtaikhoan(a, b)) {
                 case 0:
                     GUI.admin.ManHinhChonCheDoQuanLyAdmin frameCheDoChoi = new ManHinhChonCheDoQuanLyAdmin();
@@ -258,9 +257,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
                     break;
             }
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin đăng nhập");
         }
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
@@ -297,7 +294,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 //                try {
-                    new ManHinhDangNhapAdmin().setVisible(true);
+                new ManHinhDangNhapAdmin().setVisible(true);
 //                } catch (NoSuchAlgorithmException ex) {
 //                    Logger.getLogger(ManHinhDangNhapAdmin.class.getName()).log(Level.SEVERE, null, ex);
 //                }
