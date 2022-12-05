@@ -9,6 +9,7 @@ import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,8 @@ import java.util.Collections;
 
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Timer;
 
@@ -106,7 +109,11 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                     labelDiem.setText(Integer.toString(tongDiem));
                 }
             } else {
-                showQuestionToGUI(++i);
+                try {
+                    showQuestionToGUI(++i);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     });
@@ -130,7 +137,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         return array;
     }
 
-    public void showQuestionToGUI(int i) {
+    public void showQuestionToGUI(int i) throws IOException {
         List<Integer> arr = createRandom();
         counter = 10;
         timer.start();
@@ -170,7 +177,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     }
 
-    public ManHinhCauHoi() {
+    public ManHinhCauHoi() throws IOException {
         initComponents();
         questionlist = questionlist();
         showQuestionToGUI(i);
@@ -643,7 +650,11 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhCauHoi().setVisible(true);
+                try {
+                    new ManHinhCauHoi().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

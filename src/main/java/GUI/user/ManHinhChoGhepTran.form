@@ -114,8 +114,10 @@
               <Font name="Segoe UI" size="48" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="60"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="labelDemNguoc.setText(String.valueOf(counter));"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="buttonKiemTraIQ">
           <Properties>

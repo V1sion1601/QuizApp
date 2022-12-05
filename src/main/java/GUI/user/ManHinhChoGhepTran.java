@@ -4,9 +4,20 @@
  */
 package GUI.user;
 
-
+import ServerConfig.ClientHandler;
+import ServerConfig.DataTransfer;
 import java.awt.Color;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -17,31 +28,51 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     /**
      * Creates new form ManHinhChoGhepTran
      */
-    int counter = 60;
-    boolean isIt = false;
-    
+    int counter = 10, flag = 0;
+
+    BufferedWriter out = null;
+    BufferedReader in = null;
+
+    DataTransfer transfer = new DataTransfer();
+    Timer timer = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            labelDemNguoc.setText(Integer.toString(counter));
+            counter--;
+            if (counter < 0) {
+                labelDemNguoc.setText(Integer.toString(0));
+                try {
+
+                    timer.stop();
+
+                    out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                    transfer.setSend(ManHinhDangNhap.socket, out, "cancel#" + ManHinhDangNhap.nameClient);
+                    transfer.send.run();
+                    int optionType = JOptionPane.OK_CANCEL_OPTION;
+                    int result = JOptionPane.showConfirmDialog(null, "Không tìm thấy đối thủ", "Không tìm thấy", optionType);
+                    if(result == JOptionPane.OK_OPTION) {
+                        dispose();
+                    }
+
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhChoGhepTran.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+
+                System.out.println(counter);
+
+            }
+        }
+    });
+
     public ManHinhChoGhepTran() {
         initComponents();
-        cacChinhSuaGiaoDienBangCode();
-    }
-    private void cacChinhSuaGiaoDienBangCode() {
-        // Đồng hồ đếm ngược
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            public void run() {
-                labelDemNguoc.setText(Integer.toString(counter));
-                counter = counter - 1;
-                if (counter == -1) {
-                    timer.cancel();
-                } else if (isIt) {
-                    timer.cancel();
-                    isIt = false;
-                }
-            }
-        };
-        timer.scheduleAtFixedRate(task, 1000, 1000);
+
+        timer.start();
+
     }
 
+    // Đồng hồ đếm ngược
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,9 +114,9 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
             }
         });
 
+        labelDemNguoc.setText(String.valueOf(counter));
         labelDemNguoc.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         labelDemNguoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDemNguoc.setText("60");
 
         buttonKiemTraIQ.setBackground(new java.awt.Color(0, 102, 255));
         buttonKiemTraIQ.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -151,15 +182,25 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonHuyChoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHuyChoMouseEntered
-        buttonHuyCho.setBackground(new Color(178,34,34));
+        buttonHuyCho.setBackground(new Color(178, 34, 34));
     }//GEN-LAST:event_buttonHuyChoMouseEntered
 
     private void buttonHuyChoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHuyChoMouseExited
-        buttonHuyCho.setBackground(new Color(220,20,60));
+        buttonHuyCho.setBackground(new Color(220, 20, 60));
     }//GEN-LAST:event_buttonHuyChoMouseExited
 
     private void buttonHuyChoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHuyChoMouseClicked
-        System.exit(0);
+        try {
+            timer.stop();
+            out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            transfer.setSend(ManHinhDangNhap.socket, out, "cancel#" + ManHinhDangNhap.nameClient);
+            transfer.send.run();
+            this.dispose();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhChoGhepTran.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonHuyChoMouseClicked
 
     private void buttonKiemTraIQMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonKiemTraIQMouseClicked
@@ -167,11 +208,11 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonKiemTraIQMouseClicked
 
     private void buttonKiemTraIQMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonKiemTraIQMouseEntered
-        buttonKiemTraIQ.setBackground(new Color(0,0,204));
+        buttonKiemTraIQ.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_buttonKiemTraIQMouseEntered
 
     private void buttonKiemTraIQMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonKiemTraIQMouseExited
-        buttonKiemTraIQ.setBackground(new Color(0,102,255));
+        buttonKiemTraIQ.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_buttonKiemTraIQMouseExited
 
     /**
@@ -188,16 +229,24 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhChoGhepTran.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

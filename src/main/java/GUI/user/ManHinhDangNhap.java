@@ -41,18 +41,20 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
      * Creates new form ManHinhDangNhap
      */
     public static int checktk;
-    Socket socket = null;
+    public static Socket socket = null;
     public static Vector<String> playerList = new Vector<>();
     private DataTransfer transfer = new DataTransfer();
     private SecretKey clientKey = null;
-    public String publicKey = null, nameClient = null;
+    public static String publicKey = null, nameClient = null;
     public PublicKey serverKey = null;
     UserBUS userBus = new UserBUS();
     ManHinhChonCheDoChoi frameCheDoChoi = null;
+    public static BufferedReader in = null;
+    public static BufferedWriter out = null;
 
     public ManHinhDangNhap() {
         initComponents();
-
+        int flag = 1;
         try {
             String api = "https://retoolapi.dev/wItTy8/data/1";
             Document doc = Jsoup.connect(api)
@@ -64,8 +66,8 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             socket = new Socket(jsonObject.get("ip").toString(), 4949);
             AES aes = new AES();
             RSA rsa = new RSA();
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             //Client tự phát sinh AES
             clientKey = aes.getKey();
             publicKey = in.readLine();
@@ -75,8 +77,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             serverKey = rsa.convertPublicKey(publicKey);
             //Mã hóa key AES của client theo key của server key (RSA)
             String encryptedKey = rsa.Encrpytion(aes.getKeyString(clientKey), serverKey);
-            transfer.setReceive(socket, in);
-            transfer.receive.run();
             transfer.setSend(socket, out, encryptedKey);
             transfer.send.run();
 
@@ -84,7 +84,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             System.out.println("Encrypted key: " + encryptedKey);
 
             System.out.println("Client key: " + aes.getKeyString(clientKey));
-
         } catch (Exception e) {
         }
     }
@@ -301,8 +300,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             transfer.setSend(socket, out, "bye");
             transfer.send.run();
 
-            ExecutorService excutor = Executors.newFixedThreadPool(2);
-            excutor.execute(transfer.send);
             socket.close();
             System.exit(0);
         } catch (IOException ex) {
@@ -345,15 +342,20 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
         String a = textFieldTenDangNhap.getText();
         String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
-        if(a.length()!=0 && b.length()!=0)
-        {
+        if (a.length() != 0 && b.length() != 0) {
             switch (userBus.findtaikhoan(a, b)) {
                 case 1:
-                    playerList.add(nameClient);
-                    ManHinhChonCheDoChoi frameCheDoChoi = new ManHinhChonCheDoChoi();
+//                    playerList.add(nameClient);
+                    ManHinhChonCheDoChoi frameCheDoChoi;
+                    try {
+                        frameCheDoChoi = new ManHinhChonCheDoChoi();
+                        frameCheDoChoi.setVisible(true);
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                     this.setVisible(false);
-                    frameCheDoChoi.setVisible(true);
 //                    frameCheDoChoi.setLocationRelativeTo(null);
                     break;
                 case 2:
@@ -363,9 +365,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
                     break;
             }
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin đăng nhập");
         }
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked

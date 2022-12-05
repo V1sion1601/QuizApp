@@ -443,7 +443,7 @@ public class UserDAO {
     }
 
     /* Kiểm tra username để đăng kí */
-    public static void checkUserName(String username) {
+    public static boolean checkUserName(String username) {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -455,8 +455,10 @@ public class UserDAO {
 
             if (rs.next()) {
                 BUS.UserBUS.checktk = 0;
+                return false;
             } else {
                 BUS.UserBUS.checktk = 1;
+                return true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -477,7 +479,7 @@ public class UserDAO {
             }
 
         }
-
+        return false;
     }
 
     /* Thêm tài khoản */
@@ -487,7 +489,7 @@ public class UserDAO {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "Insert into user value(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "Insert into user value(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             statement = connection.prepareCall(sql);
             statement.setInt(1, user.getIdUser());
             statement.setString(2, user.getName());
@@ -502,6 +504,7 @@ public class UserDAO {
             statement.setInt(11, user.getTotalMatchLose());
             statement.setInt(12, user.getLoseStreak());
             statement.setInt(13, user.getHighestLoseStreak());
+            statement.setString(14, user.getEmail());
 
             statement.execute();
         } catch (SQLException ex) {
@@ -996,5 +999,43 @@ public class UserDAO {
         }
 
     }
+    
+    public static boolean CheckEmailUsed(String email) {
 
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            String sql = "SELECT * FROM user WHERE Email=?";
+            statement = connection.prepareCall(sql);
+
+            statement.setString(1, email);
+
+            ResultSet rs = statement.executeQuery();
+            int count=0;
+            while (rs.next()) {
+            count++;
+            }
+            if(count == 0) return true;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAO.QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DAO.QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+        return false;
+    }
 }

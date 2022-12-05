@@ -4,8 +4,21 @@
  */
 package GUI.user;
 
+import static GUI.user.ManHinhDangNhap.socket;
+import ServerConfig.ClientHandler;
+import ServerConfig.DataTransfer;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 import java.util.Vector;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,10 +29,14 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     /**
      * Creates new form ManHinhDangNhap
      */
-    public ManHinhChonCheDoChoi() {
+    BufferedWriter out = null;
+    BufferedReader in2 = null;
+    DataTransfer transfer = new DataTransfer();
+
+    public ManHinhChonCheDoChoi() throws IOException {
         initComponents();
-       
-        System.out.println(ManHinhDangNhap.playerList);
+
+//        System.out.println(ManHinhDangNhap.playerList);
     }
 
     /**
@@ -192,7 +209,17 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
-        System.exit(0);
+        try {
+            out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+
+            transfer.setSend(ManHinhDangNhap.socket, out, "bye");
+            transfer.send.run();
+
+            socket.close();
+            System.exit(0);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered
@@ -232,7 +259,37 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     private void labelButtonTimDoiThuOnlineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTimDoiThuOnlineMouseClicked
-        // TODO add your handling code here:
+
+        try {
+            out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+            System.out.println(ManHinhDangNhap.nameClient);
+            // TODO add your handling code here:
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send Thread");
+                transfer.setSend(ManHinhDangNhap.socket, out, "queue#" + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+
+            Thread receiveThread = new Thread(() -> {
+                System.out.println("Receive Thread");
+
+                transfer.setReceive(ManHinhDangNhap.socket, in2);
+                transfer.receive.run();
+
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            System.out.println("List users: " + transfer.receive.userData);
+            ManHinhChoGhepTran frame = new ManHinhChoGhepTran();
+            frame.setVisible(true);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_labelButtonTimDoiThuOnlineMouseClicked
 
@@ -269,7 +326,11 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhChonCheDoChoi().setVisible(true);
+                try {
+                    new ManHinhChonCheDoChoi().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

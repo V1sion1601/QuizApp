@@ -38,6 +38,11 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         labelPhuongAn4 = new javax.swing.JLabel();
         textFieldPhuongAn4 = new javax.swing.JTextField();
         labelButtonTroVe = new javax.swing.JLabel();
+        labelButtonThemAnhNoiDungCauHoi = new javax.swing.JLabel();
+        labelButtonThemAnhPhuongAn1 = new javax.swing.JLabel();
+        labelButtonThemAnhPhuongAn2 = new javax.swing.JLabel();
+        labelButtonThemAnhPhuongAn3 = new javax.swing.JLabel();
+        labelButtonThemAnhPhuongAn4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -163,6 +168,81 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
             }
         });
 
+        labelButtonThemAnhNoiDungCauHoi.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonThemAnhNoiDungCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelButtonThemAnhNoiDungCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonThemAnhNoiDungCauHoi.setText("Thêm ảnh");
+        labelButtonThemAnhNoiDungCauHoi.setToolTipText("");
+        labelButtonThemAnhNoiDungCauHoi.setOpaque(true);
+        labelButtonThemAnhNoiDungCauHoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhNoiDungCauHoiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhNoiDungCauHoiMouseExited(evt);
+            }
+        });
+
+        labelButtonThemAnhPhuongAn1.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonThemAnhPhuongAn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelButtonThemAnhPhuongAn1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonThemAnhPhuongAn1.setText("Thêm ảnh");
+        labelButtonThemAnhPhuongAn1.setToolTipText("");
+        labelButtonThemAnhPhuongAn1.setOpaque(true);
+        labelButtonThemAnhPhuongAn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn1MouseExited(evt);
+            }
+        });
+
+        labelButtonThemAnhPhuongAn2.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonThemAnhPhuongAn2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelButtonThemAnhPhuongAn2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonThemAnhPhuongAn2.setText("Thêm ảnh");
+        labelButtonThemAnhPhuongAn2.setToolTipText("");
+        labelButtonThemAnhPhuongAn2.setOpaque(true);
+        labelButtonThemAnhPhuongAn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn2MouseExited(evt);
+            }
+        });
+
+        labelButtonThemAnhPhuongAn3.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonThemAnhPhuongAn3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelButtonThemAnhPhuongAn3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonThemAnhPhuongAn3.setText("Thêm ảnh");
+        labelButtonThemAnhPhuongAn3.setToolTipText("");
+        labelButtonThemAnhPhuongAn3.setOpaque(true);
+        labelButtonThemAnhPhuongAn3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn3MouseExited(evt);
+            }
+        });
+
+        labelButtonThemAnhPhuongAn4.setBackground(new java.awt.Color(204, 204, 204));
+        labelButtonThemAnhPhuongAn4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelButtonThemAnhPhuongAn4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonThemAnhPhuongAn4.setText("Thêm ảnh");
+        labelButtonThemAnhPhuongAn4.setToolTipText("");
+        labelButtonThemAnhPhuongAn4.setOpaque(true);
+        labelButtonThemAnhPhuongAn4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn4MouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhCapNhatCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCapNhatCauHoi);
         panelManHinhCapNhatCauHoi.setLayout(panelManHinhCapNhatCauHoiLayout);
         panelManHinhCapNhatCauHoiLayout.setHorizontalGroup(
@@ -192,18 +272,22 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
                             .addComponent(labelPhuongAn3)
                             .addComponent(labelPhuongAn4))
                         .addGap(130, 130, 130)
-                        .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textFieldPhuongAn3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                            .addComponent(textFieldPhuongAn2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldPhuongAn1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelMaCauHoiTuCSDL, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonLuu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldPhuongAn4)
-                            .addComponent(textFieldPhuongAn3)
-                            .addComponent(textFieldPhuongAn2)
-                            .addComponent(textFieldPhuongAn1)
-                            .addComponent(textFieldNoiDungCauHoi)
-                            .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
-                                .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelMaCauHoiTuCSDL)
-                                    .addComponent(buttonLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(textFieldNoiDungCauHoi, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelButtonThemAnhNoiDungCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelButtonThemAnhPhuongAn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelButtonThemAnhPhuongAn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelButtonThemAnhPhuongAn3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelButtonThemAnhPhuongAn4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         panelManHinhCapNhatCauHoiLayout.setVerticalGroup(
@@ -223,23 +307,28 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNoiDungCauHoi)
-                    .addComponent(textFieldNoiDungCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldNoiDungCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonThemAnhNoiDungCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn1)
-                    .addComponent(textFieldPhuongAn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPhuongAn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonThemAnhPhuongAn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn2)
-                    .addComponent(textFieldPhuongAn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPhuongAn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonThemAnhPhuongAn2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn3)
-                    .addComponent(textFieldPhuongAn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPhuongAn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonThemAnhPhuongAn3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn4)
-                    .addComponent(textFieldPhuongAn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPhuongAn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonThemAnhPhuongAn4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,6 +407,46 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         labelButtonTroVe.setBackground(new Color(204,204,204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
+    private void labelButtonThemAnhNoiDungCauHoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhNoiDungCauHoiMouseEntered
+        labelButtonThemAnhNoiDungCauHoi.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_labelButtonThemAnhNoiDungCauHoiMouseEntered
+
+    private void labelButtonThemAnhNoiDungCauHoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhNoiDungCauHoiMouseExited
+        labelButtonThemAnhNoiDungCauHoi.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_labelButtonThemAnhNoiDungCauHoiMouseExited
+
+    private void labelButtonThemAnhPhuongAn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn1MouseEntered
+        labelButtonThemAnhPhuongAn1.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn1MouseEntered
+
+    private void labelButtonThemAnhPhuongAn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn1MouseExited
+        labelButtonThemAnhPhuongAn1.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn1MouseExited
+
+    private void labelButtonThemAnhPhuongAn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn2MouseEntered
+        labelButtonThemAnhPhuongAn2.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn2MouseEntered
+
+    private void labelButtonThemAnhPhuongAn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn2MouseExited
+        labelButtonThemAnhPhuongAn2.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn2MouseExited
+
+    private void labelButtonThemAnhPhuongAn3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn3MouseEntered
+        labelButtonThemAnhPhuongAn3.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn3MouseEntered
+
+    private void labelButtonThemAnhPhuongAn3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn3MouseExited
+        labelButtonThemAnhPhuongAn3.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn3MouseExited
+
+    private void labelButtonThemAnhPhuongAn4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn4MouseEntered
+        labelButtonThemAnhPhuongAn4.setBackground(new Color(153,153,153));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn4MouseEntered
+
+    private void labelButtonThemAnhPhuongAn4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn4MouseExited
+        labelButtonThemAnhPhuongAn4.setBackground(new Color(204,204,204));
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn4MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -344,517 +473,8 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManHinhThemCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -869,6 +489,11 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> comboBoxPhuongAnDung;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
+    private javax.swing.JLabel labelButtonThemAnhNoiDungCauHoi;
+    private javax.swing.JLabel labelButtonThemAnhPhuongAn1;
+    private javax.swing.JLabel labelButtonThemAnhPhuongAn2;
+    private javax.swing.JLabel labelButtonThemAnhPhuongAn3;
+    private javax.swing.JLabel labelButtonThemAnhPhuongAn4;
     private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelGioiTinh;
     private javax.swing.JLabel labelKienThuc;

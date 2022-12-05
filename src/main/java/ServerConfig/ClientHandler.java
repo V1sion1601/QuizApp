@@ -8,7 +8,6 @@ import DTO.RSA;
 import GUI.admin.ManHinhDangNhapAdmin;
 import GUI.user.ManHinhDangNhap;
 
-
 import java.io.*;
 import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
@@ -42,16 +41,38 @@ public class ClientHandler implements Runnable {
         out = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
     }
 
+//    public String queuePlayer(String input) {
+//        String[] command = input.split("#");
+//        return command;
+//    }
+    public void sendQueueList(Vector<ClientHandler> clientList, Vector<String> queue, String command, String idPlayer) throws IOException {
+        if (command.contains("cancel")) {
+            System.out.println("test cancelhoang");
+            queue.remove(idPlayer);
+        }
+        if (command.contains("queue")) {
+            queue.add(idPlayer);
+        }
+        for (ClientHandler client : clientList) {
+            client.out.write(queue.toString() + "\n");
+            client.out.flush();
+            System.out.println("Server sent: " + queue);
+
+        }
+    }
+
     public void run() {
         RSA rsa = new RSA();
         System.out.println("Client " + socket.toString() + " accepted");
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
         System.out.println(threadSet);
         try {
+            String[] player = null;
+            String command = null, idPlayer = null;
             //Quá trình gửi key
             for (ClientHandler client : Server.clientList) {
                 if (name.equals(client.name)) {
-               
+
                     client.out.write(key + "\n");
                     client.out.write(name + "\n");
                     client.out.flush();
@@ -61,17 +82,26 @@ public class ClientHandler implements Runnable {
             //Xử lí đầu vào
             while (true) {
                 input = in.readLine();
+                player = input.split("#");
 
                 if (input.equals("bye")) {
-                    System.out.println("Name " + name);
-
+                    System.out.println("Bye client " + name);
                     Server.clientList.remove(this);
+                    Server.queueList.remove(name);
                     Server.executor.remove(this);
                     break;
                 }
-         
+
                 //Mã hóa các dữ liệu gửi từ client qua
-                System.out.println("Server received '" + rsa.Descrpytion(input, rsa.convertPrivateKey(Server.privateKeyString)) + "' from Client " + name);
+                //System.out.println("Server received '" + rsa.Descrpytion(input, rsa.convertPrivateKey(Server.privateKeyString)) + "' from Client " + name);
+                System.out.println("Server received queue '" + input + "' from Client " + name);
+
+                if (input.contains("#")) {
+                    command = player[0];
+                    idPlayer = player[1];
+                    sendQueueList(Server.clientList, Server.queueList, command, idPlayer);
+
+                }
 
             }
 
@@ -83,11 +113,12 @@ public class ClientHandler implements Runnable {
             System.out.println(threadSet);
         } catch (IOException e) {
             System.out.println(e);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        catch (NoSuchAlgorithmException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InvalidKeySpecException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
 }

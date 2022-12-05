@@ -9,6 +9,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingWorker;
 
 /**
@@ -19,15 +22,21 @@ public class DataTransfer {
 
     public Send send;
     public Receive receive;
+    public ReceiveMode receiveMode;
 
     public void setSend(Socket s, BufferedWriter o, String input) {
-        System.out.println(o);
+
         send = new Send(s, o, input);
     }
 
     public void setReceive(Socket s, BufferedReader r) {
 
         receive = new Receive(s, r);
+    }
+
+    public void setReceiveMode(Socket s, BufferedReader r) {
+
+        receiveMode = new ReceiveMode(s, r);
     }
 
     public class Send implements Runnable {
@@ -44,14 +53,19 @@ public class DataTransfer {
 
         public void run() {
             try {
+
                 out.write(input + "\n");
                 out.flush();
+                Thread.sleep(1000);
+
                 if (input.equals("bye")) {
                     socket.close();
                 }
 
             } catch (IOException e) {
                 System.out.println(e.getMessage());
+            } catch (InterruptedException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -61,34 +75,77 @@ public class DataTransfer {
 
         private Socket socket;
         private BufferedReader in;
+         public String userData;
 
         public Receive(Socket s, BufferedReader r) {
             this.socket = s;
             this.in = r;
+            userData = "";
         }
 
         public void run() {
-            SwingWorker sw = new SwingWorker() {
-                @Override
-                protected Object doInBackground() throws Exception {
-                    String data = null;
-                    try {
-                        while (true) {
 
-                            data = in.readLine();
-                            if (data.equals("bye")) {
-                                break;
-                            }
-                        }
+            SwingWorker sw = new SwingWorker() {
+
+                @Override
+                public Object doInBackground() throws Exception {
+
+                    try {
+
+                        String data = in.readLine();
                         System.out.println("Received: " + data);
+                        userData = data;
 
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
 
-                    return data;
+                    return userData;
+
                 }
+
             };
+
+            sw.execute();
+
+        }
+    }
+
+    public class ReceiveMode implements Runnable {
+
+        private Socket socket;
+        private BufferedReader in;
+        public String userData;
+
+        public ReceiveMode(Socket s, BufferedReader r) {
+            this.socket = s;
+            this.in = r;
+            userData = "";
+        }
+
+        public void run() {
+
+            SwingWorker sw = new SwingWorker() {
+
+                @Override
+                public Object doInBackground() throws Exception {
+
+                    try {
+
+                        String data = in.readLine();
+                        System.out.println("Received: " + data);
+                        userData = data;
+
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    return userData;
+
+                }
+
+            };
+
             sw.execute();
 
         }
