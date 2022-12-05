@@ -26,11 +26,11 @@ public class QuestionIQDAO {
 
     public static ArrayList<DTO.QuestionDTO> getListQuestion() {
         ArrayList<DTO.QuestionDTO> QuestionList = new ArrayList<>();
-        java.sql.Connection connection = null;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM question WHERE Type=?";
+            String sql = "SELECT * FROM questioniq WHERE Type=?";
             statement = connection.prepareCall(sql);
             statement.setString(1, "IQ");
             ResultSet rs = statement.executeQuery();
@@ -72,11 +72,11 @@ public class QuestionIQDAO {
     
     public static ArrayList<DTO.QuestionDTO> getListQuestionByQuantity(int quantityQuestion) {
         ArrayList<DTO.QuestionDTO> QuestionListByQuantity = new ArrayList<>();
-        java.sql.Connection connection = null;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM question ORDER BY RAND() LIMIT ? WHERE Type = IQ";
+            String sql = "SELECT * FROM questioniq ORDER BY RAND() LIMIT ? ";
             statement = connection.prepareCall(sql);
             statement.setInt(1, quantityQuestion);
             ResultSet rs = statement.executeQuery();
@@ -122,7 +122,7 @@ public class QuestionIQDAO {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM question WHERE ID_Question = ?";
+            String sql = "SELECT * FROM questioniq WHERE ID_Question = ?";
             statement = connection.prepareCall(sql);
             statement.setInt(1, ID);
             ResultSet rs = statement.executeQuery();
@@ -165,11 +165,11 @@ public class QuestionIQDAO {
      /* Thêm câu hỏi */
     public static void insert(DTO.QuestionDTO qt) {
 
-        java.sql.Connection connection = null;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "INSERT INTO question VALUE(?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO questioniq VALUE(?,?,?,?,?,?,?,?)";
             statement = connection.prepareCall(sql);
             statement.setInt(1, qt.getID_Question());
             statement.setString(2, qt.getContent());
@@ -206,11 +206,11 @@ public class QuestionIQDAO {
     /* Sửa câu hỏi */
     public static DTO.QuestionDTO update(DTO.QuestionDTO qt) {
 
-        java.sql.Connection connection = null;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE question SET Content=?, Option1=?, Option2=?, Option3=?, Option4=?, OptionTrue=?, Type=? WHERE ID_Question = ?";
+            String sql = "UPDATE questioniq SET Content=?, Option1=?, Option2=?, Option3=?, Option4=?, OptionTrue=?, Type=? WHERE ID_Question = ?";
             statement = connection.prepareCall(sql);
 
             statement.setString(1, qt.getContent());
@@ -248,11 +248,11 @@ public class QuestionIQDAO {
     /* Xoá câu hỏi */
     public static void delete(int ID_Question) {
 
-        java.sql.Connection connection = null;
+        Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "DELETE FROM question WHERE ID_Question=?";
+            String sql = "DELETE FROM questioniq WHERE ID_Question=?";
             statement = connection.prepareCall(sql);
 
             statement.setInt(1, ID_Question);

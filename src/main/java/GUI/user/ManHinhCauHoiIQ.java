@@ -6,25 +6,160 @@ package GUI.user;
 
 import DTO.QuestionDTO;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import javax.swing.Timer;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author TUF
  */
 public class ManHinhCauHoiIQ extends javax.swing.JFrame {
-    public static ArrayList<QuestionDTO> questionList;
+
+    public static ArrayList<QuestionDTO> questionlist;
     public static int dapAnCauHoiIQ = 0;
     public static int i = 0;
     public int tongIQ = 50;
+
     /**
      * Creates new form ManHinhDangNhap
      */
+//    Timer timer = new Timer(3000, new ActionListener() {
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            timer.start();
+//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnA.getText())) {
+//                labelDapAnA.setVisible(true);
+//                labelDapAnA.setBackground(Color.green);
+//                labelDapAnA.setForeground(new Color(0, 0, 0));
+//            } else {
+//                labelDapAnA.setVisible(true);
+//                labelDapAnA.setBackground(Color.RED);
+//                labelDapAnA.setForeground(new Color(0, 0, 0));
+//            }
+//            //Trong trường hợp nếu người dùng nhập đáp án B đúng
+//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnB.getText())) {
+//                labelDapAnB.setVisible(true);
+//                labelDapAnB.setBackground(Color.green);
+//                labelDapAnB.setForeground(new Color(0, 0, 0));
+//            } else {
+//                labelDapAnB.setVisible(true);
+//                labelDapAnB.setBackground(Color.RED);
+//                labelDapAnB.setForeground(new Color(0, 0, 0));
+//            }
+//            //Trong trường hợp nếu người dùng nhập đáp án C đúng
+//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnC.getText())) {
+//                labelDapAnC.setVisible(true);
+//                labelDapAnC.setBackground(Color.green);
+//                labelDapAnC.setForeground(new Color(0, 0, 0));
+//            } else {
+//                labelDapAnC.setVisible(true);
+//                labelDapAnC.setBackground(Color.RED);
+//                labelDapAnC.setForeground(new Color(0, 0, 0));
+//            }
+//            //Trong trường hợp nếu người dùng nhập đáp án D đúng
+//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnD.getText())) {
+//                labelDapAnD.setVisible(true);
+//                labelDapAnD.setBackground(Color.green);
+//                labelDapAnD.setForeground(new Color(0, 0, 0));
+//            } else {
+//                labelDapAnD.setVisible(true);
+//                labelDapAnD.setBackground(Color.RED);
+//                labelDapAnD.setForeground(new Color(0, 0, 0));
+//            }
+//
+//            labelIQ.setText(Integer.toString(tongIQ));
+//
+//            showQuestionToGUI(++i);
+//        }
+//    });
+//    class MouseClick implements MouseListener {
+//        @Override
+//        public void mouseClicked(MouseEvent e){
+//            
+//        }
+//    }
+    public static ArrayList<QuestionDTO> questionlist() {
+        //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
+        questionlist = new ArrayList<>(DAO.QuestionIQDAO.quantityQuestion);
+        questionlist = DAO.QuestionIQDAO.getListQuestionByQuantity(DAO.QuestionIQDAO.quantityQuestion);
+
+        return questionlist;
+    }
+
+    public static ArrayList<Integer> createRandom() {
+        Random rd = new Random();
+        ArrayList<Integer> array = new ArrayList<Integer>();
+
+        for (int i = 0; i < 4; i++) {
+            array.add(i);
+        }
+        Collections.shuffle(array, new Random(3));
+        return array;
+    }
+
+    public void showQuestionToGUI(int i) {
+        List<Integer> arr = createRandom();
+        labelIQ.setText(Integer.toString(tongIQ));
+
+//        timer.start();
+        if (i < questionlist.size()) {
+            String[] rq = {questionlist.get(i).getOption1(),
+                questionlist.get(i).getOption2(),
+                questionlist.get(i).getOption3(),
+                questionlist.get(i).getOption4()
+            };
+            labelHinhAnhCauHoi.setText(questionlist.get(i).getContent());
+            labelDapAnA.setBackground(new Color(0, 102, 255));
+            labelDapAnA.setForeground(new Color(255, 255, 255));
+            labelDapAnA.setVisible(true);
+
+            labelDapAnB.setBackground(new Color(0, 102, 255));
+            labelDapAnB.setForeground(new Color(255, 255, 255));
+            labelDapAnB.setVisible(true);
+
+            labelDapAnC.setBackground(new Color(0, 102, 255));
+            labelDapAnC.setForeground(new Color(255, 255, 255));
+            labelDapAnC.setVisible(true);
+
+            labelDapAnD.setBackground(new Color(0, 102, 255));
+            labelDapAnD.setForeground(new Color(255, 255, 255));
+            labelDapAnD.setVisible(true);
+
+            labelDapAnA.setText(rq[arr.get(0)]);
+            labelDapAnB.setText(rq[arr.get(1)]);
+            labelDapAnC.setText(rq[arr.get(2)]);
+            labelDapAnD.setText(rq[arr.get(3)]);
+
+        } else {
+            if (tongIQ < 70) {
+                JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ rất thấp!");
+            } else if (tongIQ < 85) {
+                JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ thấp!");
+            } else if (tongIQ > 85 && tongIQ < 115) {
+                JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ bình thường!");
+            } else if (tongIQ > 115 && tongIQ < 130) {
+                JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ thuộc loại thông minh!");
+            } else if (tongIQ > 130 && tongIQ < 145) {
+                JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ thuộc loại rất thông minh!");
+            } else if (tongIQ > 145) {
+                JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ thuộc loại thiên tài hoặc cận thiên tài!");
+            }
+            this.setVisible(false);
+            GUI.user.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
+            frame.setVisible(true);
+        }
+    }
+
     public ManHinhCauHoiIQ() {
         initComponents();
-
+        questionlist = questionlist();
+        showQuestionToGUI(i);
     }
 
     /**
@@ -90,7 +225,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
         labelDiemIQHienTai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDiemIQHienTai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDiemIQHienTai.setText("Điểm IQ hiện tại :");
+        labelDiemIQHienTai.setText("Điểm IQ:");
 
         labelIQ.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelIQ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -275,92 +410,118 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
     private void labelDapAnAMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseEntered
-        if (dapAnCauHoiIQ == 0) {
-            labelDapAnA.setBackground(new Color(0, 0, 204));
-        }
 
+        labelDapAnA.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_labelDapAnAMouseEntered
 
     private void labelDapAnAMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseExited
-        if (dapAnCauHoiIQ == 0)
-            labelDapAnA.setBackground(new Color(0, 102, 255));
+
+        labelDapAnA.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelDapAnAMouseExited
 
     private void labelDapAnBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseEntered
-        if (dapAnCauHoiIQ == 0) {
-            labelDapAnB.setBackground(new Color(0, 0, 204));
-        }
+
+        labelDapAnB.setBackground(new Color(0, 0, 204));
 
 
     }//GEN-LAST:event_labelDapAnBMouseEntered
 
     private void labelDapAnBMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseExited
-        if (dapAnCauHoiIQ == 0)
-            labelDapAnB.setBackground(new Color(0, 102, 255));
+
+        labelDapAnB.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelDapAnBMouseExited
 
     private void labelDapAnCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseEntered
-        if (dapAnCauHoiIQ == 0)
-            labelDapAnC.setBackground(new Color(0, 0, 204));
+
+        labelDapAnC.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_labelDapAnCMouseEntered
 
     private void labelDapAnCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseExited
-        if (dapAnCauHoiIQ == 0)
-            labelDapAnC.setBackground(new Color(0, 102, 255));
+
+        labelDapAnC.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelDapAnCMouseExited
 
     private void labelDapAnDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseEntered
-        if (dapAnCauHoiIQ == 0)
-            labelDapAnD.setBackground(new Color(0, 0, 204));
+
+        labelDapAnD.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_labelDapAnDMouseEntered
 
     private void labelDapAnDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseExited
-        if (dapAnCauHoiIQ == 0)
-            labelDapAnD.setBackground(new Color(0, 102, 255));
+
+        labelDapAnD.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelDapAnDMouseExited
 
     private void labelDapAnAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseClicked
-        if (dapAnCauHoiIQ == 0) {
-            dapAnCauHoiIQ = 1;
-            labelDapAnA.setBackground(new Color(255, 255, 0));
-            labelDapAnA.setForeground(new Color(0, 0, 0));
-            labelDapAnB.setBackground(new Color(204, 204, 204));
-            labelDapAnC.setBackground(new Color(204, 204, 204));
-            labelDapAnD.setBackground(new Color(204, 204, 204));
+        if (questionlist.get(i).getOptionTrue().equals(labelDapAnA.getText())) {
+            int diem = 20;
+            tongIQ += diem;
+            labelDapAnA.setVisible(true);
+
+        } else {
+            System.out.println("False");
+            tongIQ += 0;
+            labelDapAnB.setVisible(false);
+
+            labelDapAnC.setVisible(false);
+
+            labelDapAnD.setVisible(false);
         }
+        showQuestionToGUI(++i);
+
     }//GEN-LAST:event_labelDapAnAMouseClicked
 
     private void labelDapAnBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseClicked
-        if (dapAnCauHoiIQ == 0) {
-            dapAnCauHoiIQ = 2;
-            labelDapAnB.setBackground(new Color(255, 255, 0));
-            labelDapAnB.setForeground(new Color(0, 0, 0));
-            labelDapAnA.setBackground(new Color(204, 204, 204));
-            labelDapAnC.setBackground(new Color(204, 204, 204));
-            labelDapAnD.setBackground(new Color(204, 204, 204));
+        if (questionlist.get(i).getOptionTrue().equals(labelDapAnB.getText())) {
+            int diem = 20;
+            tongIQ += diem;
+            labelDapAnB.setVisible(true);
+        } else {
+            System.out.println("False");
+            tongIQ += 0;
+            labelDapAnA.setVisible(false);
+
+            labelDapAnC.setVisible(false);
+
+            labelDapAnD.setVisible(false);
         }
+
+        showQuestionToGUI(++i);
+
     }//GEN-LAST:event_labelDapAnBMouseClicked
 
     private void labelDapAnCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseClicked
-        if (dapAnCauHoiIQ == 0) {
-            dapAnCauHoiIQ = 3;
-            labelDapAnC.setBackground(new Color(255, 255, 0));
-            labelDapAnC.setForeground(new Color(0, 0, 0));
-            labelDapAnB.setBackground(new Color(204, 204, 204));
-            labelDapAnA.setBackground(new Color(204, 204, 204));
-            labelDapAnD.setBackground(new Color(204, 204, 204));
+        if (questionlist.get(i).getOptionTrue().equals(labelDapAnC.getText())) {
+            int diem = 20;
+            tongIQ += diem;
+            labelDapAnC.setVisible(true);
+
+        } else {
+            tongIQ += 0;
+            labelDapAnB.setVisible(false);
+
+            labelDapAnA.setVisible(false);
+
+            labelDapAnD.setVisible(false);
         }
+        showQuestionToGUI(++i);
+
+
     }//GEN-LAST:event_labelDapAnCMouseClicked
 
     private void labelDapAnDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseClicked
-        if (dapAnCauHoiIQ == 0) {
-            dapAnCauHoiIQ = 4;
-            labelDapAnD.setBackground(new Color(255, 255, 0));
-            labelDapAnD.setForeground(new Color(0, 0, 0));
-            labelDapAnB.setBackground(new Color(204, 204, 204));
-            labelDapAnC.setBackground(new Color(204, 204, 204));
-            labelDapAnA.setBackground(new Color(204, 204, 204));
+        if (questionlist.get(i).getOptionTrue().equals(labelDapAnD.getText())) {
+            int diem = 20;
+            tongIQ += diem;
+            labelDapAnD.setVisible(true);
+        } else {
+            tongIQ += 0;
+            labelDapAnB.setVisible(false);
+
+            labelDapAnC.setVisible(false);
+
+            labelDapAnA.setVisible(false);
         }
+        showQuestionToGUI(++i);
     }//GEN-LAST:event_labelDapAnDMouseClicked
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
@@ -368,11 +529,11 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153,153,153));
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonTroVeMouseEntered
 
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204,204,204));
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
@@ -389,16 +550,24 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhCauHoiIQ.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
