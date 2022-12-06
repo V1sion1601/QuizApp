@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class QuestionIQDAO {
-    public static int quantityQuestion = 10;
+    public static int quantityQuestion = 5;
 
     public static ArrayList<DTO.QuestionDTO> getListQuestion() {
         ArrayList<DTO.QuestionDTO> QuestionList = new ArrayList<>();

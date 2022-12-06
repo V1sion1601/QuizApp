@@ -187,7 +187,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã câu hỏi", "Nội dung câu hỏi", "Loại câu hỏi", "Phương án 1", "Phương án 2", "Phương án 3", "Phương án 4", "Đáp án"
+                "Mã câu hỏi", "Nội dung câu hỏi", "Phương án 1", "Phương án 2", "Phương án 3", "Phương án 4", "Đáp án", "Loại câu hỏi"
             }
         ) {
             Class[] types = new Class [] {
@@ -336,7 +336,6 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
             GUI.admin.ManHinhXacNhanXoaCauHoi frame = new ManHinhXacNhanXoaCauHoi();
             frame.setVisible(true);
         }
-
     }//GEN-LAST:event_buttonXoaMouseClicked
 
     private void buttonCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseClicked

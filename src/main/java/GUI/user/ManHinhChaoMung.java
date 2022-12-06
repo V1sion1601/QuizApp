@@ -55,6 +55,9 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
         labelButtonDangNhap.setToolTipText("Đăng nhập");
         labelButtonDangNhap.setOpaque(true);
         labelButtonDangNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonDangNhapMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonDangNhapMouseEntered(evt);
             }
@@ -70,6 +73,9 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
         labelButtonDangKy.setToolTipText("Đăng ký");
         labelButtonDangKy.setOpaque(true);
         labelButtonDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonDangKyMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonDangKyMouseEntered(evt);
             }
@@ -180,6 +186,22 @@ public class ManHinhChaoMung extends javax.swing.JFrame {
         labelButtonDangKy.setBackground(new Color(220, 220, 220));
        
     }//GEN-LAST:event_labelButtonDangKyMouseExited
+
+    private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
+        // TODO add your handling code here:
+       
+        GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
+        frame.setVisible(true);
+         this.setVisible(false);
+    }//GEN-LAST:event_labelButtonDangNhapMouseClicked
+
+    private void labelButtonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangKyMouseClicked
+        // TODO add your handling code here:
+        
+        GUI.user.ManHinhDangKy frame = new ManHinhDangKy();
+        frame.setVisible(true);
+         this.setVisible(false);
+    }//GEN-LAST:event_labelButtonDangKyMouseClicked
 
     /**
      * @param args the command line arguments

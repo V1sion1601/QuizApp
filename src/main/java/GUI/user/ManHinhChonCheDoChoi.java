@@ -215,7 +215,6 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
             out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-
             transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "bye");
             transfer.send.run();
             socket.close();
@@ -242,11 +241,11 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonQuanLyCauHoiMouseExited
 
     private void labelButtonChoiVoiMayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyCauHoiIQMouseEntered
-      
+
     }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseEntered
 
     private void labelButtonChoiVoiMayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyCauHoiIQMouseExited
-    
+
     }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseExited
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
@@ -298,14 +297,15 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     private void labelButtonKiemTraIQMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQMouseClicked
         // TODO add your handling code here:
-        GUI.user.ManHinhCauHoiIQ frame = null ;
+        GUI.user.ManHinhCauHoiIQ frame = null;
         try {
             frame = new ManHinhCauHoiIQ();
+            frame.setVisible(true);
+            this.setVisible(false);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        frame.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_labelButtonKiemTraIQMouseClicked
 
     /**

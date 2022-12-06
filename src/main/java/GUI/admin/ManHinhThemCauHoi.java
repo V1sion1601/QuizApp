@@ -308,17 +308,18 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
 
     private void buttonLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseClicked
         BUS.QuestionBUS.insert1();
-//        String noiDungThongBao = "Thêm thành công";
-//        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        this.setVisible(false);
+        GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
+        frame.setVisible(true);
     }//GEN-LAST:event_buttonLuuMouseClicked
 
     private void buttonLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLuuActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_buttonLuuActionPerformed
 
     private void comboBoxPhuongAnDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungActionPerformed
- 
+
 //        if (question.getOption1().equals(question.getOptionTrue())) {
 //            GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
 //            GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.setSelectedItem(question.getOptionTrue());
@@ -347,7 +348,7 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
 
     private void comboBoxPhuongAnDungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_comboBoxPhuongAnDungMouseClicked
 
     private void comboBoxPhuongAnDungMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseMoved
@@ -366,11 +367,11 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153,153,153));
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonTroVeMouseEntered
 
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204,204,204));
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
