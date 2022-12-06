@@ -245,7 +245,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
             switch (userBus.findtaikhoan(a, b)) {
                 case 0:
                     GUI.admin.ManHinhChonCheDoQuanLyAdmin frameCheDoChoi = new ManHinhChonCheDoQuanLyAdmin();
-                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+                    
                     this.setVisible(false);
                     frameCheDoChoi.setVisible(true);
 //                    frameCheDoChoi.setLocationRelativeTo(null);
