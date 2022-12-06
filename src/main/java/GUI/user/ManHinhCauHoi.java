@@ -36,8 +36,8 @@ import javax.swing.JOptionPane;
  */
 public class ManHinhCauHoi extends javax.swing.JFrame {
 
-    BufferedWriter out = null;
-    BufferedReader in = null;
+    BufferedReader testIn = null;
+    BufferedWriter testOut = null;
     DataTransfer transfer = new DataTransfer();
     public static ArrayList<QuestionDTO> questionlist;
     public static int i = 0;
@@ -53,9 +53,9 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //Delay 3 giây sau mỗi câu hỏi
+            labelDemNguocCauHoi.setText(Integer.toString(counter));
+            counter--;
             if (counter > -3) {
-                labelDemNguocCauHoi.setText(Integer.toString(counter));
-                counter--;
 
                 if (counter < 0) {
 
@@ -113,33 +113,45 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         buttonDapAnD.setForeground(new Color(0, 0, 0));
 
                     }
-
-                    transfer.setReceive(ManHinhDangNhap.socket, ManHinhDangNhap.in);
-                    transfer.receive.run();
-
-                    System.out.println("Point: " + transfer.receive.userData);
-                    String oppoPoint = transfer.receive.userData;
-                    labelDiem.setText(Integer.toString(tongDiem));
-                    labelDiem1.setText(oppoPoint);
-
-//                        BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-//                        Thread getPoint = new Thread(() -> {
-//                            transfer.setReceive(ManHinhDangNhap.socket, in2);
-//                            transfer.receive.run();
-//                        });
-//                        getPoint.start();
-//                        getPoint.join();
-//                        System.out.println("Point: " + transfer.receive.userData);
-//                        String oppoPoint = transfer.receive.userData;
-//                        labelDiem.setText(Integer.toString(tongDiem));
-//                        labelDiem1.setText(oppoPoint);
                 }
             } else {
+
                 try {
-                    showQuestionToGUI(++i);
+                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                    labelDemNguocCauHoi.setText(Integer.toString(0));
+                    timer.stop();
+                    try {
+                        System.out.println("Send to server point: " + tongDiem);
+                        Thread sendThread = new Thread(() -> {
+                            transfer.setSend(ManHinhDangNhap.socket, testOut, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
+                            transfer.send.run();
+                        });
+
+                        Thread testThread = new Thread(() -> {
+                            transfer.setReceiveMode(ManHinhDangNhap.socket, ManHinhDangNhap.in);
+                            transfer.receiveMode.run();
+                            System.out.println("Point: " + transfer.receiveMode.userData);
+                            String oppoPoint = transfer.receiveMode.userData;
+                            labelDiem.setText(Integer.toString(tongDiem));
+                            labelDiem1.setText(oppoPoint);
+
+                        });
+
+                        sendThread.start();
+                        testThread.start();
+                        sendThread.join(1000);
+                        testThread.join(4000);
+
+//                showQuestionToGUI(++i);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         }
     });
@@ -164,7 +176,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         return array;
     }
 
-    public void showQuestionToGUI(int i) throws IOException {
+    public void showQuestionToGUI(int i) {
         List<Integer> arr = createRandom();
         counter = 10;
         timer.start();
@@ -197,18 +209,22 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
         } else {
 
-            JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
-            dispose();
-            new ManHinhChonCheDoChoi().setVisible(true);
+            try {
+                JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
+                dispose();
+                new ManHinhChonCheDoChoi().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
 
-    public ManHinhCauHoi() throws IOException, InterruptedException {
+    public ManHinhCauHoi() throws InterruptedException {
         initComponents();
-        System.out.println("Test length: " + ManHinhChoGhepTran.arrListPlayers.size());
 
         questionlist = questionlist();
+
         showQuestionToGUI(i);
 //        out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 //        transfer.setSend(ManHinhDangNhap.socket, out, "cancel#" + ManHinhDangNhap.nameClient);
@@ -494,9 +510,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
 
         try {
-            out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-
-            transfer.setSend(ManHinhDangNhap.socket, out, "bye");
+            testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
             transfer.send.run();
             timer.stop();
             socket.close();
@@ -558,34 +573,24 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnDMouseExited
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
-        try {
-            // TODO add your handling code here:
-            System.out.println("Client name: " + ManHinhDangNhap.nameClient);
-            if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
-                int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
-                tongDiem += dt;
+        // TODO add your handling code here:
+        System.out.println("Client name: " + ManHinhDangNhap.nameClient);
+        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
+            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+            tongDiem += dt;
 
-            } else {
-                tongDiem += 0;
+        } else {
+            tongDiem += 0;
 
-            }
-            buttonDapAnA.setForeground(Color.black);
-            buttonDapAnA.setEnabled(false);
-            buttonDapAnB.setEnabled(false);
-            buttonDapAnC.setEnabled(false);
-            buttonDapAnD.setEnabled(false);
-
-            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-            BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-
-            transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
-            transfer.send.run();
+        }
+        buttonDapAnA.setForeground(Color.black);
+        buttonDapAnA.setEnabled(false);
+        buttonDapAnB.setEnabled(false);
+        buttonDapAnC.setEnabled(false);
+        buttonDapAnD.setEnabled(false);
 
 //        dt = Integer.parseInt(labelDemNguocCauHoi.getText());
 //        System.out.println(dt);
-        } catch (IOException ex) {
-            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
@@ -712,13 +717,13 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+
                 try {
                     new ManHinhCauHoi().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         });
     }

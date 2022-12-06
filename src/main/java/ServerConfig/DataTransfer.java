@@ -52,21 +52,21 @@ public class DataTransfer {
         }
 
         public void run() {
-            try {
+            SwingWorker sw = new SwingWorker() {
+                @Override
+                protected Object doInBackground() throws Exception {
+                    out.write(input + "\n");
+                    out.flush();
+                    Thread.sleep(1000);
 
-                out.write(input + "\n");
-                out.flush();
-                Thread.sleep(1000);
+                    if (input.equals("bye")) {
+                        socket.close();
+                    }
+                    return "Finished";
 
-                if (input.equals("bye")) {
-                    socket.close();
                 }
-
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            } catch (InterruptedException ex) {
-                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            };
+            sw.execute();
 
         }
     }
@@ -98,7 +98,6 @@ public class DataTransfer {
                                 break;
                             }
                             System.out.println("Received: " + data);
-                            
 
                         }
                         socket.close();
