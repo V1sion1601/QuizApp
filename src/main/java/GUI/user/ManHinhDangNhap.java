@@ -386,7 +386,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
-     * @param args the command line arguments
+     * @param args the command line argument
      */
     public static void main(String args[]) {
 

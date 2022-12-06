@@ -216,11 +216,10 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         try {
             out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 
-            transfer.setSend(ManHinhDangNhap.socket, out, "bye");
+            transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "bye");
             transfer.send.run();
-
             socket.close();
-            System.exit(0);
+            dispose();
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -269,29 +268,14 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
         try {
             out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-            in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-            System.out.println(ManHinhDangNhap.nameClient);
+//            in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+
             // TODO add your handling code here:
-            Thread sendThread = new Thread(() -> {
-                System.out.println("Send Thread");
-                transfer.setSend(ManHinhDangNhap.socket, out, "queue#" + ManHinhDangNhap.nameClient);
-                transfer.send.run();
-            });
-
-            Thread receiveThread = new Thread(() -> {
-                System.out.println("Receive Thread");
-
-                transfer.setReceive(ManHinhDangNhap.socket, in2);
-                transfer.receive.run();
-
-            });
-            sendThread.start();
-            receiveThread.start();
-            sendThread.join();
-            receiveThread.join();
-            System.out.println("List users: " + transfer.receive.userData);
+//            transfer.setSend(ManHinhDangNhap.socket, out, "queue#" + ManHinhDangNhap.nameClient);
+//            transfer.send.run();
             ManHinhChoGhepTran frame = new ManHinhChoGhepTran();
             frame.setVisible(true);
+            this.dispose();
         } catch (InterruptedException ex) {
             Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

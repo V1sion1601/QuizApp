@@ -5,11 +5,17 @@
 package GUI.user;
 
 import DTO.*;
+import static GUI.user.ManHinhDangNhap.socket;
+import ServerConfig.DataTransfer;
 import java.awt.Color;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import java.util.ArrayList;
 
@@ -30,13 +36,16 @@ import javax.swing.JOptionPane;
  */
 public class ManHinhCauHoi extends javax.swing.JFrame {
 
+    BufferedReader testIn = null;
+    BufferedWriter testOut = null;
+    DataTransfer transfer = new DataTransfer();
     public static ArrayList<QuestionDTO> questionlist;
     public static int i = 0;
     public static int dapAn = 0;
     public int counter = 10;
     public int tongDiem = 0;
-//    public int dt = 0;
 
+//    public int dt = 0;
     /**
      * Creates new form ManHinhDangNhap
      */
@@ -44,10 +53,12 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //Delay 3 giây sau mỗi câu hỏi
+            labelDemNguocCauHoi.setText(Integer.toString(counter));
+            counter--;
             if (counter > -3) {
-                labelDemNguocCauHoi.setText(Integer.toString(counter));
-                counter--;
+
                 if (counter < 0) {
+
                     labelDemNguocCauHoi.setText(Integer.toString(0));
                     //Trong trường hợp nếu người dùng nhập đáp án A đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
@@ -62,8 +73,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         buttonDapAnA.setBackground(Color.RED);
                         buttonDapAnA.setForeground(new Color(0, 0, 0));
 
-                    }
-                    //Trong trường hợp nếu người dùng nhập đáp án B đúng
+                    }   //Trong trường hợp nếu người dùng nhập đáp án B đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
 
                         buttonDapAnB.setEnabled(true);
@@ -75,10 +85,9 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         buttonDapAnB.setBackground(Color.RED);
                         buttonDapAnB.setForeground(new Color(0, 0, 0));
 
-                    }
-                    //Trong trường hợp nếu người dùng nhập đáp án C đúng
+                    }   //Trong trường hợp nếu người dùng nhập đáp án C đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
-//                   
+//
 
                         buttonDapAnC.setEnabled(true);
                         buttonDapAnC.setBackground(Color.green);
@@ -89,10 +98,12 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         buttonDapAnC.setEnabled(true);
                         buttonDapAnC.setBackground(Color.RED);
                         buttonDapAnC.setForeground(new Color(0, 0, 0));
-
                     }
                     //Trong trường hợp nếu người dùng nhập đáp án D đúng
                     if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {             
+
+                    }   //Trong trường hợp nếu người dùng nhập đáp án D đúng
+                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
                         buttonDapAnD.setEnabled(true);
                         buttonDapAnD.setBackground(Color.green);
                         buttonDapAnD.setForeground(new Color(0, 0, 0));
@@ -104,15 +115,45 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         buttonDapAnD.setForeground(new Color(0, 0, 0));
 
                     }
-
-                    labelDiem.setText(Integer.toString(tongDiem));
                 }
             } else {
+
                 try {
-                    showQuestionToGUI(++i);
+                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                    labelDemNguocCauHoi.setText(Integer.toString(0));
+                    timer.stop();
+                    try {
+                        System.out.println("Send to server point: " + tongDiem);
+                        Thread sendThread = new Thread(() -> {
+                            transfer.setSend(ManHinhDangNhap.socket, testOut, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
+                            transfer.send.run();
+                        });
+
+                        Thread testThread = new Thread(() -> {
+                            transfer.setReceiveMode(ManHinhDangNhap.socket, ManHinhDangNhap.in);
+                            transfer.receiveMode.run();
+                            System.out.println("Point: " + transfer.receiveMode.userData);
+                            String oppoPoint = transfer.receiveMode.userData;
+                            labelDiem.setText(Integer.toString(tongDiem));
+                            labelDiem1.setText(oppoPoint);
+
+                        });
+
+                        sendThread.start();
+                        testThread.start();
+                        sendThread.join(1000);
+                        testThread.join(4000);
+
+//                showQuestionToGUI(++i);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         }
     });
@@ -127,6 +168,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     public static ArrayList<Integer> createRandom() {
         Random rd = new Random();
+
         ArrayList<Integer> array = new ArrayList<Integer>();
 
         for (int i = 0; i < 4; i++) {
@@ -136,7 +178,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         return array;
     }
 
-    public void showQuestionToGUI(int i) throws IOException {
+    public void showQuestionToGUI(int i) {
         List<Integer> arr = createRandom();
         counter = 10;
         timer.start();
@@ -168,18 +210,36 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             buttonDapAnD.setText(rq[arr.get(3)]);
 
         } else {
-            JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
-            this.setVisible(false);
-            GUI.user.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
-            frame.setVisible(true);
+
+            try {
+                JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
+                dispose();
+                new ManHinhChonCheDoChoi().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
 
-    public ManHinhCauHoi() throws IOException  {
+
+    public ManHinhCauHoi() throws InterruptedException {
         initComponents();
         questionlist = questionlist();
         showQuestionToGUI(i);
+//        out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+//        transfer.setSend(ManHinhDangNhap.socket, out, "cancel#" + ManHinhDangNhap.nameClient);
+//        transfer.send.run();
+//        Thread receiveThread = new Thread(() -> {
+//            System.out.println("Receive Thread");
+//
+//            transfer.setReceive(ManHinhDangNhap.socket, in);
+//            transfer.receive.run();
+//
+//        });
+//        receiveThread.start();
+//        receiveThread.join();
+
     }
 
     /**
@@ -449,7 +509,17 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
-        System.exit(0);
+        try {
+            testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+            transfer.send.run();
+            timer.stop();
+            socket.close();
+            System.exit(0);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered
@@ -504,20 +574,19 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     private void buttonDapAnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnAActionPerformed
         // TODO add your handling code here:
+        System.out.println("Client name: " + ManHinhDangNhap.nameClient);
         if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
             int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
             tongDiem += dt;
+
         } else {
             tongDiem += 0;
-        }
 
+        }
         buttonDapAnA.setForeground(Color.black);
         buttonDapAnA.setEnabled(false);
-
         buttonDapAnB.setEnabled(false);
-
         buttonDapAnC.setEnabled(false);
-
         buttonDapAnD.setEnabled(false);
 
 
@@ -604,11 +673,11 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153,153,153));
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonTroVeMouseEntered
 
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204,204,204));
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
@@ -651,12 +720,13 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {              
-                try { 
+            public void run() {
+                try {
                     new ManHinhCauHoi().setVisible(true);
-                } catch (IOException ex) {
+                } catch (InterruptedException ex) {
                     Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
             }
         });
     }

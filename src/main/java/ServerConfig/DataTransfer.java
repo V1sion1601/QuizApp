@@ -52,21 +52,21 @@ public class DataTransfer {
         }
 
         public void run() {
-            try {
+            SwingWorker sw = new SwingWorker() {
+                @Override
+                protected Object doInBackground() throws Exception {
+                    out.write(input + "\n");
+                    out.flush();
+                    Thread.sleep(1000);
 
-                out.write(input + "\n");
-                out.flush();
-                Thread.sleep(1000);
+                    if (input.equals("bye")) {
+                        socket.close();
+                    }
+                    return "Finished";
 
-                if (input.equals("bye")) {
-                    socket.close();
                 }
-
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            } catch (InterruptedException ex) {
-                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            };
+            sw.execute();
 
         }
     }
@@ -75,12 +75,12 @@ public class DataTransfer {
 
         private Socket socket;
         private BufferedReader in;
-         public String userData;
+        public String userData;
 
         public Receive(Socket s, BufferedReader r) {
             this.socket = s;
             this.in = r;
-            userData = "";
+            this.userData = "";
         }
 
         public void run() {
@@ -91,10 +91,16 @@ public class DataTransfer {
                 public Object doInBackground() throws Exception {
 
                     try {
+                        while (true) {
+                            String data = in.readLine();
+                            userData = data;
+                            if (data == null) {
+                                break;
+                            }
+                            System.out.println("Received: " + data);
 
-                        String data = in.readLine();
-                        System.out.println("Received: " + data);
-                        userData = data;
+                        }
+                        socket.close();
 
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
@@ -131,11 +137,9 @@ public class DataTransfer {
                 public Object doInBackground() throws Exception {
 
                     try {
-
                         String data = in.readLine();
                         System.out.println("Received: " + data);
                         userData = data;
-
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }

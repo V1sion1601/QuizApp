@@ -46,19 +46,46 @@ public class ClientHandler implements Runnable {
 //        return command;
 //    }
     public void sendQueueList(Vector<ClientHandler> clientList, Vector<String> queue, String command, String idPlayer) throws IOException {
-        if (command.contains("cancel")) {
-            System.out.println("test cancelhoang");
-            queue.remove(idPlayer);
-        }
-        if (command.contains("queue")) {
-            queue.add(idPlayer);
-        }
-        for (ClientHandler client : clientList) {
-            client.out.write(queue.toString() + "\n");
-            client.out.flush();
-            System.out.println("Server sent: " + queue);
+        if (command.contains("match")) {
+//            String[] duel = idPlayer.split(",");
+//            String player1 = duel[0];
+//            String player2 = duel[1];
+            for (ClientHandler client : clientList) {
+                if (client.name.equals(idPlayer)) {
+                    client.out.write("Duel" + "\n");
+                    client.out.flush();
+                    System.out.println("Server sent duel to" + client.name);
+                }
+            }
+        } else if (command.contains("point")) {
+            String[] info = idPlayer.split(",");
+            String point = info[0];
+            String player = info[1];
+            for (ClientHandler client : clientList) {
+                if (!client.name.equals(player)) {
+                    client.out.write(point + "\n");
+                    client.out.flush();
+                    System.out.println("Server sent point " + point + " to player oppo: " + client.name);
+                }
 
+            }
+        } else {
+            if (command.contains("cancel")) {
+                System.out.println("test cancel");
+                queue.remove(idPlayer);
+            }
+            if (command.contains("queue")) {
+                queue.add(idPlayer);
+            }
+
+            for (ClientHandler client : clientList) {
+                client.out.write(queue.toString() + "\n");
+                client.out.flush();
+                System.out.println("Server sent: " + queue);
+
+            }
         }
+
     }
 
     public void run() {
@@ -82,7 +109,6 @@ public class ClientHandler implements Runnable {
             //Xử lí đầu vào
             while (true) {
                 input = in.readLine();
-                player = input.split("#");
 
                 if (input.equals("bye")) {
                     System.out.println("Bye client " + name);
@@ -97,6 +123,8 @@ public class ClientHandler implements Runnable {
                 System.out.println("Server received queue '" + input + "' from Client " + name);
 
                 if (input.contains("#")) {
+                    player = input.split("#");
+
                     command = player[0];
                     idPlayer = player[1];
                     sendQueueList(Server.clientList, Server.queueList, command, idPlayer);
