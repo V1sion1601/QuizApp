@@ -7,8 +7,6 @@ package BUS;
 
 import DTO.QuestionDTO;
 import static GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung;
-import static GUI.admin.ManHinhQuanLyCauHoi.qt;
-import GUI.admin.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -71,12 +69,7 @@ public class QuestionBUS {
         } else {
             frame.comboBoxPhuongAnDung.addItem(qt.getOption4());
         }
-        if (qt.getType().toLowerCase().equals("normal")) {
-            frame.comboBoxLoai.setSelectedItem("Normal");
-        }
-        if (qt.getType().toLowerCase().equals("iq")) {
-            frame.comboBoxLoai.setSelectedItem("IQ");
-        }
+      
     }
 
     public static void insert1() {
@@ -160,7 +153,7 @@ public class QuestionBUS {
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn3.getText(),
                     GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn4.getText(),
                     GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.getSelectedItem().toString(),
-                    GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.getSelectedItem().toString()
+                    "Normal"
             );
             if (question != null) {
                 question1 = DAO.QuestionDAO.update(question);

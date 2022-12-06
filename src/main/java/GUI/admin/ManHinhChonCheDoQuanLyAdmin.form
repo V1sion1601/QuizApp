@@ -130,7 +130,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; ng&#x1b0;&#x1edd;i ch&#x1a1;i"/>
-            <Property name="toolTipText" type="java.lang.String" value="T&#xec;m &#x111;&#x1ed1;i th&#x1ee7; Online"/>
+            <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; ng&#x1b0;&#x1edd;i ch&#x1a1;i"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -184,7 +184,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; c&#xe2;u h&#x1ecf;i"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ch&#x1a1;i v&#x1edb;i m&#xe1;y"/>
+            <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; c&#xe2;u h&#x1ecf;i"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
@@ -215,7 +215,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; c&#xe2;u h&#x1ecf;i IQ"/>
-            <Property name="toolTipText" type="java.lang.String" value="Ch&#x1a1;i v&#x1edb;i m&#xe1;y"/>
+            <Property name="toolTipText" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; c&#xe2;u h&#x1ecf;i IQ"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>

@@ -92,8 +92,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
                     }
                     //Trong trường hợp nếu người dùng nhập đáp án D đúng
-                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
-//               
+                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {             
                         buttonDapAnD.setEnabled(true);
                         buttonDapAnD.setBackground(Color.green);
                         buttonDapAnD.setForeground(new Color(0, 0, 0));
@@ -177,11 +176,10 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     }
 
-    public ManHinhCauHoi() throws IOException {
+    public ManHinhCauHoi() throws IOException  {
         initComponents();
         questionlist = questionlist();
         showQuestionToGUI(i);
-
     }
 
     /**
@@ -522,8 +520,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
         buttonDapAnD.setEnabled(false);
 
-//        dt = Integer.parseInt(labelDemNguocCauHoi.getText());
-//        System.out.println(dt);
 
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
@@ -568,7 +564,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
         buttonDapAnD.setEnabled(false);
 
-
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
@@ -589,7 +584,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
         buttonDapAnA.setEnabled(false);
 
-
     }//GEN-LAST:event_buttonDapAnDActionPerformed
 
     private void buttonDapAnAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnAMouseClicked
@@ -599,6 +593,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
         // TODO add your handling code here:
+        GUI.user.ManHinhChonCheDoChoi frame = null;
+        try {
+            frame = new ManHinhChonCheDoChoi();
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
@@ -649,8 +651,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
+            public void run() {              
+                try { 
                     new ManHinhCauHoi().setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);

@@ -39,8 +39,6 @@ import javax.swing.JOptionPane;
         textFieldPhuongAn3 = new javax.swing.JTextField();
         labelPhuongAn4 = new javax.swing.JLabel();
         textFieldPhuongAn4 = new javax.swing.JTextField();
-        comboBoxLoai = new javax.swing.JComboBox<>();
-        labelLoaiCauHoi = new javax.swing.JLabel();
         labelButtonTroVe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -157,13 +155,6 @@ import javax.swing.JOptionPane;
         textFieldPhuongAn4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textFieldPhuongAn4.setToolTipText("Phương án 4");
 
-        comboBoxLoai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        comboBoxLoai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C" }));
-        comboBoxLoai.setToolTipText("Loại câu hỏi");
-
-        labelLoaiCauHoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelLoaiCauHoi.setText("Loại câu hỏi :");
-
         labelButtonTroVe.setBackground(new java.awt.Color(204, 204, 204));
         labelButtonTroVe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelButtonTroVe.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,11 +216,8 @@ import javax.swing.JOptionPane;
                                     .addComponent(labelMaCauHoiTuCSDL))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelManHinhCapNhatCauHoiLayout.createSequentialGroup()
-                        .addComponent(labelLoaiCauHoi)
-                        .addGap(173, 173, 173)
-                        .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonLuuThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(276, 276, 276)
+                        .addComponent(buttonLuuThayDoi, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -267,15 +255,11 @@ import javax.swing.JOptionPane;
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPhuongAn4)
                     .addComponent(textFieldPhuongAn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboBoxPhuongAnDung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPhuongAnDung))
-                .addGap(18, 18, 18)
-                .addGroup(panelManHinhCapNhatCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelLoaiCauHoi))
-                .addGap(18, 18, 18)
+                .addGap(64, 64, 64)
                 .addComponent(buttonLuuThayDoi)
                 .addGap(41, 41, 41)
                 .addComponent(labelBanQuyenThuocVe)
@@ -389,13 +373,11 @@ import javax.swing.JOptionPane;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton buttonLuuThayDoi;
-    public static javax.swing.JComboBox<String> comboBoxLoai;
     public static javax.swing.JComboBox<String> comboBoxPhuongAnDung;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelKienThuc;
-    private javax.swing.JLabel labelLoaiCauHoi;
     private javax.swing.JLabel labelMaCauHoi;
     public static javax.swing.JLabel labelMaCauHoiTuCSDL;
     private javax.swing.JLabel labelNoiDungCauHoi;

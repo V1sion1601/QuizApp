@@ -55,7 +55,7 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         labelButtonQuanLyNguoiChoi.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonQuanLyNguoiChoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonQuanLyNguoiChoi.setText("Quản lý người chơi");
-        labelButtonQuanLyNguoiChoi.setToolTipText("Tìm đối thủ Online");
+        labelButtonQuanLyNguoiChoi.setToolTipText("Quản lý người chơi");
         labelButtonQuanLyNguoiChoi.setOpaque(true);
         labelButtonQuanLyNguoiChoi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -98,7 +98,7 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         labelButtonQuanLyCauHoi.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonQuanLyCauHoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonQuanLyCauHoi.setText("Quản lý câu hỏi");
-        labelButtonQuanLyCauHoi.setToolTipText("Chơi với máy");
+        labelButtonQuanLyCauHoi.setToolTipText("Quản lý câu hỏi");
         labelButtonQuanLyCauHoi.setOpaque(true);
         labelButtonQuanLyCauHoi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -121,7 +121,7 @@ public class ManHinhChonCheDoQuanLyAdmin extends javax.swing.JFrame {
         labelButtonQuanLyCauHoiIQ.setForeground(new java.awt.Color(255, 255, 255));
         labelButtonQuanLyCauHoiIQ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelButtonQuanLyCauHoiIQ.setText("Quản lý câu hỏi IQ");
-        labelButtonQuanLyCauHoiIQ.setToolTipText("Chơi với máy");
+        labelButtonQuanLyCauHoiIQ.setToolTipText("Quản lý câu hỏi IQ");
         labelButtonQuanLyCauHoiIQ.setOpaque(true);
         labelButtonQuanLyCauHoiIQ.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

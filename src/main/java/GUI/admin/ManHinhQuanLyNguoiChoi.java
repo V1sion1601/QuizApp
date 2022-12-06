@@ -73,7 +73,6 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         panelManHinhQuanLyNguoiChoi = new javax.swing.JPanel();
         buttonChan = new javax.swing.JButton();
         labelQuanLyNguoiChoi = new javax.swing.JLabel();
-        buttonCapNhat = new javax.swing.JButton();
         buttonXoa = new javax.swing.JButton();
         labelTranhTai = new javax.swing.JLabel();
         labelKienThuc = new javax.swing.JLabel();
@@ -92,7 +91,7 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonChan.setBackground(new java.awt.Color(153, 153, 0));
         buttonChan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonChan.setForeground(new java.awt.Color(255, 255, 255));
-        buttonChan.setText("Chặn");
+        buttonChan.setText("Chặn/Bỏ Chặn");
         buttonChan.setToolTipText("Chặn");
         buttonChan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -109,23 +108,6 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         labelQuanLyNguoiChoi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelQuanLyNguoiChoi.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelQuanLyNguoiChoi.setText("QUẢN LÝ NGƯỜI CHƠI");
-
-        buttonCapNhat.setBackground(new java.awt.Color(0, 102, 255));
-        buttonCapNhat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        buttonCapNhat.setForeground(new java.awt.Color(255, 255, 255));
-        buttonCapNhat.setText("Cập nhật");
-        buttonCapNhat.setToolTipText("Cập nhật");
-        buttonCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonCapNhatMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                buttonCapNhatMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                buttonCapNhatMouseExited(evt);
-            }
-        });
 
         buttonXoa.setBackground(new java.awt.Color(220, 20, 60));
         buttonXoa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -249,10 +231,8 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhQuanLyNguoiChoiLayout.createSequentialGroup()
                         .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonChan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(buttonChan, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ComboBoxFilterStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -271,13 +251,12 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
                 .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelManHinhQuanLyNguoiChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonXoa)
-                        .addComponent(buttonCapNhat)
-                        .addComponent(buttonChan))
-                    .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ComboBoxFilterStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonChan)
+                        .addComponent(ComboBoxFilterStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelQuanLyNguoiChoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneDanhSachNguoiChoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -317,14 +296,6 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
         buttonXoa.setBackground(new Color(220, 20, 60));
     }//GEN-LAST:event_buttonXoaMouseExited
 
-    private void buttonCapNhatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseEntered
-        buttonCapNhat.setBackground(new Color(0, 0, 204));
-    }//GEN-LAST:event_buttonCapNhatMouseEntered
-
-    private void buttonCapNhatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseExited
-        buttonCapNhat.setBackground(new Color(0, 102, 255));
-    }//GEN-LAST:event_buttonCapNhatMouseExited
-
     private void buttonChanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseEntered
         buttonChan.setBackground(new Color(102, 102, 0));
     }//GEN-LAST:event_buttonChanMouseEntered
@@ -342,15 +313,6 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
             frame.setVisible(true);
         }
     }//GEN-LAST:event_buttonXoaMouseClicked
-
-    private void buttonCapNhatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonCapNhatMouseClicked
-        // TODO add your handling code here:
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 user trong bảng");
-        } else {
-            BUS.UserBUS.showInfoUser(user);
-        }
-    }//GEN-LAST:event_buttonCapNhatMouseClicked
 
     private void buttonChanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonChanMouseClicked
         // TODO add your handling code here:
@@ -491,7 +453,6 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboBoxFilterStatus;
-    private javax.swing.JButton buttonCapNhat;
     private javax.swing.JButton buttonChan;
     private javax.swing.JButton buttonXoa;
     private javax.swing.JLabel labelBanQuyenThuocVe;

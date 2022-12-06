@@ -1,13 +1,15 @@
 package GUI.admin;
 
-
 import java.awt.*;
-import javax.swing.JLabel;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
 
     public static int dapAn = 0;
+    String myPath = "C:\\Users\\admin\\Documents\\NetBeansProjects\\QuizApp\\src\\main\\java\\imageIQ";
 
     public ManHinhCapNhatCauHoiIQ() {
         initComponents();
@@ -181,6 +183,9 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelButtonThemAnhNoiDungCauHoi.setToolTipText("");
         labelButtonThemAnhNoiDungCauHoi.setOpaque(true);
         labelButtonThemAnhNoiDungCauHoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhNoiDungCauHoiMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonThemAnhNoiDungCauHoiMouseEntered(evt);
             }
@@ -196,6 +201,9 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelButtonThemAnhPhuongAn1.setToolTipText("");
         labelButtonThemAnhPhuongAn1.setOpaque(true);
         labelButtonThemAnhPhuongAn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonThemAnhPhuongAn1MouseEntered(evt);
             }
@@ -211,6 +219,9 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelButtonThemAnhPhuongAn2.setToolTipText("");
         labelButtonThemAnhPhuongAn2.setOpaque(true);
         labelButtonThemAnhPhuongAn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn2MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonThemAnhPhuongAn2MouseEntered(evt);
             }
@@ -226,6 +237,9 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelButtonThemAnhPhuongAn3.setToolTipText("");
         labelButtonThemAnhPhuongAn3.setOpaque(true);
         labelButtonThemAnhPhuongAn3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn3MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonThemAnhPhuongAn3MouseEntered(evt);
             }
@@ -241,6 +255,9 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         labelButtonThemAnhPhuongAn4.setToolTipText("");
         labelButtonThemAnhPhuongAn4.setOpaque(true);
         labelButtonThemAnhPhuongAn4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonThemAnhPhuongAn4MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 labelButtonThemAnhPhuongAn4MouseEntered(evt);
             }
@@ -374,11 +391,11 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonKetThucMouseExited
 
     private void buttonLuuThayDoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseEntered
-        buttonLuuThayDoi.setBackground(new Color(0,128,0));
+        buttonLuuThayDoi.setBackground(new Color(0, 128, 0));
     }//GEN-LAST:event_buttonLuuThayDoiMouseEntered
 
     private void buttonLuuThayDoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseExited
-        buttonLuuThayDoi.setBackground(new Color(34,139,34));
+        buttonLuuThayDoi.setBackground(new Color(34, 139, 34));
     }//GEN-LAST:event_buttonLuuThayDoiMouseExited
 
     private void buttonLuuThayDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiMouseClicked
@@ -396,7 +413,7 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxPhuongAnDungMouseMoved
 
     private void comboBoxPhuongAnDungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseClicked
-        
+
     }//GEN-LAST:event_comboBoxPhuongAnDungMouseClicked
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
@@ -406,52 +423,132 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153,153,153));
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonTroVeMouseEntered
 
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204,204,204));
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     private void labelButtonThemAnhNoiDungCauHoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhNoiDungCauHoiMouseEntered
-        labelButtonThemAnhNoiDungCauHoi.setBackground(new Color(153,153,153));
+        labelButtonThemAnhNoiDungCauHoi.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonThemAnhNoiDungCauHoiMouseEntered
 
     private void labelButtonThemAnhNoiDungCauHoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhNoiDungCauHoiMouseExited
-        labelButtonThemAnhNoiDungCauHoi.setBackground(new Color(204,204,204));
+        labelButtonThemAnhNoiDungCauHoi.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonThemAnhNoiDungCauHoiMouseExited
 
     private void labelButtonThemAnhPhuongAn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn1MouseEntered
-        labelButtonThemAnhPhuongAn1.setBackground(new Color(153,153,153));
+        labelButtonThemAnhPhuongAn1.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn1MouseEntered
 
     private void labelButtonThemAnhPhuongAn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn1MouseExited
-        labelButtonThemAnhPhuongAn1.setBackground(new Color(204,204,204));
+        labelButtonThemAnhPhuongAn1.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn1MouseExited
 
     private void labelButtonThemAnhPhuongAn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn2MouseEntered
-        labelButtonThemAnhPhuongAn2.setBackground(new Color(153,153,153));
+        labelButtonThemAnhPhuongAn2.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn2MouseEntered
 
     private void labelButtonThemAnhPhuongAn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn2MouseExited
-        labelButtonThemAnhPhuongAn2.setBackground(new Color(204,204,204));
+        labelButtonThemAnhPhuongAn2.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn2MouseExited
 
     private void labelButtonThemAnhPhuongAn3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn3MouseEntered
-        labelButtonThemAnhPhuongAn3.setBackground(new Color(153,153,153));
+        labelButtonThemAnhPhuongAn3.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn3MouseEntered
 
     private void labelButtonThemAnhPhuongAn3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn3MouseExited
-        labelButtonThemAnhPhuongAn3.setBackground(new Color(204,204,204));
+        labelButtonThemAnhPhuongAn3.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn3MouseExited
 
     private void labelButtonThemAnhPhuongAn4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn4MouseEntered
-        labelButtonThemAnhPhuongAn4.setBackground(new Color(153,153,153));
+        labelButtonThemAnhPhuongAn4.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn4MouseEntered
 
     private void labelButtonThemAnhPhuongAn4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn4MouseExited
-        labelButtonThemAnhPhuongAn4.setBackground(new Color(204,204,204));
+        labelButtonThemAnhPhuongAn4.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn4MouseExited
+
+    private void labelButtonThemAnhNoiDungCauHoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhNoiDungCauHoiMouseClicked
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(myPath));
+
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+
+        int fileState = fileChooser.showSaveDialog(null);
+
+        if (fileState == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            textFieldNoiDungCauHoi.setText(path);
+        }
+    }//GEN-LAST:event_labelButtonThemAnhNoiDungCauHoiMouseClicked
+
+    private void labelButtonThemAnhPhuongAn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn1MouseClicked
+        // TODO add your handling code here:
+         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(myPath));
+
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+
+        int fileState = fileChooser.showSaveDialog(null);
+
+        if (fileState == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            textFieldPhuongAn1.setText(path);
+        }
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn1MouseClicked
+
+    private void labelButtonThemAnhPhuongAn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn2MouseClicked
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(myPath));
+
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+
+        int fileState = fileChooser.showSaveDialog(null);
+
+        if (fileState == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            textFieldPhuongAn2.setText(path);
+        }
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn2MouseClicked
+
+    private void labelButtonThemAnhPhuongAn3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn3MouseClicked
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(myPath));
+
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+
+        int fileState = fileChooser.showSaveDialog(null);
+
+        if (fileState == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            textFieldPhuongAn3.setText(path);
+        }
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn3MouseClicked
+
+    private void labelButtonThemAnhPhuongAn4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn4MouseClicked
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(myPath));
+
+        FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
+        fileChooser.addChoosableFileFilter(extensionFilter);
+
+        int fileState = fileChooser.showSaveDialog(null);
+
+        if (fileState == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            textFieldPhuongAn4.setText(path);
+        }
+    }//GEN-LAST:event_labelButtonThemAnhPhuongAn4MouseClicked
 
     /**
      * @param args the command line arguments

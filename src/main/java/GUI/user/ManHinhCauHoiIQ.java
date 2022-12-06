@@ -6,12 +6,20 @@ package GUI.user;
 
 import DTO.QuestionDTO;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import javax.swing.JOptionPane;
 
@@ -29,61 +37,61 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     /**
      * Creates new form ManHinhDangNhap
      */
-//    Timer timer = new Timer(3000, new ActionListener() {
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            timer.start();
-//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnA.getText())) {
-//                labelDapAnA.setVisible(true);
-//                labelDapAnA.setBackground(Color.green);
-//                labelDapAnA.setForeground(new Color(0, 0, 0));
-//            } else {
-//                labelDapAnA.setVisible(true);
-//                labelDapAnA.setBackground(Color.RED);
-//                labelDapAnA.setForeground(new Color(0, 0, 0));
-//            }
-//            //Trong trường hợp nếu người dùng nhập đáp án B đúng
-//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnB.getText())) {
-//                labelDapAnB.setVisible(true);
-//                labelDapAnB.setBackground(Color.green);
-//                labelDapAnB.setForeground(new Color(0, 0, 0));
-//            } else {
-//                labelDapAnB.setVisible(true);
-//                labelDapAnB.setBackground(Color.RED);
-//                labelDapAnB.setForeground(new Color(0, 0, 0));
-//            }
-//            //Trong trường hợp nếu người dùng nhập đáp án C đúng
-//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnC.getText())) {
-//                labelDapAnC.setVisible(true);
-//                labelDapAnC.setBackground(Color.green);
-//                labelDapAnC.setForeground(new Color(0, 0, 0));
-//            } else {
-//                labelDapAnC.setVisible(true);
-//                labelDapAnC.setBackground(Color.RED);
-//                labelDapAnC.setForeground(new Color(0, 0, 0));
-//            }
-//            //Trong trường hợp nếu người dùng nhập đáp án D đúng
-//            if (questionlist.get(i).getOptionTrue().equals(labelDapAnD.getText())) {
-//                labelDapAnD.setVisible(true);
-//                labelDapAnD.setBackground(Color.green);
-//                labelDapAnD.setForeground(new Color(0, 0, 0));
-//            } else {
-//                labelDapAnD.setVisible(true);
-//                labelDapAnD.setBackground(Color.RED);
-//                labelDapAnD.setForeground(new Color(0, 0, 0));
-//            }
-//
-//            labelIQ.setText(Integer.toString(tongIQ));
-//
-//            showQuestionToGUI(++i);
-//        }
-//    });
-//    class MouseClick implements MouseListener {
-//        @Override
-//        public void mouseClicked(MouseEvent e){
-//            
-//        }
-//    }
+    /*Timer timer = new Timer(3000, new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    timer.start();
+    if (questionlist.get(i).getOptionTrue().equals(labelDapAnA.getText())) {
+    labelDapAnA.setVisible(true);
+    labelDapAnA.setBackground(Color.green);
+    labelDapAnA.setForeground(new Color(0, 0, 0));
+    } else {
+    labelDapAnA.setVisible(true);
+    labelDapAnA.setBackground(Color.RED);
+    labelDapAnA.setForeground(new Color(0, 0, 0));
+    }
+    //Trong trường hợp nếu người dùng nhập đáp án B đúng
+    if (questionlist.get(i).getOptionTrue().equals(labelDapAnB.getText())) {
+    labelDapAnB.setVisible(true);
+    labelDapAnB.setBackground(Color.green);
+    labelDapAnB.setForeground(new Color(0, 0, 0));
+    } else {
+    labelDapAnB.setVisible(true);
+    labelDapAnB.setBackground(Color.RED);
+    labelDapAnB.setForeground(new Color(0, 0, 0));
+    }
+    //Trong trường hợp nếu người dùng nhập đáp án C đúng
+    if (questionlist.get(i).getOptionTrue().equals(labelDapAnC.getText())) {
+    labelDapAnC.setVisible(true);
+    labelDapAnC.setBackground(Color.green);
+    labelDapAnC.setForeground(new Color(0, 0, 0));
+    } else {
+    labelDapAnC.setVisible(true);
+    labelDapAnC.setBackground(Color.RED);
+    labelDapAnC.setForeground(new Color(0, 0, 0));
+    }
+    //Trong trường hợp nếu người dùng nhập đáp án D đúng
+    if (questionlist.get(i).getOptionTrue().equals(labelDapAnD.getText())) {
+    labelDapAnD.setVisible(true);
+    labelDapAnD.setBackground(Color.green);
+    labelDapAnD.setForeground(new Color(0, 0, 0));
+    } else {
+    labelDapAnD.setVisible(true);
+    labelDapAnD.setBackground(Color.RED);
+    labelDapAnD.setForeground(new Color(0, 0, 0));
+    }
+    
+    labelIQ.setText(Integer.toString(tongIQ));
+    
+    showQuestionToGUI(++i);
+    }
+    });
+    class MouseClick implements MouseListener {
+    @Override
+    public void mouseClicked(MouseEvent e){
+    
+    }
+    }*/
     public static ArrayList<QuestionDTO> questionlist() {
         //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
         questionlist = new ArrayList<>(DAO.QuestionIQDAO.quantityQuestion);
@@ -96,46 +104,51 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         Random rd = new Random();
         ArrayList<Integer> array = new ArrayList<Integer>();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
             array.add(i);
         }
         Collections.shuffle(array, new Random(3));
         return array;
     }
 
-    public void showQuestionToGUI(int i) {
+    public void showQuestionToGUI(int i) throws IOException {
         List<Integer> arr = createRandom();
         labelIQ.setText(Integer.toString(tongIQ));
 
 //        timer.start();
         if (i < questionlist.size()) {
-            String[] rq = {questionlist.get(i).getOption1(),
-                questionlist.get(i).getOption2(),
-                questionlist.get(i).getOption3(),
-                questionlist.get(i).getOption4()
-            };
-            labelHinhAnhCauHoi.setText(questionlist.get(i).getContent());
-            labelDapAnA.setBackground(new Color(0, 102, 255));
-            labelDapAnA.setForeground(new Color(255, 255, 255));
+            BufferedImage imgContent = ImageIO.read(new File(questionlist.get(i).getContent()));
+            BufferedImage img1 = ImageIO.read(new File(questionlist.get(i).getOption1()));
+            BufferedImage img2 = ImageIO.read(new File(questionlist.get(i).getOption2()));
+            BufferedImage img3 = ImageIO.read(new File(questionlist.get(i).getOption3()));
+            BufferedImage img4 = ImageIO.read(new File(questionlist.get(i).getOption4()));
+
+            ImageIcon iconContent = new ImageIcon(new ImageIcon(imgContent).getImage().getScaledInstance(500, 300,  Image.SCALE_DEFAULT));
+            ImageIcon icon1 = new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
+            ImageIcon icon2 = new ImageIcon(new ImageIcon(img2).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
+            ImageIcon icon3 = new ImageIcon(new ImageIcon(img3).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
+            ImageIcon icon4 = new ImageIcon(new ImageIcon(img4).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
+            
             labelDapAnA.setVisible(true);
-
-            labelDapAnB.setBackground(new Color(0, 102, 255));
-            labelDapAnB.setForeground(new Color(255, 255, 255));
             labelDapAnB.setVisible(true);
-
-            labelDapAnC.setBackground(new Color(0, 102, 255));
-            labelDapAnC.setForeground(new Color(255, 255, 255));
             labelDapAnC.setVisible(true);
-
-            labelDapAnD.setBackground(new Color(0, 102, 255));
-            labelDapAnD.setForeground(new Color(255, 255, 255));
             labelDapAnD.setVisible(true);
 
-            labelDapAnA.setText(rq[arr.get(0)]);
-            labelDapAnB.setText(rq[arr.get(1)]);
-            labelDapAnC.setText(rq[arr.get(2)]);
-            labelDapAnD.setText(rq[arr.get(3)]);
+//            String[] rq = {questionlist.get(i).getOption1(),
+//                questionlist.get(i).getOption2(),
+//                questionlist.get(i).getOption3(),
+//                questionlist.get(i).getOption4()
+//            };
+            labelHinhAnhCauHoi.setIcon(iconContent);
+            labelDapAnA.setIcon(icon1);
+            labelDapAnB.setIcon(icon2);
+            labelDapAnC.setIcon(icon3);
+            labelDapAnD.setIcon(icon4);
 
+//            labelDapAnA.setText(rq[arr.get(0)]);
+//            labelDapAnB.setText(rq[arr.get(1)]);
+//            labelDapAnC.setText(rq[arr.get(2)]);
+//            labelDapAnD.setText(rq[arr.get(3)]);
         } else {
             if (tongIQ < 70) {
                 JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ rất thấp!");
@@ -151,12 +164,12 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ thuộc loại thiên tài hoặc cận thiên tài!");
             }
             this.setVisible(false);
-            GUI.user.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
-            frame.setVisible(true);
+//            GUI.user.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
+//            frame.setVisible(true);
         }
     }
 
-    public ManHinhCauHoiIQ() {
+    public ManHinhCauHoiIQ() throws IOException {
         initComponents();
         questionlist = questionlist();
         showQuestionToGUI(i);
@@ -189,6 +202,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         setUndecorated(true);
 
         panelManHinhCauHoi.setBackground(new java.awt.Color(255, 255, 255));
+        panelManHinhCauHoi.setMaximumSize(new java.awt.Dimension(100, 100));
 
         labelTranhTai.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelTranhTai.setText("TRANH TÀI");
@@ -221,7 +235,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
         labelHinhAnhCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        labelHinhAnhCauHoi.setText("[Vị trí đặt câu hỏi]");
+        labelHinhAnhCauHoi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         labelDiemIQHienTai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelDiemIQHienTai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -231,12 +245,15 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         labelIQ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIQ.setText("0");
 
-        labelDapAnA.setBackground(new java.awt.Color(0, 102, 255));
+        labelDapAnA.setBackground(new java.awt.Color(255, 255, 255));
         labelDapAnA.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelDapAnA.setForeground(new java.awt.Color(255, 255, 255));
         labelDapAnA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDapAnA.setText("[Đáp án A]");
+        labelDapAnA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        labelDapAnA.setMaximumSize(new java.awt.Dimension(100, 100));
+        labelDapAnA.setMinimumSize(new java.awt.Dimension(100, 100));
         labelDapAnA.setOpaque(true);
+        labelDapAnA.setPreferredSize(new java.awt.Dimension(100, 100));
         labelDapAnA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelDapAnAMouseClicked(evt);
@@ -249,12 +266,13 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             }
         });
 
-        labelDapAnB.setBackground(new java.awt.Color(0, 102, 255));
+        labelDapAnB.setBackground(new java.awt.Color(255, 255, 255));
         labelDapAnB.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelDapAnB.setForeground(new java.awt.Color(255, 255, 255));
         labelDapAnB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDapAnB.setText("[Đáp án B]");
+        labelDapAnB.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelDapAnB.setOpaque(true);
+        labelDapAnB.setPreferredSize(new java.awt.Dimension(0, 0));
         labelDapAnB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelDapAnBMouseClicked(evt);
@@ -267,11 +285,11 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             }
         });
 
-        labelDapAnC.setBackground(new java.awt.Color(0, 102, 255));
+        labelDapAnC.setBackground(new java.awt.Color(255, 255, 255));
         labelDapAnC.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelDapAnC.setForeground(new java.awt.Color(255, 255, 255));
         labelDapAnC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDapAnC.setText("[Đáp án C]");
+        labelDapAnC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelDapAnC.setOpaque(true);
         labelDapAnC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -285,11 +303,11 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             }
         });
 
-        labelDapAnD.setBackground(new java.awt.Color(0, 102, 255));
+        labelDapAnD.setBackground(new java.awt.Color(255, 255, 255));
         labelDapAnD.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelDapAnD.setForeground(new java.awt.Color(255, 255, 255));
         labelDapAnD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDapAnD.setText("[Đáp án D]");
+        labelDapAnD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         labelDapAnD.setOpaque(true);
         labelDapAnD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -329,9 +347,9 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhCauHoiLayout.createSequentialGroup()
+                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelKienThuc)
@@ -339,19 +357,21 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
                         .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhCauHoiLayout.createSequentialGroup()
-                        .addComponent(labelHinhAnhCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                                 .addComponent(labelDiemIQHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelIQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelDapAnB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelDapAnC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelDapAnD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelDapAnA, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(labelIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelHinhAnhCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelDapAnA, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(labelDapAnD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelDapAnC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelDapAnB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)))
                 .addContainerGap())
         );
         panelManHinhCauHoiLayout.setVerticalGroup(
@@ -362,35 +382,40 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
                     .addComponent(labelTranhTai)
                     .addComponent(labelKienThuc)
                     .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDiemIQHienTai)
-                    .addComponent(labelIQ))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelHinhAnhCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
-                        .addComponent(labelDapAnA, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelDapAnB, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelDapAnC, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelDapAnD, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(labelBanQuyenThuocVe)
-                .addContainerGap())
+                        .addGap(68, 68, 68)
+                        .addComponent(labelDapAnA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(labelDapAnB, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(labelDapAnC, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(labelDapAnD, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(labelBanQuyenThuocVe)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhCauHoiLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDiemIQHienTai)
+                            .addComponent(labelIQ))
+                        .addGap(51, 51, 51)
+                        .addComponent(labelHinhAnhCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(83, 83, 83))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelManHinhCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelManHinhCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelManHinhCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -411,44 +436,42 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
     private void labelDapAnAMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseEntered
 
-        labelDapAnA.setBackground(new Color(0, 0, 204));
+        labelDapAnA.setBackground(new Color(160,160,160));
     }//GEN-LAST:event_labelDapAnAMouseEntered
 
     private void labelDapAnAMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseExited
 
-        labelDapAnA.setBackground(new Color(0, 102, 255));
+        labelDapAnA.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_labelDapAnAMouseExited
 
     private void labelDapAnBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseEntered
 
-        labelDapAnB.setBackground(new Color(0, 0, 204));
-
-
+        labelDapAnB.setBackground(new Color(160,160,160));
     }//GEN-LAST:event_labelDapAnBMouseEntered
 
     private void labelDapAnBMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseExited
 
-        labelDapAnB.setBackground(new Color(0, 102, 255));
+        labelDapAnB.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_labelDapAnBMouseExited
 
     private void labelDapAnCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseEntered
 
-        labelDapAnC.setBackground(new Color(0, 0, 204));
+        labelDapAnC.setBackground(new Color(160,160,160));
     }//GEN-LAST:event_labelDapAnCMouseEntered
 
     private void labelDapAnCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseExited
 
-        labelDapAnC.setBackground(new Color(0, 102, 255));
+        labelDapAnC.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_labelDapAnCMouseExited
 
     private void labelDapAnDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseEntered
 
-        labelDapAnD.setBackground(new Color(0, 0, 204));
+        labelDapAnD.setBackground(new Color(160,160,160));
     }//GEN-LAST:event_labelDapAnDMouseEntered
 
     private void labelDapAnDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseExited
 
-        labelDapAnD.setBackground(new Color(0, 102, 255));
+        labelDapAnD.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_labelDapAnDMouseExited
 
     private void labelDapAnAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseClicked
@@ -458,6 +481,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             labelDapAnA.setVisible(true);
 
         } else {
+            System.out.println(labelDapAnA.getText());
             System.out.println("False");
             tongIQ += 0;
             labelDapAnB.setVisible(false);
@@ -466,7 +490,11 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
             labelDapAnD.setVisible(false);
         }
-        showQuestionToGUI(++i);
+        try {
+            showQuestionToGUI(++i);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_labelDapAnAMouseClicked
 
@@ -485,7 +513,11 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             labelDapAnD.setVisible(false);
         }
 
-        showQuestionToGUI(++i);
+        try {
+            showQuestionToGUI(++i);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_labelDapAnBMouseClicked
 
@@ -497,13 +529,18 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
         } else {
             tongIQ += 0;
+            System.out.println("False");
             labelDapAnB.setVisible(false);
 
             labelDapAnA.setVisible(false);
 
             labelDapAnD.setVisible(false);
         }
-        showQuestionToGUI(++i);
+        try {
+            showQuestionToGUI(++i);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_labelDapAnCMouseClicked
@@ -515,17 +552,30 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             labelDapAnD.setVisible(true);
         } else {
             tongIQ += 0;
+            System.out.println("False");
             labelDapAnB.setVisible(false);
 
             labelDapAnC.setVisible(false);
 
             labelDapAnA.setVisible(false);
         }
-        showQuestionToGUI(++i);
+        try {
+            showQuestionToGUI(++i);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_labelDapAnDMouseClicked
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
         // TODO add your handling code here:
+        GUI.user.ManHinhChonCheDoChoi frame = null;
+        try {
+            frame = new ManHinhChonCheDoChoi();
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
@@ -581,7 +631,11 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManHinhCauHoiIQ().setVisible(true);
+                try {
+                    new ManHinhCauHoiIQ().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoiIQ.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -94,6 +94,9 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         buttonCapNhat.setForeground(new java.awt.Color(255, 255, 255));
         buttonCapNhat.setText("Cập nhật");
         buttonCapNhat.setToolTipText("Cập nhật / Sửa");
+        buttonCapNhat.setMaximumSize(new java.awt.Dimension(107, 33));
+        buttonCapNhat.setMinimumSize(new java.awt.Dimension(107, 33));
+        buttonCapNhat.setPreferredSize(new java.awt.Dimension(107, 33));
         buttonCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 buttonCapNhatMouseClicked(evt);
@@ -258,10 +261,10 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
                     .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonCapNhat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonCapNhat))
+                        .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelQuanLyCauHoiIQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(scrollPaneDanhSachCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,7 +333,7 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
         } else {
-            GUI.admin.ManHinhXacNhanXoaCauHoi frame = new ManHinhXacNhanXoaCauHoi();
+            GUI.admin.ManHinhXacNhanXoaCauHoiIQ frame = new ManHinhXacNhanXoaCauHoiIQ();
             frame.setVisible(true);
         }
     }//GEN-LAST:event_buttonXoaMouseClicked

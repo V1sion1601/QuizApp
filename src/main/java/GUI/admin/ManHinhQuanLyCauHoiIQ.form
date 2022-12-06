@@ -83,10 +83,10 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="buttonCapNhat" alignment="1" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="buttonThem" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="buttonXoa" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonCapNhat" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="labelQuanLyCauHoiIQ" max="32767" attributes="0"/>
                   </Group>
@@ -122,6 +122,15 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
             <Property name="toolTipText" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t / S&#x1eed;a"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[107, 33]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[107, 33]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[107, 33]"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="buttonCapNhatMouseClicked"/>

@@ -54,9 +54,9 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelButtonTimDoiThuOnline = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
-        labelButtonChoiVoiMay = new javax.swing.JLabel();
         labelVuiLongChonCheDoChoi = new javax.swing.JLabel();
         labelButtonTroVe = new javax.swing.JLabel();
+        labelButtonKiemTraIQ = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -111,22 +111,6 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
-        labelButtonChoiVoiMay.setBackground(new java.awt.Color(0, 102, 255));
-        labelButtonChoiVoiMay.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        labelButtonChoiVoiMay.setForeground(new java.awt.Color(255, 255, 255));
-        labelButtonChoiVoiMay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelButtonChoiVoiMay.setText("Chơi với máy");
-        labelButtonChoiVoiMay.setToolTipText("Chơi với máy");
-        labelButtonChoiVoiMay.setOpaque(true);
-        labelButtonChoiVoiMay.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelButtonChoiVoiMayMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelButtonChoiVoiMayMouseExited(evt);
-            }
-        });
-
         labelVuiLongChonCheDoChoi.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelVuiLongChonCheDoChoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelVuiLongChonCheDoChoi.setText("Vui lòng chọn Chế độ chơi");
@@ -151,6 +135,25 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
             }
         });
 
+        labelButtonKiemTraIQ.setBackground(new java.awt.Color(0, 102, 255));
+        labelButtonKiemTraIQ.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        labelButtonKiemTraIQ.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonKiemTraIQ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonKiemTraIQ.setText("Kiểm Tra IQ");
+        labelButtonKiemTraIQ.setToolTipText("Kiểm Tra IQ");
+        labelButtonKiemTraIQ.setOpaque(true);
+        labelButtonKiemTraIQ.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonKiemTraIQMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonKiemTraIQMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonKiemTraIQMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHInhChonCheDoChoiLayout = new javax.swing.GroupLayout(panelManHInhChonCheDoChoi);
         panelManHInhChonCheDoChoi.setLayout(panelManHInhChonCheDoChoiLayout);
         panelManHInhChonCheDoChoiLayout.setHorizontalGroup(
@@ -164,12 +167,13 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
             .addComponent(labelBanQuyenThuocVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelManHInhChonCheDoChoiLayout.createSequentialGroup()
                 .addGap(272, 272, 272)
-                .addGroup(panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelButtonChoiVoiMay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelKienThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTranhTai)
-                    .addComponent(labelVuiLongChonCheDoChoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelButtonKiemTraIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelKienThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelTranhTai)
+                        .addComponent(labelVuiLongChonCheDoChoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(272, Short.MAX_VALUE))
         );
         panelManHInhChonCheDoChoiLayout.setVerticalGroup(
@@ -182,13 +186,13 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
                 .addComponent(labelTranhTai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelKienThuc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(labelVuiLongChonCheDoChoi)
                 .addGap(41, 41, 41)
                 .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelButtonChoiVoiMay, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115)
+                .addComponent(labelButtonKiemTraIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -239,15 +243,18 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonQuanLyCauHoiMouseExited
 
     private void labelButtonChoiVoiMayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyCauHoiIQMouseEntered
-        labelButtonChoiVoiMay.setBackground(new Color(0, 0, 204));
+      
     }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseEntered
 
     private void labelButtonChoiVoiMayMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonQuanLyCauHoiIQMouseExited
-        labelButtonChoiVoiMay.setBackground(new Color(0, 102, 255));
+    
     }//GEN-LAST:event_labelButtonQuanLyCauHoiIQMouseExited
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
         // TODO add your handling code here:
+        GUI.user.ManHinhChaoMung frame = new ManHinhChaoMung();
+        frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
@@ -293,6 +300,30 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     }//GEN-LAST:event_labelButtonTimDoiThuOnlineMouseClicked
 
+    private void labelButtonKiemTraIQMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQMouseEntered
+        // TODO add your handling code here:
+        labelButtonKiemTraIQ.setBackground(new Color(0, 0, 204));
+
+    }//GEN-LAST:event_labelButtonKiemTraIQMouseEntered
+
+    private void labelButtonKiemTraIQMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQMouseExited
+        // TODO add your handling code here:
+        labelButtonKiemTraIQ.setBackground(new Color(0, 102, 255));
+
+    }//GEN-LAST:event_labelButtonKiemTraIQMouseExited
+
+    private void labelButtonKiemTraIQMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQMouseClicked
+        // TODO add your handling code here:
+        GUI.user.ManHinhCauHoiIQ frame = null ;
+        try {
+            frame = new ManHinhCauHoiIQ();
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        frame.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_labelButtonKiemTraIQMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -337,8 +368,8 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelBanQuyenThuocVe;
-    private javax.swing.JLabel labelButtonChoiVoiMay;
     private javax.swing.JLabel labelButtonKetThuc;
+    private javax.swing.JLabel labelButtonKiemTraIQ;
     private javax.swing.JLabel labelButtonTimDoiThuOnline;
     private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelKienThuc;

@@ -29,12 +29,13 @@ public class QuestionDAO {
     public static ArrayList<DTO.QuestionDTO> getListQuestion() {
         ArrayList<DTO.QuestionDTO> QuestionList = new ArrayList<>();
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM question";
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
+            String sql = "SELECT * FROM question WHERE Type=?";
+            statement = connection.prepareCall(sql);
+            statement.setString(1, "Normal");
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 DTO.QuestionDTO Question = new DTO.QuestionDTO(
                         rs.getInt("ID_Question"),
