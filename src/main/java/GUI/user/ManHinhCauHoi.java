@@ -53,10 +53,10 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             //Delay 3 giây sau mỗi câu hỏi
-            labelDemNguocCauHoi.setText(Integer.toString(counter));
-            counter--;
-            if (counter > -3) {
 
+            if (counter > -3) {
+                labelDemNguocCauHoi.setText(Integer.toString(counter));
+                counter--;
                 if (counter < 0) {
 
                     labelDemNguocCauHoi.setText(Integer.toString(0));
@@ -113,45 +113,45 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         buttonDapAnD.setForeground(new Color(0, 0, 0));
 
                     }
+                    labelDiem.setText(Integer.toString(tongDiem));
+
                 }
             } else {
-
-                try {
-                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-                    labelDemNguocCauHoi.setText(Integer.toString(0));
-                    timer.stop();
-                    try {
-                        System.out.println("Send to server point: " + tongDiem);
-                        Thread sendThread = new Thread(() -> {
-                            transfer.setSend(ManHinhDangNhap.socket, testOut, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
-                            transfer.send.run();
-                        });
-
-                        Thread testThread = new Thread(() -> {
-                            transfer.setReceiveMode(ManHinhDangNhap.socket, ManHinhDangNhap.in);
-                            transfer.receiveMode.run();
-                            System.out.println("Point: " + transfer.receiveMode.userData);
-                            String oppoPoint = transfer.receiveMode.userData;
-                            labelDiem.setText(Integer.toString(tongDiem));
-                            labelDiem1.setText(oppoPoint);
-
-                        });
-
-                        sendThread.start();
-                        testThread.start();
-                        sendThread.join(1000);
-                        testThread.join(4000);
-
-//                showQuestionToGUI(++i);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } catch (IOException ex) {
-                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
+                timer.stop();
+//                try {
+//                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+//                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+//
+//                    labelDemNguocCauHoi.setText(Integer.toString(0));
+//                    timer.stop();
+//                    try {
+//                        System.out.println("Send to server point: " + tongDiem);
+//                        Thread sendThread = new Thread(() -> {
+//                            transfer.setSend(ManHinhDangNhap.socket, testOut, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
+//                            transfer.send.run();
+//                        });
+//
+//                        Thread testThread = new Thread(() -> {
+//                            transfer.setReceiveMode(ManHinhDangNhap.socket, ManHinhDangNhap.in);
+//                            transfer.receiveMode.run();
+//                            System.out.println("Point: " + transfer.receiveMode.userData);
+//                            String oppoPoint = transfer.receiveMode.userData;
+//                            labelDiem1.setText(oppoPoint);
+//
+//                        });
+//
+//                        sendThread.start();
+//                        testThread.start();
+//                        sendThread.join(1000);
+//                        testThread.join(4000);
+//
+                        showQuestionToGUI(++i);
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                } catch (IOException ex) {
+//                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+//                }
             }
         }
     });
