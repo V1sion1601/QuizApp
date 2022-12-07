@@ -251,9 +251,9 @@ public class ManHinhDangKy extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDangKyMouseExited
 
     private void buttonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDangKyMouseClicked
-        String a = textFieldTenNguoiChoi.getText();
-        String b = String.valueOf(passwordFieldMatKhau.getPassword());
-        String c = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
+        String username = textFieldTenNguoiChoi.getText();
+        String password1 = String.valueOf(passwordFieldMatKhau.getPassword());
+        String password2 = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
         String gmail = textFieldDiaChiEmail.getText();
         String otp = "";
         while (true) {
@@ -262,17 +262,17 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                 break;
             }
         }
-        if (a.length() != 0 && b.length() != 0 && c.length() != 0 && gmail.length() != 0) {
+        if (username.length() != 0 && password1.length() != 0 && password2.length() != 0 && gmail.length() != 0) {
             if (BUS.UserBUS.isValidEmail(gmail) == true) {
-                if (BUS.UserBUS.isValidPassword(b) == true && BUS.UserBUS.isValidPassword(c) == true) {
-                    if (b.equals(c)) {
+                if (BUS.UserBUS.isValidPassword(password1) == true && BUS.UserBUS.isValidPassword(password2) == true) {
+                    if (password1.equals(password2)) {
                         if (DAO.UserDAO.CheckEmailUsed(gmail)) {
-                            if (DAO.UserDAO.checkUserName(a) == true) {
+                            if (DAO.UserDAO.checkUserName(username) == true) {
                             BUS.SendMaiController.sendEmail(gmail, otp);
                             Manager.OTP.put(gmail, otp);
                             String input = JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");
                             if (Manager.OTP.get(gmail).equals(input)) {
-                                BUS.UserBUS.insert1();
+                                BUS.UserBUS.insert1(username, password1, gmail);
                                 Manager.OTP.remove(gmail);
                                 this.setVisible(false);
                                 GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
@@ -296,10 +296,7 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Email không hợp lệ");
         }
-    }
-
-    
-        else {
+    } else {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
     }
     }//GEN-LAST:event_buttonDangKyMouseClicked

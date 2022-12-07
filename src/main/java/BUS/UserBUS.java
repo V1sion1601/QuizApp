@@ -215,17 +215,11 @@ public class UserBUS {
         return false;
     }
     
-    public static boolean insert1() {
-        DAO.UserDAO.checkUserName(GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText());
+    public static boolean insert1(String username, String password1, String gmail) {
         if (checktk == 1) {
-            if (GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText().equals("")
-                    || GUI.user.ManHinhDangKy.passwordFieldMatKhau.getPassword().equals("")
-                    || GUI.user.ManHinhDangKy.passwordFieldXacNhanMatKhau.getPassword().equals("")) {
-                JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin");
-            } else {
                 DTO.UserDTO user = new DTO.UserDTO(
-                        GUI.user.ManHinhDangKy.textFieldTenNguoiChoi.getText(),
-                        DAO.MD5.MD5(String.valueOf(GUI.user.ManHinhDangKy.passwordFieldMatKhau.getPassword())),
+                        username,
+                        DAO.MD5.MD5(String.valueOf(password1)),
                         0,
                         "Offline",
                         "user",
@@ -236,7 +230,7 @@ public class UserBUS {
                         0,
                         0,
                         0,
-                        GUI.user.ManHinhDangKy.textFieldDiaChiEmail.getText()
+                        gmail
                 );
                 if (user != null) {
                     DAO.UserDAO.insert(user);
@@ -246,12 +240,11 @@ public class UserBUS {
                     JOptionPane.showMessageDialog(null, "Đăng kí thất bại");
                     return false;
                 }
-            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Tên người chơi đã tồn tại");
             return false;
         }
-        return false;
     }
 
     public static DTO.UserDTO update1() {
