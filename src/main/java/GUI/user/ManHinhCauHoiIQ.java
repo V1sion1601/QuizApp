@@ -11,7 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,67 +36,18 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     public static int dapAnCauHoiIQ = 0;
     public static int i = 0;
     public int tongIQ = 50;
+    public ArrayList<String> listAnswer = null;
 
     /**
      * Creates new form ManHinhDangNhap
      */
-    /*Timer timer = new Timer(3000, new ActionListener() {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    timer.start();
-    if (questionlist.get(i).getOptionTrue().equals(labelDapAnA.getText())) {
-    labelDapAnA.setVisible(true);
-    labelDapAnA.setBackground(Color.green);
-    labelDapAnA.setForeground(new Color(0, 0, 0));
-    } else {
-    labelDapAnA.setVisible(true);
-    labelDapAnA.setBackground(Color.RED);
-    labelDapAnA.setForeground(new Color(0, 0, 0));
-    }
-    //Trong trường hợp nếu người dùng nhập đáp án B đúng
-    if (questionlist.get(i).getOptionTrue().equals(labelDapAnB.getText())) {
-    labelDapAnB.setVisible(true);
-    labelDapAnB.setBackground(Color.green);
-    labelDapAnB.setForeground(new Color(0, 0, 0));
-    } else {
-    labelDapAnB.setVisible(true);
-    labelDapAnB.setBackground(Color.RED);
-    labelDapAnB.setForeground(new Color(0, 0, 0));
-    }
-    //Trong trường hợp nếu người dùng nhập đáp án C đúng
-    if (questionlist.get(i).getOptionTrue().equals(labelDapAnC.getText())) {
-    labelDapAnC.setVisible(true);
-    labelDapAnC.setBackground(Color.green);
-    labelDapAnC.setForeground(new Color(0, 0, 0));
-    } else {
-    labelDapAnC.setVisible(true);
-    labelDapAnC.setBackground(Color.RED);
-    labelDapAnC.setForeground(new Color(0, 0, 0));
-    }
-    //Trong trường hợp nếu người dùng nhập đáp án D đúng
-    if (questionlist.get(i).getOptionTrue().equals(labelDapAnD.getText())) {
-    labelDapAnD.setVisible(true);
-    labelDapAnD.setBackground(Color.green);
-    labelDapAnD.setForeground(new Color(0, 0, 0));
-    } else {
-    labelDapAnD.setVisible(true);
-    labelDapAnD.setBackground(Color.RED);
-    labelDapAnD.setForeground(new Color(0, 0, 0));
-    }
-    
-    labelIQ.setText(Integer.toString(tongIQ));
-    
-    showQuestionToGUI(++i);
-    }
-    });
-    class MouseClick implements MouseListener {
-    @Override
-    public void mouseClicked(MouseEvent e){
-    
-    }
-    }*/
     public static ArrayList<QuestionDTO> questionlist() {
         //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
+        if (GUI.admin.ManHinhXacNhanThayDoiSoLuongCauHoi.newNumber == 0) {
+            DAO.QuestionIQDAO.quantityQuestion = 5;
+        } else {
+            DAO.QuestionIQDAO.quantityQuestion = GUI.admin.ManHinhXacNhanThayDoiSoLuongCauHoi.newNumber;
+        }
         questionlist = new ArrayList<>(DAO.QuestionIQDAO.quantityQuestion);
         questionlist = DAO.QuestionIQDAO.getListQuestionByQuantity(DAO.QuestionIQDAO.quantityQuestion);
 
@@ -115,30 +69,31 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
         List<Integer> arr = createRandom();
         labelIQ.setText(Integer.toString(tongIQ));
 
-//        timer.start();
         if (i < questionlist.size()) {
-            BufferedImage imgContent = ImageIO.read(new File(questionlist.get(i).getContent()));
-            BufferedImage img1 = ImageIO.read(new File(questionlist.get(i).getOption1()));
-            BufferedImage img2 = ImageIO.read(new File(questionlist.get(i).getOption2()));
-            BufferedImage img3 = ImageIO.read(new File(questionlist.get(i).getOption3()));
-            BufferedImage img4 = ImageIO.read(new File(questionlist.get(i).getOption4()));
 
-            ImageIcon iconContent = new ImageIcon(new ImageIcon(imgContent).getImage().getScaledInstance(500, 300,  Image.SCALE_DEFAULT));
-            ImageIcon icon1 = new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
-            ImageIcon icon2 = new ImageIcon(new ImageIcon(img2).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
-            ImageIcon icon3 = new ImageIcon(new ImageIcon(img3).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
-            ImageIcon icon4 = new ImageIcon(new ImageIcon(img4).getImage().getScaledInstance(100, 100,  Image.SCALE_DEFAULT));
-            
+            BufferedImage imgContent = ImageIO.read(new FileInputStream("resources/" + questionlist.get(i).getContent()));
+            BufferedImage img1 = ImageIO.read(new FileInputStream("resources/" + questionlist.get(i).getOption1()));
+            BufferedImage img2 = ImageIO.read(new FileInputStream("resources/" + questionlist.get(i).getOption2()));
+            BufferedImage img3 = ImageIO.read(new FileInputStream("resources/" + questionlist.get(i).getOption3()));
+            BufferedImage img4 = ImageIO.read(new FileInputStream("resources/" + questionlist.get(i).getOption4()));
+
+            ImageIcon iconContent = new ImageIcon(new ImageIcon(imgContent).getImage().getScaledInstance(500, 300, Image.SCALE_DEFAULT));
+            ImageIcon icon1 = new ImageIcon(new ImageIcon(img1).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            ImageIcon icon2 = new ImageIcon(new ImageIcon(img2).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            ImageIcon icon3 = new ImageIcon(new ImageIcon(img3).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+            ImageIcon icon4 = new ImageIcon(new ImageIcon(img4).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+
+            listAnswer = new ArrayList<String>();
+            listAnswer.add(questionlist.get(i).getOption1());
+            listAnswer.add(questionlist.get(i).getOption2());
+            listAnswer.add(questionlist.get(i).getOption3());
+            listAnswer.add(questionlist.get(i).getOption4());
+
             labelDapAnA.setVisible(true);
             labelDapAnB.setVisible(true);
             labelDapAnC.setVisible(true);
             labelDapAnD.setVisible(true);
 
-//            String[] rq = {questionlist.get(i).getOption1(),
-//                questionlist.get(i).getOption2(),
-//                questionlist.get(i).getOption3(),
-//                questionlist.get(i).getOption4()
-//            };
             labelHinhAnhCauHoi.setIcon(iconContent);
             labelDapAnA.setIcon(icon1);
             labelDapAnB.setIcon(icon2);
@@ -436,7 +391,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
     private void labelDapAnAMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseEntered
 
-        labelDapAnA.setBackground(new Color(160,160,160));
+        labelDapAnA.setBackground(new Color(160, 160, 160));
     }//GEN-LAST:event_labelDapAnAMouseEntered
 
     private void labelDapAnAMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseExited
@@ -446,7 +401,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
     private void labelDapAnBMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseEntered
 
-        labelDapAnB.setBackground(new Color(160,160,160));
+        labelDapAnB.setBackground(new Color(160, 160, 160));
     }//GEN-LAST:event_labelDapAnBMouseEntered
 
     private void labelDapAnBMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseExited
@@ -456,7 +411,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
     private void labelDapAnCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseEntered
 
-        labelDapAnC.setBackground(new Color(160,160,160));
+        labelDapAnC.setBackground(new Color(160, 160, 160));
     }//GEN-LAST:event_labelDapAnCMouseEntered
 
     private void labelDapAnCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseExited
@@ -466,7 +421,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
 
     private void labelDapAnDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseEntered
 
-        labelDapAnD.setBackground(new Color(160,160,160));
+        labelDapAnD.setBackground(new Color(160, 160, 160));
     }//GEN-LAST:event_labelDapAnDMouseEntered
 
     private void labelDapAnDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseExited
@@ -475,13 +430,14 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelDapAnDMouseExited
 
     private void labelDapAnAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnAMouseClicked
-        if (questionlist.get(i).getOptionTrue().equals(labelDapAnA.getText())) {
+        if (questionlist.get(i).getOptionTrue().equals(listAnswer.get(0))) {
             int diem = 20;
             tongIQ += diem;
-            labelDapAnA.setVisible(true);
+            System.out.println("đúng");
 
+            labelDapAnA.setVisible(true);
         } else {
-            System.out.println(labelDapAnA.getText());
+
             System.out.println("False");
             tongIQ += 0;
             labelDapAnB.setVisible(false);
@@ -499,10 +455,13 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelDapAnAMouseClicked
 
     private void labelDapAnBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnBMouseClicked
-        if (questionlist.get(i).getOptionTrue().equals(labelDapAnB.getText())) {
+        System.out.println(listAnswer.get(1));
+        if (questionlist.get(i).getOptionTrue().equals(listAnswer.get(1))) {
             int diem = 20;
             tongIQ += diem;
+            System.out.println("true");
             labelDapAnB.setVisible(true);
+
         } else {
             System.out.println("False");
             tongIQ += 0;
@@ -522,7 +481,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelDapAnBMouseClicked
 
     private void labelDapAnCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnCMouseClicked
-        if (questionlist.get(i).getOptionTrue().equals(labelDapAnC.getText())) {
+        if (questionlist.get(i).getOptionTrue().equals(listAnswer.get(2))) {
             int diem = 20;
             tongIQ += diem;
             labelDapAnC.setVisible(true);
@@ -546,7 +505,7 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_labelDapAnCMouseClicked
 
     private void labelDapAnDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDapAnDMouseClicked
-        if (questionlist.get(i).getOptionTrue().equals(labelDapAnD.getText())) {
+        if (questionlist.get(i).getOptionTrue().equals(listAnswer.get(3))) {
             int diem = 20;
             tongIQ += diem;
             labelDapAnD.setVisible(true);

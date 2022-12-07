@@ -4,7 +4,7 @@
  */
 package GUI.admin;
 
-
+import DAO.QuestionIQDAO;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author TUF
  */
 public class ManHinhXacNhanThayDoiSoLuongCauHoi extends javax.swing.JFrame {
-
+    public static int newNumber = 0;
     /**
      * Creates new form ManHinhChoGhepTran
      */
@@ -149,6 +149,7 @@ public class ManHinhXacNhanThayDoiSoLuongCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHuyThayDoiMouseClicked
 
     private void buttonXacNhanThayDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanThayDoiMouseClicked
+        newNumber = Integer.parseInt(textFieldSoLuongCauHoiCanThayDoi.getText());
         String noiDungThongBao = "Thay đổi thành công";
         JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_buttonXacNhanThayDoiMouseClicked
@@ -166,6 +167,7 @@ public class ManHinhXacNhanThayDoiSoLuongCauHoi extends javax.swing.JFrame {
         int length = textFromTextField.length();
         if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
             textFieldSoLuongCauHoiCanThayDoi.setEditable(true);
+
         } else {
             textFieldSoLuongCauHoiCanThayDoi.setEditable(false);
         }

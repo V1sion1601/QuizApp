@@ -79,6 +79,7 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         scrollPaneDanhSachCauHoi = new javax.swing.JScrollPane();
         tableDanhSachCauHoiIQ = new javax.swing.JTable();
         labelButtonTroVe = new javax.swing.JLabel();
+        buttonSoLuong = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -224,6 +225,26 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
             }
         });
 
+        buttonSoLuong.setBackground(new java.awt.Color(0, 102, 255));
+        buttonSoLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        buttonSoLuong.setForeground(new java.awt.Color(255, 255, 255));
+        buttonSoLuong.setText("Số lượng");
+        buttonSoLuong.setToolTipText("Số lượng");
+        buttonSoLuong.setMaximumSize(new java.awt.Dimension(107, 33));
+        buttonSoLuong.setMinimumSize(new java.awt.Dimension(107, 33));
+        buttonSoLuong.setPreferredSize(new java.awt.Dimension(107, 33));
+        buttonSoLuong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buttonSoLuongMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonSoLuongMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonSoLuongMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelManHinhQuanLyCauHoiLayout = new javax.swing.GroupLayout(panelManHinhQuanLyCauHoi);
         panelManHinhQuanLyCauHoi.setLayout(panelManHinhQuanLyCauHoiLayout);
         panelManHinhQuanLyCauHoiLayout.setHorizontalGroup(
@@ -247,6 +268,8 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
                         .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelQuanLyCauHoiIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -261,7 +284,9 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
                     .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonCapNhat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelManHinhQuanLyCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonXoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -369,6 +394,20 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
         labelButtonTroVe.setBackground(new Color(204,204,204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
+    private void buttonSoLuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSoLuongMouseClicked
+        // TODO add your handling code here:
+        GUI.admin.ManHinhXacNhanThayDoiSoLuongCauHoi frame = new ManHinhXacNhanThayDoiSoLuongCauHoi();
+        frame.setVisible(true);
+    }//GEN-LAST:event_buttonSoLuongMouseClicked
+
+    private void buttonSoLuongMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSoLuongMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSoLuongMouseEntered
+
+    private void buttonSoLuongMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSoLuongMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonSoLuongMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -437,6 +476,7 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCapNhat;
+    private javax.swing.JButton buttonSoLuong;
     private javax.swing.JButton buttonThem;
     private javax.swing.JButton buttonXoa;
     private javax.swing.JLabel labelBanQuyenThuocVe;

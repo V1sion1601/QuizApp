@@ -9,8 +9,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
 
     public static int dapAn = 0;
-    String myPath = "C:\\Users\\admin\\Documents\\NetBeansProjects\\QuizApp\\src\\main\\java\\imageIQ";
-
     public ManHinhCapNhatCauHoiIQ() {
         initComponents();
     }
@@ -473,7 +471,9 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
     private void labelButtonThemAnhNoiDungCauHoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhNoiDungCauHoiMouseClicked
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(myPath));
+        File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
+        fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
         fileChooser.addChoosableFileFilter(extensionFilter);
@@ -481,15 +481,17 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldNoiDungCauHoi.setText(path);
+            File path = fileChooser.getSelectedFile();
+            textFieldNoiDungCauHoi.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhNoiDungCauHoiMouseClicked
 
     private void labelButtonThemAnhPhuongAn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn1MouseClicked
         // TODO add your handling code here:
-         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(myPath));
+        JFileChooser fileChooser = new JFileChooser();
+        File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
+        fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
         fileChooser.addChoosableFileFilter(extensionFilter);
@@ -497,15 +499,17 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn1.setText(path);
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn1.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn1MouseClicked
 
     private void labelButtonThemAnhPhuongAn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn2MouseClicked
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(myPath));
+        File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
+        fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
         fileChooser.addChoosableFileFilter(extensionFilter);
@@ -513,15 +517,17 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn2.setText(path);
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn2.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn2MouseClicked
 
     private void labelButtonThemAnhPhuongAn3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn3MouseClicked
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(myPath));
+        File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
+        fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
         fileChooser.addChoosableFileFilter(extensionFilter);
@@ -529,15 +535,17 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn3.setText(path);
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn3.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn3MouseClicked
 
     private void labelButtonThemAnhPhuongAn4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonThemAnhPhuongAn4MouseClicked
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(myPath));
+        File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
+        fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
         fileChooser.addChoosableFileFilter(extensionFilter);
@@ -545,8 +553,8 @@ public class ManHinhCapNhatCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn4.setText(path);
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn4.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn4MouseClicked
 

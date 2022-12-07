@@ -10,7 +10,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
 
     public static int dapAn = 0;
-    String myPath = "imageIQ";
 
     public ManHinhThemCauHoiIQ() {
         initComponents();
@@ -396,8 +395,6 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
 
     private void buttonLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseClicked
         BUS.QuestionIQBUS.insert1();
-        String noiDungThongBao = "Thêm thành công";
-        JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         this.setVisible(false);
         GUI.admin.ManHinhQuanLyCauHoiIQ frame = new ManHinhQuanLyCauHoiIQ();
         frame.setVisible(true);
@@ -470,8 +467,9 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
         fileChooser.setCurrentDirectory(imageIQ);
-//        fileChooser.setCurrentDirectory(new File(myPath));
+        //  fileChooser.setCurrentDirectory(new File(myPath));
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
         fileChooser.addChoosableFileFilter(extensionFilter);
@@ -480,7 +478,7 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
             File path = fileChooser.getSelectedFile();
-            textFieldNoiDungCauHoi.setText(path.toString());
+            textFieldNoiDungCauHoi.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhNoiDungCauHoiMouseClicked
 
@@ -488,6 +486,7 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
         fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
@@ -496,8 +495,8 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn1.setText(path.toString());
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn1.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn1MouseClicked
 
@@ -505,6 +504,7 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
         fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
@@ -513,8 +513,8 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn2.setText(path.toString());
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn2.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn2MouseClicked
 
@@ -522,6 +522,7 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
         fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
@@ -530,8 +531,8 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn3.setText(path.toString());
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn3.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn3MouseClicked
 
@@ -539,6 +540,7 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         File imageIQ = new File(System.getProperty("user.dir"));
+        fileChooser.setDialogTitle("Nhap file anh");
         fileChooser.setCurrentDirectory(imageIQ);
 
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Image", ".png", ".jpg", ".jpeg");
@@ -547,8 +549,8 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
         int fileState = fileChooser.showSaveDialog(null);
 
         if (fileState == JFileChooser.APPROVE_OPTION) {
-            String path = fileChooser.getSelectedFile().getAbsolutePath();
-            textFieldPhuongAn4.setText(path.toString());
+            File path = fileChooser.getSelectedFile();
+            textFieldPhuongAn4.setText(path.getName());
         }
     }//GEN-LAST:event_labelButtonThemAnhPhuongAn4MouseClicked
 

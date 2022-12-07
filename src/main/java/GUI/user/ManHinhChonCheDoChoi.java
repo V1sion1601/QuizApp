@@ -56,7 +56,8 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelBanQuyenThuocVe = new javax.swing.JLabel();
         labelVuiLongChonCheDoChoi = new javax.swing.JLabel();
         labelButtonTroVe = new javax.swing.JLabel();
-        labelButtonKiemTraIQ = new javax.swing.JLabel();
+        labelButtonBangXepHang = new javax.swing.JLabel();
+        labelButtonKiemTraIQ1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -135,22 +136,41 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
             }
         });
 
-        labelButtonKiemTraIQ.setBackground(new java.awt.Color(0, 102, 255));
-        labelButtonKiemTraIQ.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        labelButtonKiemTraIQ.setForeground(new java.awt.Color(255, 255, 255));
-        labelButtonKiemTraIQ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelButtonKiemTraIQ.setText("Kiểm Tra IQ");
-        labelButtonKiemTraIQ.setToolTipText("Kiểm Tra IQ");
-        labelButtonKiemTraIQ.setOpaque(true);
-        labelButtonKiemTraIQ.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelButtonBangXepHang.setBackground(new java.awt.Color(0, 102, 255));
+        labelButtonBangXepHang.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        labelButtonBangXepHang.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonBangXepHang.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonBangXepHang.setText("Bảng xếp hạng");
+        labelButtonBangXepHang.setToolTipText("Bảng xếp hạng");
+        labelButtonBangXepHang.setOpaque(true);
+        labelButtonBangXepHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelButtonKiemTraIQMouseClicked(evt);
+                labelButtonBangXepHangMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelButtonKiemTraIQMouseEntered(evt);
+                labelButtonBangXepHangMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelButtonKiemTraIQMouseExited(evt);
+                labelButtonBangXepHangMouseExited(evt);
+            }
+        });
+
+        labelButtonKiemTraIQ1.setBackground(new java.awt.Color(0, 102, 255));
+        labelButtonKiemTraIQ1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        labelButtonKiemTraIQ1.setForeground(new java.awt.Color(255, 255, 255));
+        labelButtonKiemTraIQ1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelButtonKiemTraIQ1.setText("Kiểm Tra IQ");
+        labelButtonKiemTraIQ1.setToolTipText("Kiểm Tra IQ");
+        labelButtonKiemTraIQ1.setOpaque(true);
+        labelButtonKiemTraIQ1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelButtonKiemTraIQ1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelButtonKiemTraIQ1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelButtonKiemTraIQ1MouseExited(evt);
             }
         });
 
@@ -168,7 +188,8 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
             .addGroup(panelManHInhChonCheDoChoiLayout.createSequentialGroup()
                 .addGap(272, 272, 272)
                 .addGroup(panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelButtonKiemTraIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonKiemTraIQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelButtonBangXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelManHInhChonCheDoChoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelKienThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,8 +212,10 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelButtonKiemTraIQ, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
+                .addComponent(labelButtonKiemTraIQ1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelButtonBangXepHang, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -283,30 +306,36 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     }//GEN-LAST:event_labelButtonTimDoiThuOnlineMouseClicked
 
-    private void labelButtonKiemTraIQMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQMouseEntered
+    private void labelButtonBangXepHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonBangXepHangMouseEntered
         // TODO add your handling code here:
-        labelButtonKiemTraIQ.setBackground(new Color(0, 0, 204));
+        labelButtonBangXepHang.setBackground(new Color(0, 0, 204));
 
-    }//GEN-LAST:event_labelButtonKiemTraIQMouseEntered
+    }//GEN-LAST:event_labelButtonBangXepHangMouseEntered
 
-    private void labelButtonKiemTraIQMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQMouseExited
+    private void labelButtonBangXepHangMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonBangXepHangMouseExited
         // TODO add your handling code here:
-        labelButtonKiemTraIQ.setBackground(new Color(0, 102, 255));
+        labelButtonBangXepHang.setBackground(new Color(0, 102, 255));
 
-    }//GEN-LAST:event_labelButtonKiemTraIQMouseExited
+    }//GEN-LAST:event_labelButtonBangXepHangMouseExited
 
-    private void labelButtonKiemTraIQMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQMouseClicked
+    private void labelButtonBangXepHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonBangXepHangMouseClicked
         // TODO add your handling code here:
-        GUI.user.ManHinhCauHoiIQ frame = null;
-        try {
-            frame = new ManHinhCauHoiIQ();
+        GUI.user.ManHinhBangXepHang frame = new ManHinhBangXepHang();
             frame.setVisible(true);
             this.setVisible(false);
-        } catch (IOException ex) {
-            Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    }//GEN-LAST:event_labelButtonBangXepHangMouseClicked
 
-    }//GEN-LAST:event_labelButtonKiemTraIQMouseClicked
+    private void labelButtonKiemTraIQ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQ1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonKiemTraIQ1MouseClicked
+
+    private void labelButtonKiemTraIQ1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQ1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonKiemTraIQ1MouseEntered
+
+    private void labelButtonKiemTraIQ1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQ1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelButtonKiemTraIQ1MouseExited
 
     /**
      * @param args the command line arguments
@@ -352,8 +381,9 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel labelBanQuyenThuocVe;
+    private javax.swing.JLabel labelButtonBangXepHang;
     private javax.swing.JLabel labelButtonKetThuc;
-    private javax.swing.JLabel labelButtonKiemTraIQ;
+    private javax.swing.JLabel labelButtonKiemTraIQ1;
     private javax.swing.JLabel labelButtonTimDoiThuOnline;
     private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelKienThuc;
