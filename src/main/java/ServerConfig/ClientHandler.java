@@ -4,6 +4,7 @@
  */
 package ServerConfig;
 
+import BUS.UserBUS;
 import DTO.RSA;
 import GUI.admin.ManHinhDangNhapAdmin;
 import GUI.user.ManHinhDangNhap;
@@ -27,6 +28,7 @@ public class ClientHandler implements Runnable {
     BufferedReader in;
     BufferedWriter out;
     public String input;
+    UserBUS userBus = new UserBUS();
 
     public ClientHandler() {
 
@@ -41,12 +43,27 @@ public class ClientHandler implements Runnable {
         out = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
     }
 
-//    public String queuePlayer(String input) {
-//        String[] command = input.split("#");
-//        return command;
-//    }
     public void sendQueueList(Vector<ClientHandler> clientList, Vector<String> queue, String command, String idPlayer) throws IOException {
-        if (command.contains("match")) {
+        if (command.contains("login")) {
+            String[] info = idPlayer.split(",");
+            String account = info[0];
+            String password = info[1];
+            String idClient = info[2];
+            int check = userBus.findtaikhoan(account, password);
+            System.out.println("Stauts: " + check);
+            if (check == 1) {
+                for (ClientHandler client : clientList) {
+                    if (client.name.equals(idClient)) {
+                        client.out.write("success" + "\n");
+                        client.out.flush();
+                        System.out.println("Login status: " + check);
+                        System.out.println("Server sent login to" + client.name);
+
+                    }
+                }
+            }
+
+        } else if (command.contains("match")) {
             String[] duel = idPlayer.split(",");
             String player1 = duel[0];
             String player2 = duel[1];
@@ -55,7 +72,7 @@ public class ClientHandler implements Runnable {
                     client.out.write("Duel" + "\n");
                     client.out.flush();
                     System.out.println("Server sent duel to" + client.name);
-                }
+//                }
             }
         } else if (command.contains("point")) {
             String[] info = idPlayer.split(",");

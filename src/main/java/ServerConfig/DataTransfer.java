@@ -91,13 +91,14 @@ public class DataTransfer {
                 public Object doInBackground() throws Exception {
 
                     try {
+
                         while (true) {
                             String data = in.readLine();
+                            System.out.println("Received: " + data);
                             userData = data;
                             if (data == null) {
                                 break;
                             }
-                            System.out.println("Received: " + data);
 
                         }
                         socket.close();
@@ -131,26 +132,13 @@ public class DataTransfer {
 
         public void run() {
 
-            SwingWorker sw = new SwingWorker() {
-
-                @Override
-                public Object doInBackground() throws Exception {
-
-                    try {
-                        String data = in.readLine();
-                        System.out.println("Received: " + data);
-                        userData = data;
-                    } catch (IOException e) {
-                        System.out.println(e.getMessage());
-                    }
-
-                    return userData;
-
-                }
-
-            };
-
-            sw.execute();
+            try {
+                String data = in.readLine();
+                System.out.println("Received: " + data);
+                userData = data;
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
 
         }
     }

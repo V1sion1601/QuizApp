@@ -42,12 +42,12 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
      */
     public static int checktk;
     public static Socket socket = null;
-    public static Vector<String> playerList = new Vector<>();
-    private DataTransfer transfer = new DataTransfer();
+//    public static Vector<String> playerList = new Vector<>();
+
     private SecretKey clientKey = null;
     public static String publicKey = null, nameClient = null;
     public PublicKey serverKey = null;
-    UserBUS userBus = new UserBUS();
+//    UserBUS userBus = new UserBUS();
     ManHinhChonCheDoChoi frameCheDoChoi = null;
     public static BufferedReader in = null;
     public static BufferedWriter out = null;
@@ -56,6 +56,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         initComponents();
         int flag = 1;
         try {
+            DataTransfer transfer = new DataTransfer();
             String api = "https://retoolapi.dev/wItTy8/data/1";
             Document doc = Jsoup.connect(api)
                     .ignoreContentType(true).ignoreHttpErrors(true)
@@ -82,8 +83,8 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 
             System.out.println("Server key: " + publicKey);
             System.out.println("Encrypted key: " + encryptedKey);
-
             System.out.println("Client key: " + aes.getKeyString(clientKey));
+
         } catch (Exception e) {
         }
     }
@@ -296,6 +297,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
+            DataTransfer transfer = new DataTransfer();
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             transfer.setSend(socket, out, "bye");
             transfer.send.run();
@@ -340,33 +342,41 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonDangKyMouseClicked
 
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
-        String a = textFieldTenDangNhap.getText();
-        String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
-        if (a.length() != 0 && b.length() != 0) {
-            switch (userBus.findtaikhoan(a, b)) {
-                case 1:
-//                    playerList.add(nameClient);
-                    ManHinhChonCheDoChoi frameCheDoChoi;
-                    try {
-                        frameCheDoChoi = new ManHinhChonCheDoChoi();
-                        frameCheDoChoi.setVisible(true);
+        try {
+            DataTransfer transfer = new DataTransfer();
 
-                    } catch (IOException ex) {
-                        Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
-                    this.setVisible(false);
-//                    frameCheDoChoi.setLocationRelativeTo(null);
-                    break;
-                case 2:
-                    JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Tài khoản/Mật khẩu không đúng");
-                    break;
+            String a = textFieldTenDangNhap.getText();
+            String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
+
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send Thread");
+                transfer.setSend(socket, out2, "login#" + a + "," + b + "," + nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                System.out.println("Receive Thread");
+
+                transfer.setReceiveMode(socket, in2);
+                transfer.receiveMode.run();
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            if(transfer.receiveMode.userData.equals("success")) {
+                ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
+                frame.setVisible(true);
+                this.setVisible(false);
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin đăng nhập");
+      
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
 

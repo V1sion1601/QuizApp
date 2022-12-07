@@ -289,12 +289,13 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     private void labelButtonTimDoiThuOnlineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTimDoiThuOnlineMouseClicked
 
         try {
-            out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 //            in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
 
             // TODO add your handling code here:
-//            transfer.setSend(ManHinhDangNhap.socket, out, "queue#" + ManHinhDangNhap.nameClient);
-//            transfer.send.run();
+            transfer.setSend(ManHinhDangNhap.socket, out2, "queue#" + ManHinhDangNhap.nameClient);
+            transfer.send.run();
             ManHinhChoGhepTran frame = new ManHinhChoGhepTran();
             frame.setVisible(true);
             this.dispose();
