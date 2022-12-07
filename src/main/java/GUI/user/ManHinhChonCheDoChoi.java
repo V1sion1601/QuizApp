@@ -327,14 +327,24 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     private void labelButtonKiemTraIQ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQ1MouseClicked
         // TODO add your handling code here:
+        GUI.user.ManHinhCauHoiIQ frame = null;
+        try {
+            frame = new ManHinhCauHoiIQ();
+            frame.setVisible(true);
+            this.setVisible(false);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhChonCheDoChoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_labelButtonKiemTraIQ1MouseClicked
 
     private void labelButtonKiemTraIQ1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQ1MouseEntered
         // TODO add your handling code here:
+        labelButtonKiemTraIQ1.setBackground(new Color(0, 0, 204));
     }//GEN-LAST:event_labelButtonKiemTraIQ1MouseEntered
 
     private void labelButtonKiemTraIQ1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQ1MouseExited
         // TODO add your handling code here:
+        labelButtonKiemTraIQ1.setBackground(new Color(0, 102, 255));
     }//GEN-LAST:event_labelButtonKiemTraIQ1MouseExited
 
     /**
