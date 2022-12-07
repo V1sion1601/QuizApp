@@ -307,15 +307,42 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonLuuMouseExited
 
     private void buttonLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseClicked
-        BUS.QuestionBUS.insert1();
-        this.setVisible(false);
-        GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
-        frame.setVisible(true);
+        if (GUI.admin.ManHinhThemCauHoi.textFieldNoiDungCauHoi.equals("")
+                || GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn1.equals("")
+                || GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn2.equals("")
+                || GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn3.equals("")
+                || GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn4.equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin");
+        } else {
+            DTO.QuestionDTO qt = new DTO.QuestionDTO(
+                    GUI.admin.ManHinhThemCauHoi.textFieldNoiDungCauHoi.getText(),
+                    GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn1.getText(),
+                    GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn2.getText(),
+                    GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn3.getText(),
+                    GUI.admin.ManHinhThemCauHoi.textFieldPhuongAn4.getText(),
+                    GUI.admin.ManHinhThemCauHoi.comboBoxPhuongAnDung.getSelectedItem().toString(),
+                    "Normal"
+            );
+        if(BUS.QuestionBUS.insert1(qt)==true){
+            this.setVisible(false);
+            GUI.admin.ManHinhQuanLyCauHoi frame = new ManHinhQuanLyCauHoi();
+            frame.setVisible(true);
+            String noiDungThongBao = "Thêm thành công";
+            GUI.admin.ManHinhQuanLyCauHoi.showInfo();
+            JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);           
+        }
+        else
+        {
+            String noiDungThongBao = "Thêm không thành công";
+            GUI.admin.ManHinhQuanLyCauHoi.showInfo();
+            JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        }
     }//GEN-LAST:event_buttonLuuMouseClicked
 
     private void buttonLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLuuActionPerformed
-
-
+          
     }//GEN-LAST:event_buttonLuuActionPerformed
 
     private void comboBoxPhuongAnDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungActionPerformed

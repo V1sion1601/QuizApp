@@ -306,7 +306,51 @@ import javax.swing.JOptionPane;
     }//GEN-LAST:event_buttonLuuThayDoiMouseClicked
 
     private void buttonLuuThayDoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLuuThayDoiActionPerformed
-        BUS.QuestionBUS.updateToGui();
+        DTO.QuestionDTO question = new QuestionDTO();
+        if (GUI.admin.ManHinhCapNhatCauHoi.textFieldNoiDungCauHoi.equals("")
+                || GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn1.equals("")
+                || GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn2.equals("")
+                || GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn3.equals("")
+                || GUI.admin.ManHinhCapNhatCauHoi.textFieldPhuongAn4.equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin câu hỏi");
+        } else {
+            int id = Integer.parseInt(labelMaCauHoiTuCSDL.getText());
+            String cauhoi = textFieldNoiDungCauHoi.getText();
+            String pa1 = textFieldPhuongAn1.getText();
+            String pa2 = textFieldPhuongAn2.getText();
+            String pa3 = textFieldPhuongAn3.getText();
+            String pa4 = textFieldPhuongAn4.getText();   
+            String pad = comboBoxPhuongAnDung.getSelectedItem().toString();
+            question = BUS.QuestionBUS.update1(id, cauhoi, pa1, pa2, pa3, pa4, pad);
+            if(question==null){
+                JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+            }
+            comboBoxPhuongAnDung.removeAllItems();
+            if (question.getOption1().equals(question.getOptionTrue())) {
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.setSelectedItem(question.getOptionTrue());
+            } else {
+               GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOption1());
+            }
+            if (question.getOption2().equals(question.getOptionTrue())) {
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.setSelectedItem(question.getOptionTrue());
+            } else {
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOption2());
+            }
+            if (question.getOption3().equals(question.getOptionTrue())) {
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.setSelectedItem(question.getOptionTrue());
+            } else {
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOption3());
+            }
+            if (question.getOption4().equals(question.getOptionTrue())) {
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOptionTrue());
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.setSelectedItem(question.getOptionTrue());
+            } else {
+                GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung.addItem(question.getOption4());
+            }                 
+        }
     }//GEN-LAST:event_buttonLuuThayDoiActionPerformed
 
     private void comboBoxPhuongAnDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungActionPerformed

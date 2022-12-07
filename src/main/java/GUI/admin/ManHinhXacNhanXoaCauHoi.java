@@ -134,8 +134,19 @@ public class ManHinhXacNhanXoaCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHuyXoaMouseClicked
 
     private void buttonXacNhanXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseClicked
-        BUS.QuestionBUS.delete1();
-        this.setVisible(false);
+        if(BUS.QuestionBUS.delete1(GUI.admin.ManHinhQuanLyCauHoi.selectedRow)==true){
+            this.setVisible(false);
+            String noiDungThongBao = "Xoá thành công";
+            GUI.admin.ManHinhQuanLyCauHoi.showInfo();
+            JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } 
+        else
+        {
+            String noiDungThongBao = "Xoá không thành công";
+            GUI.admin.ManHinhQuanLyCauHoi.showInfo();
+            JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_buttonXacNhanXoaMouseClicked
 
     private void buttonXacNhanXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonXacNhanXoaMouseEntered

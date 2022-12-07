@@ -93,18 +93,6 @@ public class UserBUS {
     public static ArrayList showUserByID() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUser();
         System.out.println(UserList);
-        GUI.admin.ManHinhQuanLyNguoiChoi.model.setRowCount(0);
-        UserList.forEach(User -> {
-            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
-                User.getIdUser(),
-                User.getName(),
-                User.getStatus(),
-                User.getRole(),
-                User.getTongDiem(),
-                User.getTotalMatch(),
-                User.getTotalMatchWin(),
-                User.getWinStreak()});
-        });
         return UserList;
     }
 
@@ -269,15 +257,22 @@ public class UserBUS {
         return null;
     }
 
-    public static void delete1() {
-        int selectedRow = GUI.admin.ManHinhQuanLyNguoiChoi.tableDanhSachNguoiChoi.getSelectedRow();
+    public static boolean delete1(int selectedRow) {
         if (selectedRow >= 0) {
             ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
             //lấy dữ liệu của câu hỏi cần xoá ra 1 obj
             DTO.UserDTO user = userList.get(selectedRow);
-            DAO.UserDAO.delete(user.getIdUser());
-            showUserByID();
+            if(DAO.UserDAO.delete(user.getIdUser())==true)
+            {
+                selectedRow = -1;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
-        selectedRow = -1;
+        return false;
     }
 }

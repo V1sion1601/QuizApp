@@ -966,7 +966,7 @@ public class UserDAO {
     }
 
     // Xoá tài khoản
-    public static void delete(int ID_User) {
+    public static boolean delete(int ID_User) {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -978,8 +978,10 @@ public class UserDAO {
             statement.setInt(1, ID_User);
 
             statement.execute();
+            
         } catch (SQLException ex) {
             System.err.println(ex);
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -997,7 +999,7 @@ public class UserDAO {
             }
 
         }
-
+        return true;
     }
     
     public static boolean CheckEmailUsed(String email) {

@@ -162,7 +162,7 @@ public class QuestionDAO {
     }
 
     /* Thêm câu hỏi */
-    public static void insert(DTO.QuestionDTO qt) {
+    public static boolean insert(DTO.QuestionDTO qt) {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -181,7 +181,8 @@ public class QuestionDAO {
             statement.execute();
 
         } catch (SQLException ex) {
-//            Logger.getLogger(SinhvienDAO.class.getName()).log(Level.SEVERE, null, ex);         
+//          Logger.getLogger(SinhvienDAO.class.getName()).log(Level.SEVERE, null, ex);  
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -198,8 +199,8 @@ public class QuestionDAO {
                 }
             }
 
-        }
-        JOptionPane.showMessageDialog(null, "Thêm thành công");
+        }        
+        return true;
     }
 
     /* Sửa câu hỏi */
@@ -211,7 +212,6 @@ public class QuestionDAO {
             connection = DAO.Connection.connection();
             String sql = "UPDATE question SET Content=?, Option1=?, Option2=?, Option3=?, Option4=?, OptionTrue=?, Type=? WHERE ID_Question = ?";
             statement = connection.prepareCall(sql);
-
             statement.setString(1, qt.getContent());
             statement.setString(2, qt.getOption1());
             statement.setString(3, qt.getOption2());
@@ -238,14 +238,13 @@ public class QuestionDAO {
                     Logger.getLogger(DAO.QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
         }
         JOptionPane.showMessageDialog(null, "Cập nhật thành công");
         return qt;
     }
 
     /* Xoá câu hỏi */
-    public static void delete(int ID_Question) {
+    public static boolean delete(int ID_Question) {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -259,6 +258,7 @@ public class QuestionDAO {
             statement.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -276,7 +276,7 @@ public class QuestionDAO {
             }
 
         }
-
+        return true;
     }
     
 //    public Boolean hasQuestionID(int id) {

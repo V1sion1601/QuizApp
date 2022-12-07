@@ -15,20 +15,38 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
     public static int dapAn = 0;
     public static DTO.UserDTO user = new DTO.UserDTO();
 
+    public static void showInfo(){
+        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByID();
+        model.setRowCount(0);
+        UserList.forEach(User -> {
+            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
+                User.getIdUser(),
+                User.getName(),
+                User.getStatus(),
+                User.getRole(),
+                User.getTongDiem(),
+                User.getTotalMatch(),
+                User.getTotalMatchWin(),
+                User.getWinStreak()});
+        });
+    }
+    
     public ManHinhQuanLyNguoiChoi() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
 
         model = (DefaultTableModel) tableDanhSachNguoiChoi.getModel();
         tableDanhSachNguoiChoi.setModel(model);
-        BUS.UserBUS.showUserByID();
+        
+        showInfo();
+        
         tableDanhSachNguoiChoi.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedRow = tableDanhSachNguoiChoi.getSelectedRow();
                 ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
                 user = userList.get(selectedRow);
-
+                System.out.println(selectedRow);
             }
 
             @Override
