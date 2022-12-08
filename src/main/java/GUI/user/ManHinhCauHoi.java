@@ -44,6 +44,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     public static int dapAn = 0;
     public int counter = 10;
     public int tongDiem = 0;
+    String oppoPoint = "0";
 
 //    public int dt = 0;
     /**
@@ -61,65 +62,68 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
                     labelDemNguocCauHoi.setText(Integer.toString(0));
                     //Trong trường hợp nếu người dùng nhập đáp án A đúng
-                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
+                    if (i < questionlist.size()) {
+                        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnA.getText())) {
 
-                        buttonDapAnA.setEnabled(true);
-                        buttonDapAnA.setBackground(Color.green);
-                        buttonDapAnA.setForeground(new Color(0, 0, 0));
+                            buttonDapAnA.setEnabled(true);
+                            buttonDapAnA.setBackground(Color.green);
+                            buttonDapAnA.setForeground(new Color(0, 0, 0));
 
-                    } else {
+                        } else {
 
-                        buttonDapAnA.setEnabled(true);
-                        buttonDapAnA.setBackground(Color.RED);
-                        buttonDapAnA.setForeground(new Color(0, 0, 0));
+                            buttonDapAnA.setEnabled(true);
+                            buttonDapAnA.setBackground(Color.RED);
+                            buttonDapAnA.setForeground(new Color(0, 0, 0));
 
-                    }   //Trong trường hợp nếu người dùng nhập đáp án B đúng
-                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
+                        }   //Trong trường hợp nếu người dùng nhập đáp án B đúng
+                        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
 
-                        buttonDapAnB.setEnabled(true);
-                        buttonDapAnB.setBackground(Color.green);
-                        buttonDapAnB.setForeground(new Color(0, 0, 0));
-                    } else {
+                            buttonDapAnB.setEnabled(true);
+                            buttonDapAnB.setBackground(Color.green);
+                            buttonDapAnB.setForeground(new Color(0, 0, 0));
+                        } else {
 
-                        buttonDapAnB.setEnabled(true);
-                        buttonDapAnB.setBackground(Color.RED);
-                        buttonDapAnB.setForeground(new Color(0, 0, 0));
+                            buttonDapAnB.setEnabled(true);
+                            buttonDapAnB.setBackground(Color.RED);
+                            buttonDapAnB.setForeground(new Color(0, 0, 0));
 
-                    }   //Trong trường hợp nếu người dùng nhập đáp án C đúng
-                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
+                        }   //Trong trường hợp nếu người dùng nhập đáp án C đúng
+                        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
 //
 
-                        buttonDapAnC.setEnabled(true);
-                        buttonDapAnC.setBackground(Color.green);
-                        buttonDapAnC.setForeground(new Color(0, 0, 0));
+                            buttonDapAnC.setEnabled(true);
+                            buttonDapAnC.setBackground(Color.green);
+                            buttonDapAnC.setForeground(new Color(0, 0, 0));
 
-                    } else {
+                        } else {
 
-                        buttonDapAnC.setEnabled(true);
-                        buttonDapAnC.setBackground(Color.RED);
-                        buttonDapAnC.setForeground(new Color(0, 0, 0));
+                            buttonDapAnC.setEnabled(true);
+                            buttonDapAnC.setBackground(Color.RED);
+                            buttonDapAnC.setForeground(new Color(0, 0, 0));
+                        }
+                        //Trong trường hợp nếu người dùng nhập đáp án D đúng
+                        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
+
+                        }   //Trong trường hợp nếu người dùng nhập đáp án D đúng
+                        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
+                            buttonDapAnD.setEnabled(true);
+                            buttonDapAnD.setBackground(Color.green);
+                            buttonDapAnD.setForeground(new Color(0, 0, 0));
+
+                        } else {
+
+                            buttonDapAnD.setEnabled(true);
+                            buttonDapAnD.setBackground(Color.RED);
+                            buttonDapAnD.setForeground(new Color(0, 0, 0));
+
+                        }
+                        labelDiem.setText(Integer.toString(tongDiem));
+                        labelDiem1.setText(oppoPoint);
                     }
-                    //Trong trường hợp nếu người dùng nhập đáp án D đúng
-                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
-
-                    }   //Trong trường hợp nếu người dùng nhập đáp án D đúng
-                    if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
-                        buttonDapAnD.setEnabled(true);
-                        buttonDapAnD.setBackground(Color.green);
-                        buttonDapAnD.setForeground(new Color(0, 0, 0));
-
-                    } else {
-
-                        buttonDapAnD.setEnabled(true);
-                        buttonDapAnD.setBackground(Color.RED);
-                        buttonDapAnD.setForeground(new Color(0, 0, 0));
-
-                    }
-                    labelDiem.setText(Integer.toString(tongDiem));
 
                 }
             } else {
-                timer.stop();
+                ((Timer) e.getSource()).stop();
 //                try {
 //                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
 //                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -205,6 +209,16 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         } else {
 
             try {
+                timer.stop();
+                if (Integer.parseInt(labelDiem.getText()) > Integer.parseInt(labelDiem1.getText())) {
+                    JOptionPane.showMessageDialog(null, "Bạn đã thắng");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Bạn đã thua");
+                }
+                DataTransfer transfer = new DataTransfer();
+                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.send.run();
                 JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
                 dispose();
                 new ManHinhChonCheDoChoi().setVisible(true);
@@ -603,6 +617,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             receiveThread.start();
             sendThread.join();
             receiveThread.join();
+            oppoPoint = transfer.receiveMode.userData;
             System.out.println("Test oppo point: " + transfer.receiveMode.userData);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);

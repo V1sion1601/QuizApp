@@ -52,21 +52,20 @@ public class DataTransfer {
         }
 
         public void run() {
-            SwingWorker sw = new SwingWorker() {
-                @Override
-                protected Object doInBackground() throws Exception {
-                    out.write(input + "\n");
-                    out.flush();
-                    Thread.sleep(1000);
 
-                    if (input.equals("bye")) {
-                        socket.close();
-                    }
-                    return "Finished";
+            try {
+                out.write(input + "\n");
+                out.flush();
+                Thread.sleep(1000);
 
+                if (input.equals("bye")) {
+                    socket.close();
                 }
-            };
-            sw.execute();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
     }
@@ -76,6 +75,7 @@ public class DataTransfer {
         private Socket socket;
         private BufferedReader in;
         public String userData;
+        volatile boolean cancel = false;
 
         public Receive(Socket s, BufferedReader r) {
             this.socket = s;
@@ -83,39 +83,32 @@ public class DataTransfer {
             this.userData = "";
         }
 
+        public void stop() {
+            cancel = true;
+        }
+
         public void run() {
-
             SwingWorker sw = new SwingWorker() {
-
                 @Override
                 public Object doInBackground() throws Exception {
-
                     try {
-
-                        while (true) {
+                        while (!cancel) {
                             String data = in.readLine();
                             System.out.println("Received: " + data);
-                            userData = data;
-                            if (data == null) {
-                                break;
+                            if (!data.equals(" ")) {
+                                userData = data;
                             }
-
                         }
-                        socket.close();
 
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
                     }
-
                     return userData;
-
                 }
-
             };
-
             sw.execute();
-
         }
+
     }
 
     public class ReceiveMode implements Runnable {

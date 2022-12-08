@@ -4,7 +4,6 @@
  */
 package GUI.user;
 
-import BUS.UserBUS;
 import ServerConfig.DataTransfer;
 import java.awt.Color;
 import java.io.IOException;
@@ -12,13 +11,10 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import ServerConfig.DataTransfer.Send;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import javax.crypto.SecretKey;
 import org.json.JSONObject;
 import org.jsoup.Connection;
@@ -301,9 +297,8 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             transfer.setSend(socket, out, "bye");
             transfer.send.run();
-
-            socket.close();
-            System.exit(0);
+//            socket.close();
+//            System.exit(0);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -366,12 +361,12 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             receiveThread.start();
             sendThread.join();
             receiveThread.join();
-            if(transfer.receiveMode.userData.equals("success")) {
+            if (transfer.receiveMode.userData.equals("success")) {
                 ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
                 frame.setVisible(true);
                 this.setVisible(false);
+
             }
-      
 
         } catch (InterruptedException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);

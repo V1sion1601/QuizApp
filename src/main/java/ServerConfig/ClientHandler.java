@@ -72,7 +72,7 @@ public class ClientHandler implements Runnable {
                     client.out.write("Duel" + "\n");
                     client.out.flush();
                     System.out.println("Server sent duel to" + client.name);
-//                }
+                }
             }
         } else if (command.contains("point")) {
             String[] info = idPlayer.split(",");
@@ -84,7 +84,7 @@ public class ClientHandler implements Runnable {
                     client.out.flush();
                     System.out.println("Server sent point " + point + " to player oppo: " + client.name);
                 }
-
+                
             }
         } else {
             if (command.contains("cancel")) {
@@ -137,7 +137,7 @@ public class ClientHandler implements Runnable {
 
                 //Mã hóa các dữ liệu gửi từ client qua
                 //System.out.println("Server received '" + rsa.Descrpytion(input, rsa.convertPrivateKey(Server.privateKeyString)) + "' from Client " + name);
-                System.out.println("Server received queue '" + input + "' from Client " + name);
+                System.out.println("Server received '" + input + "' from Client " + name);
 
                 if (input.contains("#")) {
                     player = input.split("#");

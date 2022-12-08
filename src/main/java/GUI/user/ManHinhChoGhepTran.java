@@ -36,9 +36,8 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
      */
     int counter = 10, flag = 0;
     String test = "";
+    DataTransfer transfer = new DataTransfer();
 
-    BufferedWriter out = null;
-    BufferedReader in = null;
     public static ArrayList<String> arrListPlayers = null;
 
     public String[] splitPlayer(String listPlayers) {
@@ -49,80 +48,81 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
         return list;
     }
 
-    DataTransfer transfer = new DataTransfer();
     Timer timer = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-                in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+//                DataTransfer transfer = new DataTransfer();
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
                 labelDemNguoc.setText(Integer.toString(counter));
                 counter--;
                 if (counter <= -2) {
-
+                    DataTransfer transfer2 = new DataTransfer();
                     labelDemNguoc.setText(Integer.toString(0));
-                    out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-                    in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+                    BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                    BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
                     timer.stop();
                     System.out.println("User " + ManHinhDangNhap.nameClient + "đã hủy kèo");
                     int optionType = JOptionPane.OK_CANCEL_OPTION;
                     int result = JOptionPane.showConfirmDialog(null, "Không tìm thấy đối thủ", "Không tìm thấy", optionType);
                     if (result == JOptionPane.OK_OPTION) {
-                        System.out.println("Send Thread");
+                        System.out.println("Send Thread Cancel");
                         Thread sendThread = new Thread(() -> {
-                            transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "cancel#" + ManHinhDangNhap.nameClient);
-                            transfer.send.run();
+                            transfer2.setSend(ManHinhDangNhap.socket, out2, "cancel#" + ManHinhDangNhap.nameClient);
+                            transfer2.send.run();
                         });
-//                        Thread receiveThread = new Thread(() -> {
-//                            System.out.println("Receive Thread");
-//                            transfer.setReceive(ManHinhDangNhap.socket, ManHinhDangNhap.in);
-//                            transfer.receive.run();
-//                        });
+                        Thread receiveThread = new Thread(() -> {
+                            System.out.println("Receive Thread");
+                            transfer2.setReceiveMode(ManHinhDangNhap.socket, in2);
+                            transfer2.receiveMode.run();
+                        });
                         sendThread.start();
-//                        receiveThread.start();
+                        receiveThread.start();
                         sendThread.join();
-//                        receiveThread.join();
+                        receiveThread.join();
                         dispose();
                         new ManHinhChonCheDoChoi().setVisible(true);
                     }
                 } else {
-                    System.out.println("Test receive: " + transfer.receive.userData);
-                    String[] listPlayers = splitPlayer(transfer.receive.userData);
+                    System.out.println("Test receive: " + in.readLine());
+                    String[] listPlayers = splitPlayer(in.readLine());
                     arrListPlayers = new ArrayList<>(Arrays.asList(listPlayers));
-
                     System.out.println("length: " + arrListPlayers.size());
                     if (arrListPlayers.size() >= 2) {
 
-                        timer.stop();
-                        System.out.println("Found");
-                        DataTransfer transfer2 = new DataTransfer();
+                        ((Timer) e.getSource()).stop();
 
-                        Thread sendThread = new Thread(() -> {
-
-                            transfer2.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "match#" + ManHinhDangNhap.nameClient + "," + arrListPlayers.get(0));
-                            transfer2.send.run();
-                        });
-                        Thread receiveThread = new Thread(() -> {
-
-                            transfer2.setReceive(ManHinhDangNhap.socket, ManHinhDangNhap.in);
-                            transfer2.receive.run();
-
-                        });
-                        sendThread.start();
-                        receiveThread.start();
-                        sendThread.join(3000);
-                        receiveThread.join(3000);
-                        System.out.println("Test socket: " + transfer.receive.userData);
-                        System.out.println("After thread");
-                        for (String test : arrListPlayers) {
-                            System.out.println("User: " + test);
-                        }
-                        if (transfer.receive.userData != null) {
-
+//                        System.out.println("Found");
+//                        DataTransfer transfer2 = new DataTransfer();
+//                        BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+//                        BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+//                        Thread sendThread = new Thread(() -> {
+//
+//                            transfer2.setSend(ManHinhDangNhap.socket, out2, "match#" + ManHinhDangNhap.nameClient + "," + arrListPlayers.get(0));
+//                            transfer2.send.run();
+//                        });
+//                        Thread receiveThread = new Thread(() -> {
+//
+//                            transfer2.setReceiveMode(ManHinhDangNhap.socket, in2);
+//                            transfer2.receiveMode.run();
+//
+//                        });
+//                        sendThread.start();
+//                        receiveThread.start();
+//                        sendThread.join();
+//                        receiveThread.join();
+//
+//                        System.out.println("Test match array: " + transfer2.receiveMode.userData);
+//                        System.out.println("After thread");
+//                        for (String test : arrListPlayers) {
+//                            System.out.println("User: " + test);
+//                        }
+//                        if (transfer2.receiveMode.userData != null) {
 //                            BufferedWriter outCancel = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 //                            BufferedReader inCancel = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
 //                            int optionType2 = JOptionPane.OK_CANCEL_OPTION;
-                            JOptionPane.showMessageDialog(null, "Tìm thấy đối thủ");
+                        JOptionPane.showMessageDialog(null, "Tìm thấy đối thủ");
 //                            Thread sendThread2 = new Thread(() -> {
 //                                System.out.println("Send Thread Cancel");
 //                                transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "cancel#" + ManHinhDangNhap.nameClient);
@@ -130,9 +130,11 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
 //                            });
 //                            sendThread2.start();
 //                            sendThread2.join();
-                            dispose();
-                            new ManHinhCauHoi().setVisible(true);
-                        }
+//                        
+                        dispose();
+                        new ManHinhCauHoi().setVisible(true);
+
+//                        }
                     }
                 }
             } catch (IOException ex) {
@@ -145,31 +147,21 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
 
     public ManHinhChoGhepTran() throws InterruptedException, IOException {
         initComponents();
-        out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-        in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+//        DataTransfer transfer = new DataTransfer();
+
         timer.start();
-        DataTransfer transfer2 = new DataTransfer();
         Thread sendThread = new Thread(() -> {
             System.out.println("Send Thread Random");
-            transfer2.setSend(ManHinhDangNhap.socket, out, "queue#" + ManHinhDangNhap.nameClient);
-            transfer2.send.run();
-        });
-        Thread receiveThread = new Thread(() -> {
-            System.out.println("Receive Thread");
-
-            transfer2.setReceive(ManHinhDangNhap.socket, in);
-            transfer2.receive.run();
-
+            transfer.setSend(ManHinhDangNhap.socket, out, "queue#" + ManHinhDangNhap.nameClient);
+            transfer.send.run();
         });
         sendThread.start();
-        receiveThread.start();
         sendThread.join();
-        receiveThread.join();
 
-//        System.out.println("List client constructor: " + transfer.receive.userData);
     }
 
-    // Đồng hồ đếm ngược
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -289,13 +281,15 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     private void buttonHuyChoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonHuyChoMouseClicked
         try {
             timer.stop();
-//            out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            DataTransfer transfer = new DataTransfer();
 
-            transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "cancel#" + ManHinhDangNhap.nameClient);
+            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+
+            transfer.setSend(ManHinhDangNhap.socket, out2, "cancel#" + ManHinhDangNhap.nameClient);
             transfer.send.run();
-            transfer.setReceive(ManHinhDangNhap.socket, ManHinhDangNhap.in);
-            transfer.receive.run();
-
+            transfer.setReceiveMode(ManHinhDangNhap.socket, in2);
+            transfer.receiveMode.run();
             this.dispose();
             new ManHinhChonCheDoChoi().setVisible(true);
         } catch (IOException ex) {
