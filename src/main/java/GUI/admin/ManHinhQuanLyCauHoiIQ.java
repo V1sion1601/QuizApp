@@ -14,20 +14,53 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
     public static int selectedRow = -1;
     public static int dapAn = 0;
     public static DTO.QuestionDTO qt = new DTO.QuestionDTO();
-
+    public static String tempdapan="";
+    public static void showInfo(){
+//        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByID();
+//        model.setRowCount(0);
+//        UserList.forEach(User -> {
+//            GUI.admin.ManHinhQuanLyNguoiChoi.model.addRow(new Object[]{
+//                User.getIdUser(),
+//                User.getName(),
+//                User.getStatus(),
+//                User.getRole(),
+//                User.getTongDiem(),
+//                User.getTotalMatch(),
+//                User.getTotalMatchWin(),
+//                User.getWinStreak()});
+//        });
+        ArrayList<DTO.QuestionDTO> QuestionList = BUS.QuestionIQBUS.showQuestionIQ();
+        System.out.println(QuestionList);
+        model2.setRowCount(0);
+        QuestionList.forEach(Question -> {
+            GUI.admin.ManHinhQuanLyCauHoiIQ.model2.addRow(new Object[]{
+                Question.getID_Question(),
+                Question.getContent(), 
+                Question.getOption1(), 
+                Question.getOption2(), 
+                Question.getOption3(),
+                Question.getOption4(), 
+                Question.getOptionTrue(), 
+                Question.getType()});
+        });
+    }
+    
     public ManHinhQuanLyCauHoiIQ() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
 
         model2 = (DefaultTableModel) tableDanhSachCauHoiIQ.getModel();
         tableDanhSachCauHoiIQ.setModel(model2);
-        BUS.QuestionIQBUS.showQuestionIQ();
+        showInfo();
         tableDanhSachCauHoiIQ.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedRow = tableDanhSachCauHoiIQ.getSelectedRow();
-                ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionIQDAO.getListQuestion();
+                if(selectedRow>-1)
+                {
+                ArrayList<DTO.QuestionDTO> questionList = BUS.QuestionIQBUS.showQuestionIQ();
                 qt = questionList.get(selectedRow);
+                }
             }
 
             @Override
@@ -375,7 +408,39 @@ public class ManHinhQuanLyCauHoiIQ extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 câu hỏi trong bảng");
          } else {
             this.setVisible(false);
-            BUS.QuestionIQBUS.showInfoQuestionIQ(qt);
+            GUI.admin.ManHinhCapNhatCauHoiIQ frame = new GUI.admin.ManHinhCapNhatCauHoiIQ();
+            frame.setVisible(true);
+            frame.labelMaCauHoiIQTuCSDL.setText(String.valueOf(qt.getID_Question()));
+            frame.textFieldNoiDungCauHoi.setText(qt.getContent());
+            frame.textFieldPhuongAn1.setText(qt.getOption1());
+            frame.textFieldPhuongAn2.setText(qt.getOption2());
+            frame.textFieldPhuongAn3.setText(qt.getOption3());
+            frame.textFieldPhuongAn4.setText(qt.getOption4());
+            tempdapan = qt.getOptionTrue();
+            if (qt.getOption1().equals(qt.getOptionTrue())) {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOptionTrue());
+                frame.comboBoxPhuongAnDung.setSelectedItem(qt.getOptionTrue());
+            } else {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOption1());
+            }
+            if (qt.getOption2().equals(qt.getOptionTrue())) {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOptionTrue());
+                frame.comboBoxPhuongAnDung.setSelectedItem(qt.getOptionTrue());
+            } else {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOption2());
+            }
+            if (qt.getOption3().equals(qt.getOptionTrue())) {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOptionTrue());
+                frame.comboBoxPhuongAnDung.setSelectedItem(qt.getOptionTrue());
+            } else {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOption3());
+            }
+            if (qt.getOption4().equals(qt.getOptionTrue())) {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOptionTrue());
+                frame.comboBoxPhuongAnDung.setSelectedItem(qt.getOptionTrue());
+            } else {
+                frame.comboBoxPhuongAnDung.addItem(qt.getOption4());
+            }
         }
     }//GEN-LAST:event_buttonCapNhatMouseClicked
 

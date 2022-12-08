@@ -238,7 +238,7 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
 
     private void labelButtonDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonDangNhapMouseClicked
         String a = textFieldTenDangNhap.getText();
-        String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
+        String b = BUS.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
         if (a.length() != 0 && b.length() != 0) {
             switch (userBus.findtaikhoan(a, b)) {
                 case 0:

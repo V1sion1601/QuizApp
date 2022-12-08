@@ -15,19 +15,63 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
     public static int dapAn = 0;
     public static DTO.UserDTO user = new DTO.UserDTO();
 
+    public static void showinfo(){
+        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByTotalMatch();
+        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
+        UserList.forEach(User -> {
+            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
+                User.getName(),
+                User.getTongDiem(),
+                User.getTotalMatch(),
+                User.getTotalMatchWin(),
+                User.getWinStreak()});
+        });
+    }
+    
+    public static void showInfoByTotalMatchWin(){
+        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByTotalMatchWin();
+            System.out.println(UserList);
+            GUI.user.ManHinhBangXepHang.model.setRowCount(0);
+            UserList.forEach(User -> {
+            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
+                User.getName(),
+                User.getTongDiem(),
+                User.getTotalMatch(),
+                User.getTotalMatchWin(),
+                User.getWinStreak()});
+        });
+    }
+    
+    public static void showinfoByWinStreak(){
+        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByWinStreak();
+            System.out.println(UserList);
+            GUI.user.ManHinhBangXepHang.model.setRowCount(0);
+            UserList.forEach(User -> {
+                GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
+                    User.getName(),
+                    User.getTongDiem(),
+                    User.getTotalMatch(),
+                    User.getTotalMatchWin(),
+                    User.getWinStreak()});
+        });
+    }
     public ManHinhBangXepHang() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
 
         model = (DefaultTableModel) tableBangXepHang.getModel();
         tableBangXepHang.setModel(model);
-        BUS.UserBUS.showUserByTotalMatch();
+        showinfo();
         tableBangXepHang.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedRow = tableBangXepHang.getSelectedRow();
-                ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
-                user = userList.get(selectedRow);
+                if(selectedRow > -1)
+                {
+                    ArrayList<DTO.UserDTO> userList = BUS.UserBUS.showUserByTotalMatch();
+                    user = userList.get(selectedRow);
+                }
+                
 
             }
 
@@ -274,13 +318,13 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
     private void comboBoxTieuChiSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTieuChiSapXepActionPerformed
 //         TODO add your handling code here:
         if (comboBoxTieuChiSapXep.getSelectedItem().equals("Số lần thắng")) {
-            BUS.UserBUS.showUserByTotalMatchWin();
+            showInfoByTotalMatchWin();
         }
         if (comboBoxTieuChiSapXep.getSelectedItem().equals("Số lần chơi")) {
-            BUS.UserBUS.showUserByTotalMatch();
+            showinfo();
         }
         if (comboBoxTieuChiSapXep.getSelectedItem().equals("Chuỗi thắng dài nhất")) {
-            BUS.UserBUS.showUserByWinStreak();
+            showinfoByWinStreak();
         }
     }//GEN-LAST:event_comboBoxTieuChiSapXepActionPerformed
 

@@ -434,6 +434,7 @@ public class UserDAO {
                 GUI.user.ManHinhDangNhap.checktk = 1;
             } else {
                 GUI.user.ManHinhDangNhap.checktk = 0;
+                return null;
             }
             statement.execute();
         } catch (SQLException ex) {

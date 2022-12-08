@@ -29,7 +29,7 @@ public class UserBUS {
     public int findtaikhoan(String a, String b) {
         user = new DTO.UserDTO(a, b);
         user = DAO.UserDAO.findtaikhoan(user);
-        if (GUI.user.ManHinhDangNhap.checktk == 1) {
+        if (user != null) {
             if (user.getRole().toLowerCase().equals("admin") && !user.getStatus().toLowerCase().equals("block")) {
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công với quyền Admin");
                 usersavelogin = user;
@@ -47,7 +47,7 @@ public class UserBUS {
                 return 1;
 
             } else {
-                GUI.user.ManHinhDangNhap.checktk = 0;
+                
                 return 2;
             }
 
@@ -130,46 +130,16 @@ public class UserBUS {
 
     public static ArrayList showUserByTotalMatchWin() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatchWin();
-        System.out.println(UserList);
-        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
-        UserList.forEach(User -> {
-            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
-                User.getName(),
-                User.getTongDiem(),
-                User.getTotalMatch(),
-                User.getTotalMatchWin(),
-                User.getWinStreak()});
-        });
         return UserList;
     }
 
     public static ArrayList showUserByTotalMatch() {
-        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatch();
-        System.out.println(UserList);
-        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
-        UserList.forEach(User -> {
-            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
-                User.getName(),
-                User.getTongDiem(),
-                User.getTotalMatch(),
-                User.getTotalMatchWin(),
-                User.getWinStreak()});
-        });
+        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatch();       
         return UserList;
     }
 
     public static ArrayList showUserByWinStreak() {
-        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByWinStreak();
-        System.out.println(UserList);
-        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
-        UserList.forEach(User -> {
-            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
-                User.getName(),
-                User.getTongDiem(),
-                User.getTotalMatch(),
-                User.getTotalMatchWin(),
-                User.getWinStreak()});
-        });
+        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByWinStreak();        
         return UserList;
     }
 
@@ -207,7 +177,7 @@ public class UserBUS {
         if (checktk == 1) {
                 DTO.UserDTO user = new DTO.UserDTO(
                         username,
-                        DAO.MD5.MD5(String.valueOf(password1)),
+                        BUS.MD5.MD5(String.valueOf(password1)),
                         0,
                         "Offline",
                         "user",
@@ -272,6 +242,20 @@ public class UserBUS {
                 return false;
             }
             
+        }
+        return false;
+    }
+    
+    public static boolean CheckEmailUsed(String gmail){
+        if(DAO.UserDAO.CheckEmailUsed(gmail)==true){
+            return true;
+        }
+       return false;
+    }
+    
+    public static boolean checkUserName(String username){
+        if(DAO.UserDAO.checkUserName(username)==true){
+            return true;
         }
         return false;
     }

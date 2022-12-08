@@ -346,7 +346,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             DataTransfer transfer = new DataTransfer();
 
             String a = textFieldTenDangNhap.getText();
-            String b = DAO.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
+            String b = BUS.MD5.MD5(String.valueOf(passwordFieldMatKhau.getPassword()));
 
             BufferedReader in2 = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));

@@ -29,7 +29,7 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
 //                User.getTotalMatchWin(),
 //                User.getWinStreak()});
 //        });
-        ArrayList<DTO.QuestionDTO> QuestionList = DAO.QuestionDAO.getListQuestion();
+        ArrayList<DTO.QuestionDTO> QuestionList = BUS.QuestionBUS.showQuestion();
         System.out.println(QuestionList);
         model.setRowCount(0);
         QuestionList.forEach(Question -> {
@@ -56,8 +56,11 @@ public class ManHinhQuanLyCauHoi extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedRow = tableDanhSachCauHoi.getSelectedRow();
-                ArrayList<DTO.QuestionDTO> questionList = DAO.QuestionDAO.getListQuestion();
+                if(selectedRow>-1)
+                {
+                ArrayList<DTO.QuestionDTO> questionList = BUS.QuestionBUS.showQuestion();
                 qt = questionList.get(selectedRow);
+                }
             }
 
             @Override

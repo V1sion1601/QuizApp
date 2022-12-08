@@ -394,10 +394,37 @@ public class ManHinhThemCauHoiIQ extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonLuuMouseExited
 
     private void buttonLuuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLuuMouseClicked
-        BUS.QuestionIQBUS.insert1();
-        this.setVisible(false);
-        GUI.admin.ManHinhQuanLyCauHoiIQ frame = new ManHinhQuanLyCauHoiIQ();
-        frame.setVisible(true);
+        if (GUI.admin.ManHinhThemCauHoiIQ.textFieldNoiDungCauHoi.equals("")
+                || GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn1.equals("")
+                || GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn2.equals("")
+                || GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn3.equals("")
+                || GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn4.equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin");
+        } else {
+            DTO.QuestionDTO qt = new DTO.QuestionDTO(
+                    GUI.admin.ManHinhThemCauHoiIQ.textFieldNoiDungCauHoi.getText(),
+                    GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn1.getText(),
+                    GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn2.getText(),
+                    GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn3.getText(),
+                    GUI.admin.ManHinhThemCauHoiIQ.textFieldPhuongAn4.getText(),
+                    GUI.admin.ManHinhThemCauHoiIQ.comboBoxPhuongAnDung.getSelectedItem().toString(),
+                    "IQ"
+            );
+        if(BUS.QuestionIQBUS.insert1(qt)==true){
+            this.setVisible(false);
+            GUI.admin.ManHinhQuanLyCauHoiIQ frame = new ManHinhQuanLyCauHoiIQ();
+            frame.setVisible(true);
+            String noiDungThongBao = "Thêm thành công";
+            GUI.admin.ManHinhQuanLyCauHoiIQ.showInfo();
+            JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);           
+        }
+        else
+        {
+            String noiDungThongBao = "Thêm không thành công";
+            GUI.admin.ManHinhQuanLyCauHoiIQ.showInfo();
+            JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        }
+        }
     }//GEN-LAST:event_buttonLuuMouseClicked
 
     private void comboBoxPhuongAnDungMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboBoxPhuongAnDungMouseMoved

@@ -1,12 +1,7 @@
-/*
- * To change GUI.ManHinhCapNhatCauHoi license header, choose License Headers in Project Properties.
- * To change GUI.ManHinhCapNhatCauHoi template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package BUS;
 
 import DTO.QuestionDTO;
-import static GUI.admin.ManHinhCapNhatCauHoi.comboBoxPhuongAnDung;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,7 +25,6 @@ public class QuestionBUS {
     }
     public static void showInfoQuestion(DTO.QuestionDTO qt) {
         
-      
     }
 
     public static boolean insert1(DTO.QuestionDTO qt) {
@@ -52,16 +46,9 @@ public class QuestionBUS {
 //    public static void updatecombobox(StringDTO.QuestionDTO question){
 //        
 //    }
-    public static void updateToGui() {
-        
-//        if (question.getType().toLowerCase().equals("normal")) {
-//            GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.setSelectedItem("Normal");
-//        } else {
-//            GUI.admin.ManHinhCapNhatCauHoi.comboBoxLoai.setSelectedItem("IQ");
-//        }
-    }
 
-    public static DTO.QuestionDTO update1(int id,String  cauhoi,String pa1,String pa2,String pa3,String pa4,String pad) {
+
+    public static DTO.QuestionDTO update1(int id,String  cauhoi,String pa1, String pa2, String pa3, String pa4, String pad) {
         DTO.QuestionDTO question1 = new DTO.QuestionDTO();         
             DTO.QuestionDTO question = new DTO.QuestionDTO(
                     id,

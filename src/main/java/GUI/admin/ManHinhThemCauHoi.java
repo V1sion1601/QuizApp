@@ -336,8 +336,7 @@ public class ManHinhThemCauHoi extends javax.swing.JFrame {
             String noiDungThongBao = "Thêm không thành công";
             GUI.admin.ManHinhQuanLyCauHoi.showInfo();
             JOptionPane.showMessageDialog(null, noiDungThongBao, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
+        }        
         }
     }//GEN-LAST:event_buttonLuuMouseClicked
 

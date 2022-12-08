@@ -266,8 +266,8 @@ public class ManHinhDangKy extends javax.swing.JFrame {
             if (BUS.UserBUS.isValidEmail(gmail) == true) {
                 if (BUS.UserBUS.isValidPassword(password1) == true && BUS.UserBUS.isValidPassword(password2) == true) {
                     if (password1.equals(password2)) {
-                        if (DAO.UserDAO.CheckEmailUsed(gmail)) {
-                            if (DAO.UserDAO.checkUserName(username) == true) {
+                        if (BUS.UserBUS.CheckEmailUsed(gmail)==true) {
+                            if (BUS.UserBUS.checkUserName(username) == true) {
                             BUS.SendMaiController.sendEmail(gmail, otp);
                             Manager.OTP.put(gmail, otp);
                             String input = JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");

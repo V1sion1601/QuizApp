@@ -44,9 +44,14 @@ public class ManHinhQuanLyNguoiChoi extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selectedRow = tableDanhSachNguoiChoi.getSelectedRow();
-                ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
-                user = userList.get(selectedRow);
-                System.out.println(selectedRow);
+                if(selectedRow>-1)
+                {
+                     ArrayList<DTO.UserDTO> userList = BUS.UserBUS.showUserByID();
+                    user = userList.get(selectedRow);
+                    System.out.println(selectedRow);
+                }
+                
+               
             }
 
             @Override

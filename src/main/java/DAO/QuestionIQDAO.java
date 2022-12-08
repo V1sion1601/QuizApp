@@ -163,7 +163,7 @@ public class QuestionIQDAO {
     }
     
      /* Thêm câu hỏi */
-    public static void insert(DTO.QuestionDTO qt) {
+    public static boolean insert(DTO.QuestionDTO qt) {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -182,7 +182,8 @@ public class QuestionIQDAO {
             statement.execute();
 
         } catch (SQLException ex) {
-//            Logger.getLogger(SinhvienDAO.class.getName()).log(Level.SEVERE, null, ex);         
+//            Logger.getLogger(SinhvienDAO.class.getName()).log(Level.SEVERE, null, ex); 
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -200,7 +201,7 @@ public class QuestionIQDAO {
             }
 
         }
-        JOptionPane.showMessageDialog(null, "Thêm thành công");
+        return true;
     }
     
     /* Sửa câu hỏi */
@@ -246,7 +247,7 @@ public class QuestionIQDAO {
     }
     
     /* Xoá câu hỏi */
-    public static void delete(int ID_Question) {
+    public static boolean delete(int ID_Question) {
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -260,6 +261,7 @@ public class QuestionIQDAO {
             statement.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
+            return false;
         } finally {
             if (statement != null) {
                 try {
@@ -277,6 +279,6 @@ public class QuestionIQDAO {
             }
 
         }
-
+        return true;
     }
 }
