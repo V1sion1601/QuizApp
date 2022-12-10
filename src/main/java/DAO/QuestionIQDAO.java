@@ -5,6 +5,7 @@
 package DAO;
 
 import DTO.QuestionDTO;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author admin
  */
-public class QuestionIQDAO {
+public class QuestionIQDAO implements Serializable{
     public static int quantityQuestion = 5;
 
     public static ArrayList<DTO.QuestionDTO> getListQuestion() {

@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.UserDTO;
+import java.io.Serializable;
 import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class UserDAO {
+public class UserDAO implements Serializable {
 
     // Lấy hết danh sách User
     public static ArrayList<DTO.UserDTO> getListUser() {

@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class UserBUS {
+public class UserBUS implements Serializable {
 
     public static int checktk;
 //    public static GUI.user.ManHinhChonCheDoChoi ManHinhChonCheDoChoi = new GUI.user.ManHinhChonCheDoChoi();
@@ -127,17 +128,17 @@ public class UserBUS {
         return UserList;
     }
 
-    public static ArrayList showUserByTotalMatchWin() {
+    public ArrayList showUserByTotalMatchWin() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatchWin();
         return UserList;
     }
 
-    public static ArrayList showUserByTotalMatch() {
+    public ArrayList showUserByTotalMatch() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatch();
         return UserList;
     }
 
-    public static ArrayList showUserByWinStreak() {
+    public ArrayList showUserByWinStreak() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByWinStreak();
         return UserList;
     }

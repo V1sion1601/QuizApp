@@ -559,17 +559,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
-            int decision = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không");
-            if (decision == JOptionPane.YES_OPTION) {
-                timer.stop();
-                DataTransfer transfer = new DataTransfer();
-                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
-                transfer.send.run();
-            }
-
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            transfer.setSend(socket, out, "bye");
+            transfer.send.run();
+//            socket.close();
+//            System.exit(0);
         } catch (IOException ex) {
-            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_labelButtonKetThucMouseClicked

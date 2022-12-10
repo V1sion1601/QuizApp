@@ -5,14 +5,19 @@
 package GUI.user;
 
 import DTO.QuestionDTO;
+import static GUI.user.ManHinhDangNhap.socket;
+import ServerConfig.DataTransfer;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -42,16 +47,43 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
      * Creates new form ManHinhDangNhap
      */
     public static ArrayList<QuestionDTO> questionlist() {
-        //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
-        if (GUI.admin.ManHinhXacNhanThayDoiSoLuongCauHoi.newNumber == 0) {
-            DAO.QuestionIQDAO.quantityQuestion = 5;
-        } else {
-            DAO.QuestionIQDAO.quantityQuestion = GUI.admin.ManHinhXacNhanThayDoiSoLuongCauHoi.newNumber;
-        }
-        questionlist = new ArrayList<>(DAO.QuestionIQDAO.quantityQuestion);
-        questionlist = DAO.QuestionIQDAO.getListQuestionByQuantity(DAO.QuestionIQDAO.quantityQuestion);
+        ArrayList<QuestionDTO> questionlist2 = null;
+        try {
+            //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 
-        return questionlist;
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send thread questions");
+                transfer.setSend(socket, out, "iq," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                ObjectInputStream inObject = null;
+                try {
+                    System.out.println("Receive thread questions");
+                    inObject = new ObjectInputStream(ManHinhDangNhap.socket.getInputStream());
+                    transfer.setReceiveObject(socket, inObject);
+                    transfer.receiveObject.run();
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+//            ObjectOutputStream outObject = new ObjectOutputStream(ManHinhDangNhap.socket.getOutputStream());
+//            questionlist2 = (ArrayList<QuestionDTO>) inObject.readObject();
+            questionlist2 = transfer.receiveObject.listQuestions;
+
+            System.out.println("Question list: " + questionlist2.size());
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return questionlist2;
     }
 
     public static ArrayList<Integer> createRandom() {

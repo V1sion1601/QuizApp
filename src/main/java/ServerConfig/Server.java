@@ -6,6 +6,7 @@ package ServerConfig;
 
 import DTO.QuestionDTO;
 import DTO.RSA;
+import DTO.UserDTO;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,8 +30,15 @@ public class Server {
 
     public static int numThread = 10;
     public static Vector<ClientHandler> clientList = new Vector<>();
+
     public static Vector<String> queueList = new Vector<>();
     public static ArrayList<QuestionDTO> questions = new ArrayList<>();
+    public static ArrayList<QuestionDTO> questionsIQ = new ArrayList<>();
+
+    public static ArrayList<UserDTO> totalWinMatches = new ArrayList<>();
+    public static ArrayList<UserDTO> totalMatches = new ArrayList<>();
+    public static ArrayList<UserDTO> totalStreaks = new ArrayList<>();
+
     public static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThread);
     private static PrivateKey privateKey = null;
     private static PublicKey publicKey = null;
@@ -67,7 +75,7 @@ public class Server {
                         ClientHandler client = new ClientHandler(serverSocket.accept(), Integer.toString(i++), rsa.getPublicKeyString(publicKey));
                         clientList.add(client);
                         executor.execute(client);
-                      
+
                     }
                 } catch (IOException e) {
                     System.out.println("port da duoc su dung, chon port khac hoac tat port " + port + " o tien trinh khac");

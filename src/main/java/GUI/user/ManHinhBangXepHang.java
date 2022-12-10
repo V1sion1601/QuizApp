@@ -1,10 +1,18 @@
 package GUI.user;
 
-
+import DTO.UserDTO;
+import static GUI.user.ManHinhDangNhap.socket;
+import ServerConfig.DataTransfer;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,46 +23,145 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
     public static int dapAn = 0;
     public static DTO.UserDTO user = new DTO.UserDTO();
 
-    public static void showinfo(){
-        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByTotalMatch();
-        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
-        UserList.forEach(User -> {
-            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
-                User.getName(),
-                User.getTongDiem(),
-                User.getTotalMatch(),
-                User.getTotalMatchWin(),
-                User.getWinStreak()});
-        });
-    }
-    
-    public static void showInfoByTotalMatchWin(){
-        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByTotalMatchWin();
-            System.out.println(UserList);
+    public static void showinfo() {
+        try {
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send thread total matches all");
+                transfer.setSend(socket, out, "total," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                ObjectInputStream inObject = null;
+                try {
+                    System.out.println("Receive thread questions");
+                    inObject = new ObjectInputStream(ManHinhDangNhap.socket.getInputStream());
+                    transfer.setReceiveUser(socket, inObject);
+                    transfer.receiveUser.run();
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            ArrayList<UserDTO> totalMatches = transfer.receiveUser.listUsers;
             GUI.user.ManHinhBangXepHang.model.setRowCount(0);
-            UserList.forEach(User -> {
-            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
-                User.getName(),
-                User.getTongDiem(),
-                User.getTotalMatch(),
-                User.getTotalMatchWin(),
-                User.getWinStreak()});
-        });
-    }
-    
-    public static void showinfoByWinStreak(){
-        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByWinStreak();
-            System.out.println(UserList);
-            GUI.user.ManHinhBangXepHang.model.setRowCount(0);
-            UserList.forEach(User -> {
+            totalMatches.forEach(User -> {
                 GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
                     User.getName(),
                     User.getTongDiem(),
                     User.getTotalMatch(),
                     User.getTotalMatchWin(),
                     User.getWinStreak()});
-        });
+            });
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+    public static void showInfoByTotalMatchWin() {
+        try {
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send thread total matches win");
+                transfer.setSend(socket, out, "totalWin," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                ObjectInputStream inObject = null;
+                try {
+                    System.out.println("Receive thread questions");
+                    inObject = new ObjectInputStream(ManHinhDangNhap.socket.getInputStream());
+                    transfer.setReceiveUser(socket, inObject);
+                    transfer.receiveUser.run();
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            ArrayList<UserDTO> totalWinMatches = transfer.receiveUser.listUsers;
+            System.out.println("Total win matches length: " + totalWinMatches.size());
+            GUI.user.ManHinhBangXepHang.model.setRowCount(0);
+            totalWinMatches.forEach(User -> {
+                GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
+                    User.getName(),
+                    User.getTongDiem(),
+                    User.getTotalMatch(),
+                    User.getTotalMatchWin(),
+                    User.getWinStreak()});
+            });
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void showinfoByWinStreak() {
+        try {
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send thread total matches win");
+                transfer.setSend(socket, out, "totalStreak," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                ObjectInputStream inObject = null;
+                try {
+                    System.out.println("Receive thread strak");
+                    inObject = new ObjectInputStream(ManHinhDangNhap.socket.getInputStream());
+                    transfer.setReceiveUser(socket, inObject);
+                    transfer.receiveUser.run();
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            ArrayList<UserDTO> totalStreaks = transfer.receiveUser.listUsers;
+            System.out.println("Total win matches length: " + totalStreaks.size());
+            GUI.user.ManHinhBangXepHang.model.setRowCount(0);
+            totalStreaks.forEach(User -> {
+                GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
+                    User.getName(),
+                    User.getTongDiem(),
+                    User.getTotalMatch(),
+                    User.getTotalMatchWin(),
+                    User.getWinStreak()});
+            });
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByWinStreak();
+//        System.out.println(UserList);
+//        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
+//        UserList.forEach(User -> {
+//            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
+//                User.getName(),
+//                User.getTongDiem(),
+//                User.getTotalMatch(),
+//                User.getTotalMatchWin(),
+//                User.getWinStreak()});
+//        });
+    }
+
     public ManHinhBangXepHang() {
         initComponents();
         cacChinhSuaGiaoDienBangCode();
@@ -62,39 +169,37 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
         model = (DefaultTableModel) tableBangXepHang.getModel();
         tableBangXepHang.setModel(model);
         showinfo();
-        tableBangXepHang.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                selectedRow = tableBangXepHang.getSelectedRow();
-                if(selectedRow > -1)
-                {
-                    ArrayList<DTO.UserDTO> userList = BUS.UserBUS.showUserByTotalMatch();
-                    user = userList.get(selectedRow);
-                }
-                
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
+//        tableBangXepHang.addMouseListener(new MouseListener() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                selectedRow = tableBangXepHang.getSelectedRow();
+//                if (selectedRow > -1) {
+//                    ArrayList<DTO.UserDTO> userList = BUS.UserBUS.showUserByTotalMatch();
+//                    user = userList.get(selectedRow);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void mousePressed(MouseEvent e) {
+//                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//            }
+//
+//            @Override
+//            public void mouseReleased(MouseEvent e) {
+//                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//                // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//            }
+//        });
     }
 
     private void cacChinhSuaGiaoDienBangCode() {
@@ -289,7 +394,16 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
-        System.exit(0);
+        try {
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            transfer.setSend(socket, out, "bye");
+            transfer.send.run();
+//            socket.close();
+//            System.exit(0);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered
@@ -317,6 +431,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
 
     private void comboBoxTieuChiSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTieuChiSapXepActionPerformed
 //         TODO add your handling code here:
+        System.out.println("Test action performed");
         if (comboBoxTieuChiSapXep.getSelectedItem().equals("Số lần thắng")) {
             showInfoByTotalMatchWin();
         }
@@ -333,11 +448,11 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153,153,153));
+        labelButtonTroVe.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_labelButtonTroVeMouseEntered
 
     private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204,204,204));
+        labelButtonTroVe.setBackground(new Color(204, 204, 204));
     }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
@@ -366,7 +481,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ManHinhBangXepHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-       
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

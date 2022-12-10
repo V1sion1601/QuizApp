@@ -46,6 +46,57 @@ public class ClientHandler implements Runnable {
 //        inObject = new ObjectInputStream(s.getInputStream());
     }
 
+    public void sendTotalMatches(Vector<ClientHandler> clientList, String idPlayer) throws IOException {
+        ObjectOutputStream outObject = new ObjectOutputStream(socket.getOutputStream());
+        Server.totalMatches = userBus.showUserByTotalMatch();
+        for (ClientHandler client : clientList) {
+            if (client.name.equals(idPlayer)) {
+                try {
+                    outObject.writeObject(Server.totalMatches);
+                    outObject.flush();
+                    System.out.println("Server sent total matches to" + client.name);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    }
+
+    public void sendTotalMatchWin(Vector<ClientHandler> clientList, String idPlayer) throws IOException {
+        ObjectOutputStream outObject = new ObjectOutputStream(socket.getOutputStream());
+        Server.totalWinMatches = userBus.showUserByTotalMatchWin();
+        for (ClientHandler client : clientList) {
+            if (client.name.equals(idPlayer)) {
+                try {
+                    outObject.writeObject(Server.totalWinMatches);
+                    outObject.flush();
+                    System.out.println("Server sent total win matches to" + client.name);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    }
+
+    public void sendTotalStreak(Vector<ClientHandler> clientList, String idPlayer) throws IOException {
+        ObjectOutputStream outObject = new ObjectOutputStream(socket.getOutputStream());
+        Server.totalStreaks = userBus.showUserByWinStreak();
+        for (ClientHandler client : clientList) {
+            if (client.name.equals(idPlayer)) {
+                try {
+                    outObject.writeObject(Server.totalStreaks);
+                    outObject.flush();
+                    System.out.println("Server sent total win matches to" + client.name);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    }
+
     public void sendQuestions(Vector<ClientHandler> clientList, String idPlayer) throws IOException {
         //       questionlist = new ArrayList<>(DAO.QuestionDAO.quantityQuestion);
         ObjectOutputStream outObject = new ObjectOutputStream(socket.getOutputStream());
@@ -54,6 +105,26 @@ public class ClientHandler implements Runnable {
             if (client.name.equals(idPlayer)) {
                 try {
                     outObject.writeObject(Server.questions);
+                    outObject.flush();
+
+                    System.out.println("Server sent object to" + client.name);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+    }
+
+    public void sendQuestionsIQ(Vector<ClientHandler> clientList, String idPlayer) throws IOException {
+        //       questionlist = new ArrayList<>(DAO.QuestionDAO.quantityQuestion);
+        ObjectOutputStream outObject = new ObjectOutputStream(socket.getOutputStream());
+        Server.questionsIQ = DAO.QuestionIQDAO.getListQuestionByQuantity(DAO.QuestionIQDAO.quantityQuestion);
+        for (ClientHandler client : clientList) {
+            if (client.name.equals(idPlayer)) {
+                try {
+                    outObject.writeObject(Server.questionsIQ);
                     outObject.flush();
 
                     System.out.println("Server sent object to" + client.name);
@@ -220,6 +291,26 @@ public class ClientHandler implements Runnable {
                     player = input.split(",");
                     idPlayer = player[1];
                     sendQuestions(Server.clientList, idPlayer);
+                }
+                if (input.contains("iq")) {
+                    player = input.split(",");
+                    idPlayer = player[1];
+                    sendQuestionsIQ(Server.clientList, idPlayer);
+                }
+                if (input.contains("total")) {
+                    player = input.split(",");
+                    idPlayer = player[1];
+                    sendTotalMatches(Server.clientList, idPlayer);
+                }
+                if (input.contains("totalWin")) {
+                    player = input.split(",");
+                    idPlayer = player[1];
+                    sendTotalMatchWin(Server.clientList, idPlayer);
+                }
+                if (input.contains("totalStreak")) {
+                    player = input.split(",");
+                    idPlayer = player[1];
+                    sendTotalStreak(Server.clientList, idPlayer);
                 }
                 if (input.contains("#")) {
                     player = input.split("#");

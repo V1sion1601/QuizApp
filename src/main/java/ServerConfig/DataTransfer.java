@@ -5,6 +5,7 @@
 package ServerConfig;
 
 import DTO.QuestionDTO;
+import DTO.UserDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class DataTransfer {
     public Receive receive;
     public ReceiveMode receiveMode;
     public ReceiveObject receiveObject;
+    public ReceiveUserDTO receiveUser;
 
     public void setSend(Socket s, BufferedWriter o, String input) {
 
@@ -45,6 +47,10 @@ public class DataTransfer {
 
     public void setReceiveObject(Socket s, ObjectInputStream in) {
         receiveObject = new ReceiveObject(s, in);
+    }
+
+    public void setReceiveUser(Socket s, ObjectInputStream in) {
+        receiveUser = new ReceiveUserDTO(s, in);
     }
 
     public class Send implements Runnable {
@@ -154,9 +160,33 @@ public class DataTransfer {
             this.socket = s;
             this.in = i;
         }
+
         public void run() {
             try {
                 listQuestions = (ArrayList<QuestionDTO>) in.readObject();
+                System.out.println("Server received object");
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public class ReceiveUserDTO implements Runnable {
+
+        private Socket socket;
+        private ObjectInputStream in;
+        public ArrayList<UserDTO> listUsers;
+
+        public ReceiveUserDTO(Socket s, ObjectInputStream i) {
+            this.socket = s;
+            this.in = i;
+        }
+
+        public void run() {
+            try {
+                listUsers = (ArrayList<UserDTO>) in.readObject();
                 System.out.println("Server received object");
             } catch (IOException ex) {
                 Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
