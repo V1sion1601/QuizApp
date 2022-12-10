@@ -42,12 +42,11 @@ public class UserBUS {
 //                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 usersavelogin = user;
                 UserBUS.BlockUser(usersavelogin.getName(), "Online");
-            
 
                 return 1;
 
             } else {
-                
+
                 return 2;
             }
 
@@ -134,12 +133,12 @@ public class UserBUS {
     }
 
     public static ArrayList showUserByTotalMatch() {
-        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatch();       
+        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByTotalMatch();
         return UserList;
     }
 
     public static ArrayList showUserByWinStreak() {
-        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByWinStreak();        
+        ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByWinStreak();
         return UserList;
     }
 
@@ -161,44 +160,48 @@ public class UserBUS {
         return UserList;
     }
 
-    public static boolean isValidEmail(String email){//kiểm tra tính hợp lệ của email
+    public static boolean isValidEmail(String email) {//kiểm tra tính hợp lệ của email
         String regex = "^([A-Za-z0-9._])+([@])+([A-Za-z0-9.-])+([\\.])+([A-Za-z]{2,6})$";//ten_email @ tên miền ex:email@gmail.com
-        if(email.matches(regex))return true;//nếu đúng trả về true
+        if (email.matches(regex)) {
+            return true;//nếu đúng trả về true
+        }
         return false;
     }
-    
-    public static boolean isValidPassword(String password){//kiểm tra tính hợp lệ của password
+
+    public static boolean isValidPassword(String password) {//kiểm tra tính hợp lệ của password
         String regex = "^([a-zA-z0-9!@#$%^&*]{6,})+$";//chữ và số, độ dài >=6
-        if(password.matches(regex))return true;//nếu khớp trả về true
+        if (password.matches(regex)) {
+            return true;//nếu khớp trả về true
+        }
         return false;
     }
-    
-    public static boolean insert1(String username, String password1, String gmail) {
+
+    public boolean insert1(String username, String password1, String gmail) {
         if (checktk == 1) {
-                DTO.UserDTO user = new DTO.UserDTO(
-                        username,
-                        BUS.MD5.MD5(String.valueOf(password1)),
-                        0,
-                        "Offline",
-                        "user",
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        gmail
-                );
-                if (user != null) {
-                    DAO.UserDAO.insert(user);
-                    return true;
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Đăng kí thất bại");
-                    return false;
-                }
-            
+            DTO.UserDTO user = new DTO.UserDTO(
+                    username,
+                    BUS.MD5.MD5(String.valueOf(password1)),
+                    0,
+                    "Offline",
+                    "user",
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    gmail
+            );
+            if (user != null) {
+                DAO.UserDAO.insert(user);
+                return true;
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Đăng kí thất bại");
+                return false;
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "Tên người chơi đã tồn tại");
             return false;
@@ -232,29 +235,26 @@ public class UserBUS {
             ArrayList<DTO.UserDTO> userList = DAO.UserDAO.getListUser();
             //lấy dữ liệu của câu hỏi cần xoá ra 1 obj
             DTO.UserDTO user = userList.get(selectedRow);
-            if(DAO.UserDAO.delete(user.getIdUser())==true)
-            {
+            if (DAO.UserDAO.delete(user.getIdUser()) == true) {
                 selectedRow = -1;
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
-            
+
         }
         return false;
     }
-    
-    public static boolean CheckEmailUsed(String gmail){
-        if(DAO.UserDAO.CheckEmailUsed(gmail)==true){
+
+    public boolean CheckEmailUsed(String gmail) {
+        if (DAO.UserDAO.CheckEmailUsed(gmail) == true) {
             return true;
         }
-       return false;
+        return false;
     }
-    
-    public static boolean checkUserName(String username){
-        if(DAO.UserDAO.checkUserName(username)==true){
+
+    public boolean checkUserName(String username) {
+        if (DAO.UserDAO.checkUserName(username) == true) {
             return true;
         }
         return false;

@@ -4,11 +4,14 @@
  */
 package ServerConfig;
 
+import DTO.QuestionDTO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +26,7 @@ public class DataTransfer {
     public Send send;
     public Receive receive;
     public ReceiveMode receiveMode;
+    public ReceiveObject receiveObject;
 
     public void setSend(Socket s, BufferedWriter o, String input) {
 
@@ -37,6 +41,10 @@ public class DataTransfer {
     public void setReceiveMode(Socket s, BufferedReader r) {
 
         receiveMode = new ReceiveMode(s, r);
+    }
+
+    public void setReceiveObject(Socket s, ObjectInputStream in) {
+        receiveObject = new ReceiveObject(s, in);
     }
 
     public class Send implements Runnable {
@@ -133,6 +141,28 @@ public class DataTransfer {
                 System.out.println(e.getMessage());
             }
 
+        }
+    }
+
+    public class ReceiveObject implements Runnable {
+
+        private Socket socket;
+        private ObjectInputStream in;
+        public ArrayList<QuestionDTO> listQuestions;
+
+        public ReceiveObject(Socket s, ObjectInputStream i) {
+            this.socket = s;
+            this.in = i;
+        }
+        public void run() {
+            try {
+                listQuestions = (ArrayList<QuestionDTO>) in.readObject();
+                System.out.println("Server received object");
+            } catch (IOException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DataTransfer.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

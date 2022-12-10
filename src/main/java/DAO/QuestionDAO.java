@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.QuestionDTO;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author ADMIN
  */
-public class QuestionDAO {
+public class QuestionDAO implements Serializable {
 
     public static int quantityQuestion = 5;
 
@@ -69,15 +70,16 @@ public class QuestionDAO {
         return QuestionList;
     }
 
-    public static ArrayList<DTO.QuestionDTO> getListQuestionByQuantity(int quantityQuestion) {
+    public static ArrayList<DTO.QuestionDTO> getListQuestionByQuantity(int quantityQuestion, int seed) {
         ArrayList<DTO.QuestionDTO> QuestionListByQuantity = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM question ORDER BY RAND() LIMIT ?;";
+            String sql = "SELECT * FROM question ORDER BY RAND(?) LIMIT ?;";
             statement = connection.prepareCall(sql);
-            statement.setInt(1, quantityQuestion);
+            statement.setInt(1, seed);
+            statement.setInt(2, quantityQuestion);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 DTO.QuestionDTO Question = new DTO.QuestionDTO(

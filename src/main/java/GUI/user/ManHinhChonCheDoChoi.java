@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -237,10 +238,13 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
-            out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-            transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "bye");
-            transfer.send.run();
-            socket.close();
+            int decision = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không");
+            if (decision == JOptionPane.YES_OPTION) {
+                DataTransfer transfer = new DataTransfer();
+                BufferedWriter testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.send.run();
+            }
             dispose();
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
@@ -289,6 +293,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     private void labelButtonTimDoiThuOnlineMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTimDoiThuOnlineMouseClicked
 
         try {
+
 //            DataTransfer transfer = new DataTransfer();
 //            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 //            in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
@@ -322,8 +327,8 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     private void labelButtonBangXepHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonBangXepHangMouseClicked
         // TODO add your handling code here:
         GUI.user.ManHinhBangXepHang frame = new ManHinhBangXepHang();
-            frame.setVisible(true);
-            this.setVisible(false);
+        frame.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_labelButtonBangXepHangMouseClicked
 
     private void labelButtonKiemTraIQ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKiemTraIQ1MouseClicked

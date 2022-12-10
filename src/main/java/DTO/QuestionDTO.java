@@ -5,11 +5,13 @@
  */
 package DTO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ADMIN
  */
-public class QuestionDTO {
+public class QuestionDTO implements Serializable {
 
     String Content, Option1, Option2, Option3, Option4, OptionTrue, Type;
     int ID_Question;

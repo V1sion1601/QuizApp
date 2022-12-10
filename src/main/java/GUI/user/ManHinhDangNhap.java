@@ -362,10 +362,13 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             sendThread.join();
             receiveThread.join();
             if (transfer.receiveMode.userData.equals("success")) {
+                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
                 frame.setVisible(true);
                 this.setVisible(false);
 
+            } else {
+                JOptionPane.showMessageDialog(null, "Tài khoản bị sai tài khoản hoặc sai mật khẩu");
             }
 
         } catch (InterruptedException ex) {

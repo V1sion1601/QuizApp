@@ -245,7 +245,6 @@ public class ManHinhDangNhapAdmin extends javax.swing.JFrame {
                     GUI.admin.ManHinhChonCheDoQuanLyAdmin frameCheDoChoi = new ManHinhChonCheDoQuanLyAdmin();
                     this.setVisible(false);
                     frameCheDoChoi.setVisible(true);
-//                    frameCheDoChoi.setLocationRelativeTo(null);
                     break;
                 case 2:
                     JOptionPane.showMessageDialog(null, "Tài khoản của bạn đã bị khoá");

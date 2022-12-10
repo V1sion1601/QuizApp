@@ -7,6 +7,7 @@ package GUI.user;
 import DTO.*;
 import static GUI.user.ManHinhDangNhap.socket;
 import ServerConfig.DataTransfer;
+import ServerConfig.Server;
 import java.awt.Color;
 
 import java.awt.event.ActionEvent;
@@ -15,6 +16,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 
 import java.util.ArrayList;
@@ -156,11 +159,43 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     });
 
     public static ArrayList<QuestionDTO> questionlist() {
-        //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
-        questionlist = new ArrayList<>(DAO.QuestionDAO.quantityQuestion);
-        questionlist = DAO.QuestionDAO.getListQuestionByQuantity(DAO.QuestionDAO.quantityQuestion);
+        ArrayList<QuestionDTO> questionlist2 = null;
+        try {
+            //DAO.QuestionDAO.quantityQuestion = Integer.parseInt(txtAdmin.getText());
+            DataTransfer transfer = new DataTransfer();
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 
-        return questionlist;
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send thread questions");
+                transfer.setSend(socket, out, "play," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                ObjectInputStream inObject = null;
+                try {
+                    System.out.println("Receive thread questions");
+                    inObject = new ObjectInputStream(ManHinhDangNhap.socket.getInputStream());
+                    transfer.setReceiveObject(socket, inObject);
+                    transfer.receiveObject.run();
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+//            ObjectOutputStream outObject = new ObjectOutputStream(ManHinhDangNhap.socket.getOutputStream());
+//            questionlist2 = (ArrayList<QuestionDTO>) inObject.readObject();
+            questionlist2 = transfer.receiveObject.listQuestions;
+
+            System.out.println("Question list: " + questionlist2.size());
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return questionlist2;
     }
 
     public static ArrayList<Integer> createRandom() {
@@ -212,14 +247,19 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 timer.stop();
                 if (Integer.parseInt(labelDiem.getText()) > Integer.parseInt(labelDiem1.getText())) {
                     JOptionPane.showMessageDialog(null, "Bạn đã thắng");
+                } else if (Integer.parseInt(labelDiem.getText()) == Integer.parseInt(labelDiem1.getText())) {
+                    JOptionPane.showMessageDialog(null, "Hoa");
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Bạn đã thua");
                 }
+                i = 0;
                 DataTransfer transfer = new DataTransfer();
                 testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
                 transfer.send.run();
                 JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
+                Server.seed = new Random().nextInt();
                 dispose();
                 new ManHinhChonCheDoChoi().setVisible(true);
             } catch (IOException ex) {
@@ -519,11 +559,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
-            DataTransfer transfer = new DataTransfer();
-            testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-            transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
-            transfer.send.run();
-            timer.stop();
+            int decision = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không");
+            if (decision == JOptionPane.YES_OPTION) {
+                timer.stop();
+                DataTransfer transfer = new DataTransfer();
+                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.send.run();
+            }
 
         } catch (IOException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);

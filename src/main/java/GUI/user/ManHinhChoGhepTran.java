@@ -37,7 +37,7 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     int counter = 10, flag = 0;
     String test = "";
     DataTransfer transfer = new DataTransfer();
-
+    BufferedReader in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
     public static ArrayList<String> arrListPlayers = null;
 
     public String[] splitPlayer(String listPlayers) {
@@ -54,7 +54,7 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
             try {
 //                DataTransfer transfer = new DataTransfer();
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-                BufferedReader in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+
                 labelDemNguoc.setText(Integer.toString(counter));
                 counter--;
                 if (counter <= -2) {
@@ -85,6 +85,7 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
                         new ManHinhChonCheDoChoi().setVisible(true);
                     }
                 } else {
+
                     System.out.println("Test receive: " + in.readLine());
                     String[] listPlayers = splitPlayer(in.readLine());
                     arrListPlayers = new ArrayList<>(Arrays.asList(listPlayers));
@@ -148,9 +149,8 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
     public ManHinhChoGhepTran() throws InterruptedException, IOException {
         initComponents();
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-        BufferedReader in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-//        DataTransfer transfer = new DataTransfer();
 
+//        DataTransfer transfer = new DataTransfer();
         timer.start();
         Thread sendThread = new Thread(() -> {
             System.out.println("Send Thread Random");

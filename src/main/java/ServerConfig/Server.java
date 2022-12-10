@@ -4,6 +4,7 @@
  */
 package ServerConfig;
 
+import DTO.QuestionDTO;
 import DTO.RSA;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,6 +12,8 @@ import java.net.Socket;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -27,11 +30,12 @@ public class Server {
     public static int numThread = 10;
     public static Vector<ClientHandler> clientList = new Vector<>();
     public static Vector<String> queueList = new Vector<>();
+    public static ArrayList<QuestionDTO> questions = new ArrayList<>();
     public static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThread);
     private static PrivateKey privateKey = null;
     private static PublicKey publicKey = null;
     public static String privateKeyString = "";
-    public static int port = 4949;//port mà server chạy phải khớp với client
+    public static int port = 4949, seed = new Random().nextInt();//port mà server chạy phải khớp với client
 
     public static void createServer() throws NoSuchAlgorithmException {
         RSA rsa = new RSA();

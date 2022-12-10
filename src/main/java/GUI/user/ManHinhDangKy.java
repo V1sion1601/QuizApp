@@ -1,8 +1,14 @@
 package GUI.user;
 
 import DTO.Manager;
+import static GUI.user.ManHinhDangNhap.socket;
+import ServerConfig.DataTransfer;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.logging.Level;
@@ -251,54 +257,112 @@ public class ManHinhDangKy extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDangKyMouseExited
 
     private void buttonDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDangKyMouseClicked
-        String username = textFieldTenNguoiChoi.getText();
-        String password1 = String.valueOf(passwordFieldMatKhau.getPassword());
-        String password2 = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
-        String gmail = textFieldDiaChiEmail.getText();
-        String otp = "";
-        while (true) {
-            otp = new DecimalFormat("000000").format(new Random().nextInt(999999));//sinh ra mã otp ngẫu nhiên
-            if (Manager.OTP_TIME.get(otp) == null) {
-                break;
+
+        try {
+            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+            String username = textFieldTenNguoiChoi.getText();
+            String password1 = String.valueOf(passwordFieldMatKhau.getPassword());
+            String password2 = String.valueOf(passwordFieldXacNhanMatKhau.getPassword());
+            String gmail = textFieldDiaChiEmail.getText();
+            String otp = "";
+            while (true) {
+                otp = new DecimalFormat("000000").format(new Random().nextInt(999999));//sinh ra mã otp ngẫu nhiên
+                if (Manager.OTP_TIME.get(otp) == null) {
+                    break;
+                }
             }
-        }
-        if (username.length() != 0 && password1.length() != 0 && password2.length() != 0 && gmail.length() != 0) {
-            if (BUS.UserBUS.isValidEmail(gmail) == true) {
-                if (BUS.UserBUS.isValidPassword(password1) == true && BUS.UserBUS.isValidPassword(password2) == true) {
-                    if (password1.equals(password2)) {
-                        if (BUS.UserBUS.CheckEmailUsed(gmail)==true) {
-                            if (BUS.UserBUS.checkUserName(username) == true) {
-                            BUS.SendMaiController.sendEmail(gmail, otp);
-                            Manager.OTP.put(gmail, otp);
-                            String input = JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");
-                            if (Manager.OTP.get(gmail).equals(input)) {
-                                BUS.UserBUS.insert1(username, password1, gmail);
-                                Manager.OTP.remove(gmail);
-                                this.setVisible(false);
-                                GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
-                                frame.setVisible(true);
+            if (username.length() != 0 && password1.length() != 0 && password2.length() != 0 && gmail.length() != 0) {
+                if (BUS.UserBUS.isValidEmail(gmail) == true) {
+                    if (BUS.UserBUS.isValidPassword(password1) == true && BUS.UserBUS.isValidPassword(password2) == true) {
+                        if (password1.equals(password2)) {
+                            DataTransfer transferEmail = new DataTransfer();
+                            Thread sendEmail = new Thread(() -> {
+                                transferEmail.setSend(ManHinhDangNhap.socket, out2, "email#" + gmail + "," + ManHinhDangNhap.nameClient);
+                                transferEmail.send.run();
+                            });
+                            Thread receiveEmail = new Thread(() -> {
+                                transferEmail.setReceiveMode(ManHinhDangNhap.socket, in2);
+                                transferEmail.receiveMode.run();
+                            });
+                            sendEmail.start();
+                            receiveEmail.start();
+                            sendEmail.join();
+                            receiveEmail.join();
+                            String checkEmail = transferEmail.receiveMode.userData;
+                            System.out.println("Email status: " + checkEmail);
+                            if (checkEmail.equals("success")) {
+                                DataTransfer transferUsername = new DataTransfer();
+                                Thread sendUsername = new Thread(() -> {
+                                    transferUsername.setSend(ManHinhDangNhap.socket, out2, "username#" + username + "," + ManHinhDangNhap.nameClient);
+                                    transferUsername.send.run();
+                                });
+                                Thread receiveUsername = new Thread(() -> {
+                                    transferUsername.setReceiveMode(ManHinhDangNhap.socket, in2);
+                                    transferUsername.receiveMode.run();
+                                });
+                                sendUsername.start();
+                                receiveUsername.start();
+                                sendUsername.join();
+                                receiveUsername.join();
+                                String checkUsername = transferUsername.receiveMode.userData;
+                                if (checkUsername.equals("success")) {
+                                    BUS.SendMaiController.sendEmail(gmail, otp);
+                                    Manager.OTP.put(gmail, otp);
+                                    String input = JOptionPane.showInputDialog(null, "Nhập mã OTP từ địa chỉ Email vừa nhập.");
+                                    if (Manager.OTP.get(gmail).equals(input)) {
+                                        DataTransfer transferRegister = new DataTransfer();
+                                        Thread sendRegister = new Thread(() -> {
+                                            transferRegister.setSend(ManHinhDangNhap.socket, out2, "register#" + username + "," + password1 + "," + gmail + "," + ManHinhDangNhap.nameClient);
+                                            transferRegister.send.run();
+                                        });
+                                        Thread receiveRegister = new Thread(() -> {
+                                            transferRegister.setReceiveMode(ManHinhDangNhap.socket, in2);
+                                            transferRegister.receiveMode.run();
+                                        });
+                                        sendRegister.start();
+                                        receiveRegister.start();
+                                        sendRegister.join();
+                                        receiveRegister.join();
+                                        String checkRegister = transferRegister.receiveMode.userData;
+                                        if (checkRegister.equals("success")) {
+                                            JOptionPane.showMessageDialog(null, "Đăng kí thành công");
+                                            Manager.OTP.remove(gmail);
+                                            this.setVisible(false);
+                                            GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
+                                            frame.setVisible(true);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Đăng kí thất bại hãy kiểm tra đường dẫn mạng");
+                                        }
+                                        //BUS.UserBUS.insert1(username, password1, gmail);
+
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Mã xác thực không hợp lệ, Vui lòng bấm Đăng Ký để gửi lại mã mới");
+                                        Manager.OTP.remove(gmail);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại");
+                                }
                             } else {
-                                JOptionPane.showMessageDialog(null, "Mã xác thực không hợp lệ, Vui lòng bấm Đăng Ký để gửi lại mã mới");
-                                Manager.OTP.remove(gmail);
+                                JOptionPane.showMessageDialog(null, "Email đã tồn tại");
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "Tên đăng nhập đã tồn tại");
+                            JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Email đã tồn tại");
+                        JOptionPane.showMessageDialog(null, "Mật khẩu phải có chứa chữ và số và độ dài >= 6");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
+                    JOptionPane.showMessageDialog(null, "Email không hợp lệ");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Mật khẩu phải có chứa chữ và số và độ dài >= 6");
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Email không hợp lệ");
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhDangKy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhDangKy.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } else {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
-    }
     }//GEN-LAST:event_buttonDangKyMouseClicked
 
     private void passwordFieldMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldMatKhauActionPerformed
@@ -337,25 +401,17 @@ public class ManHinhDangKy extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManHinhDangKy
-
-.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManHinhDangKy.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
