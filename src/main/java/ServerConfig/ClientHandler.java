@@ -191,35 +191,38 @@ public class ClientHandler implements Runnable {
             String idClient = info[2];
             int check = userBus.findtaikhoan(account, password);
             System.out.println("Stauts: " + check);
-            if (check == 1) {
+            switch (check) {
+                case 1:
+                    for (ClientHandler client : clientList) {
+                        if (client.name.equals(idClient)) {
+                            client.out.write("success" + "\n");
+                            client.out.flush();
+                            System.out.println("Login status: " + check);
+                            System.out.println("Server sent login to" + client.name);
 
-                for (ClientHandler client : clientList) {
-                    if (client.name.equals(idClient)) {
-                        client.out.write("success" + "\n");
-                        client.out.flush();
-                        System.out.println("Login status: " + check);
-                        System.out.println("Server sent login to" + client.name);
-
+                        }
                     }
-                }
-            } else if (check == 2) {
-                for (ClientHandler client : clientList) {
-                    if (client.name.equals(idClient)) {
-                        client.out.write("failed login" + "\n");
-                        client.out.flush();
-                        System.out.println("Login status: " + check);
-                        System.out.println("Server sent login to" + client.name);
+                    break;
+                case 2:
+                    for (ClientHandler client : clientList) {
+                        if (client.name.equals(idClient)) {
+                            client.out.write("failed login" + "\n");
+                            client.out.flush();
+                            System.out.println("Login status: " + check);
+                            System.out.println("Server sent login to" + client.name);
+                        }
                     }
-                }
-            } else {
-                for (ClientHandler client : clientList) {
-                    if (client.name.equals(idClient)) {
-                        client.out.write("failed" + "\n");
-                        client.out.flush();
-                        System.out.println("Login status: " + check);
-                        System.out.println("Server sent login to" + client.name);
+                    break;
+                default:
+                    for (ClientHandler client : clientList) {
+                        if (client.name.equals(idClient)) {
+                            client.out.write("failed" + "\n");
+                            client.out.flush();
+                            System.out.println("Login status: " + check);
+                            System.out.println("Server sent login to" + client.name);
+                        }
                     }
-                }
+                    break;
             }
 
         } else if (command.contains("match")) {
@@ -247,19 +250,24 @@ public class ClientHandler implements Runnable {
             }
         } else {
             if (command.contains("cancel")) {
-
                 queue.remove(idPlayer);
+                for (ClientHandler client : clientList) {
+                    client.out.write(queue.toString() + "\n");
+                    client.out.flush();
+                    System.out.println("Server sent: " + queue);
+
+                }
             }
             if (command.contains("queue")) {
                 queue.add(idPlayer);
+                for (ClientHandler client : clientList) {
+                    client.out.write(queue.toString() + "\n");
+                    client.out.flush();
+                    System.out.println("Server sent: " + queue);
+
+                }
             }
 
-            for (ClientHandler client : clientList) {
-                client.out.write(queue.toString() + "\n");
-                client.out.flush();
-                System.out.println("Server sent: " + queue);
-
-            }
         }
 
     }

@@ -127,33 +127,26 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 }
             } else {
                 ((Timer) e.getSource()).stop();
-//                try {
-//                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-//                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-//
-//                    labelDemNguocCauHoi.setText(Integer.toString(0));
-//                    timer.stop();
-//                    try {
-//                        System.out.println("Send to server point: " + tongDiem);
-//                        Thread sendThread = new Thread(() -> {
-//                            transfer.setSend(ManHinhDangNhap.socket, testOut, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
-//                            transfer.send.run();
-//                        });
-//
-//                        
-//
-//                        sendThread.start();
-//                        testThread.start();
-//                        sendThread.join(1000);
-//                        testThread.join(4000);
-//
-                showQuestionToGUI(++i);
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                } catch (IOException ex) {
-//                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                try {
+                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+                    DataTransfer transfer = new DataTransfer();
+                    System.out.println("Send to server point: " + tongDiem);
+                    Thread sendThread = new Thread(() -> {
+                        transfer.setSend(ManHinhDangNhap.socket, testOut, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
+                        transfer.send.run();
+                    });
+
+                    sendThread.start();
+                    sendThread.join();
+
+                    showQuestionToGUI(++i);
+
+                } catch (IOException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     });
@@ -244,20 +237,21 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         } else {
 
             try {
+
                 timer.stop();
                 if (Integer.parseInt(labelDiem.getText()) > Integer.parseInt(labelDiem1.getText())) {
                     JOptionPane.showMessageDialog(null, "Bạn đã thắng");
                 } else if (Integer.parseInt(labelDiem.getText()) == Integer.parseInt(labelDiem1.getText())) {
-                    JOptionPane.showMessageDialog(null, "Hoa");
+                    JOptionPane.showMessageDialog(null, "Hòa");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Bạn đã thua");
                 }
-                i = 0;
-                DataTransfer transfer = new DataTransfer();
-                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-                transfer.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
-                transfer.send.run();
+//                DataTransfer transfer = new DataTransfer();
+//                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+//
+//                transfer.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
+//                transfer.send.run();
                 JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
                 Server.seed = new Random().nextInt();
                 dispose();
@@ -270,21 +264,12 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }
 
     public ManHinhCauHoi() throws InterruptedException {
+
+        i = 0;
+        tongDiem = 0;
         initComponents();
         questionlist = questionlist();
         showQuestionToGUI(i);
-//        out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-//        transfer.setSend(ManHinhDangNhap.socket, out, "cancel#" + ManHinhDangNhap.nameClient);
-//        transfer.send.run();
-//        Thread receiveThread = new Thread(() -> {
-//            System.out.println("Receive Thread");
-//
-//            transfer.setReceive(ManHinhDangNhap.socket, in);
-//            transfer.receive.run();
-//
-//        });
-//        receiveThread.start();
-//        receiveThread.join();
 
     }
 
@@ -567,6 +552,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             transfer.setSend(socket, out, "bye");
             transfer.send.run();
+            this.dispose();
 //            socket.close();
 //            System.exit(0);
         } catch (IOException ex) {
@@ -673,66 +659,136 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDapAnAActionPerformed
 
     private void buttonDapAnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnBActionPerformed
-        // TODO add your handling code here:
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
-            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
-            tongDiem += dt;
 
-        } else {
-            tongDiem += 0;
+        try {
+            // TODO add your handling code here:
+            DataTransfer transfer = new DataTransfer();
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            if (questionlist.get(i).getOptionTrue().equals(buttonDapAnB.getText())) {
+                int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+                tongDiem += dt;
+
+            } else {
+                tongDiem += 0;
+            }
+            buttonDapAnB.setForeground(Color.black);
+            buttonDapAnB.setEnabled(false);
+            buttonDapAnA.setEnabled(false);
+            buttonDapAnC.setEnabled(false);
+            buttonDapAnD.setEnabled(false);
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send Thread Point");
+                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                System.out.println("Receive Thread Point");
+
+                transfer.setReceiveMode(ManHinhDangNhap.socket, in2);
+                transfer.receiveMode.run();
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            oppoPoint = transfer.receiveMode.userData;
+            System.out.println("Test oppo point: " + transfer.receiveMode.userData);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        buttonDapAnB.setForeground(Color.black);
-
-        buttonDapAnB.setEnabled(false);
-
-        buttonDapAnA.setEnabled(false);
-
-        buttonDapAnC.setEnabled(false);
-
-        buttonDapAnD.setEnabled(false);
-
 
     }//GEN-LAST:event_buttonDapAnBActionPerformed
 
     private void buttonDapAnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnCActionPerformed
-        // TODO add your handling code here:
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
-            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
-            tongDiem += dt;
 
-        } else {
-            tongDiem += 0;
+        try {
+            // TODO add your handling code here:
+            DataTransfer transfer = new DataTransfer();
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            if (questionlist.get(i).getOptionTrue().equals(buttonDapAnC.getText())) {
+                int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+                tongDiem += dt;
+
+            } else {
+                tongDiem += 0;
+            }
+            buttonDapAnC.setForeground(Color.black);
+            buttonDapAnC.setEnabled(false);
+            buttonDapAnB.setEnabled(false);
+            buttonDapAnA.setEnabled(false);
+            buttonDapAnD.setEnabled(false);
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send Thread Point");
+                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                System.out.println("Receive Thread Point");
+
+                transfer.setReceiveMode(ManHinhDangNhap.socket, in2);
+                transfer.receiveMode.run();
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            oppoPoint = transfer.receiveMode.userData;
+            System.out.println("Test oppo point: " + transfer.receiveMode.userData);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        buttonDapAnC.setForeground(Color.black);
-
-        buttonDapAnC.setEnabled(false);
-
-        buttonDapAnB.setEnabled(false);
-
-        buttonDapAnA.setEnabled(false);
-
-        buttonDapAnD.setEnabled(false);
 
     }//GEN-LAST:event_buttonDapAnCActionPerformed
 
     private void buttonDapAnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDapAnDActionPerformed
-        // TODO add your handling code here:
-        if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
-            int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
-            tongDiem += dt;
-        } else {
-            tongDiem += 0;
+        try {
+            // TODO add your handling code here:
+            DataTransfer transfer = new DataTransfer();
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
+            BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+            if (questionlist.get(i).getOptionTrue().equals(buttonDapAnD.getText())) {
+                int dt = Integer.parseInt(labelDemNguocCauHoi.getText());
+                tongDiem += dt;
+            } else {
+                tongDiem += 0;
+            }
+            buttonDapAnD.setForeground(Color.black);
+            
+            buttonDapAnD.setEnabled(false);
+            
+            buttonDapAnB.setEnabled(false);
+            
+            buttonDapAnC.setEnabled(false);
+            
+            buttonDapAnA.setEnabled(false);
+            Thread sendThread = new Thread(() -> {
+                System.out.println("Send Thread Point");
+                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "," + ManHinhDangNhap.nameClient);
+                transfer.send.run();
+            });
+            Thread receiveThread = new Thread(() -> {
+                System.out.println("Receive Thread Point");
+                
+                transfer.setReceiveMode(ManHinhDangNhap.socket, in2);
+                transfer.receiveMode.run();
+            });
+            sendThread.start();
+            receiveThread.start();
+            sendThread.join();
+            receiveThread.join();
+            oppoPoint = transfer.receiveMode.userData;
+            System.out.println("Test oppo point: " + transfer.receiveMode.userData);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        buttonDapAnD.setForeground(Color.black);
-
-        buttonDapAnD.setEnabled(false);
-
-        buttonDapAnB.setEnabled(false);
-
-        buttonDapAnC.setEnabled(false);
-
-        buttonDapAnA.setEnabled(false);
-
     }//GEN-LAST:event_buttonDapAnDActionPerformed
 
     private void buttonDapAnAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDapAnAMouseClicked

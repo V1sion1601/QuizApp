@@ -123,19 +123,18 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
 //                            BufferedWriter outCancel = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
 //                            BufferedReader inCancel = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
 //                            int optionType2 = JOptionPane.OK_CANCEL_OPTION;
-                        JOptionPane.showMessageDialog(null, "Tìm thấy đối thủ");
-//                            Thread sendThread2 = new Thread(() -> {
-//                                System.out.println("Send Thread Cancel");
-//                                transfer.setSend(ManHinhDangNhap.socket, ManHinhDangNhap.out, "cancel#" + ManHinhDangNhap.nameClient);
-//                                transfer.send.run();
-//                            });
-//                            sendThread2.start();
-//                            sendThread2.join();
-//                        
-                        dispose();
-                        new ManHinhCauHoi().setVisible(true);
+                        int input = JOptionPane.showOptionDialog(null, "Đã tìm thấy đối thử", "Thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
-//                        }
+                        if (input == JOptionPane.OK_OPTION) {
+//                            DataTransfer transfer = new DataTransfer();
+//                            BufferedWriter testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+//                            transfer.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
+//                            transfer.send.run();                 
+                            dispose();
+                            new ManHinhCauHoi().setVisible(true);
+                        }
+
+
                     }
                 }
             } catch (IOException ex) {
