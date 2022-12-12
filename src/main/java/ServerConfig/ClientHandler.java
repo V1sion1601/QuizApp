@@ -192,6 +192,7 @@ public class ClientHandler implements Runnable {
             int check = userBus.findtaikhoan(account, password);
             System.out.println("Stauts: " + check);
             if (check == 1) {
+
                 for (ClientHandler client : clientList) {
                     if (client.name.equals(idClient)) {
                         client.out.write("success" + "\n");
@@ -199,6 +200,15 @@ public class ClientHandler implements Runnable {
                         System.out.println("Login status: " + check);
                         System.out.println("Server sent login to" + client.name);
 
+                    }
+                }
+            } else if (check == 2) {
+                for (ClientHandler client : clientList) {
+                    if (client.name.equals(idClient)) {
+                        client.out.write("failed login" + "\n");
+                        client.out.flush();
+                        System.out.println("Login status: " + check);
+                        System.out.println("Server sent login to" + client.name);
                     }
                 }
             } else {
@@ -278,6 +288,9 @@ public class ClientHandler implements Runnable {
 
                 if (input.equals("bye")) {
                     System.out.println("Bye client " + name);
+                    if (userBus.usersavelogin != null) {
+                        userBus.logout();
+                    }
                     Server.clientList.remove(this);
                     Server.queueList.remove(name);
                     Server.executor.remove(this);

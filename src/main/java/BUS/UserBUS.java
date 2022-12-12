@@ -21,7 +21,7 @@ public class UserBUS implements Serializable {
 //    public static GUI.user.ManHinhDangNhap ManHinhDangNhap = new GUI.user.ManHinhDangNhap();
 //    public static GUI.admin.ManHinhChonCheDoQuanLyAdmin ManHinhChonCheDoQuanLyAdmin = new GUI.admin.ManHinhChonCheDoQuanLyAdmin();
     public static DTO.UserDTO user;
-    public static DTO.UserDTO usersavelogin;
+    public DTO.UserDTO usersavelogin;
 
     public UserBUS() {
 
@@ -39,15 +39,12 @@ public class UserBUS implements Serializable {
 //                ManHinhChonCheDoQuanLyAdmin.setVisible(true);
 //                ManHinhChonCheDoQuanLyAdmin.setLocationRelativeTo(null);
 //                ManHinhDangNhap.setVisible(false);
-            } else if (user.getRole().toLowerCase().equals("user") && !user.getStatus().toLowerCase().equals("block")) {
+            } else if (user.getRole().toLowerCase().equals("user") && !user.getStatus().toLowerCase().equals("block") && !user.getStatus().toLowerCase().equals("online")) {
 //                JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 usersavelogin = user;
                 UserBUS.BlockUser(usersavelogin.getName(), "Online");
-
                 return 1;
-
             } else {
-
                 return 2;
             }
 
@@ -56,6 +53,10 @@ public class UserBUS implements Serializable {
             return 3;
         }
 
+    }
+
+    public void logout() {
+        UserBUS.BlockUser(usersavelogin.getName(), "Offline");
     }
 
     public static void winRate(String username) {
@@ -141,6 +142,10 @@ public class UserBUS implements Serializable {
     public ArrayList showUserByWinStreak() {
         ArrayList<DTO.UserDTO> UserList = DAO.UserDAO.getListUserByWinStreak();
         return UserList;
+    }
+
+    public void setUserStatus(String name, String status) {
+        DAO.UserDAO.updateOnOffline(name, status);
     }
 
     public static ArrayList showUserOnline(String status) {

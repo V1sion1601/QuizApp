@@ -297,6 +297,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             transfer.setSend(socket, out, "bye");
             transfer.send.run();
+            this.dispose();
 //            socket.close();
 //            System.exit(0);
         } catch (IOException ex) {
@@ -366,6 +367,9 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
                 ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
                 frame.setVisible(true);
                 this.setVisible(false);
+
+            } else if (transfer.receiveMode.userData.equals("failed login")) {
+                JOptionPane.showMessageDialog(null, "Tài khoản đã bị khóa hoặc đang được đăng nhập trên 1 thiết bị khác");
 
             } else {
                 JOptionPane.showMessageDialog(null, "Tài khoản bị sai tài khoản hoặc sai mật khẩu");
