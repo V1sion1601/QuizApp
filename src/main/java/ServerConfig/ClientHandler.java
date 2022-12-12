@@ -138,7 +138,20 @@ public class ClientHandler implements Runnable {
     }
 
     public void sendQueueList(Vector<ClientHandler> clientList, Vector<String> queue, String command, String idPlayer) throws IOException {
-        if (command.contains("username")) {
+        if (command.contains("win")) {
+            int score = Integer.parseInt(idPlayer);
+            userBus.updateTotalMatch();
+            userBus.updateTotalWinMatch();
+            userBus.updateWinStreak();
+            userBus.updateTotalScore(score);
+        } else if (command.contains("lose")) {
+            int score = Integer.parseInt(idPlayer);
+            userBus.updateTotalLoseMatch();
+            userBus.updateLoseStreak();
+            userBus.updateWinStreak();
+            userBus.updateTotalScore(score);
+
+        } else if (command.contains("username")) {
             String[] info = idPlayer.split(",");
             String username = info[0];
             String idClient = info[1];
@@ -251,21 +264,15 @@ public class ClientHandler implements Runnable {
         } else {
             if (command.contains("cancel")) {
                 queue.remove(idPlayer);
-                for (ClientHandler client : clientList) {
-                    client.out.write(queue.toString() + "\n");
-                    client.out.flush();
-                    System.out.println("Server sent: " + queue);
-
-                }
             }
             if (command.contains("queue")) {
                 queue.add(idPlayer);
-                for (ClientHandler client : clientList) {
-                    client.out.write(queue.toString() + "\n");
-                    client.out.flush();
-                    System.out.println("Server sent: " + queue);
+            }
+            for (ClientHandler client : clientList) {
+                client.out.write(queue.toString() + "\n");
+                client.out.flush();
+                System.out.println("Server sent: " + queue);
 
-                }
             }
 
         }

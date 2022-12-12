@@ -581,17 +581,16 @@ public class UserDAO implements Serializable {
     }
 
     // Update tổng trận
-    public static void UpdateToTalMatch(DTO.UserDTO user) {
+    public static void UpdateToTalMatch(String name) {
 
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE user SET TotalMatch = ? WHERE Name = ?";
+            String sql = "UPDATE user SET TotalMatch = TotalMatch + 1 WHERE Name = ?";
             statement = connection.prepareCall(sql);
 
-            statement.setInt(1, user.getTotalMatch() + 1);
-            statement.setString(2, user.getName());
+            statement.setString(1, name);
 
             statement.execute();
         } catch (SQLException ex) {
@@ -617,18 +616,15 @@ public class UserDAO implements Serializable {
     }
 
     // Update tổng trận thắng
-    public static void UpdateTotalMatchWin(DTO.UserDTO user) {
+    public static void UpdateTotalMatchWin(String name) {
 
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE user SET TotalMatchWin = ? WHERE Name = ?";
+            String sql = "UPDATE user SET TotalMatchWin = TotalMatchWin + 1 WHERE Name = ?";
             statement = connection.prepareCall(sql);
-
-            statement.setInt(1, user.getTotalMatchWin() + 1);
-            statement.setString(2, user.getName());
-
+            statement.setString(1, name);
             statement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -689,17 +685,16 @@ public class UserDAO implements Serializable {
     }
 
     // Update chuỗi thắng
-    public static void UpdateWinStreak(DTO.UserDTO user) {
+    public static void UpdateWinStreak(String name) {
 
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE user SET WinStreak = ? WHERE Name = ?";
+            String sql = "UPDATE user SET WinStreak = WinStreak + 1 WHERE Name = ?";
             statement = connection.prepareCall(sql);
 
-            statement.setInt(1, user.getWinStreak() + 1);
-            statement.setString(2, user.getName());
+            statement.setString(1, name);
 
             statement.execute();
         } catch (SQLException ex) {
@@ -757,19 +752,51 @@ public class UserDAO implements Serializable {
 
         }
     }
-
-    // Update chuỗi thua
-    public static void UpdateLoseStreak(DTO.UserDTO user) {
+    
+    // Update tổng trận trua
+    public static void UpdateTotalMatchLose(String name) {
 
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE user SET WinStreak = ? WHERE Name = ?";
+            String sql = "UPDATE user SET TotalMatchLose = TotalMatchLose + 1 WHERE Name = ?";
+            statement = connection.prepareCall(sql);
+            statement.setString(1, name);
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(QuestionDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    }
+    
+    
+    // Update chuỗi thua
+    public static void UpdateLoseStreak(String name) {
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = DAO.Connection.connection();
+            String sql = "UPDATE user SET LoseStreak = LoseStreak + 1 WHERE Name = ?";
             statement = connection.prepareCall(sql);
 
-            statement.setInt(1, user.getWinStreak() + 1);
-            statement.setString(2, user.getName());
+            statement.setString(1, name);
 
             statement.execute();
         } catch (SQLException ex) {
@@ -792,7 +819,9 @@ public class UserDAO implements Serializable {
 
         }
     }
-
+    
+    
+    
     // Save chuỗi thua cao nhất
     public static void UpdateHighestLoseStreak(DTO.UserDTO user) {
 
@@ -829,17 +858,17 @@ public class UserDAO implements Serializable {
     }
 
     // Update điểm
-    public static void UpdateScore(DTO.UserDTO user, int diem) {
+    public static void UpdateScore(String name, int diem) {
 
         Connection connection = null;
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE user SET TotalScore = ? WHERE Name = ?";
+            String sql = "UPDATE user SET TotalScore = TotalScore + ? WHERE Name = ?";
             statement = connection.prepareCall(sql);
 
-            statement.setInt(1, user.getTongDiem() + diem);
-            statement.setString(2, user.getName());
+            statement.setInt(1, diem);
+            statement.setString(2, name);
 
             statement.execute();
         } catch (SQLException ex) {
@@ -980,7 +1009,7 @@ public class UserDAO implements Serializable {
             statement.setInt(1, ID_User);
 
             statement.execute();
-            
+
         } catch (SQLException ex) {
             System.err.println(ex);
             return false;
@@ -1003,7 +1032,7 @@ public class UserDAO implements Serializable {
         }
         return true;
     }
-    
+
     public static boolean CheckEmailUsed(String email) {
 
         Connection connection = null;
@@ -1016,11 +1045,13 @@ public class UserDAO implements Serializable {
             statement.setString(1, email);
 
             ResultSet rs = statement.executeQuery();
-            int count=0;
+            int count = 0;
             while (rs.next()) {
-            count++;
+                count++;
             }
-            if(count == 0) return true;
+            if (count == 0) {
+                return true;
+            }
         } catch (SQLException ex) {
             System.err.println(ex);
         } finally {

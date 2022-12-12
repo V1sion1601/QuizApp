@@ -127,26 +127,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 }
             } else {
                 ((Timer) e.getSource()).stop();
-                try {
-                    testIn = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-                    testOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                    DataTransfer transfer = new DataTransfer();
-                    System.out.println("Send to server point: " + tongDiem);
-                    Thread sendThread = new Thread(() -> {
-                        transfer.setSend(ManHinhDangNhap.socket, testOut, "point#" + String.valueOf(tongDiem) + "," + ManHinhDangNhap.nameClient);
-                        transfer.send.run();
-                    });
-
-                    sendThread.start();
-                    sendThread.join();
-
-                    showQuestionToGUI(++i);
-
-                } catch (IOException ex) {
-                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                showQuestionToGUI(++i);
             }
         }
     });
@@ -204,6 +185,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     }
 
     public void showQuestionToGUI(int i) {
+
         List<Integer> arr = createRandom();
         counter = 10;
         timer.start();
@@ -237,21 +219,29 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         } else {
 
             try {
+                DataTransfer transfer = new DataTransfer();
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+//                BufferedReader in = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
 
                 timer.stop();
                 if (Integer.parseInt(labelDiem.getText()) > Integer.parseInt(labelDiem1.getText())) {
                     JOptionPane.showMessageDialog(null, "Bạn đã thắng");
+                    transfer.setSend(socket, out, "win#" + labelDiem.getText());
+                    transfer.send.run();
+
                 } else if (Integer.parseInt(labelDiem.getText()) == Integer.parseInt(labelDiem1.getText())) {
                     JOptionPane.showMessageDialog(null, "Hòa");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Bạn đã thua");
+                    transfer.setSend(socket, out, "lose#" + labelDiem.getText());
+                    transfer.send.run();
                 }
-//                DataTransfer transfer = new DataTransfer();
-//                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-//
-//                transfer.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
-//                transfer.send.run();
+
+                DataTransfer transfer2 = new DataTransfer();
+                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer2.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
+                transfer2.send.run();
                 JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
                 Server.seed = new Random().nextInt();
                 dispose();
@@ -759,13 +749,13 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 tongDiem += 0;
             }
             buttonDapAnD.setForeground(Color.black);
-            
+
             buttonDapAnD.setEnabled(false);
-            
+
             buttonDapAnB.setEnabled(false);
-            
+
             buttonDapAnC.setEnabled(false);
-            
+
             buttonDapAnA.setEnabled(false);
             Thread sendThread = new Thread(() -> {
                 System.out.println("Send Thread Point");
@@ -774,7 +764,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             });
             Thread receiveThread = new Thread(() -> {
                 System.out.println("Receive Thread Point");
-                
+
                 transfer.setReceiveMode(ManHinhDangNhap.socket, in2);
                 transfer.receiveMode.run();
             });

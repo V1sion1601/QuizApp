@@ -265,4 +265,22 @@ public class UserBUS implements Serializable {
         }
         return false;
     }
+    public void updateTotalMatch() {
+        DAO.UserDAO.UpdateToTalMatch(usersavelogin.getName());
+    }
+    public void updateTotalWinMatch() {
+        DAO.UserDAO.UpdateTotalMatchWin(usersavelogin.getName());
+    }
+    public void updateWinStreak() {
+        DAO.UserDAO.UpdateWinStreak(usersavelogin.getName());
+    }
+    public void updateTotalScore(int score) {
+        DAO.UserDAO.UpdateScore(usersavelogin.getName(), score);
+    }
+    public void updateLoseStreak() {
+        DAO.UserDAO.UpdateLoseStreak(usersavelogin.getName());
+    }
+    public void updateTotalLoseMatch() {
+        DAO.UserDAO.UpdateTotalMatchLose(usersavelogin.getName());
+    }
 }
