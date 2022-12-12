@@ -302,7 +302,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelKienThuc = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
-        labelCauHoi = new javax.swing.JLabel();
         buttonDapAnA = new javax.swing.JButton();
         buttonDapAnB = new javax.swing.JButton();
         buttonDapAnC = new javax.swing.JButton();
@@ -313,6 +312,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelButtonTroVe = new javax.swing.JLabel();
         labelDiemHienTai1 = new javax.swing.JLabel();
         labelDiem1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        labelCauHoi = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -348,12 +349,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelBanQuyenThuocVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
-
-        labelCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        labelCauHoi.setText("[Vị trí đặt câu hỏi]");
-        labelCauHoi.setName(""); // NOI18N
-        labelCauHoi.setPreferredSize(new java.awt.Dimension(205, 100));
-        labelCauHoi.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         buttonDapAnA.setBackground(new java.awt.Color(0, 102, 255));
         buttonDapAnA.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -471,6 +466,15 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelDiem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDiem1.setText("0");
 
+        jScrollPane1.setBorder(null);
+
+        labelCauHoi.setEditable(false);
+        labelCauHoi.setBackground(new java.awt.Color(255, 255, 255));
+        labelCauHoi.setBorder(null);
+        labelCauHoi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        labelCauHoi.setText("[Vị trí đặt câu hỏi]");
+        jScrollPane1.setViewportView(labelCauHoi);
+
         javax.swing.GroupLayout panelManHinhCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCauHoi);
         panelManHinhCauHoi.setLayout(panelManHinhCauHoiLayout);
         panelManHinhCauHoiLayout.setHorizontalGroup(
@@ -496,7 +500,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonDapAnD, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
-                        .addComponent(labelCauHoi, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelDemNguocCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
@@ -527,8 +531,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                         .addComponent(labelDiem)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .addComponent(labelDemNguocCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelDemNguocCauHoi, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDapAnA, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -812,10 +816,11 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     private javax.swing.JButton buttonDapAnB;
     private javax.swing.JButton buttonDapAnC;
     private javax.swing.JButton buttonDapAnD;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelButtonTroVe;
-    private javax.swing.JLabel labelCauHoi;
+    private javax.swing.JTextPane labelCauHoi;
     private javax.swing.JLabel labelDemNguocCauHoi;
     private javax.swing.JLabel labelDiem;
     private javax.swing.JLabel labelDiem1;
