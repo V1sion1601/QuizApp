@@ -36,7 +36,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
 
     public ManHinhChonCheDoChoi() throws IOException {
         initComponents();
-
+        labelNguoiChoi.setText("Người chơi: " + ManHinhDangNhap.username);
 //        System.out.println(ManHinhDangNhap.playerList);
     }
 
@@ -55,10 +55,11 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelButtonTimDoiThuOnline = new javax.swing.JLabel();
         labelButtonKetThuc = new javax.swing.JLabel();
         labelBanQuyenThuocVe = new javax.swing.JLabel();
-        labelVuiLongChonCheDoChoi = new javax.swing.JLabel();
+        labelNguoiChoi = new javax.swing.JLabel();
         labelButtonTroVe = new javax.swing.JLabel();
         labelButtonBangXepHang = new javax.swing.JLabel();
         labelButtonKiemTraIQ1 = new javax.swing.JLabel();
+        labelVuiLongChonCheDoChoi1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -113,9 +114,8 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
         labelBanQuyenThuocVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelBanQuyenThuocVe.setText("Bản quyền thuộc về Trường Đại học Sài Gòn - 2022");
 
-        labelVuiLongChonCheDoChoi.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        labelVuiLongChonCheDoChoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelVuiLongChonCheDoChoi.setText("Vui lòng chọn Chế độ chơi");
+        labelNguoiChoi.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        labelNguoiChoi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         labelButtonTroVe.setBackground(new java.awt.Color(204, 204, 204));
         labelButtonTroVe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -175,6 +175,10 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
             }
         });
 
+        labelVuiLongChonCheDoChoi1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        labelVuiLongChonCheDoChoi1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelVuiLongChonCheDoChoi1.setText("Vui lòng chọn Chế độ chơi");
+
         javax.swing.GroupLayout panelManHInhChonCheDoChoiLayout = new javax.swing.GroupLayout(panelManHInhChonCheDoChoi);
         panelManHInhChonCheDoChoi.setLayout(panelManHInhChonCheDoChoiLayout);
         panelManHInhChonCheDoChoiLayout.setHorizontalGroup(
@@ -195,7 +199,8 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
                         .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelKienThuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelTranhTai)
-                        .addComponent(labelVuiLongChonCheDoChoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(labelNguoiChoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelVuiLongChonCheDoChoi1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(272, Short.MAX_VALUE))
         );
         panelManHInhChonCheDoChoiLayout.setVerticalGroup(
@@ -208,8 +213,10 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
                 .addComponent(labelTranhTai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelKienThuc)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(labelVuiLongChonCheDoChoi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(labelNguoiChoi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(labelVuiLongChonCheDoChoi1)
                 .addGap(41, 41, 41)
                 .addComponent(labelButtonTimDoiThuOnline, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -245,7 +252,7 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
                 transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
                 transfer.send.run();
             }
-            dispose();
+            this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -403,8 +410,9 @@ public class ManHinhChonCheDoChoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelButtonTimDoiThuOnline;
     private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelKienThuc;
+    private javax.swing.JLabel labelNguoiChoi;
     private javax.swing.JLabel labelTranhTai;
-    private javax.swing.JLabel labelVuiLongChonCheDoChoi;
+    private javax.swing.JLabel labelVuiLongChonCheDoChoi1;
     private javax.swing.JPanel panelManHInhChonCheDoChoi;
     // End of variables declaration//GEN-END:variables
 }

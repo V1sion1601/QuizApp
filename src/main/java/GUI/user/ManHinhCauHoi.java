@@ -32,6 +32,7 @@ import java.util.logging.Logger;
 import javax.swing.Timer;
 
 import javax.swing.JOptionPane;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -50,8 +51,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     public static int dapAn = 0;
     public int counter = 10;
     public int tongDiem = 0;
-    String oppoPoint = "0";
-
+    String oppoPoint = "0", oppoAnswer = "";
+    StyledDocument documentStyle = null;
 //    public int dt = 0;
     /**
      * Creates new form ManHinhDangNhap
@@ -129,8 +130,15 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
                 }
             } else {
-                ((Timer) e.getSource()).stop();
-                showQuestionToGUI(++i);
+
+                try {
+                    ((Timer) e.getSource()).stop();
+                    showQuestionToGUI(++i);
+                    documentStyle.insertString(0, "Đối phương đã trả lời phương án: " + oppoAnswer + "\n", null);
+                } catch (BadLocationException ex) {
+                    Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
         }
     });
@@ -241,10 +249,10 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                     transfer.send.run();
                 }
 
-                DataTransfer transfer2 = new DataTransfer();
-                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-                transfer2.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
-                transfer2.send.run();
+//                DataTransfer transfer2 = new DataTransfer();
+//                testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+//                transfer2.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
+//                transfer2.send.run();
                 JOptionPane.showMessageDialog(null, "Hoan thanh phan choi");
                 Server.seed = new Random().nextInt();
                 dispose();
@@ -263,10 +271,11 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         initComponents();
         questionlist = questionlist();
         showQuestionToGUI(i);
-        StyledDocument documentStyle = labelDapAnCuaDoiThu.getStyledDocument();
+        documentStyle = txtNguoiChoi.getStyledDocument();
         SimpleAttributeSet centerAttribute = new SimpleAttributeSet();
         StyleConstants.setAlignment(centerAttribute, StyleConstants.ALIGN_CENTER);
         documentStyle.setParagraphAttributes(0, documentStyle.getLength(), centerAttribute, false);
+        txtNguoiChoi.setEnabled(false);
     }
 
     /**
@@ -295,8 +304,8 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelDiem1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         labelCauHoi = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        labelDapAnCuaDoiThu = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtNguoiChoi = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -458,15 +467,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
         labelCauHoi.setText("[Vị trí đặt câu hỏi]");
         jScrollPane1.setViewportView(labelCauHoi);
 
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setBorder(null);
-
-        labelDapAnCuaDoiThu.setEditable(false);
-        labelDapAnCuaDoiThu.setBackground(new java.awt.Color(255, 255, 255));
-        labelDapAnCuaDoiThu.setBorder(null);
-        labelDapAnCuaDoiThu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelDapAnCuaDoiThu.setText("Đối thủ của bạn đã chọn đáp án : [Đáp án của đối thủ]");
-        jScrollPane2.setViewportView(labelDapAnCuaDoiThu);
+        jScrollPane3.setViewportView(txtNguoiChoi);
 
         javax.swing.GroupLayout panelManHinhCauHoiLayout = new javax.swing.GroupLayout(panelManHinhCauHoi);
         panelManHinhCauHoi.setLayout(panelManHinhCauHoiLayout);
@@ -476,7 +477,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3)
                     .addGroup(panelManHinhCauHoiLayout.createSequentialGroup()
                         .addComponent(labelTranhTai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -535,9 +536,9 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
                 .addGroup(panelManHinhCauHoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDapAnC, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonDapAnD, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(labelBanQuyenThuocVe)
                 .addContainerGap())
         );
@@ -559,13 +560,14 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
-            DataTransfer transfer = new DataTransfer();
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            transfer.setSend(socket, out, "bye");
-            transfer.send.run();
+            int decision = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không");
+            if (decision == JOptionPane.YES_OPTION) {
+                DataTransfer transfer = new DataTransfer();
+                BufferedWriter testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.send.run();
+            }
             this.dispose();
-//            socket.close();
-//            System.exit(0);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -645,7 +647,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             buttonDapAnD.setEnabled(false);
             Thread sendThread = new Thread(() -> {
                 System.out.println("Send Thread Point");
-                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "," + ManHinhDangNhap.nameClient);
+                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "`A" + "," + ManHinhDangNhap.nameClient);
                 transfer.send.run();
             });
             Thread receiveThread = new Thread(() -> {
@@ -658,11 +660,18 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             receiveThread.start();
             sendThread.join();
             receiveThread.join();
-            oppoPoint = transfer.receiveMode.userData;
+            String[] oppo = transfer.receiveMode.userData.split("`");
+            oppoPoint = oppo[0];
+            oppoAnswer = oppo[1];
+
             System.out.println("Test oppo point: " + transfer.receiveMode.userData);
+            documentStyle.insertString(0, "Bạn đã trả lời phương án: A" + "\n", null);
+
         } catch (IOException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadLocationException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -690,7 +699,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             buttonDapAnD.setEnabled(false);
             Thread sendThread = new Thread(() -> {
                 System.out.println("Send Thread Point");
-                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "," + ManHinhDangNhap.nameClient);
+                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "`B" + "," + ManHinhDangNhap.nameClient);
                 transfer.send.run();
             });
             Thread receiveThread = new Thread(() -> {
@@ -703,11 +712,17 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             receiveThread.start();
             sendThread.join();
             receiveThread.join();
-            oppoPoint = transfer.receiveMode.userData;
+            String[] oppo = transfer.receiveMode.userData.split("`");
+            oppoPoint = oppo[0];
+            oppoAnswer = oppo[1];
+
             System.out.println("Test oppo point: " + transfer.receiveMode.userData);
+            documentStyle.insertString(0, "Bạn đã trả lời phương án: B" + "\n", null);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadLocationException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -734,7 +749,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             buttonDapAnD.setEnabled(false);
             Thread sendThread = new Thread(() -> {
                 System.out.println("Send Thread Point");
-                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "," + ManHinhDangNhap.nameClient);
+                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "`C" + "," + ManHinhDangNhap.nameClient);
                 transfer.send.run();
             });
             Thread receiveThread = new Thread(() -> {
@@ -747,11 +762,17 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             receiveThread.start();
             sendThread.join();
             receiveThread.join();
-            oppoPoint = transfer.receiveMode.userData;
+            String[] oppo = transfer.receiveMode.userData.split("`");
+            oppoPoint = oppo[0];
+            oppoAnswer = oppo[1];
+
             System.out.println("Test oppo point: " + transfer.receiveMode.userData);
+            documentStyle.insertString(0, "Bạn đã trả lời phương án: C" + "\n", null);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadLocationException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -780,7 +801,7 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             buttonDapAnA.setEnabled(false);
             Thread sendThread = new Thread(() -> {
                 System.out.println("Send Thread Point");
-                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "," + ManHinhDangNhap.nameClient);
+                transfer.setSend(ManHinhDangNhap.socket, out2, "point#" + tongDiem + "`D" + "," + ManHinhDangNhap.nameClient);
                 transfer.send.run();
             });
             Thread receiveThread = new Thread(() -> {
@@ -793,11 +814,17 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
             receiveThread.start();
             sendThread.join();
             receiveThread.join();
-            oppoPoint = transfer.receiveMode.userData;
+            String[] oppo = transfer.receiveMode.userData.split("`");
+            oppoPoint = oppo[0];
+            oppoAnswer = oppo[1];
+
             System.out.println("Test oppo point: " + transfer.receiveMode.userData);
+            documentStyle.insertString(0, "Bạn đã trả lời phương án: D" + "\n", null);
         } catch (InterruptedException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadLocationException ex) {
             Logger.getLogger(ManHinhCauHoi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonDapAnDActionPerformed
@@ -884,12 +911,11 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     private javax.swing.JButton buttonDapAnC;
     private javax.swing.JButton buttonDapAnD;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelBanQuyenThuocVe;
     private javax.swing.JLabel labelButtonKetThuc;
     private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JTextPane labelCauHoi;
-    private javax.swing.JTextPane labelDapAnCuaDoiThu;
     private javax.swing.JLabel labelDemNguocCauHoi;
     private javax.swing.JLabel labelDiem;
     private javax.swing.JLabel labelDiem1;
@@ -898,5 +924,6 @@ public class ManHinhCauHoi extends javax.swing.JFrame {
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelTranhTai;
     private javax.swing.JPanel panelManHinhCauHoi;
+    private javax.swing.JTextPane txtNguoiChoi;
     // End of variables declaration//GEN-END:variables
 }

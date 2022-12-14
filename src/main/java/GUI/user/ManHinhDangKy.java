@@ -237,7 +237,18 @@ public class ManHinhDangKy extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
-        System.exit(0);
+         try {
+            int decision = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không");
+            if (decision == JOptionPane.YES_OPTION) {
+                DataTransfer transfer = new DataTransfer();
+                BufferedWriter testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.send.run();
+            }
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_labelButtonKetThucMouseClicked
 
     private void labelButtonKetThucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseEntered
@@ -373,7 +384,7 @@ public class ManHinhDangKy extends javax.swing.JFrame {
         // TODO add your handling code here:
         GUI.user.ManHinhDangNhap frame = new ManHinhDangNhap();
         frame.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered

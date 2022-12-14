@@ -72,7 +72,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
 
             Thread sendThread = new Thread(() -> {
                 System.out.println("Send thread total matches win");
-                transfer.setSend(socket, out, "totalWin," + ManHinhDangNhap.nameClient);
+                transfer.setSend(socket, out, "listWin," + ManHinhDangNhap.nameClient);
                 transfer.send.run();
             });
             Thread receiveThread = new Thread(() -> {
@@ -115,7 +115,7 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
 
             Thread sendThread = new Thread(() -> {
                 System.out.println("Send thread total matches win");
-                transfer.setSend(socket, out, "totalStreak," + ManHinhDangNhap.nameClient);
+                transfer.setSend(socket, out, "streak," + ManHinhDangNhap.nameClient);
                 transfer.send.run();
             });
             Thread receiveThread = new Thread(() -> {
@@ -149,17 +149,6 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        ArrayList<DTO.UserDTO> UserList = BUS.UserBUS.showUserByWinStreak();
-//        System.out.println(UserList);
-//        GUI.user.ManHinhBangXepHang.model.setRowCount(0);
-//        UserList.forEach(User -> {
-//            GUI.user.ManHinhBangXepHang.model.addRow(new Object[]{
-//                User.getName(),
-//                User.getTongDiem(),
-//                User.getTotalMatch(),
-//                User.getTotalMatchWin(),
-//                User.getWinStreak()});
-//        });
     }
 
     public ManHinhBangXepHang() {
@@ -395,12 +384,14 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
-            DataTransfer transfer = new DataTransfer();
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            transfer.setSend(socket, out, "bye");
-            transfer.send.run();
-//            socket.close();
-//            System.exit(0);
+            int decision = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không");
+            if (decision == JOptionPane.YES_OPTION) {
+                DataTransfer transfer = new DataTransfer();
+                BufferedWriter testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.send.run();
+            }
+            this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -444,7 +435,13 @@ public class ManHinhBangXepHang extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxTieuChiSapXepActionPerformed
 
     private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+            new ManHinhChonCheDoChoi().setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(ManHinhBangXepHang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_labelButtonTroVeMouseClicked
 
     private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered

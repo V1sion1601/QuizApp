@@ -61,7 +61,8 @@
                           <Component id="labelButtonTimDoiThuOnline" alignment="1" max="32767" attributes="0"/>
                           <Component id="labelKienThuc" alignment="1" max="32767" attributes="0"/>
                           <Component id="labelTranhTai" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelVuiLongChonCheDoChoi" alignment="1" max="32767" attributes="0"/>
+                          <Component id="labelNguoiChoi" alignment="1" max="32767" attributes="0"/>
+                          <Component id="labelVuiLongChonCheDoChoi1" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="272" max="32767" attributes="0"/>
@@ -79,8 +80,10 @@
                   <Component id="labelTranhTai" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelKienThuc" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="69" max="32767" attributes="0"/>
-                  <Component id="labelVuiLongChonCheDoChoi" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <Component id="labelNguoiChoi" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <Component id="labelVuiLongChonCheDoChoi1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Component id="labelButtonTimDoiThuOnline" min="-2" pref="41" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -164,13 +167,12 @@
             <Property name="text" type="java.lang.String" value="B&#x1ea3;n quy&#x1ec1;n thu&#x1ed9;c v&#x1ec1; Tr&#x1b0;&#x1edd;ng &#x110;&#x1ea1;i h&#x1ecd;c S&#xe0;i G&#xf2;n - 2022"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelVuiLongChonCheDoChoi">
+        <Component class="javax.swing.JLabel" name="labelNguoiChoi">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="20" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Vui l&#xf2;ng ch&#x1ecd;n Ch&#x1ebf; &#x111;&#x1ed9; ch&#x1a1;i"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelButtonTroVe">
@@ -239,6 +241,15 @@
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonKiemTraIQ1MouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelButtonKiemTraIQ1MouseExited"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelVuiLongChonCheDoChoi1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="20" style="0"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="Vui l&#xf2;ng ch&#x1ecd;n Ch&#x1ebf; &#x111;&#x1ed9; ch&#x1a1;i"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

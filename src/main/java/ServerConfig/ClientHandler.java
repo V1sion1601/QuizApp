@@ -284,6 +284,7 @@ public class ClientHandler implements Runnable {
         System.out.println("Client " + socket.toString() + " accepted");
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
         System.out.println(threadSet);
+        String commonKey = null;
         try {
             String[] player = null;
             String command = null, idPlayer = null;
@@ -315,6 +316,9 @@ public class ClientHandler implements Runnable {
                 //Mã hóa các dữ liệu gửi từ client qua
                 //System.out.println("Server received '" + rsa.Descrpytion(input, rsa.convertPrivateKey(Server.privateKeyString)) + "' from Client " + name);
                 System.out.println("Server received '" + input + "' from Client " + name);
+//                if(input.contains("key")) {
+//                    commonKey = rsa.Descrpytion(input, rsa.Descrpytion(input, rsa.convertPrivateKey(Server.privateKeyString)));
+//                }
                 if (input.contains("play")) {
                     player = input.split(",");
                     idPlayer = player[1];
@@ -330,12 +334,12 @@ public class ClientHandler implements Runnable {
                     idPlayer = player[1];
                     sendTotalMatches(Server.clientList, idPlayer);
                 }
-                if (input.contains("totalWin")) {
+                if (input.contains("listWin")) {
                     player = input.split(",");
                     idPlayer = player[1];
                     sendTotalMatchWin(Server.clientList, idPlayer);
                 }
-                if (input.contains("totalStreak")) {
+                if (input.contains("streak")) {
                     player = input.split(",");
                     idPlayer = player[1];
                     sendTotalStreak(Server.clientList, idPlayer);
@@ -360,6 +364,12 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             System.out.println(e);
         }
+//        catch (NoSuchAlgorithmException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InvalidKeySpecException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
 //        catch (NoSuchAlgorithmException ex) {
 //            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
 //        } catch (InvalidKeySpecException ex) {

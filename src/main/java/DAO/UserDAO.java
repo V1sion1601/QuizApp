@@ -691,7 +691,7 @@ public class UserDAO implements Serializable {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE user SET WinStreak = WinStreak + 1 WHERE Name = ?";
+            String sql = "UPDATE user SET WinStreak = WinStreak + 1, LoseStreak = 0 WHERE Name = ?";
             statement = connection.prepareCall(sql);
 
             statement.setString(1, name);
@@ -793,7 +793,7 @@ public class UserDAO implements Serializable {
         PreparedStatement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "UPDATE user SET LoseStreak = LoseStreak + 1 WHERE Name = ?";
+            String sql = "UPDATE user SET LoseStreak = LoseStreak + 1, WinStreak = 0 WHERE Name = ?";
             statement = connection.prepareCall(sql);
 
             statement.setString(1, name);

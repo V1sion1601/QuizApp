@@ -94,47 +94,12 @@ public class ManHinhChoGhepTran extends javax.swing.JFrame {
 
                         ((Timer) e.getSource()).stop();
 
-//                        System.out.println("Found");
-//                        DataTransfer transfer2 = new DataTransfer();
-//                        BufferedWriter out2 = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-//                        BufferedReader in2 = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-//                        Thread sendThread = new Thread(() -> {
-//
-//                            transfer2.setSend(ManHinhDangNhap.socket, out2, "match#" + ManHinhDangNhap.nameClient + "," + arrListPlayers.get(0));
-//                            transfer2.send.run();
-//                        });
-//                        Thread receiveThread = new Thread(() -> {
-//
-//                            transfer2.setReceiveMode(ManHinhDangNhap.socket, in2);
-//                            transfer2.receiveMode.run();
-//
-//                        });
-//                        sendThread.start();
-//                        receiveThread.start();
-//                        sendThread.join();
-//                        receiveThread.join();
-//
-//                        System.out.println("Test match array: " + transfer2.receiveMode.userData);
-//                        System.out.println("After thread");
-//                        for (String test : arrListPlayers) {
-//                            System.out.println("User: " + test);
-//                        }
-//                        if (transfer2.receiveMode.userData != null) {
-//                            BufferedWriter outCancel = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-//                            BufferedReader inCancel = new BufferedReader(new InputStreamReader(ManHinhDangNhap.socket.getInputStream()));
-//                            int optionType2 = JOptionPane.OK_CANCEL_OPTION;
                         int input = JOptionPane.showOptionDialog(null, "Đã tìm thấy đối thử", "Thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
 
-                        if (input == JOptionPane.OK_OPTION) {
-//                            DataTransfer transfer = new DataTransfer();
-//                            BufferedWriter testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
-//                            transfer.setSend(ManHinhDangNhap.socket, testOut, "cancel#" + ManHinhDangNhap.nameClient);
-//                            transfer.send.run();                 
+                        if (input == JOptionPane.OK_OPTION) {               
                             dispose();
                             new ManHinhCauHoi().setVisible(true);
                         }
-
-
                     }
                 }
             } catch (IOException ex) {

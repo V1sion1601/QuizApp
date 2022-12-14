@@ -41,7 +41,8 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 //    public static Vector<String> playerList = new Vector<>();
 
     private SecretKey clientKey = null;
-    public static String publicKey = null, nameClient = null;
+    
+    public static String publicKey = null, nameClient = null, username = null, clientKeyString = null;
     public PublicKey serverKey = null;
 //    UserBUS userBus = new UserBUS();
     ManHinhChonCheDoChoi frameCheDoChoi = null;
@@ -50,7 +51,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 
     public ManHinhDangNhap() {
         initComponents();
-        int flag = 1;
         try {
             DataTransfer transfer = new DataTransfer();
             String api = "https://retoolapi.dev/wItTy8/data/1";
@@ -79,7 +79,8 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 
             System.out.println("Server key: " + publicKey);
             System.out.println("Encrypted key: " + encryptedKey);
-            System.out.println("Client key: " + aes.getKeyString(clientKey));
+            clientKeyString = aes.getKeyString(clientKey);
+            System.out.println("Client key: " + clientKeyString);
 
         } catch (Exception e) {
         }
@@ -105,7 +106,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         labelMatKhau = new javax.swing.JLabel();
         passwordFieldMatKhau = new javax.swing.JPasswordField();
         labelButtonDangKy = new javax.swing.JLabel();
-        labelButtonTroVe = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -192,26 +192,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             }
         });
 
-        labelButtonTroVe.setBackground(new java.awt.Color(204, 204, 204));
-        labelButtonTroVe.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        labelButtonTroVe.setForeground(new java.awt.Color(255, 255, 255));
-        labelButtonTroVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelButtonTroVe.setText("<---");
-        labelButtonTroVe.setToolTipText("Trở về");
-        labelButtonTroVe.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        labelButtonTroVe.setOpaque(true);
-        labelButtonTroVe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelButtonTroVeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelButtonTroVeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelButtonTroVeMouseExited(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelManHinhChaoMungLayout = new javax.swing.GroupLayout(panelManHinhChaoMung);
         panelManHinhChaoMung.setLayout(panelManHinhChaoMungLayout);
         panelManHinhChaoMungLayout.setHorizontalGroup(
@@ -220,9 +200,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
                 .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelManHinhChaoMungLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
                         .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,9 +230,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
         panelManHinhChaoMungLayout.setVerticalGroup(
             panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelManHinhChaoMungLayout.createSequentialGroup()
-                .addGroup(panelManHinhChaoMungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelButtonTroVe, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelButtonKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113)
                 .addComponent(labelTranhTai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -293,13 +269,14 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
 
     private void labelButtonKetThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonKetThucMouseClicked
         try {
-            DataTransfer transfer = new DataTransfer();
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            transfer.setSend(socket, out, "bye");
-            transfer.send.run();
+            int decision = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không");
+            if (decision == JOptionPane.YES_OPTION) {
+                DataTransfer transfer = new DataTransfer();
+                BufferedWriter testOut = new BufferedWriter(new OutputStreamWriter(ManHinhDangNhap.socket.getOutputStream()));
+                transfer.setSend(ManHinhDangNhap.socket, testOut, "bye");
+                transfer.send.run();
+            }
             this.dispose();
-//            socket.close();
-//            System.exit(0);
         } catch (IOException ex) {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -363,6 +340,7 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             sendThread.join();
             receiveThread.join();
             if (transfer.receiveMode.userData.equals("success")) {
+                username = a;
                 JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
                 ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
                 frame.setVisible(true);
@@ -381,21 +359,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             Logger.getLogger(ManHinhDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_labelButtonDangNhapMouseClicked
-
-    private void labelButtonTroVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseClicked
-        // TODO add your handling code here:
-        GUI.user.ManHinhChaoMung frame = new ManHinhChaoMung();
-        frame.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_labelButtonTroVeMouseClicked
-
-    private void labelButtonTroVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseEntered
-        labelButtonTroVe.setBackground(new Color(153, 153, 153));
-    }//GEN-LAST:event_labelButtonTroVeMouseEntered
-
-    private void labelButtonTroVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelButtonTroVeMouseExited
-        labelButtonTroVe.setBackground(new Color(204, 204, 204));
-    }//GEN-LAST:event_labelButtonTroVeMouseExited
 
     /**
      * @param args the command line argument
@@ -419,7 +382,6 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     private javax.swing.JLabel labelButtonDangKy;
     private javax.swing.JLabel labelButtonDangNhap;
     private javax.swing.JLabel labelButtonKetThuc;
-    private javax.swing.JLabel labelButtonTroVe;
     private javax.swing.JLabel labelKienThuc;
     private javax.swing.JLabel labelMatKhau;
     private javax.swing.JLabel labelTenDangNhap;
