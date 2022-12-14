@@ -40,8 +40,8 @@ public class Server {
     public static ArrayList<UserDTO> totalStreaks = new ArrayList<>();
 
     public static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(numThread);
-    private static PrivateKey privateKey = null;
-    private static PublicKey publicKey = null;
+    public static PrivateKey privateKey = null;
+    public static PublicKey publicKey = null;
     public static String privateKeyString = "";
     public static int port = 4949, seed = new Random().nextInt();//port mà server chạy phải khớp với client
 

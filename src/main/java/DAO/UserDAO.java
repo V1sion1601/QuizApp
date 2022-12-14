@@ -29,7 +29,7 @@ public class UserDAO implements Serializable {
         Statement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM user WHERE Role != 'Admin'";
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
@@ -217,7 +217,7 @@ public class UserDAO implements Serializable {
         Statement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM user ORDER BY TotalMatchWin DESC";
+            String sql = "SELECT * FROM user WHERE Role != 'Admin' ORDER BY TotalMatchWin DESC";
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
@@ -267,7 +267,7 @@ public class UserDAO implements Serializable {
         Statement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM user ORDER BY WinStreak DESC";
+            String sql = "SELECT * FROM user WHERE Role != 'Admin' ORDER BY WinStreak DESC";
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
@@ -317,7 +317,7 @@ public class UserDAO implements Serializable {
         Statement statement = null;
         try {
             connection = DAO.Connection.connection();
-            String sql = "SELECT * FROM user ORDER BY TotalMatch DESC";
+            String sql = "SELECT * FROM user WHERE Role != 'Admin' ORDER BY TotalMatch DESC";
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {

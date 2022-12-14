@@ -40,14 +40,15 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
     public static Socket socket = null;
 //    public static Vector<String> playerList = new Vector<>();
 
-    private SecretKey clientKey = null;
-    
-    public static String publicKey = null, nameClient = null, username = null, clientKeyString = null;
-    public PublicKey serverKey = null;
+    public static SecretKey clientKey = null;
+
+    public static String publicKey = null, nameClient = null, username = null;
+    public static PublicKey serverKey = null;
 //    UserBUS userBus = new UserBUS();
     ManHinhChonCheDoChoi frameCheDoChoi = null;
     public static BufferedReader in = null;
     public static BufferedWriter out = null;
+    public static RSA rsa = new RSA();
 
     public ManHinhDangNhap() {
         initComponents();
@@ -61,26 +62,23 @@ public class ManHinhDangNhap extends javax.swing.JFrame {
             JSONObject jsonObject = new JSONObject(doc.text());
             System.out.println(jsonObject.get("ip").toString());
             socket = new Socket(jsonObject.get("ip").toString(), 4949);
-            AES aes = new AES();
-            RSA rsa = new RSA();
+
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             //Client tự phát sinh AES
-            clientKey = aes.getKey();
+
             publicKey = in.readLine();
             nameClient = in.readLine();
             System.out.println("Client name: " + nameClient);
             //Đổi định dạng public key của server
             serverKey = rsa.convertPublicKey(publicKey);
             //Mã hóa key AES của client theo key của server key (RSA)
-            String encryptedKey = rsa.Encrpytion(aes.getKeyString(clientKey), serverKey);
-            transfer.setSend(socket, out, encryptedKey);
-            transfer.send.run();
+//            String encryptedKey = rsa.Encrpytion(aes.getKeyString(clientKey), serverKey);
+//            transfer.setSend(socket, out, "key#" + encryptedKey);
+//            transfer.send.run();
 
             System.out.println("Server key: " + publicKey);
-            System.out.println("Encrypted key: " + encryptedKey);
-            clientKeyString = aes.getKeyString(clientKey);
-            System.out.println("Client key: " + clientKeyString);
+
 
         } catch (Exception e) {
         }

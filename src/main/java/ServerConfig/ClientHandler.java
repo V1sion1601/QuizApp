@@ -5,20 +5,20 @@
 package ServerConfig;
 
 import BUS.UserBUS;
+import DTO.AES;
 import DTO.RSA;
 import GUI.admin.ManHinhDangNhapAdmin;
 import GUI.user.ManHinhDangNhap;
 
 import java.io.*;
 import java.net.Socket;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.ArrayList;
+
 import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.SwingWorker;
+import javax.crypto.SecretKey;
+
 
 public class ClientHandler implements Runnable {
 
@@ -29,6 +29,7 @@ public class ClientHandler implements Runnable {
     BufferedWriter out;
     public String input;
     UserBUS userBus = new UserBUS();
+    public String commonKey;
 //    ObjectInputStream inObject;
 //    ObjectOutputStream outObject;
 
@@ -281,10 +282,12 @@ public class ClientHandler implements Runnable {
 
     public void run() {
         RSA rsa = new RSA();
+        AES aes = new AES();
+        SecretKey clientKey = null;
         System.out.println("Client " + socket.toString() + " accepted");
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
         System.out.println(threadSet);
-        String commonKey = null;
+
         try {
             String[] player = null;
             String command = null, idPlayer = null;
@@ -300,8 +303,8 @@ public class ClientHandler implements Runnable {
             }
             //Xử lí đầu vào
             while (true) {
-                input = in.readLine();
-
+                input = rsa.Descrpytion(in.readLine(), Server.privateKey);
+                System.out.println("Server receive " + input + " from client " + name );
                 if (input.equals("bye")) {
                     System.out.println("Bye client " + name);
                     if (userBus.usersavelogin != null) {
@@ -315,10 +318,11 @@ public class ClientHandler implements Runnable {
 
                 //Mã hóa các dữ liệu gửi từ client qua
                 //System.out.println("Server received '" + rsa.Descrpytion(input, rsa.convertPrivateKey(Server.privateKeyString)) + "' from Client " + name);
+//                String normalInput = aes.decrypt(input, ManHinhDangNhap.clientKey);
+       
                 System.out.println("Server received '" + input + "' from Client " + name);
-//                if(input.contains("key")) {
-//                    commonKey = rsa.Descrpytion(input, rsa.Descrpytion(input, rsa.convertPrivateKey(Server.privateKeyString)));
-//                }
+
+
                 if (input.contains("play")) {
                     player = input.split(",");
                     idPlayer = player[1];
@@ -369,7 +373,17 @@ public class ClientHandler implements Runnable {
 //        } catch (InvalidKeySpecException ex) {
 //            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+//        catch (NoSuchAlgorithmException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InvalidKeySpecException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
+//        catch (NoSuchAlgorithmException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InvalidKeySpecException ex) {
+//            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 //        catch (NoSuchAlgorithmException ex) {
 //            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
 //        } catch (InvalidKeySpecException ex) {

@@ -6,6 +6,7 @@ package ServerConfig;
 
 import DTO.QuestionDTO;
 import DTO.UserDTO;
+import GUI.user.ManHinhDangNhap;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -66,9 +67,10 @@ public class DataTransfer {
         }
 
         public void run() {
-
             try {
-                out.write(input + "\n");
+                String encryptInput = ManHinhDangNhap.rsa.Encrpytion(input, ManHinhDangNhap.serverKey);
+
+                out.write(encryptInput + "\n");
                 out.flush();
                 Thread.sleep(1000);
 
