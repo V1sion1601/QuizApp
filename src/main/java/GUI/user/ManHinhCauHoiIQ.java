@@ -150,9 +150,9 @@ public class ManHinhCauHoiIQ extends javax.swing.JFrame {
             } else if (tongIQ > 145) {
                 JOptionPane.showMessageDialog(null, "Hoàn thành phần chơi IQ \n Chỉ số IQ thuộc loại thiên tài hoặc cận thiên tài!");
             }
-            this.setVisible(false);
-//            GUI.user.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
-//            frame.setVisible(true);
+            this.dispose();
+            GUI.user.ManHinhChonCheDoChoi frame = new ManHinhChonCheDoChoi();
+            frame.setVisible(true);
         }
     }
 
